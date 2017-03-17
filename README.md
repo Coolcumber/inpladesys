@@ -12,8 +12,8 @@ for Intrinsic Plagiarism Detection and Author Diarization.](http://www.uni-weima
 * [Abdul Sittar, Hafiz Rizwan Iqbal, and Rao Muhammad Adeel Nawab. Author Diarization Using Cluster-Distance Approach.](http://www.uni-weimar.de/medien/webis/events/pan-16/pan16-papers-final/pan16-author-identification/sittar16-notebook.pdf)
 
 ## [Project plan](https://drive.google.com/drive/folders/0BzQ2SbanL1zCa1VoSVJBLXBxUXM)
-# Milestones
+### Milestones
 <sub><sup>*dates are in the ISO 8601 with the year-part and leading zeros omitted*</sub></sup>
-2016-3-24 Project Plan Submission
-2016-8-5 Project Checkpoint
-2016-6-9Project Presentations
+#### 2016-3-24 Project Plan Submission
+#### 2016-8-5 Project Checkpoint
+#### 2016-6-9Project Presentations
