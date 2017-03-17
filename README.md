@@ -12,7 +12,7 @@ Intrinsic plagiarism detection (also called author diarization) attempts to dete
 
 ## [Project plan](https://drive.google.com/drive/folders/0BzQ2SbanL1zCa1VoSVJBLXBxUXM)
 ### Milestones <sub><sup>*dates are in the ISO 8601 format with leading zeros omitted*</sub></sup>
-#### 2017-3-24 Project plansubmission
+#### 2017-3-24 Project plan submission
 #### 2017-4-8 *Baseline checkpoint*
 * at least a working baseline for each subtask
 * working evaluation
