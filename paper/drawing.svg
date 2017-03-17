@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 744.09448819 1052.3622047"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="drawing.svg"
+   inkscape:export-filename="E:\Projects\apt-template\drawing.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90">
+  <defs
+     id="defs4">
+    <linearGradient
+       y2="1"
+       x2="1"
+       y1="0"
+       x1="0"
+       id="svg_1">
+      <stop
+         id="stop3364"
+         stop-color="#ff0000"
+         offset="0" />
+      <stop
+         id="stop3366"
+         stop-color="#ffff00"
+         offset="1" />
+    </linearGradient>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.35"
+     inkscape:cx="-283.57143"
+     inkscape:cy="520"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1680"
+     inkscape:window-height="988"
+     inkscape:window-x="1672"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot3336"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:90px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Bold';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr;text-anchor:start;fill:#00aeef;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;"
+       transform="translate(65.714286,-5.7142857)"><flowRegion
+         id="flowRegion3338"><rect
+           id="rect3340"
+           width="465.71426"
+           height="125.71429"
+           x="74.285713"
+           y="95.219345"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:90px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Bold';text-align:start;writing-mode:lr;text-anchor:start;fill:#00aeef;fill-opacity:1;" /></flowRegion><flowPara
+         id="flowPara3344"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:90px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Bold';text-align:start;writing-mode:lr;text-anchor:start;fill:#00aeef;fill-opacity:1;">テイクラブ</flowPara></flowRoot>    <g
+       id="g3374"
+       transform="matrix(0.18864776,0,0,0.19935231,303.91838,227.17544)">
+      <title
+         id="title3376">Layer 1</title>
+      <path
+         d="m 212.88298,23.34021 c -137.447098,-2.471161 -264.63855,212.48125 105.92573,435.3407 0.40629,-0.73114 1.96879,-0.73114 2.37504,0 C 703.70172,228.63222 555.84888,7.04073 413.80945,24.29027 358.43674,31.014759 332.30612,61.74672 319.99618,88.178238 307.68634,61.746719 281.55563,31.014759 226.1831,24.29027 221.74432,23.751 217.3168,23.42008 212.88298,23.34021 Z"
+         id="path2361"
+         stroke-miterlimit="4"
+         inkscape:connector-curvature="0"
+         style="fill:#ff007f;fill-rule:evenodd;stroke:#ff007f;stroke-width:0;stroke-linejoin:round;stroke-miterlimit:4" />
+    </g>
+  </g>
+</svg>
