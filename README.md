@@ -3,7 +3,7 @@
 This repository is going to contain an implementation and a description paper for an author diarization (and intrinsic plagiarism detection) system as a result of a student project which is a part of [*Text Analysis and Retrieval*](https://www.fer.unizg.hr/en/course/taar) (*TAR*) coursework.
 
 ## Author Diarization and Intrinsic Plagiarism Detection
-Author diarization is the problem of segmenting text within a document by the authors, i.e. assignment of every part of text to an author. The analyzed document can be a result of collaborative work or plagiarism by a single author. The problem is more thoroughly described [here](http://pan.webis.de/clef16/pan16-web/author-identification). The problem can be divided into 3 subproblems:
+Author diarization is the problem of segmenting text within a document into classes each corresponding to an author, i.e. assignment of every part of a text to an author. The analyzed document can be a result of collaborative work or plagiarism by a single author. The problem is more thoroughly described [here](http://pan.webis.de/clef16/pan16-web/author-identification). The problem can be divided into 3 subproblems:
 * **Traditional intrinsic plagiarism detection.** It is assumed that at least 70% of the text is written by a single author and the rest by other authors. The task is to segment the text into 2 classes.
 * **Diarization with a given number of authors *n*.** The task is to segment the text into *n* classes, each representing an author.
 * **Diarization with an unknown number of authors.** The task is to segment the text into *n* classes, with the number of authors *n* not being known in advance.
