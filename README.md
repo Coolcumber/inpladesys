@@ -27,3 +27,6 @@ Intrinsic plagiarism detection (also called author diarization) attempts to dete
 #### 2017-5-8 Project Checkpoint
 #### 2017-6-9 Project Presentations
 #### 2017-6-18 Project Reviews
+
+
+[;e^{\pi i} + 1 = 0;]
