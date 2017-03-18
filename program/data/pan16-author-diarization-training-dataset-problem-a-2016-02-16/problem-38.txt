@@ -1,0 +1,69 @@
+The Yahoo Company And Its Services
+
+Back to the time when Google wasn't the mostfamous search engine yet, many people used Yahoo and some stilldo.
+
+Features of Yahoo Now that we know what Yahoo values, we should now check outwhat these great values make -- Yahoo's diverse features.
+
+
+
+Yahoo! Voice
+
+Yahoo! Voice is a Voice over IP PC-PC, PC-Phoneand Phone-to-PC service provided by Yahoo! via its Yahoo! Messengerinstant messaging application. It is also available for the Mac OSX platform
+
+Voicemail and file sharing
+
+Yahoo! added voicemail and file sendingcapabilities to their client. File-sharing of sizes up to 2GB wasadded to Yahoo meseneger Plug-ins
+
+As of 8.0, Yahoo! Messenger has added theability for users to create plug-ins (via the use of the freelyavailable Yahoo! Messenger Plug-in SDK), which are then hosted andshowcased on the Yahoo! Plug-in gallery. Yahoo! Mailintegration
+
+Yahoo! plans to integrate Yahoo! Mail Beta andYahoo! Messenger. Conversations will be archived and stored in thesame manner as emails. This allows users to search within theirchat logs easily, and to have them centrally stored and accessiblefrom any computer.
+
+
+
+Chat
+
+All versions of Yahoo! Messenger have includedthe ability to access Yahoo! Chat rooms.
+
+On June 19, 2005, with no advance warning,Yahoo! disabled users' ability to create their own chat rooms. Themove came after KPRC-TV in Houston, Texas reported that many of theuser-created rooms were geared toward pedophilia. Many regulars inthese rooms used the rooms to set up meetings to have sex withchildren and trade lewd pictures. While it was thought this movecame as a result of several advertisers pulling their ads fromYahoo!, a more likely cause was a $10 million lawsuit filed bywatchdog groups of internet portals on behalf of a 12-year-oldvictim of molestation.
+
+Yahoo! has since closed down the chat.yahoo.comsite (which is now a redirect to a section of the Yahoo! Messengerpage) because the great majority of chat users accessed it throughMessenger. In August 2007, it began requiring word verification inorder to use Yahoo! Chat. Officially, this is to guard againstspammers and automated bots, which had been a source of frustrationfor many chatters (This method has proved highly unsuccessful, asmany rooms now have more bots than users). However, as this alsologs users' IP addresses, this feature could presumably be used tomonitor against the type of behavior that prevailed in thepedophilia-oriented rooms. The company claims to be still workingon a way to allow users to create their own rooms while providingsafeguards against abuse.
+
+As of November 2008, Yahoo's inability tocontrol chat bots and spammers continues to be a major issue. Over90% of all chat messages, even in supposedly family oriented chatrooms like genealogy, appear to be originated by automated spambots spewing solicitations for adult activities, web cams andpictures.
+
+On October 16th, 2008, the Yahoo! Profilescommunity rolled out a new beta profile network with no priorannouncement. According to customer feedback, the new profiles nowresemble a stripped-down version of MASH.
+
+This unexpected move resulted in hundreds ofthousands of existing profiles being cleared of allinformation.
+
+Web Messenger
+
+Similar to MSN Web Messenger and AOL InstantMessenger's Aim Express and Quick Buddy, Yahoo! Messenger also hasa web applet version that runs in a browser window to communicatewith friends. Recently, it has switched from DHTML to Adobe Flashin coding. Offline messaging
+
+Offline messaging, a feature long offered byYahoo!, allows online users to send messages to their contacts,even if said contacts are not signed in at the time. The sender'soffline contacts will receive these messages when they next goonline . This sets Yahoo apart from Skypewhere in the offline message will only be sent if both the personsare online. Interoperability
+
+On October 13, 2005, Yahoo! and Microsoftannounced plans to introduce interoperability between their twomessengers, creating the second largest real time communicationsservice userbase worldwide: 40 percent of all users (AIM currentlyholds 56 percent). The announcement comes after years of 3rd partyinteroperability success (most notably, Trillian, Pidgin) andcriticisms that the major real time communications services werelocking their networks. Microsoft has also had talks with AOL in anattempt to introduce further interoperability, but so far, AOLseems unwilling to participate.
+
+Interoperability between Yahoo! and WindowsLive Messenger was launched July 12, 2006. This allows, for Yahoo!and Windows Live Messenger users to chat to each other without theneed to create an account on the other service, provided bothcontacts use the latest versions of the clients. For now, it'simpossible to talk using the voice service among bothmessengers. URI scheme
+
+Yahoo! Messenger's installation processautomatically installs an extra URI scheme ("protocol") handlerinto some web browsers, so that URIs beginning "ymsgr:" can open anew Yahoo! Messenger window with specified parameters. This issimilar in function to the mailto: URI scheme, which creates a newe-mail message using the system's default mail program. Forinstance, a web page might include a link like the following in itsHTML source to open a window for sending a message to the YIM usernotarealuser:
+
+Games
+
+Before people started playing games onFacebook, (Farmville, anyone?), Yahoo entertains its users byoffering lots of games they can play. There are various games andapplications available that can be accessed via the conversationwindow by clicking the games icon and challenging your currentcontact. It requires Java to work.
+
+
+
+Yahoo uses the Kelkooprice comparison service it acquired in April 2004 to power Yahoo!Shopping in 6 countries.
+
+
+
+Yahoo! Real Estate waslaunched by Yahoo! in June 1998 with the mission to provide homebuyers, sellers and renters with the most relevant andcomprehensive set of information and tools. With access to overthree million homes for sale and apartments for rent, Yahoo! Realestate provides one of the most comprehensive listings searchexperiences on the web. Beyond listings search, Yahoo! Real Estatealso provides users with various real estate tools andproducts.
+
+Reading all of these, one will come toconclusion that indeed, Yahoo offers a lot of things to theircustomers and its employees live up to their values, which isevident in their services.
+
+
+
+
+
+
+
+

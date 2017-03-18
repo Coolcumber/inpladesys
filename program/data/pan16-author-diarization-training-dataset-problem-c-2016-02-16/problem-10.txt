@@ -1,0 +1,80 @@
+A satellite is basically an object which revolves around a planet in a circular or an elliptical path. For example, the moon is Earth's natural satellite. There are a number of man made or artificial satellites which are generally closer to Earth as compared to the moon. Although anything that orbits around Earth is technically a satellite but the term "satellite" is typically used for describing a useful object that has been purposely placed in its orbit to perform a specific mission or task.
+The path followed by a satellite is called an orbit. The farthest point from Earth in the orbit is called apogee and the nearest point is called perigee. Most of the artificial satellites are custom built in order to perform their intended functions. Exceptions are GPS satellites which have more than 20 copies in orbit and Iridium satellites which have more than 60 copies in orbit.
+
+
+The satellites are highly specialised wireless transmitting and receiving devices which can easily relay hundreds of signals simultaneously, to and from various devices on the earth, ranging from from simple digital data messages to complex television programmes. For the purpose of communication, they make use of frequency bands of the electromagnetic spectrum. These frequency bands range from audible long wave lengths, through radio waves, to short wave lengths like radio active radiation.
+
+
+Due to Soviet government's secrecy at that time, no photographs of this famous launch were taken. Sputnik 1 was a 23-inch, 184-pound metal ball. After 92 days, the gravity took over and as a result, Sputnik burned in Earth's atmosphere.
+
+
+
+1. Astronomical satellites - These are used for observation of distant planets, galaxies, & other outer space objects. 2. Communications satellites- These are artificial satellites which are meant for for the purpose of telecommunications by making use of radio at microwave frequencies.
+
+Modern communications satellites make use of a a variety of orbits which include geostationary orbits, Molniya orbits, and low polar and non-polar Earth orbits.
+
+The communications satellites provide microwave radio relay technology which is complementary to technology provided by submarine communication cables. These satellites are also used for mobile applications like communications to ships, planes, vehicles and hand-held terminals. These are also used for TV and radio broadcasting.
+
+Geostationary Satellites - The geostationary orbit is used for communications applications. A satellite placed in a geostationary orbit appears to be in its fixed position to an observer on earth. A geostationary satellite completed one revolution around the earth at a constant speed which is once per day over the equator.
+Ground based antennas can easily be directed towards a geostationary satellite and these antennas can operate effectively without the need for any expensive equipment to track the motion of the satellite. If an application that requires a large number of ground antennas as in case of direct TV distribution, the savings in ground equipment justifies the extra cost as well as on-board complexity of lifting a satellite into a relatively high geostationary orbit.
+Low Earth Orbiting Satellites - A Low Earth Orbit or LEO is a circular orbit that is about 400 km above the earth's surface and it has a period of about 90 minutes. In other words the time taken by a satellite placed in this orbit to revolve around the earth is 90 minutes. Due to their low altitude, these satellites can only be seen from within a radius of about 1000 kilometers from a sub-satellite point. In addition to this, the satellites revolving in low earth orbit change their relative position with respect to the ground very quickly. So, even for the purpose of local applications, a large number of satellites are required for uninterrupted connectivity.
+
+LEO satellites are less expensive to position in their orbit as compared to the geostationary satellites and due to their closer proximity to the ground, these satellites require lower signal strength as the signal strength falls off as the square of the distance from its source. So, this results in a is a trade off between the number of satellites and their cost. Apart from this, there are a number of differences in the on-board as well as ground equipment required to support the two kinds of missions.
+
+A group of satellites that works in concert is called a satellite constellation. Two such constellations that were meant to provide satellite phone services, mainly to remote areas, were the "Global Star" and "Iridium".
+
+Molniya Satellites - As geostationary satellites are constrained to operate only above the equator, they are not always suitable for providing services at higher latitudes because at higher latitudes, a geostationary satellite appears low on the horizon, thus affecting connectivity and causing multipathing which is the interference caused by signals that reflect off the ground. The first satellite of the Molniya series was launched on April 23, 1965. It was used for experimental transmission of TV signal starting from Moscow uplink station to downlink stations, which were located in Siberia, Norilsk, Khabarovsk, Vladivostok and Magadan. Molniya orbits are an appealing alternative in such cases. Such an orbit is highly inclined and it guarantees good elevation over selected positions for the northern portion of the orbit.
+
+Molniya satellites are generally used for telephony and TV services over Russia. These satellites have another application of being used for mobile radio systems even at lower latitudes because cars travelling through urban areas need a proper access to satellites at high elevation to secure good connectivity which may be in the presence of tall buildings.
+
+
+
+3. Earth observation satellites - These are the satellites which have been specifically designed to observe Earth from their orbit. These are used for intended for environmental monitoring, meteorology, map making etc.
+
+4. Navigation satellites - These a re the satellites which make use of radio time signals transmitted to enable mobile receivers on earth to determine their accurate location. A clear line of sight between a satellite & the receivers on earth, allows satellite navigation systems to measure location accurately in real time.
+
+5. Reconnaissance satellites -
+
+6. Solar power satellites - These are proposed satellites which will make use of microwave power transmission to beam solar power to a very big antenna on Earth from where it may be utilized as a conventional power source.
+
+7. Space stations - These are man-semisynthetic structures which have been designed for human beings to live in the outer space. A space platform can be distinguished from a manned spacecraft by its lack of propulsion or landing facilities. Other vehicles are utilized for shipping to and from a space station.
+
+8. Weather satellites - These satellites are primarily utilized to monitor weather and climate of Earth.
+
+Satellites can be either polar orbiting type, that see the same swath of the Earth after every 12 hours, or geostationary satellites, hovering over the same point on Earth by orbiting over equator while moving at a speed of the Earth's rotation. These meteorological satellites see much more than clouds. City lights, effects of pollution, fires, auroras, storms, snow cover, ice mapping, energy flows, boundaries of ocean currents, etc are other kinds of environmental information which is being collected by using weather satellites.
+
+Weather satellite images help in monitoring volcanic ash cloud from Mount St. Helens and also the activity of other volcanoes such as Mount Etna. Environmental satellites can also detect changes in the Earth's vegetation, ocean color, and ice fields. For instance, the 2002 oil spill off the coast of Spain was watched carefully by the European ENVISAT.
+
+The Antarctic ozone hole is also being mapped from the weather satellite data. Collectively, weather satellites flown by different countries like U.S., Europe, India, Russia, China and Japan provide continuous observations for global weather watch.
+
+
+
+Satellite communication technologies are being used in a wide range of applications which may be ranging from radio and TV broadcasting to broadband and multi-media services, fixed position telephony and mobile communications. Other key applications are environmental monitoring and remote sensing.
+
+
+1. Telephony
+
+The first and the most important application of communication satellites was in the form of intercontinental long distance telephony. A fixed network relays telephone calls from land line phones to an earth station. From an earth station, they are transmitted to a geostationary satellite and the down-link follows an analogous path. Improvements in submarine communications cables, due to the use of fiber-optics, has caused some decline in the use of satellites for fixed telephony but they are still serving remote islands. Satellite phones are connected directly to a constellation of geostationary or low-earth-orbit satellites. The calls are then forwarded to a satellite teleport which is connected either to to the Public Switched Telephone Network or to some other satellite phone system.
+
+It was initially available for broadcast to stationary TV receivers and by 2004, popular mobile direct broadcast applications made their appearance with the arrival of two satellite radio systems in US. These were Sirius and XM Satellite Radio Holdings. Some manufacturers have also introduced special antennas for mobile reception. Using GPS technology, as their reference, these antennas automatically re-aim to the satellite irrespective of the fact where or how the vehicle is situated. These mobile satellite antennas are quite popular with some recreational vehicle owners. These mobile DBS antennas are being used by JetBlue Airways for DirecTV and as a result, the passengers can view on-board on LCD screens.
+
+5. Amateur radio
+
+Amateur radio operators have got an access to the OSCAR satellites which have been specifically designed to carry amateur radio traffic. Most of these satellites operate as space borne repeaters and these are generally accessed by amateurs equipped with UHF or VHF radio equipment accompanied with highly directional antennas like Yagis or dish antennas. Due to the limitations of ground based amateur equipment, majority of the amateur satellites are launched into fairly low Earth orbits. These satellites have been designed to deal with only a limited number of brief contacts at a particular point of time. Some satellites also provide data-forwarding services by making use of AX.25 or similar protocols.
+
+6. Satellite Internet
+
+After 1990s, the satellite communication technology has been used for connecting to the Internet via broadband data connections. This has proved to be very useful for those users who are located in remote areas and are unable to access a broadband connection. 7. Military Uses
+
+Communications satellites are also being used for military communications applications like Global Command and Control Systems. Different examples of military systems which make use of communication satellites are the DSCS, the MILSTAR and the FLTSATCOM of US, NATO satellites, satellites of the former Soviet Union and United Kingdom satellites. A number of military satellites operate in the X-band, and some of them also make use of UHF radio links.
+
+It needs to be mentioned that military communications are the battlefield or combat communications, that include intercommunication with a higher command or the country's government. The present-day militaries conduct intense and complicated communicating activities on a day to day basis, by making use of modern high-tech telecommunications and computing methods. A very small part of these activities are immediately related to the combat actions. It's because of this reason that some prefer to make use of the term called"military communications".
+
+
+
+9. Satellite Mapping
+
+Satellite maps are extremely useful to a wide range of users. The weather reports provided by them helps meteorological departments to provide advance storm as well as calamity warnings. The environmental information helps the environmental agencies to pinpoint trouble spots and get into timely action. The intelligence information provided by the satellite maps has been relied on for providing life saving information for the purpose of warfare and the general information that they provide has helped in the identification of sources of natural deposits for the purpose of creating mining and its allied industries.
+
+The widest used example of satellite maps generator is Google Earth which is the real time satellite map imaging software that has been developed by the Internet Company Google. Whether it's the Grand Canyon in Colorado or the Vatican from above or the Red Square in Russia, all that one needs to do to view it is to type the name and get the results. The satellite map is presented in vivid detail. Some innovative users have already started using the satellite maps to advertise their products as well as services. Google Earth is all set for becoming the best known example of the collaborative satellite map technology in this world. Companies like Space imaging have made it as their full time business to receive satellite map information, analyze the same and report results to a wide range of industry segments. Apart from providing critical information to governments and industries, these companies also use the satellite maps for generating aerial posters of popular earth landmarks.
+

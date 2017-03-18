@@ -1,0 +1,353 @@
+FLAME DESIGNS
+
+If you are looking for different flame designs to be used for several ornamental reasons, here are some for you. You can also learn how to make fire or flame effects using Photoshop because the steps are provided. But always remember that playing with the real flame is bad and dangerous.
+
+Fire, an element having a unique destructive power, has the ability to
+destroy almost everything in its way , which has made it both feared and
+respected. At the same time, while a flame may destroy almost anything, we couldn't be able to survive without it since it also has the power to provide us the heat and the light. Flames symbolized as plain fires, torches, candles, and the like representing light, hope, a nd knowledge.
+
+Flame tattoos can be colored or can take just one single color, usually black or orange. Blue is a usual color in such tattoo designs, and some people are us ing red. The newest trend is to us e colors that almost have nothing to do with fire or flames, such as pink, light green or even white.
+
+
+In Christianity, fire is a symbol of the Holy Ghost and is also often used in images that describes Hell. God made his presence known to Moses in the symbol of a Burning Bush. In Greek mythology, the use of fire was God's privilege, until Prometheus stole it from them and gave it to mortals to use it. In mythology, the Phoenix is consumed in flames and is reincarnated out of it's own ashes. The flames can also be a symbol of a rebirth that represents the cycle of life.
+
+
+Flame tattoos be a symbol to many things like destruction, change, passion,
+temptation , light, sin, and wisdom. Sometimes, meanings are contradicting.
+You can find flame designs and symbolisms in various religious ceremonies
+and rituals and in mythologies.
+
+Here are some of the most popular meanings of flame tattoos.
+
+Christianity uses flames in many biblical characters and events where
+Flame represents the Holy Ghost. Lucifer or Satan is always surrounded by
+flames which made flames as representations of temptation and sin.
+Not only this but when God talked to Moses, He appeared as a very
+bright flame. And hell was also described as flame.
+
+Wisdom is probably one of the best meanings one could get from having
+flame tattoos. A flame means light and if there is light there is knowledge.
+When studying in the old days, people have to use candles to see what they
+need to know. Flame tattoos also symbolize transformation. In the mythical
+bird phoenix die by being consumed by flames and later on will grow from
+his own ashes, as beautiful as before. People who wear flame tattoos
+sometimes look for change in their lives or a rebirth of something about
+themselves.
+
+
+
+Fire and flame tattoos are flame-like designs that you can see run ning across
+the arm, and are now very popular tattoo designs . Flames or fire on ones arm
+may represent transformation, change, true passion for something, or may be
+a symbol of light and knowledge combined and serve as a warning to the
+owner. A burning image of fl ames often has a religious connotation and
+symbolism - a s the fire flames and smoke reach the sky it was
+believed to carry the wishes of the faithful to the heavens. A wrist tattoo of an
+object that is burned by a fire and becomes flames is believed to help grant
+its bearer his or her prayers and wishes if one lives life faithfully.
+
+
+A flame tattoo is absolutely an admired type of skin art although people who
+are conservative may not like it. It is almost certain, that you know have met
+someone who wears a flame tattoo and t his kind of tattoo is commonly inked
+on the wrist area and moving up all the way to the forearm, or just burns
+around the wrist as an armband. Flame wrist tattoos serve as very good
+eye-catchers for it is almost impossible not to notice a flame wrist tattoo on
+one's arm or parts of the body that can be seen. A flame wrist tattoo is one
+of the best ways to make sure you will catch the attention of people
+surrounding you.
+
+P eople decide to ink themselves with a flame wrist or to any part of the body
+tattoo because of the symbols' exquisite beauty. People getting tattoo are
+getting a number nowadays for they think of flame tattoo designs as an
+exclusive and truly fabulous modern art, and the truth is that it is and
+always will be. While in the past, flame tattoos were most likely seen on the
+arms and wrists of rock stars, now days, anyone may feel like tattooing his
+or her wrist or arm with this unique symbol, regardless of the musical
+influence, age, sex, etc.
+
+If you are planning to get a flame tattoo, you should strive to find and get
+the best design out there. Consider first the size of the flame tattoo you
+would like to have. Do you want it to cover you whole arm from the wrist or
+do would you prefer a small one that would just serve as a small but very
+noticeable decoration on your wrist? Either one you choose, make sure you
+will become happy with it for the tattoo will probably stay on your skin as
+long as you live, thus make sure you consider this question with care, and
+be sue to take the time to research about the advantages and disadvantages
+before you get yourself inked.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+These are the different designs for Flame in Japanese which is read honoo .
+
+Japanese Calligraphy has five major fonts and, as you can see, they can look quite different. However, the different fonts don't actually change the meaning because kanji are exactly the same. In a sense, the designs may look quite different, but the meanings are all the same.
+
+
+
+
+Flame, Blaze (honoo)
+Flame, Blaze (honoo)
+1.83" high, Block (kaisho) 1.72" high, Block (kaisho)
+
+
+
+Flame, Blaze (honoo)
+Flame, Blaze (honoo)
+1.68" high, Cursive (sousho) 1.97" high, Cursive (sousho)
+
+
+Flame, Blaze (honoo) (VS1A) Flame, Blaze (honoo) (VS2A) 1.74" high, Semi-Cursive (gyousho) 1.98" high, Semi-Cursive (gyousho)
+
+
+
+
+
+Realistic Flames on Text
+
+For this tutorial, Photoshop CS is used although the techniques can also work on Photoshop 7 and on older versions.
+
+Step One:
+Open a new document, 400 pixels by 400 pixels should be plain. Fill the background in black. You can use any shape that you like, but here let's use text to have ample curves.
+Write something in white (ex 'Gaudete') in the middle of the canvas, and duplicate it. Rasterize the original text layer, and merge it with the background layer. (if you don't merge the layer with the black background you will run into problems later in the tutorial - liquifying will be very difficult, and you will be unable to change the hue & saturation)
+
+Step Two:
+'hide' the top layer (the one containing only the text) by clicking the little eye symbol next to the layer in the layers pallet.
+Then, make sure you have selected the merged layer containing the writing and the black background,look to the top of the screen, open the 'filter' drop down menu, select 'blur' and then choose 'Gaussian blur'. Adjust the radius to 1.0 pixels, and click okay.
+Next, open the 'filter' menu again, and select 'liquify'. Select an area of your shape to work on - points are usually easiest, such as the top of an A, W, or M. Move your mouse to the selected area, then click, and drag upwards in a wavy line. Keep repeating this, until you have a sufficient amount of 'flames' - vary the size and shape of each flame. When you're satisfied with your work, click 'okay'. And that's the 'hard' part done.
+Step Three:
+Duplicate the layer you just liquified.
+Refer to those layers as Flames1 and Flames2. Select either Flames1 or Flames2 (but bear in mind that if you select the bottom layer, you'll need to hide the top layer by unchecking the little 'eye' to the left of that layer in the players pallet). Click the 'Image' menu at the top of the screen, then 'adjustments' and finally 'Hue/Saturatio n'. Check the 'colorize' option in the box that appears, then start playing with the top two sliders, ignore the 'Lightness' slider, and leave it at zero. Slid the 'Hue' peg until you have a nice red color, thought bear in mind the '0' is already a red color, so you might decide not to adjust it. Then tweak the 'Saturation' peg.
+The Higher you slide it, the brighter your image will be.
+Step four:
+Select the other Flame layer and repeat the process above, however; this time, drag the 'hue' peg around until you get an orangey yellow color, instead of a red. When you're happy with your color, click okay. Now, make sure you have the top of the two flame layers selected, go to the layers pallet and open the drop down menu to the left of the opacity settings.
+Change the layer style to 'Color dodge' and you should find you have a fairly realistic flame effect. Other layer styles that work well are Linear dodge, Overlay and Hard Light - you can check out Difference and Exclusion for they can give pretty nifty effects.
+
+The result will be like this...
+
+
+
+
+
+Stylish fire lines
+Step 1:
+
+
+You'll be needing a good stock photo lined up something with action and preferably dark because the effects to be taught here work much better in a dark setting.
+Step 2:
+Open the stock photo, then go to the paths tab and click create new path. Press "P" on the keyboard to select the pen tool, Get a basic idea of where the fire is going. Keep in mind dimension and action. Try swirling!
+
+
+Step 3:
+
+A. Click to start your path
+B. Click your next point, hold and drag to create a bezier spline path, which is necessary to create flowing lines
+C. Continue doing this, following the idea of where you want the fire to go.
+Don't worry about getting it right the first time as you can change the spline at any time. another little tip - if you press and hold ctrl while using the pen tool you can temporarily access the direct selection tool which will allow you to edit the spline.
+Step 4:
+
+Remember that you're only going to use the parts of your path that are in front of the object your path follows - in this case the models arm, and leg. So don't waste time trying to make the hidden parts look pretty.
+Step 5
+
+A. Now you want to select a soft round brush --used a 5 pixel brush and pick an orange color.
+B. Make a new layer and name it Fire.
+C. Go back to the paths tab and select stroke path with brush.
+Step 6 You should immediately see the stroked path. On the given example, you'll see splatters and flairs that weren't part of the original path. Those give the fire line the illusion that it's moving. You can do that by simply grabbing the clone stamp tool - using a spatter brush and cloning/stamping areas of the path randomly. Step 7 Mask/erase the parts of the path that are behind the legs/arms or whatever it is your paths follows. Step 8 Right click on the Fire layer and select blending options, and use these options/values.Feel free to play with the settings until you're satisfied with the result.
+
+
+Step 9 Duplicate the Fire layer, and set the layer mode to OVERLAY Click the eye next to inner shadow and inner glow on the duplicate layer to deactivate them.
+
+Step10 Double click on outer glow on the duplicate and change the values as shown below.
+
+RESULT
+
+You can make something like this if you give your work a real time.
+
+For a different effect, duplicate the FIRE layer again, and filter>distort>wave. Play with the opacity levels and with the blending modes - specifically, OVERLAY.
+
+
+With The GIMP
+
+The GIMP under Linux is considered as the freeequivalent of Photoshop and can also produce the same result when you want a fire effect. Here are the steps on how to creat fire effects with The GIMP, which can be easily adapted to Photoshop and Paint Shop Pro.
+1. Create a text object
+
+A logo is easy to create in The Gimp because it is a base function of the program. Choose Xtns -> Script-Fu -> Logo -> Glowing Hot
+
+Preserving the default parameters, the colours and the font "Slogan"is evocative of fire.
+Enter the text "Flammes", confirmed by OK . 2. Remove the unneeded elements
+
+Since we need a transparent background to integrate the text in another image, we must then remove the black background:
+Right click on the image ->Layers -> Layers & channels Select the Background layer Eliminate it by clicking the X in the dialog box. 3. Merge the remaining layers Right click on the image -> Layers -> Merge Visibles Layers Then right click on the image -> Edit -> Copy
+
+The text object is in the clipboard is then ready to be pasted 4. Prepare a background gradient
+
+The text object has the approximate dimension 560x200, so create an image capable of accepting it:
+File -> New >Width 600 >Height 300 >RGB >Background ->OK
+
+The new image comes with a white background which we are going to paint with a Black/Yellow gradient
+Black is already available, you must replace white by yellow:
+
+Click on the white, then enter in the palette the values R255/G148/B0 ->OK
+Double click on "Fill with a color gradient".
+The default option will be Gradient Linear; if that's not the case, then select it.
+On the white background, draw a vertical from bottom to top.
+
+The white background is replaced by the gradient.
+5. Put the text object into the "gradient" image Right click on the image -> Layers-> Layers & channels-> New Layer-> Layer Name: Text-> OK By default, the new layer is active
+Minimize the dialog box (or close it) Select the "gradient" image then right click -> Edit -> Paste Position the text object at the bottom of the image (in the dark area) Unselect it 6. Prepare the fire effect
+
+You need two layers for this:
+one for the form of the flames,
+the other for the color by combining with the preceding.
+7. Produce the form of the flames Create a layer "Fire1"
+Paste the text object in the same position as the first. The layer "Fire1" will be active, select Keep Trans (to preserve the transparency)
+then select a very pale yellow R251/G247/B128 and a circle brush of 19x19 by
+Files -> Dialogs -> Brushes Paint the layer "Fire1". Because of the Keep Trans option, only the text is painted Deselect Keep Trans when the painting is finished. Deform the text of "Fire1" with: Filters -> Distorts -> Shift -> Shift verticaly ->Shift Amount :50 -> OK
+Filters -> Distorts -> Waves -> Amplitude 12 -> Phase 0 -> Wavelength 50 -> OK At this point of the process, the contours are very good for the flames.
+Now smooth it by: Filters -> Blur -> Gaussian Blur (RLE) -> Blur radius 5 -> OK
+Filters -> Blur -> Motion Blur -> Linear -> Lenght 5 -> Angle 45 -> 0K
+
+8. Produce the colour of the flames Copy the layer "Fire1" (the layer will be active) Create a layer "Fire2". Paste the flames of "Fire1" on the layer. Select Keep Trans, and paint in red R247/G79/B56 Change the mixing mode of layers: depending on the desired flame color. you could choose the mode: screen, overlay, lighten only or color. . For this example, the mode"overlay" was chosen.
+9. Refinement: Position the text object
+
+Raise the layer "Text" to the top in the Layers & channels dialog box
+10. Create the embers Select the layer "Background" Script-Fu -> Decor -> Lava (preserve the default values) -> OK A layer "Lava Layer" is automatically created just above the "Background" layer Mix them in mode Color Flatten the image by Layers -> Flatten Image 11. Change the colours The flames may appear too pale (according to taste). You can change them by playing with the contrast and the colour itself by: Images -> Colors -> Color Balance -> Preserve luminisity -> Red 80 Yellow -40 Magenta10 Images -> Colors -> Brightness-Contrast -> Contrast 40 -> Brightness -20
+
+The silhouette of the dancer is the outline,passed through the colour mill, from a photograph belonging to Sylvain Landry.
+
+
+
+Dramatic Text on Fire Effect
+
+
+Flames are hard to render in Photoshop; however, this tutorial will show you how to use a fire photograph to set text to the match. The End Effect
+
+This gonna be the result of this tutorial. Good luck!
+Part 1-The Background Create a new document in Photoshop at 1920px wide x 1200px high, and with the Gradient Tool (G), draw in a radial gradient of browns (#5c3d09 to #1f1409) so you get something like what is shown below.
+
+Notice that the gradient is not centered vertically but sits toward the top. In this image we want the top of the text to be on fire, so the top part of the image should be a bit more lit up. Step 3
+
+Now, set the layer to Overlay and to blend the texture into the background. Step 4
+
+Just to add a bit more texture, let's run the Texturizer filter. To do this, create a new layer and fill it with a brown/beige color-#66500f.
+
+
+Then go to Filter > Texture > Texturizer and use the Canvas texture with 80% Scaling and Relief set to 4. Step 5
+
+Once you have your texturized layer, set that to Overlay. This adds some extra fine detail to the texture since you're working on a big canvas. Step 6 Next, apply a layer to slightly desaturate the bottom half of the image. This is so that the top looks like it has a warmer glow where the flames are, while the bottom looks a little colder. So create a new layer and fill it with the color #4b4f3b.
+Then add a layer mask with a gradient to mask out the top and fade down
+Now set the layer to Color and 45% Opacity. Part 2-Text + Glow = Awesomeness
+
+Here, the text is placed in the color #cb9328, then set it to Linear Dodge (Add) with an Opacity of 8%.
+
+What you're going to do here is make the text look like the top half of the text is coming out of the background and is red hot with flames flickering off, which means you're going to run a lot of effects and apply layer masks to them so that only the top half shows while the bottom half reverts to faded out text. Step 8 So, first create a new layer group to put all the text layers in-because there will be a lot of them. Then duplicate the text layer and set the color of the duplicate text to #5e3f1c. Step 9
+
+Now set the newest text layer to Overlay and 70% Opacity. It should look kind of reddish as shown below. Step 10 Now duplicate the text again and set the latest duplicate to a yellowish color-#cb9328. Then set this to Linear Dodge (Add) and Opacity 30%. Next, we add a layer mask and draw a gradient so the latest text layer fades out as shown below, and below you can see the reddish colored combination of the bottom two text layers.
+Step 11 Next duplicate the text layer yet again, but put this layer right on the bottom.
+Set the color to black-#000000.
+Then go to Filter > Blur > Gaussian Blur and it will ask you to rasterize the text, click yes to that, and then set the Radius to about 4px. Then Ctrl-click any of the other text layers and go back to the black layer and hit delete so you are just left with a sort of shadow.
+Then duplicate this layer and merge it with the first so the effect is heavier.
+You should have something that looks like the screenshot below. Step 12 For once, add a layer mask so the shadow quickly fades out as shown making it look like the text is coming out of the page. Step 13
+
+Now duplicate your black layer again and using the Smudge Tool (R) and a largish soft brush, just smudge the shadow around so it looks like burn marks. Step 14
+
+Here's how your text will look now.
+Step 15 Now it's time to make the top part of your text glow. So, duplicate the text layer again and place this layer at the very top and set it to a yellow color-#dc9a08. Next is to run a Filter > Blur > Gaussian Blur over it with Radius of 8px. Then grab a large soft eraser brush and erase away parts at the bottom for it will become uneven. Step 16 Set our first glow layer to Soft Light.
+You might want to repeat the process, erasing even more so the top part is even glower. Step 17 Now duplicate the text layer yet again and place this at the very top. This one should be again the same yellow (#dc9a08). Then go to Layer > Rasterize > Type and turn the text into a flat graphic. Then Ctrl-click the layer and go to Select > Modify > Contract and use a value of 1px. Then press Delete to delete everything except that 1px outline. Step 18
+
+Now set the 1px layer to Overlay, and you should have something like the image below. Step 19 Now to your 1px glow, add a layer mask to fade it out down the bottom as you've been doing with the other layers. Then duplicate the layer, and run a Filter > Blur > Gaussian Blur set to 1px. Then duplicate this layer again and blur it by 2px. Then duplicate the layer again and blur it by 4px. Ctrl-click any of the text layers, press Ctrl+Shift+I to inverse the selection and go through each of the glow layers and press Delete to remove any of the blur that has strayed out of the boundary of the text.
+
+What we are trying to do here is for the text's edges to look red-hot with it fading in to an overall hot glow on the text. Step 20 Next, you duplicate all four of the glow layers and merge them together resulting in a layer on top which is the original bright yellow. Grab the Smudge Tool and run over the text, smudging it up to look like heat waves coming off the text, as shown below. Step 21
+
+Now set this latest layer to Overlay and you should have something look like this Step 22
+
+You may consider going through and duplicate some of the glow layers to make it look even more fiery. You can experiment with getting a real red-hot glow look by doing so. Step 23 Adding a quote underneath your main text may provide a nice decoration to the page.
+Try to use colors that fit in with the background and text layer so it doesn't stand out too much since this is just to be a secondary element to the main text. Here, what's used is Swiss Light Condensed as the font
+Part 3-The Flames
+
+Finally, it's time to add the actual flames.
+
+For this, you need some images of fire set against a plain black background. A good photo is hard to find, so try your best to look for a good fire picture that you can copy.
+
+The technique in copying the flames over is actually really simple.
+
+
+What you need to do is: Open up the flame image in Photoshop Go to the Channels tab and find the channel with the highest contrast, which for images of fire should be the Red Channel, and click on it This will make your image appear black and white, and because we're on the highest contrast layer, it will seem really bright white. Now Ctrl-click this channel and it will select all the pixels in that channel. Click back to the RGB channel and copy the selected pixels You can now paste the flames into your main canvas!
+
+This is actually a really, really useful technique for copying something translucent like fire off a flat background.
+Step 25
+
+Here the flame picture's pasted on to the main canvas. Temporarily switched off the text layers. As you can see, you've got the fire without the black background and it's partially transparent, which means it'll look super on top of your text. Step 26 Now, the next thing to do is to cut up your one bit of fire into a few pieces.
+Just duplicate the layer and switch off one as a backup first.
+Then using the Pen Tool, cut up the fire, so you work with the contours of the flame for it looks natural. Here you can see four pieces produced flames from the one image. You can also try flipping bits around to make them seem more random. Set the layers to Screen mode so that any remaining black parts are totally gone, and it's even more transparent. Step 27 Now since the example text is just four letters, you need four separate pieces of fire.
+Here, the fourth one (on top of the E) was actually grabbed from the picture source and repeated the same process as earlier to create another flame.
+Also, the fire on the letter I has been squashed a little to make it look more random. Step 28 Applying the fire is really as easy as moving the flames over the text.
+You may try to match the flames to the shape of the letter to be able to look like they are dancing off the letters. Step 29
+
+Here the all four bits of flame were placed over the top. It's not bad, but you can see that the I and the R have the same flame and also all the flames aren't very tall. Step 30
+
+So here, all the flames have gone through using the Transform Tool stretched vertically. A bit of judicious erasing was made to make the flame on the I look a little more unique. Step 31 Now to make them look even more lit up, duplicate each flame layer, run a Filters > Blur > Gaussian Blur with a Radius of 3px and set the layer to 15% Opacity so it provides a bit of glow around the edges of the flames. Step 32
+
+This is how your composition looks. Step 33
+
+Finally, add the last highlight. So create a new layer above all the others and draw in a white to black radial gradient as shown. Set this layer to Overlay and 40% Opacity. Finished!
+
+And there you have it, a text on fire effect!
+
+
+Different flame designs have different meanings or connotations depending on one's belief. People are getting themselves tattooed because they have their own meaning as to why that design is best for them. However, as mentioned, be careful and think for several times before giving your body inks that will last for a lifetime for aside from its beauty, it also has disadvantages that you might regret in the long run.

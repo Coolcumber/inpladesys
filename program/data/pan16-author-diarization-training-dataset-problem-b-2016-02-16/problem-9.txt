@@ -1,0 +1,87 @@
+The word photo-voltaic has two parts. The first part, that is photo has been derived from a Greek word for light and the second part, that is voltaic has been derived from the name of the e lectricity pioneer Alessandro Volta . So it is right to say that that the word photo voltaic may literally be translated as light-electricity . It is the basic physical process with the help of which a photo-voltaic cell ( the building block of a solar panel) converts sunlight into electricit y . The photo-voltaic materials and devices convert light energy from the sun into electrical energy and the process is called Photo-voltaic Effect.
+These are commonly called solar cells. The individual photo-voltaic cells are the basic electricity-producing devices that are made of semiconductor material s . These cells come in various sizes and shapes that may vary from smaller than a postage stamp to a several inches. The light that is incident on a photo-voltaic cell may be reflected, absorbed, or may be transmitted but it is only the absorbed light that generates electricity. The energy of the absorbed radiations is transferred to the electrons that are present in the atoms of the material of a photo-voltaic cell. With this absorbed energy, the electrons are able to escape from the atoms and become part of current. The electrical property of a photo-voltaic cell called "built-in electric field" provides the force or voltage that is required to drive current through an external "load," which may be a light bulb.
+In order to induce a built-in electric field within a photo-voltaic cell, two layers of different semiconducting materials are kept in contact with each another. One layer is of "n-type" semiconductor that has abundance of electrons and the other layer is of "p-type" semiconductor that has abundance of "holes,". Sandwiching these materials together creates a p/n junction at the interface and this helps in creating an electric field. When n-type and p-type semiconductors come in contact with each other, then excess electrons move from n-type semiconductor to the p-type. Due to the flow of holes and electrons, they behave like a battery, thus creating an electric field at the the interface.
+
+The electrical field makes the electrons to move towards the negative surface and as a result they become available for conduction.The holes move in an opposite direction as compared to the electrons. In other words, the holes move towards the positive surface of the p-n junction, where they meet the incoming electrons. The photovoltaic cells are generally connected to each other to form PV modules or solar panels. The size may be up to several feet in length and a few feet in width. Modules can further be combined and connected in order to form PV arrays of various sizes and power outputs.
+
+The size of a PV array depends on a number of factors. These are the amount of the sunlight available in a particular place and also the requirement of the consumer. The modules of a PV array make up a major part of any PV system, which also includes mounting hardware, electrical connections, power conditioning equipment along withe batteries that can for being used when the sun isn't shining.
+
+PV systems are an important part of our everyday lives. Simple photo voltaic systems are capable of providing power for a number of small consumer items, like calculators and wristwatches. Complicated systems can provide power to communications satellites, appliances, water pumps, lights and machines at homes as well as workplaces. A number of road and traffic signs all along highways are also powered by solar panels. It must be mentioned that PV power is the least expensive form of electricity.
+
+Off grid systems are us ually employed in remote locations which do not have utility grids. It also offers a good solution in a location where running a power line to the local utility grid is very expensive, or it is used in an area where blackouts are quite common. With this kind of an arrangement, your solar energy system will supply all of the required power a cabin, home or business. Off-grid system s can completely relieve you from being dependent on electrical grids. These systems generally require a larger up-front investment as compared to the grid-tie systems. This is mainly due to the higher demands on the off-grid system. A grid-tie generally supplements the energy demands of a home thus reducing the total amount of energy that is required from a utility grid . These systems are usually larger as compared to grid-tie systems. In order to be totally independent, a system should have a bigger array of energy producing panels. This obviously requires more batteries for storing electrical energy after converting it to chemical energy. At the same time, more equipment is required to regulate the electric charge. The requirement of more parts will obviously require large initial investment but in the long run, the off-grid system can save you thousands.
+Photo Voltaic Module Performance Ratings - Here are some brief overviews of how to rate a photo voltaic or a PV module performance in order to measure PV system reliability. The peak watt or W p rating is can be determined by measuring the maximum value of power of a photo voltaic module under laboratory conditions where the light levels are relatively high, air mass is favorable, and the cell temperature is also low. As a matter of fact, these conditions may not be typical in the real world. So, we may make use of a different procedure that is known as normal operating cell temperature or the NOCT rating.As a part of this procedure, the module first made to equilibrate with a specified ambient temperature. This helps to measure the maximum power at a nominal operating cell temperature. This normal operating cell temperature rating results in a much lower watt value as compared to the peak-watt rating, but it is much more realistic.
+
+None of these methods have been designed for indicating the performance of a solar panel under realistic operating conditions. Another technique, that is called AMPM Standard, involves the consideration the whole day instead of the "peak" sunshine hours only. This standard, that seeks to address any practical user's needs, has been based on the description of a practical global average or a standard solar global average day in terms of ambient temperature, light levels and air mass. The following factors are generally considered while determining the performance of an array:
+
+Characterization of electrical performance of a photo voltaic cell, determination of degradation factors that are related to the array assembly and design, conversion of environmental considerations to solar cell operating temperatures along with calculation of array power output capacity. The amount of electricity that is required can be defined by any one, or even a combination of the performance criteria that is mentioned below: 1. Power output on watts that is available at the power regulator. It may be specified either as average power or peak power produced during a day.
+
+2. Energy output in watt-hour or Wh. This indicates the energy production during a certain duration of time. The various parameters are output per unit of array mass measured in Wh/kg, output per unit of array area measured in Wh/m 2 and the output per unit of array cost measured in Wh/$.
+
+3. Conversion efficiency can be defined as "the energy output from array" divided by " the energy input from sun" multiplied by 100%.
+
+The last parameter is often termed as power efficiency, which is equal to "the power output obtained from an array" divided by "the power input from the sun" multiplied by 100%.
+
+Power is typically measured in units of watts or W and the energy is typically measured in the units of watt-hours In order to ensure consistency as well as quality of the photo voltaic systems and to increase the consumer confidence as far as system performance is concerned, various groups like the IEEE or Institute of Electrical and Electronics Engineers and ASTM or American Society for Testing and Materials are working constantly on standards as well as performance criteria for the photo voltaic systems.
+
+Solar Module Safety
+
+The installation of solar panels or modules requires a considerable degree of skill and in case the DC voltage exceeds 100V, then in that case the installation should only be performed by some qualified licensed professional. Precautions
+
+1. Avoid electrical hazards while installing, wiring, operating or maintaining the solar module.
+
+2. Remember that a photo voltaic panel generates DC power whenever it is exposed to sunlight or other source of light.
+
+3. While installing module wiring, cover the module face properly with some opaque material in order to stop the production of electricity due to its exposure to the sun.
+
+4. The module should remain packed in the box till the time of installation.
+
+5.The terminals should not be touched while the module is exposed to sunlight or during the installation. Suitable guards should be provided to prevent any contact with 30V DC supply or greater. Use properly insulated tools as an added precaution.
+
+6. Do not drop the module or allow any objects to fall on the surface of the module.
+
+7. Do not step or stand on the module.
+
+8. As sparks may be produced, make sure that the module is not installed in a place where flammable vapors or gases are present.
+
+9. Do not leave a module unsecured or unsupported. In case the module falls down, the glass can easily break. Any module with a broken glass can neither be repaired and nor should it be used.
+
+10. Installation and operation of the module should be done by qualified personnel only. Make sure that children are not be allowed to come near the installation area.
+
+11. Work should be done only under dry conditions and at the same time the module and the tools should also be dry.
+
+12. It is recommended to follow the requirements of the local and national or regional electric codes.
+
+13. The module should be used for its intended purpose only.
+
+14. Sunlight should not be artificially concentrated on the module. Warning
+
+1. The instructions must be read and understood properly before making any attempt to install, wire, operate or maintain the photo voltaic module. Any kind of contact with live or electrically active parts like terminals any result in burns, sparks and/or lethal shock whether the panel is connected or not.
+2. Photovoltaic modules generate electricity when sunlight or any other source of light illuminates the front face of the modules. The voltage from a single module need not be considered as a shock hazard but when the modules are connected together in series, the voltages are additive and when the modules are connected together in parallel, then the current becomes additive. As a result, a multi-module system is capable of producing high voltages as well as currents which constitute an additional hazard. Solar Power Vs Nuclear Power
+
+Both solar and nuclear power have their own advantages as well as limitations. Some people argue that the nuclear power is more feasible as compared to solar power and althou gh, at this time, the nuclear power would be the winner if not for the political and environmental holdups. Here are some of their advantages: Nuclear Power Can have an easy transition to a centralized grid system and as a matter of fact, it already provides a good amount of our electricity. It does not emit any greenhouse gases during power generation. Plenty of resources are available. At present the nuclear power is cheaper as compared to the solar power Solar Power It is a renewable source of energy. It can be made available to anyone with a home provided the cost inhibitions are ignored. It results in no volatile waste which is other than the panels which can be recycled. There are several emerging technologies with the help of which, efficiency can be improved along with the generation abilities.
+
+Although both solar and nuclear power have their own advantages but at the same time there are proponents of on or both but most of the people believe that solar power has a brighter future due to the following three reasons:
+
+1. Solar energy is completely renewable form of energy.
+
+2. Solar power is fast advancing. Most probably we are on the cusp of technological windfall as far as solar power is concerned.
+
+3. The risks involved with nuclear power are quite high and these are quite unlikely to get resolved in the near future. It must be pointed out that, in an attempt to stop pollution of the sky, we are throwing our toxins inside the ground.
+
+Solar power is renewable as well as non toxic in nature. Nuclear power is produced at a larger scale and at the same time it can give more bang for the investment made, not to mention that it doesn't take up hundreds of acres for powering cities. But it must be kept in mind that solar power won't cause any kind of harm to us due to the fact that it simply makes use of the sun and at the same time it has no bi-product. Future of Solar Power
+
+With the recent attention that is being placed on alternative sources of energy , it is becoming increasingly difficult for the critics of solar power to flatly say it is bogus. Irrespective of this fact, there are still a number of opponents to solar energy and as a matter of fact in some cases, the critics are actually standing in the way of its further development. As a matter of fact, some critics still point out the disadvantages of solar energy in comparison to other forms of energy. They say that solar energy is expensive as compared to the other fuels and at the same time science of solar energy hasn't yet perfected. Moreover, the solar energy can be collected only during the day, and long term storage is also difficult but it is worth mentioning that the cons are gradually evaporating and as a result the long term projections of solar power are quite encouraging.
+
+Some opponents show their concern towards the negative impact of large solar farms on the environment. Another scenario are the neighborhood disputes over photo voltaic panels. Some people have a tendency to object to the appearance of these panels, while others' panels may actually be a problem for their neighbors. In one particular situation in California, neighbors had been ordered by a judge for cutting-down the existing trees which were blocking sunlight from reaching their neighbors' solar panels. Solar Shade control act of California allowed the judge to pass a rule in favor of the homeowner who had the solar panels. Removal of trees for solar panels is obviously not appreciated by the environmentalists.
+
+Despite the opposition faced, solar technology and installations continue to advance in the positive direction. Differing opinions will continue to be there, but none of the critics can argue the fact that there is a need for alternative energy in order to have a sustainable future.
+
+Savings through Solar Panels
+
+Numbers like monthly savings and the payback period as a result of using solar panels, depend on a number of factors. The true way of determining specific monthly savings is by having a site analysis. this can be performed by any local solar installer. At the same time, there are a number of online calculators and these can easily give a pretty good idea about monthly as well as long-term savings . It is quite easy to make use of some national averages for calculating a general difference between monthly electric bills.
+
+Assuming that a 3 kW system has been installed and also assuming that there are almost 6 hours of sunlight every day, we can easily calculate the system output at the rate of 18 kWh or kilowatt-hours per day. That translates into 540 kWh of energy production per month. This number can be reduced by 20% in order to make an adjustment for cloudy or rainy days. Now we get a more realistic energy output of 432 kWh per month.
+
+An average home located on the Pacific Coast is found to consume about 900 kWh of electrical energy per month. Therefore, by using a 3 kW solar power system which gives an approximate output of 43 2kilo watt hours per month, the system owner can save roughly $50 dollars in every month on an average. It must be noted that in some months, the savings might be considerably less, while in other months, the savings might be considerably more.
+
+It is important to mention that these are just averages but at the same time you can easily get an idea of monthly difference made by a solar photo voltaic system. There are some factors that can make your system save more or less as compared to an identical system installed on the neighbor's house the next door and most of these factors are personal. An average U.S. household may not be as energy efficient as it can be. So, you can actually stretch these savings in order to reduce your costs and this will further help in improving your energy efficiency. It must also be remembered that the electricity costs are likely to rise at a steady rate but your solar energy will surely continue to be free of cost.

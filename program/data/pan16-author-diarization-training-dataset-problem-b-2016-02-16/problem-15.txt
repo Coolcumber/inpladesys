@@ -1,0 +1,90 @@
+Multi-Beam Receiving Flat Antenna for Satellite Broadcasting
+
+
+
+The fiberglass No-Ground Antenna Kit
+
+Three foot Antenna
+(Part #: 305-430)
+No ground required for operation
+Tune antenna from inside of vehicle with slide-to-tune coax for low swr
+Special no-ground antenna with 20 gauge wire
+3/8" fiberglass rod for heavy duty performance
+PVC protective covering around antenna
+Power Handling: 300 watt rated
+5/8 wave design
+Works with any CB radio on AM, & SSB
+Weather channel ready
+Frequency range: 26.750 - 27.750MHz (less than 2.0:1)
+Available in 3' and 4' lengths, Black only
+One year limited warranty from date of purchase
+Altering of coax or antenna voids warranty
+Patent pending
+
+
+Each Antenna Kit Includes:
+3' or 4' fiberglass "No Ground" antenna
+Heavy duty aluminum 3-way mount w/ stainless hardware
+17' Unique slide-to-tune coax with tinned copper wire and clear cover.
+
+
+
+At Dektronix, we can now offer clients the ability to extend their Wireless networks both inside and outside of their office space , through the employment of Hawking Technology's High Gain Antenna's , USB and network adapters.
+
+Our Indoor Antenna's include the following:
+
+The H-AI6SD Indoor Directional Antenna boosts your IEEE 802.11b or IEEE 802.11g wireless signal strength from 2dB (Standard) to 6dB! One of the major problems with many wireless networks is the poor coverage area of standard access points and wireless routers. When combined with two directional antennas directed toward each other, your wireless range may be extended up to 2750ft.
+
+Hawking Technology HAI15SC , 2.4GHz Hi-Gain Wireless Corner Antenna, boosts your wireless signal strength from 2dBi (standard) to 15dBi! The Hi-Gain Corner Antenna is the perfect solution for providing Wireless coverage in very large rooms, conference halls or buildings. The high power level of the antenna ensures that every corner of your application will be covered. The Hi-Gain Corner Antenna has been specifically designed for easy installation in the corner of a wall. This also allows for easier coverage of an entire building, room or hall.
+
+Hawking Technologies' H-AI6SI (Single Band 802.11b and 802.11g) Wireless Antenna boosts your wireless signal strength from 2dB (standard) to 6dB! As an omni-directional antenna, this unit increase the strength in all directions.
+
+OutDoor Antenna Kits:
+
+H-AO8SI is one of Hawking's Hi-Gain 24 series, 2.4 GHz Wireless Antenna Line.The Outdoor Omni-Directional Antenna emits a powerful amplified signal over a 360 degree radius, delivering a strong multi- direction signal from an Access Point or a Bridge.The H-AO8SI also comes with a mounting kit, connectors, and a surge protector.
+
+Dektronix Inc. carries 10ft ( H-AC10N ) and 30ft ( H-AC30N ) Outdoor antenna cables. However, the shorter the total cable length is, the stronger signal the antenna will have.
+
+The H-AO14SD Outdoor Directional Antenna Kit is currently the strongest Hi-Gain antenna. When paired with another Hi-Gain antenna it is capable of extending your wireless range up to one and a half mile. The directional design of the antenna creates a 30 degree emission of your highly amplified wireless signal. The Kit includes the outdoor antenna, mounting kit, weather-proof taping and SMA connector cable.
+
+In order to successfully install the antenna, one must purchase either the 10ft( H-AC10N ) or 30 ft( H-AC30N ) outdoor antenna cable.
+
+Our Best Selling Wireless Adapter:
+
+The H-WU36D is an innovative breakthrough by Hawking Technologies. By combining the performance benefits of Hi-Gain Antennas with the versatility of a 802.11b 2.4GHz Wireless USB network Adapter, Hawking has created the best overall Wireless USB Network Adapter. With distance, signal strength and signal quality up to 100% greater than standard wireless adapters, the H-WU36D simply outperforms the competition. The USB interface lets you take your Wireless Hi-Gain Network Adapter with you wherever you go. connecting to your desktop or your laptop and never worry about losing your connection again.
+
+
+
+Sinclair provides antenna and filter products, systems, and coverage solutions for public safety and private wireless networks.
+
+Designed to function in extreme weather conditions, Sinclair's products enjoy a reputation for high performance, reliability, durability and value.
+
+We have been serving our markets with innovative new products for over 50 years. Antenex is now a unit of Laird Technologies The evolution of Antenex and Centurion Wireless Technologies antenna product lines into the Laird Technologies brand provides a wider selection of products, enhanced customer services and additional design and manufacturing resources for wireless industry OEMs, ODMs, integrators, sales partners and end users.
+
+
+PCTEL Antenna ProductsLooking for a WiFi or WiMAX antenna for your bridging or in-building wireless network?
+PCTEL Antenna Products manufactures networking antennas and accessories for 802.11a, 802.11b and 802.11g WiFi (Wi-Fi) and WiMAX applications, including wireless bridging, wireless LANs, RFID and wireless hots spots. Our LMR land mobile radio and public safety antenna line includes base station, mobile data and voice and portable antennas, as well as cable assemblies, connectors and mounting brackets designed to make antenna installation simple and cost-effective.
+
+PCTEL is ISO-9001:2000 registered.
+
+
+
+Simultaneous reception of broadcasting from multiple satellites
+
+Takao MURATA, Senior Research Engineer,
+Digital Satellite Broadcasting Systems
+
+Satellite broadcasting services are carried out using a Broadcasting Satellite (BS) at 110 degrees east longitude and three Communication Satellites (CSs) at 124, 128, and 144 degrees east longitude. Our Laboratories have been conducting research on a flat antenna which will be capable of receiving multiple satellite broadcasts from different orbital locations.
+We succeeded in the trial manufacture of a flat antenna which can receive signals from any satellite located within a 40 degrees arc.
+The experimental flat antenna has the following characteristics;
+
+Compact size. (W 37cm, H 70cm, D 8cm)
+Reception area covers a wide direction, East to West 20 degrees, allowing coverage of BS at 110 degrees east longitude, to CS at 144 degrees east longitude.
+Beam direction is controlled by a beam forming circuit. A corresponding number of these beam forming circuits will enable simultaneous reception from satellites located in different directions.
+
+BSs and CSs differ not only in orbital position, but also in the manner of transmission, including polarization.
+We are pressing forward with the development of technology that will enable an antenna to adjust to these differences. Additionally, technological development towards miniaturization and product cost reduction will be advanced with the aim of its commercialization.
+
+A flat antenna is formed by arranging many small antenna elements. By receiving radio waves with each antenna element and combining them appropriately, even weak satellite signals can be received efficiently. Moreover, the beam direction of the antenna can be changed electronically.
+
+

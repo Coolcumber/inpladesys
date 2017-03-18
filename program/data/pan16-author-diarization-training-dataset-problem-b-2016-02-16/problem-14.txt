@@ -1,0 +1,128 @@
+Wilson Antenna
+
+Wilson - who style themselves " The Name in Over the Road Communication " make and distribute a range of Citizen Band (CB) antennas that make for easy radio communication almost anywhere on America's vast road network - and in many other places in the world too.
+
+
+They are available through a world-wide network of dealerships, distributorships and importers. You can call them on (309) 756-4546 f or the name of your nearest Wilson Authorized Dealer anytime Monday through to Friday. Do first check your local time zone for their available hours of assistance, given that Wilson Antenna is on American Central Time.
+
+If you preferred, you could also interrogate the dealer list from the drop-down menu on their user-friendly website, that makes your tackle even easier to find. There are also clicks-through to dealers who have their own sites. However the Wilson list does not include dealers purchasing from distributors near them in order to save on shipping costs. The site is well constructed, and contains the following tabs:
+Home About Wilson Antennas Accessories Technical Support Base Load Antennas B ase loaded citizen band antennas have their receiver coils located at the bottom of the antenna. Many all-in-one magnet mounted roof antennas are base-loaded in this same way. This provides one of the simplest mounting and installation methods possible. Moreover, base-loaded models use more substantial coils than fiberglass CB antennas too.
+
+On the downside, they are least efficient form of antenna when compared to other load designs. That's because the antenna's coil must be above the highest vehicle surface for optimal performance - providing fewer effective mounting options as a result. This is not to say that the coil load may not be placed below the vehicle's highest surface, although this will be at the cost of performance.
+
+Accordingly, the most popular positions are on car and pick-up truck roofs and trunks .
+
+
+The"Little Wil" Magnet Mount Antenna - "Buy It, Be HeardClear"
+
+Bodacious Mobile Antennas - Lil Wil
+
+
+· 300 Watt powerhandling capability (ICAS)
+
+· Made with highimpact Thermoplastic
+
+· Heavy duty coiluses 14 gauge copper wire
+
+· Exclusive lowloss coil design
+
+· 36" 17-7 PHstainless steel whip
+
+· Frequency range26 MHz to 30 MHz
+
+· 1 Year Warranty "The perfect choice in a short antenna with maximum performance." Additional features include large ten ounce magnet , three hundred watt power handling capability, high impact thermoplastic construction , a h eavy-duty coil using fourteen gauge copper wire , l ow loss coil design , and thirty-six inch 17-7 PH stainless steel whip
+
+The 500 Series - "It Just Performs Better" · 2000 Watt power handling capability
+· Made with high impact Thermoplastic · Heavy duty coil uses 12 gauge copper wire · Exclusive low loss coil design · 54" 17-7 PH stainless steel whip · Frequency range 26 MHz to 30 MHz · Weather Channel Ready · Available in a black magnet mount version only · 2 year warranty
+
+INDEPENDENT REVIEW
+
+Much of the power that goes into the average base loaded citizen band antenna is lost as heat in the coil, or as dielectric heat loss in the plastic inside the coil itself. Many antennas lose over half the power put into them in this way, because it fails to be radiated as radio waves. Another weak aspect of other CB antennas is that the capacitor is selected to match the co-ax. This is a cheap and easy way to make a shortwave radio look good, but on the downside there is stacks of power loss, and blow outs when high power is applied too.
+
+Wilson first priority in developing the 500 Series was to reduce this dielectric loss by removing as much plastic inside the coil as they possibly could. They accomplished this by suspending the coil in air, supported only by four small points ninety degrees apart. This had the effect removing ninety-five percent of the plastic from the inside surface of the coil, thus reducing the dielectric loss to something negligible.
+
+Their second primary priority was to eliminate the resistive heat losses in the coil itself. Their logic was that, because most of RF energy travels on the surface of the wire, they should increase its surface area by using 12-gauge copper wire throughout.
+
+Then they tackled losses in the matching between the coax and the loading coil, by eliminating the lossy capacitor and employing a more efficient means of coupling to the antenna was used. They applied a scalar-network analyzer to establish the precise point at which to direct match the coil with the coax, and thereby obtain the best possible match with resultant maximum power transfer. This allows the W-500 to have a low 2,000 watt power rating with a twenty to twenty-five percent increase in performance over the Little Wil. High Power Ability To Handle 5,000 Watts AM 20,000 Watts SSB
+Made with high impact Mobay Thermoplastic 6 gauge solid copper silver-plated wire Exclusive low loss coil design 62" 17-7 PH Tapered spring stainless steel whip Frequency range 26 MHz to 30 MHz Weather Channel Ready Available in Roof Top, Trunk Lip, or Magnetic Mount Removable coil for safe storage & garage entrance Weather Cap included to protect mount when coil is removed 2 year warranty 2 Meter Amateur Antenna - When it's Time to Move Up
+Less Than 1.5:1 SWR across full 2 meter band magnet mount antenna!!! 144-148 MHz operation 5/8 Wave length Heavy-duty coil 14 Gauge wire 47" Stainless steel whip 500 Watt power rating Large 10 oz. magnet 1 Year limited warranty Boxed A TRUE STORY
+
+Choosing which radio to buy was relatively straightforward. The decision about the antenna caused me lots of searching though ...
+
+I decided to drive a full sixty miles to the ham radio outlet. I figured they would tell me what to buy making the process really simple. But when they quoted $140 for the antenna, mount, and cable (more than the radio itself), I dug my heels in. It was time to do more research, I figured. I was not about to get caught in the old "Best Buy" routine, where the product sells at a really low price that's made up on the accessories.
+
+I chose to start from scratch because my favorite forum was down (again!). I already knew enough antenna theory to know that the ground plane is important, and that having the antenna mounted in the center of the ground plane and high on the metal is equally important too. While higher output power can make up for bad placement to some extent, if you want the best, you can only get it through correct positioning of the antenna itself.
+
+Every amateur knows that the best place for a CB antenna is the middle of the roof, with the center of the hood second best place. I stumbled on the idea that it's the same with two-meter amateur antenna too.
+
+My initial idea was to mount the antenna in the right hood channel, providing an easy path though the firewall for the antenna cable. BTW this was the solution the ham radio outlet tried to sell me. My initial objective was to leave the radio and antenna mounted on my van permanently. Unfortunately though, a single band 5/8 wave antenna and my Yukon are too tall for my standard garage, so I needed to think again.
+
+I revisited small antennas and dual band antennas on the internet, but after checking the reviews I backed away. That's because they all seemed pretty fragile and I do like to whack the dirt roads. In fact, I regularly seem to hit a lot of bushes on both sides of the track when driving single file in the wildest parts of the US and Mexico. This meant I needed to have confidence that my antenna would face up to all that punishment.
+
+I asked several off-road pals about the performance of their antennas. One lady mentioned that on a recent Mojave trip, the antenna that worked best for her was a mag mount antenna mounted on the roof. This seemed to align with everything else that I had learned. You see, the problem with two-meter mag mount antennas is they seem to be a little less magnetic than I would prefer.
+
+I realized that I was not going to find an acceptable solution to a permanent mount for the two-meter outside of Wilson. So I went with what I knew best and bought their two-meter mag mount antenna for $30 plus $6 shipping direct. It is not a permanent installation but I know it will be good for me until I can find one. I'll stay safe because I know it's really tough to knock an antenna off with bushes, trees or wind, and then find it's damaged (or worse) when you need it. You can look at Uwe's pictures of our Baja trip - when our wind speed down the highway was well in excess of one hundred miles an hour, and our Wilson stayed tightly on the roof. Trucker Antennas
+
+When a man or womans out there doing trucking on the vast American network, they're in a world the rest of us seldom understand. That's because the law-enforcement agencies that are supposed to protect them prey on them for fines instead , and their only friend is their CB Radio pal that keeps them company, as they chat with colleagues to while away the hours. In the United States, the hours of service of commercial drivers are regulated by the Federal Motor Carrier Safety Administration. This restricts commercial motor vehicle drivers to eleven cumulative hours driving in a fourteen hour period, followed by a mandatory rest period of no less than ten consecutive hours. Moreover, drivers employed by carriers in daily operation mode are forbidden from working more than seventy hours within any period of eight consecutive days. Driver Categories
+Unless you're in the trucking business yourself, you'll have no idea how complex it's become. Who knows how many drivers are "out there" at any one time. Or for that matter, how many are chatting via their Wilson Antennas too?
+Auto Haulers transport cars on purpose-built trailers and require specific skills for loading and off-loading.
+Boat Haulers move boats that range from ten-foot bass boats to full-size yachts up to sixty-foot long, using low-boy trailers designed for each size of boat.
+Dry Van Drivers generally haul perishable goods over highways in large trailers.
+Dry Bulk Pneumatic Drivers transport bulk sand, salt and cement, among other things. Their specialized trailers allow them use pressurized air to unload deliveries. Flat Bed Drivers haul a wide assortment of larger bulky items. These could be tanks, steel pipes and lumber for example. Such tasks require the ability to balance loads precisely. LTL ("less than truck load") Drivers commonly handle local delivery jobs - where goods are delivered and unloaded by the driver at multiple locations. Reefer Drivers haul refrigerated or frozen goods. Local Drivers remain within the limits of their hometowns / nearby towns, and return return home nightly to sleep. Household Goods Drivers (also known as "Bedbuggers") haul personal effects for families who are moving from one home to another. Regional Drivers may work across several states near their homes. They are usually away from family for shorter periods. Interstate Drivers often cover distances of thousands of miles at a time, and may be away from home for a week or more.
+Team Drivers are two drivers who take turns driving the same truck in shifts (husband and wife, partner, buddy or friend). At other times, they may be several people in different States, who split the haul into relays to keep from being away from home for such long periods. Tanker Drivers haul liquids such as gasoline, diesel fuel, milk, or crude oil - and dry bulk materials such as plastics, sugar, flour, and cement in tanks. Liquid Tanker Drivers need special driving skills, due to the load balance changing as the liquid sloshes around.
+Vocational Drivers spend their career in single-purpose vehicles, such as a dump trucks, garbage trucks, or cement mixers. Drayage Drivers move cargo containers which are lifted on or off the chassis, at special inter-modal stations. Bullrackers haul livestock locally around their hometowns, or regionally all over America. The term bullrack comes from a double deck trailer used strictly to haul cattle. Truckers are a community of individualists who prefer the open road to any set of four walls. They live in their own world where they support each other against what is often to them a hostile world. Their medium of communication is their CB Radio over which they share news of road conditions and local law enforcement, and anything else that takes their fancy as the day drags on for that matter. Spare a moment, then, for the importance of a quality CB radio antenna in their lives. The Wilson Trucker 2000 Series
+Move over Junior...
+
+Enter the 5000 Trucker Series Mobile CB Antenna
+
+20,000 Watts SSB
+Constructed of high impact Mobay Thermoplastic 6 gauge solid copper silver-plated wire Exclusive low loss coil design 62" 17-7 PH Tapered spring stainless steel whip Frequency range 26 MHz to 30 MHz Available in Roof Top, Trunk Lip, or Magnetic Mounts 2 year warranty
+INDEPENDENT REVIEW
+
+The Wilson 5000 Trucker is the top performing base loaded commercial-grade CB antenna for the discerning Trucker. It employs an exclusive low loss coil with the proven performance capabilities the transport fraternity expects from the famous Wilson trademark.
+
+Researchers and engineers at the Wilson factory had always known that a six-gauge solid copper wire coupled to a properly designed coil displayed excellent performance characteristics. They also knew that silver - although prohibitively expensive - was the best radio frequency conductor available anywhere. And so they combined the best of both worlds by using pure silver to heavily coat a solid copper wire of generous proportions. This meant that using the proven Wilson design techniques, their Wilson 5000 would outperform all other trucker antennas available anywhere on the globe.
+
+This also means that the solid 3/16" copper silver plated wire with unique floating coil design cannot ice up, or even stop working completely in severe winter conditions. There is no chance of the coil windings cracking upfrom freezing temperatures either.
+
+This Wilson 5000 is half as large again as its famous Wilson 1000 stablemate, having been designed specifically for users who want the best antenna in the world - and have to ability supply the awesome power required (remember the Wilson 5000 handles 5000 watts AM, and 20,000 watts SSB).
+
+The manufacturer's engineering quality, design, and attention to detail is undoubtedly the final key to reliable high performance. The Wilson 5000 Trucker's performance and power handling abilities have undoubtedly proved that extra performance breaks through the noise on the air like a knife through butter.
+
+With 30 years of knowledge and engineering experience in the design of antennas, Wilson has become the unchallenged leader in citizen band mobile antennas. In fact, Wilson's 5000 is now the choice of the serious CB player everywhere.
+
+Isn't it time to move up a gear, and join the professional truckers too?
+Fiberglass Antennas BENEFITS AND USE
+Fiberglass antennas are among the most durable and versatile citizen band receivers and transmitters available. That's because their thick fiberglass design holds up well against the elements. Moreover they can withstand impacts that would bend or even snap off other antennas, that are made
+from plastic or thin metal whips instead.
+They are also compatible with a huge variety of mounts, allowing for nearly unlimited installation possibilities and repairs along the road. Fiberglass antennas are most commonly used with pick-up trucks, semis and off-road vehicles, although they are steadily being adopted by more avant-garde truckers too.
+INSTALLATION AND MOUNTING
+
+
+Fiberglass antennas must be mated with the right mount for effective installation. For acceptable performance you need to have at least half of the antenna above the roof line only - another great advantage over other possibilities. As with all other antennas, the longer the antenna length and the higher it's mounted the better the performance gets. Another part you also need to buy is CB coax cable to complete the job. Unfortunately, although fiberglass antennas are durable, they can still snap off if they take a hard direct blow, so it's best to make sure you always use them with a suitable antenna spring .
+
+USER'S OPINION
+These antennas were designed with the American Trucker in mind, and are perfect for high-speed highway driving because they are stiff and stay more vertical than steel antennas. They even work well clamped to the mirror frame, where they can deflect down automatically if they strike an obstruction.
+However, for off-road use these antennas present some problems...
+
+Durability is at the top of the list. In densely-populated districts like Washington frequent overhead obstructions can be a liability. Fiberglass is brittle (especially in the winter) and it is not uncommon to have them shatter when they strike an obstacle like a low overhead bridge. When they crack they usually break the wire winding inside. This can damage your radio if you continue to transmit with it.
+However, they don't even need to crack to break. If they take a hard hit - or scrape against rocks a few times - the wire can become invisibly damaged inside and cause inadvertent radio failure too. The biggest problem is that you don't always know when they are damaged, and keep using them until it's too late and the damage is done. Some truckers have even fried their radios twice, because they didn't know what caused the first one to fail (and hooked up the repaired radio to the same damaged antenna).
+
+Weight is another consideration. Fiberglass antennas are heavier, and hence less flexible than steel antennas. Because of this, they work their mounting system harder. That's why they need to be mounted on a heavy duty ball mount. A front fender bracket-mount is simply not up to the task of holding on to a fiberglass antenna, especially under the harsh conditions of off-road use.
+Otherwise, the vibrations and the swinging momentum forces associated with a stiff and heavy fiberglass antenna will cause stresses to the mounting surface - and the surrounding area too. In time this results in stress cracks and fractures around the mount, as well as the progressive loosening of the hardware itself. In such cases, a spring can actually make things worse, as it allows the heavy "baseball bat" to swing back and forth more violently. TECHNOLOGY
+
+Technically speaking, the wound fiberglass antennas fool the radio into thinking it has bigger antenna attached to it. Some manufacturers even boast of having a full quarter wave of antenna wound around the shaft implying a larger antenna in a smaller package. While this is fine in theory (because you are providing the radio with the required length of antenna wire, and the radio has the fifty ohm load it needs to perform correctly) how the antenna really uses that power is another matter.
+In reality, it's performance will only be as good a overall length, because you can't fool radio waves with clever advertising copy. In order for a quarter wave antenna to perform like a quarter wave antenna should, it needs to be 102 inches long, period. Anything shorter and it will not perform that way.
+
+Don't get me wrong, I'm not trying to knock the Wilson product. Their antennas work fine and are perfect for the right applications. They just aren't as reliable as their comparable commercial grade steel antennas, and hence not the aerial of choice unless you're traveling with a spare.
+Some customers even say that since they don't out-perform a good quality conventional antenna why put up with all the shortcomings of the fiberglass in the first place? Besides, if you're going to put a ball mount on your rig in any case, then why not have the ultimate radiating element attached to it, in the form of a genuine "bullet proof" quarter wave stainless steel whip instead
+
+SECOND OPINION
+A steel antenna just more flexible, and there's no denying that. It's easier on the mounting surface, there are no wires to break, and no matter how hard you hit something with it, it will not break, and is easily straightened by hand when bent too. Moreover if it gets so twisted over time so you can't bear to look at it, a new whip can cost you as little as $10.
+A further advantage of the steel antenna is that it can easily be bent over and secured to the rain gutter with a clip to keep it down and out of the way when not in use, or when parking in a low overhead garage. True, they do have a tendency to "whip" around, but this can be restricted by the use of a tether made from a light nylon cord - or heavy fishing line if that's all that you have handy at the time. In fact, you may never have to replace a 102" stainless whip - unless you lost it that is. I even heard of a driver who forgot to tighten their quarter wave into the ball mount. Four vehicles and twenty years later when they stopped for a call of nature at the same place, they spotted it lying under a bush, plugged it in, and everything still worked perfectly to their amazement. The Best Wilson Radio Antenna
+
+The best one is the one that's best for you and for your special needs and vehicle:
+Base Load Antennas, although the weakest attach readily owing to a magnetic base Most powerful Trucker Steel Whips cost more, but are the ultimate rave for the driver far out of town who needs reliability
+Fiberglass aerials can be mounted as far down as on the bumper bar, but have been known to snap off just when you needed them the most.
+It's appropriate to end this review with salutes of two different kinds. The first to Wilson for keeping the nation's citizen band radios up and working well. And the second? How could you even ask? Let's salute America's truck divers together now, for driving carefully and for keeping the wheels of commerce rolling.
+

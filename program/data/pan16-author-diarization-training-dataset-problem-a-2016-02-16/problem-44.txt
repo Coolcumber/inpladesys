@@ -1,0 +1,66 @@
+and pumps about five quarts of blood each minute, or 75 gallons of blood every hour. The heart is a muscle that pumps blood around the body. It consists of four chambers two atria at the top and two ventricles at the bottom that contract (or beat) in a regular, highly coordinated organized rhythm. What is an arrhythmia?
+
+Normal heart beat is a regular, consistent and coordinated rhythm, speeding up or slowing down in response to physical activity or to an emotional event. This regular rhythmic pattern can be disrupted by various conditions causing the heart to beat either inappropriately slow or fast or in an uncoordinated manner. Any such irregular heartbeat is called an arrhythmia. Arrhythmias are very common, especially in older people, but it may occur in children or younger people. While some arrhythmias are harmless, others can be serious, leading to heart disease, stroke, or sudden cardiac death. Fortunately, most of these arrhythmias can be controlled with medicines, implantable devices such as pacemakers, or surgical procedures. Types of Arrhythmia Cardiac arrhythmias sometimes are classified according to their origin as either ventricular arrhythmias (originating in the ventricles) or supraventricular arrhythmias (originating in heart areas above the ventricles, typically the atria) Bradycardia indicates a heart rate of less than 60 beats per minute and tachycardia indicates a heart rate of more than 100 beats per minute. Sinus bradycardia. Sinus node sends ou signals at a slower rate than normal It includes normal decrease in heart rate during rest and sleep as well as athletes.
+At this slow rate the heart is unable to pump enough oxygenated blood to the body to sustain normal activity or mild exercise. As a result, the person may feel dizzy or have chronic lack of energy, shortness of breath, or even fainting spells. Sinus Bradycardia
+
+A sinus rate of < 60 beats/minute.
+
+Sinus bradycardia may be normal finding during sleep, in athletes it may be an indication of excellent physical conditioning; however, in the elderly, it often an indicates of sinus node disease.
+
+
+Inferior MI, hypothermia, myxedema, or increased intracranial pressure may cause this arrhythmia. For apparently healthy persons aged 40 to 80 with sinus rates < 50 beats/minute, 5-year cardiovascular morbidity and mortality rates do not appear to be increased. Treatment is not needed unless symptoms of cerebral hypoperfusion are present. If such symptoms are chronic, pacemaker implantation is the definitive treatment.
+
+Sinoatrial Block
+
+Inability of sinus node impulses to depolarize the atria.
+
+Sinoatrial block is often 2:1, resulting in atrial and ventricular rates that are exactly one half the sinus rate. In the elderly, common causes are intrinsic conduction system disease, ischemia, digitalis toxicity, and toxicity from class Ia antiarrhythmics. The diagnosis is made when an ECG shows a pause in the sinus rhythm equal to a multiple of the underlying PR interval. Treatment is similar to that for sinus bradycardia.
+
+First-degree atrioventricular block: First-degree block may occur in healthy persons with high vagal tone, or it may be caused by intrinsic conduction system disease or by various drugs (eg, digoxin, beta-blockers, calcium channel blockers, class Ia antiarrhythmic drugs). The PR interval is prolonged (>= 0.22 seconds). It does not significantly increases cardiac morbidity and mortality of patients, no treatment is required.
+
+Second-degree atrioventricular block: It may occur in three different patterns. In Mobitz type I (Wenckebach) block, the PR interval is progressively prolonged until a QRS complex is dropped. Because this block is usually above the level of the His-Purkinje system, the QRS complex typically appears normal. Digitalis toxicity and acute inferior MI are common precipitating factors. Mobitz type I block is usually transient, resolves spontaneously and specific treatment is rarely needed.
+
+In Mobitz type II block, the PR interval is fixed, but QRS complexes are dropped resulting in dropped ventricular contraction. Because the conduction block occurs at or below the His bundle, the QRS complexes are often wide. Mobitz type II block is most commonly caused due to acute anterior MI, myocarditis, or advanced sclerodegenerative conduction system disease. Patients with this block are usually symptomatic and presents with complaints of syncope due to inadequate cerebral perfusion (Stokes-Adams attack). Because of the dangerous symptoms and frequent progression to complete heart block, treatment is usually needed and patients are implanted with a permanent pacemaker.
+
+If the block is of high-grade, there may be a mathematical relationship between the P waves and QRS complexes such as 2:1, 3:1. High-grade block may progress to complete heart block. Patients are often symptomatic and usually treated by implantation of a permanent pacemaker.
+
+Third-degree (complete) atrioventricular block: Impulses arising in atria cannot travel down to ventricles. V entricles cannot be activated by a trial depolarizations. If the block is within the AV node, QRS complexes are usually normal and an escape rate of almost 60 beats/minute. Common causes of third-degree AV block include acute inferior MI and digitalis toxicity. This block is usually transient, and no specific treatment is not needed. If it is caused by digitalis toxicity, the drug is stopped. Temporary pacemakers may be needed when hypotension or symptoms of cerebral hypoperfusion are present.
+
+If block is within the ventricles, it is accompanied by wide QRS complexes and a slow escape rate usually < 40 beats/minute. Such block may occur in patients with severe sclerodegenerative conduction system disease or extensive acute anterior MI. These patients usually respond poorly to medical treatment with atropine and isoproterenol, implantation of permanent pacemaker is usually necessary.
+
+Sick Sinus Syndrome or Sinus node dysfunction
+
+A variety of rhythm disturbances that reflect sinoatrial node dysfunction and are often associated with dysfunction elsewhere in the conduction system.
+
+Coronary artery disease and primary sclerodegenerative process are the most common precipitating factors, although it may be precipitated by many other heart diseases. Patients may present with bradyarrhythmias (sinus bradycardia, sinus pauses or arrest, sinoatrial exit block, or atrial fibrillation with a slow ventricular response) or with the bradycardia-tachycardia syndrome, in which a supraventricular tachycardia terminates in a long period of asystole. Thus patients present with combined symptoms of palpitations or chest pain during tachycardia and dizziness or syncope during bradycardia.
+
+The long-term prognosis for patients with sick sinus syndrome is primarily dependent on the presence and severity of the underlying heart disease.
+
+For tachycardia (paroxysmal supraventricular tachycardia, atrial flutter, or atrial fibrillation), digoxin, other antiarrhythmic drugs, or cardioversion is used.
+
+For bradycardia associated with syncope, a permanent pacemaker is needed.
+
+Partial or complete interruption of electrical conduction in the bundle branches.
+
+Left bundle branch block is usually associated with ischemic or hypertensive heart disease in elderly men and women. In contrast, complete right bundle branch block often occurs in apparently healthy elderly men and appears to be benign, although it is highly predictive of underlying heart disease in elderly women.
+
+Pacemakers are not warranted for asymptomatic elderly patients with chronic bifascicular block (either left or right bundle branch block plus left anterior-superior or left posterior-inferior division block), with or without a prolonged PR interval, because complete heart block rarely occurs
+
+Symptoms, Signs, and Diagnosis
+
+Bradycardias may produce no symptoms, mild fatigue or faintness, or significant hemodynamic upset (eg, hypotension, angina, heart failure). The diagnosis may be suspected on the basis of symptoms and signs but is confirmed by ECG.
+
+Patients having bradyarrhythmia must be treated immediately if they are having hypotension, cerebral or cardiac ischemia, heart failure, and/or, in acute MI, frequent ventricular ectopic beats.Making the patient position supine with the legs elevated can be helpful in ameliorating hypotensive sequelae. Atropine 0.5 to 1 mg is given rapidly IV; and may be repeated at 3- to 5-minute intervals. Total dose may go upto 0.04 mg/kg (total, 2 to 3 mg). If the patient is unable to toerate atropine or is ineffective, an IV infusion of isoproterenolcan be started at 1 to 4 µg/minute and drip rate adjusted to produce a ventricular rate of 60 beats/minute. If none of these are successful or contraindicated, then temporary pacemakers should be inserted.
+
+Cardiac pacemakers: More than 85% of patients having pacemaker are more than 64 years and about half of them are treated for high-degree AV block and almost other half for sick sinus syndrome. Insertion of permanent pacemaker has reduced the high mortality associated with these conditions.
+
+
+Active elderly patients may get more benefit from dual-chamber AV synchronous pacemakers which improves maximal exercise cardiac output and work capacitycompared to traditional fixed-rate ventricular pacemakers. Additionally, the incidence of atrial fibrillation and the mortality rate is greater in patients with ventricular pacemakers than patients having atrial or dual-chamber AV synchronous pacemakers. The incidence of atrial fibrillation is 47% in patients > 70 with sick sinus syndrome having a ventricular pacemaker and in 9% in those who are having a dual-chamber pacemaker after 7 years; the mortality rates were reported as 72% and 51%, respectively. Thus, for an otherwise healthy person who are in sinus rhythm and need pacemaker for sick sinus syndrome an AV synchronous pacemaker should be preferred.
+
+Complications of Pacemakers
+
+These are rare but significant. There may be abrupt loss of pacing due to battery failure, fibrosis around the catheter site, myocardial perforation, lead fracture, or electrode dislodgment. This may result in bradycardia or even asystole. Perforation may result in pericardial friction rub or, rarely, tamponade. Rarely, there may be extrusion of the pulse generator or the pacing wire through the skin. All patients with a permanent pacemaker should undergo regular follow-up.
+
+
+Sick sinus syndrome Bradyarrhythmias are well controlled with pacemakers, while medication are given to control tachyarrhythmias. As both bradyarrhythmias and tachyarrhythmias are present, medications prescribed to control tachyarrhythmia may exacerbate bradyarrhythmia. Thus, a pacemaker is implanted before medications are started for the tachyarrhythmia.
+

@@ -1,0 +1,284 @@
+Von Willebrand's Disease
+
+
+What is Von Willebrand's disease?
+
+Also known as or pseudohemophilia
+a relatively mild inherited bleeding disorder that is characterized by the inability of the blood to clot normally due to
+
+In 1926, von Willebrand noticed that many male and female members of a large family from the Aland Islands had increased bruising (bleeding into the skin) and prolonged episodes of bleeding. The severity of the bleeding varied among family members and ranged from mild to severe and typically involved the mouth, nose, genital and urinary tracts, and occasionally the intestinal tract. Some women in the family also experienced excessive menstrual bleeding. What differentiated thisbleeding disorder from classical hemophilia was that it appeared not to be associated with muscle and joint bleeding and affected women and men rather than just men. Dr. von Willebrand named this disorder hereditary pseudohemophilia.
+
+
+which affects 1% to 2% of the population affects both boys and girls, unlike hemophilia A which only affects men
+
+vWd usually presents with easy bruising, recurrent nose bleeds, prolonged bleeding after surgery or heavy menstrual period
+
+symptoms may vary from clinically insignificant to life threatening
+
+The prevalence of vWD is about 1 in 100 individuals. However the majority of these people do not have symptoms. The prevalence of clinically significant cases is 100 per million. Because most forms are rather mild, they are detected more often in women, whose bleeding tendency shows during menstruation. It may be more severe or apparent in people with blood type O
+
+Gender F>M Ethnicity : Caucasians have highest risk affected children may exhibit either or both characteristics: low levels of protein which helps the blood clotting protein does not work as it should
+
+
+What is the pathophysiology of Von Willebrand's disease?
+
+Stage 1: Vasoconstriction of the blood vessels - the narrowing of the vessels slows the flow of the blood
+
+Stage 2: Platelet adhesion and platelet aggregation - platelets rush to the site of injury and release a substance. The substance release activate the nearby platelets leading to clumping of the activated platelets. In Von Willebrand's Disease, the clotting problem starts here due to the loss of vWf or von Willebrand factor. vWf helps platelets stick to the damaged site.
+
+If any of these steps is missed or does not work correctly, no clot is formed. The missing, defective, or poorly working element in vWd is a protein called vWf. VWf is a substance made by the lining cells of the blood vessels. VWf acts as a "catcher's mitt" to bind platelets to the internal site of the "hole in the vessel" creating a plug.
+
+
+A deficiency or abnormality in vWF can interfere with the formation of the temporary platelet plug and affect the normal survival of factor VIII. This indirectly interferes with the production of the permanent clot. Individuals with VWD, therefore, have difficulty in forming blood clots, and as a result, they may bleed for a longer time. In most cases the bleeding is due to an obvious injury, although it sometimes occurs spontaneously.
+
+
+
+
+A person with vWd may experience the inability to form a platelet plug from several kinds of events. Such events may include bleeding from injury, surgery, or from a spontaneous bleed. VWf also carries and protects Factor VIII (FVIII). Lack of FVIII will additionally cause a disruption in the entire clotting chain (cascade) making clot formation slow or unlikely. Without medical treatment to promote and sustain clotting, internal bleeding may continue and may cause long-term damage.
+
+
+
+The complex genetics of VWD involve a gene found on chromosome 12. Different types of changes in the vWF gene can affect the production of vWF. Some changes cause the vWF gene to produce decreased amounts of normal vWF, while other changes cause the gene to produce abnormal vWF. Each individual inherits two copies of each gene, one from the mother and one from the father. Most of the vWF gene changes are significant enough that a change in only one vWF gene is sufficient to cause VWD. However, some types of gene changes only cause VWD if both genes are changed, which often leads to more severe symptoms.
+
+
+
+
+Differences in the pathophysiology of normal blood clotting versus hemophilia versus Von Willebrand Disease 1. Normal Clotting
+
+
+Step 1: Blood vessels constrict Step 2: Platelet plug forms Step 3: Fibrin clot forms; bleeding stops Step 1: Blood vessels constrict Step 2: Platelet plug forms Step 3: Incomplete fribrin clot; bleeding continues
+
+Hemophilia might be the blood disorder that is most familiar to the general public. Hemophilia is usually diagnosed in childhood due to its obvious symptoms, such as excessive bleeding after a circumcision. However, some of the milder forms of the disease can escape detection for years.
+Hemophilia almost always attacks men. Because it is a genetic disorder, it usually runs in families, although about 30 percent of people with hemophilia have what's known as a spontaneous genetic mutation , which means the disorder appeared without any known family history. A hemophiliac's blood is missing certain coagulation factors or contains low amounts of certain coagulation factors. Depending on how many of the factors are missing or how low their levels are in the blood, hemophilia can range from mild to severe. Symptoms include:
+
+Standard treatment involves replacing the missing clotting factor. The amount of factor VIII concentrates needed depends on how severe the bleeding is, the site of the bleeding, and the size of the patient. Mild hemophilia may be treated with desmopressin (DDAVP), which helps the body release factor VIII that is stored within the lining of blood vessels. To prevent a bleeding crisis, people with hemophilia and their families can be taught to give factor VIII concentrates at home at the first signs of bleeding. People with severe forms of the disease may need regular preventative treatment. Depending on the severity of the disease, DDAVP or factor VIII concentrate may be given before having dental extractions and surgery to prevent bleeding. Immunization with Hepatitis B vaccine is necessary because of the increased risk of exposure to hepatitis due to frequent blood infusions.Patients who develop an inhibitor to factor VIII may require treatment with other clotting factors such as factor VIIa, which can help with clotting even without any factor VIII.
+
+Step 1: Blood vessels constrict Step 2: Incomplete platelet plug; bleeding continues Step 3: Incomplete or delayed fibrin clot; bleeding continues
+
+
+Research-Based study: Acquired von Willebrand disease. Rare associated with lymphoproliferative disease, myeloproliferative disorders and immunologic disorders
+
+Acquired vWD can occur in patients with autoantibodies. In this case the function of vWF is not inhibited but the vWF-antibody complex is rapidly cleared from the circulation.
+
+Once in a while, people develop what appears to be von Willebrand disease later in life. When this occurs in those who have no family history of the disease, it is thought that they are probably producing antibodies that destroy or decrease the amount of von Willebrand factor. Some other people have "acquired" a form of the disease in association with another disorder, such as rheumatoid arthritis, systemic lupus erythematosus, kidney and certain cancers.
+
+A form of vWD occurs in patients with aortic valve stenosis, leading to gastrointestinal bleeding (Heyde's syndrome). This form of acquired vWD may be more prevalent than is presently thought. Acquired vWF has also been described in the following disorders: Wilms' tumour, hypothyroidism and mesenchymal dysplasias.
+
+Acquired von Willebrand disease (AvWD) is a relatively rare acquired bleeding disorder that usually occurs in elderly patients, in whom its recognition may be delayed. Patients usually present predominantly with mucocutaneous bleeding, with no previous history of bleeding abnormalities and no clinically meaningful family history.
+
+Von Willebrand factor binding to heparin in various types of von Willebrand disease. Results Interpretation:
+
+A relationship between the ability of vWF to bind to heparin and to the platelet GPIb receptor, since type 2B and 2N patients have an increased or normal ability to bind to GPIb whereas type 2A and 2M patients have an impaired interaction with that receptor.
+
+The factor VIII/von Willebrand factor ratio discriminates between reduced synthesis and increased clearance of von Willebrand factor. Results Interpretation:
+
+An increased factor VIII/VWF ratio in combination with a borderline VWF level may indicate the presence of a true genetic defect, possibly a VWF null allele.
+
+
+
+
+What are the signs and symptoms of Von Willebrand's disease?
+
+Signs and symptoms vary depends on the severity of the disease.
+
+
+Type and Type 2 may exhibit mild to moderate bleeding symptoms:
+Type 3 disease - typically diagnosed in childhood is rare and severe Any of the symptoms listed above
+
+There are four hereditary types of vWD described - type 1, type 2, type 3, and platelet-type. There are inherited and acquired forms of vWD. Most cases are hereditary, but acquired forms of vWD have been described. The International Society on Thrombosis and Haemostasis 's (ISTH) classification depends on the definition of qualitative and quantitative defects.
+
+
+
+
+the affected child inherited the gene from one parent
+usually autosomal dominant
+
+quantitative defect (heterozygous for the defective gene) but may not have clearly impaired clotting, most patients usually end up leading a nearly normal life. Trouble may arise in the form of bleeding following surgery (including dental procedures), noticeable easy bruising, or menorrhagia (heavy periods). Decreased levels of vWF are detected (10-45% of normal, i.e. 10-45 IU)
+
+Symptoms:
+e asy bruising
+recurrent nosebleeds heavy menstrual periods prolonged bleeding after surgeries may have unnoticeable symptoms
+excessive bleeding during pregnancy is uncommon due to increase vWf during child birth Physiology:
+decreased vWf activity or increased bleeding time, but they may have an intermittently normal time
+
+In more severe cases of type 1 vWD, genetic changes are common within the vWF gene and are highly penetrant. In milder cases of type 1 vWD there may be a complex spectrum of molecular pathology in addition to polymorphisms of the vWF gene alone. The individual's ABO blood group can influence presentation and pathology of vWD. Those individuals with blood group O have a lower mean level than individuals with other blood groups. Unless ABO group specific vWF:antigen reference ranges are used, normal group O individuals can be diagnosed as type I vWD, and some individuals of blood group AB with a genetic defect of vWF may have the diagnosis overlooked because vWF levels are elevated due to blood group.
+
+Research-Based Study:
+Type 1 von Willebrand disease - a clinical retrospective study of the diagnosis, the influence of the ABO blood group and the role of the bleeding history. Results Interpretation:
+
+The use of ABO adjusted ranges for VWF levels might not be essential for diagnosis, because bleeding symptoms may depend on the VWF level regardless of the ABO type. Of the diagnostic criteria, the bleeding history was of prime importance in the clinical decision to diagnose and treat type 1 VWD. These observations could help in the reconsideration of how the criteria for diagnosing type 1 VWD could be adjusted in order to maximize their clinical relevance.
+
+
+
+
+the affected child inherited the gene from one parent generally autosomal dominant
+
+
+qualitative defect and the bleeding tendency can vary between individuals. There are normal levels of vWF, but the multimers are structurally abnormal, or subgroups of large or small multimers are absent. Four subtypes exist: 2A, 2B, 2M and 2N
+
+Symptoms:
+may be exhibited from birth to early childhood
+prolonged bleeding from cuts easy bruising nosebleeds skin hematomas prolonged bleeding from the gums following tooth extraction and minor trauma Gastrointestinal bleeding is rare but can be life-threatening.
+More than 50 percent of women with type 2 VWD experience heavy menstrual periods that may require a blood transfusion.
+prolonged bleeding during delivery Research-Based study: Molecular genetics of type 2 von Willebrand disease.
+Results Interpretation:
+
+A mutation localized in the carboxy-terminus CK domain, which is crucial for the dimerization of the VWF subunit, has been identified in a rare subtype 2A, formerly named IID.
+
+This is an abnormality of the synthesis or proteolysis of the vWF multimers resulting in the presence of small multimer units in circulation. Factor VIII binding is normal. It has a disproportionately low ristocetin co-factor activity compared to the von Willebrand's antigen.
+
+abnormal vWf or qualitative deficiency
+absence of the largest multimers and low levels of VWF:Ricof activity relative to VWF:Ag Ristocetin cofactor activity is greatly reduced, and the platelet vWF reveals multimeric abnormalities similar to those found in plasma.
+Relative reduction in intermediate and high molecular weight multimer complexes. Group 1 (defect in intracellular transport)
+Group 2 (increase in proteolysis in plasma after secretion) Type 2B
+
+
+This is a "gain of function" defect leading to spontaneous binding to platelets and subsequent rapid clearance of the platelets and the large vWF multimers. A mild thrombocytopenia may occur. The large vWF multimers are absent in the circulation and the factor VIII binding is normal. Like type 2A, the RiCof:vWF antigen assay is low when the patient's platelet-poor plasma is assayed against formalin-fixed, normal donor platelets. However, when the assay is performed with the patient's own platelets ("platelet-rich plasma"), a lower-than-normal amount of ristocetin causes aggregation to occur. This is due to the large vWF multimers remaining bound to the patient's platelets. Patients with this sub-type are unable to use desmopressin as a treatment for bleeding, because it can lead to unwanted platelet aggregation.
+
+Type 2C usually autosomal recessive
+Proportion of high molecular weight vWF multimers is reduced and the individual multimers are qualitatively abnormal Increases in small multimers also are eviden Ristocetin cofactor activity may be decreased out of proportion to reductions in vWF Type 2N
+. vWF antigen and ristocetin cofactor activity are usually normal
+
+This is a deficiency of the binding of vWF to factor VIII. This type gives a normal vWF antigen level and normal functional test results but has a low factor VIII. This has probably led to some 2N patients being misdiagnosed in the past as having hemophilia A, and should be suspected if the patient has the clinical findings of hemophilia A but a pedigree suggesting autosomal, rather than X-linked, inheritanc
+
+e. Markedly decreased affinity of vWF for FVIII, resulting in FVIII levels reduced to usually around 5% of the reference range. Confirmatory test for type 2N vWD is not routinely available Research-Based study:
+Identification of von Willebrand Disease Type 2N (Normandy) in Australia : A Cross-Laboratory Investigation Using Different Methods
+Results Interpretation:
+
+The 2-stage factor VIII assay was more useful as a screening test than the 1-stage assay, and both vWF-factor VIII binding assays were equally effective.
+
+Decreased vWF activity, but vWF antigen, FVIII, and multimer analysis are found to be within reference range
+
+
+This is caused by decreased or absent binding to GPIb on the platelets. Factor VIII binding is normal.
+
+Decreased platelet-directed function that is not due to a decrease of high molecular weight multimer
+Research-Based study: New families with von Willebrand disease type 2M Results Interpretation:
+
+The hereditary transmission of this variant is consistent with an autosomal dominant mode of inheritance. The patients with vWd type 2M (Vicenza) could be allocated into two subgroups: type "platelet normal" with normal vWf properties in platelets and type "platelet low" with reduced vWf: Ag levels in platelets.
+
+Use of the collagen-binding assay for von Willebrand factor in the analysis of type 2M von Willebrand disease: a comparison with the ristocetin cofactor assay.
+Results Interpretation:
+
+Study showed that VWF:CBA is sensitive to functional variants associated with the loss of high-molecular-weight multimers, i.e. type 2A and 2B in VWD, but the assay was unable to discriminate defective platelet-binding VWD variants with normal multimeric patterns such as type 2M VWD. It was concluded that the VWF:CBA assay should be used in association with rather than as a replacement for the VWF:RCo assay.
+
+
+
+ess than 1% of the affected population; one out of every million people
+
+
+most severe form of vWD (homozygous for the defective gene) and may have severe mucosal bleeding , no detectable vWF antigen , and may have sufficiently low factor VIII that they have occasional hemarthroses (joint bleeding), as in cases of mild hemophilia
+
+the child has inherited the affected gene from both parents, hence, the severity of the symptoms
+typically autosomal recessive Symptoms: bruising and bleeding from the mouth, nose, and from the intestinal, genital, and urinary tracts spontaneous bleeding into the muscles and joints, which can result in joint deformities prolonged bleeding during delivery Physiology:
+loss of vWf Clinically severe quantitative disorder resulting from a markedly reduced or absent platelet and plasma VWF (less than 5U/dL).
+FVIII activity also reduced. undetectable amounts of vWF and negligible vWF activity
+Marked deficiencies of both vWF and FVIIIc in the plasma, the absence of vWF from both platelets and endothelial cells, and a lack of the secondary transfusion response and the response to DDAVP factor VIII levels of less than 5-10% and reduced factor VIII activity Multimeric analysis of the little vWF present yields variable results, in some cases revealing only small multimers.
+
+
+
+How is von Willebrand's disease diagnosed?
+
+The doctor will perform a physical examination and subjective evaluation of your past medical history.
+
+If you have any indication of a bleeding disorder, your doctor may refer you to a specialist in blood disorders (hematologist). These tests may be repeated to confirm that the diagnosis of von Willebrand disease is correct, and to determine the disease type. The results of these tests can fluctuate in the same person over time, due to factors such as stress, excessive exercise, blood transfusions, recent surgery and pregnancy.
+
+
+
+1. Bleeding Time
+minutes needed to stop a bleed from a small laceration made in the skin 2. Factor VIII
+measures amount of factor VIII clotting activity 3. vWf Antigen
+measures amount of vWf or Von Willebrand Factor 4. Ristocetin Cofactor Activity
+measures vWf function or how well it works
+5. VWf Multimers
+measures the structure of the vWf molecule 6. Platelet Function Tests
+measures how well platelets work
+
+Research-Based studies:
+Laboratory assessment as a critical component of the appropriate diagnosis and sub-classification of von Willebrand's disease. Results Interpretation:
+
+There have been a number of new diagnostic developments, and these are beginning to significantly influence the overall clinical VWD-diagnostic process. These include automation of existing assay procedures, a relatively new functional VWF assay called the Collagen Binding Assay (VWF:CBA), new automated platelet function analysers such as the PFA-100 and the Xylum Clot Signature Analyser, and specific VWF:FVIII binding assays.
+
+Relative value of diagnostic studies for von Willebrand disease. Results Interpretation:
+
+The combination of the activity, bleeding time, and partial thromboplastin time successfully identified 92% of the patients as abnormal. Determination of vWF activity should be included routinely in the evaluation of hemostasis in children with symptomatic disease.
+
+
+Tests that may help diagnose a possibility of Von Willebrand Disease:
+
+1. DNA Testing
+The vWd type or subtype can be dtermined by DNA testing through any gene alteration
+This helps facilitate prenatal testing and testing of other family members. DNA testing can be performed through amniocentesis or chorionic villus sampling.
+
+Unfortunately many people with VWD possess DNA changes that are not detectable through DNA testing. A child who has a mother, father, or sibling diagnosed with VWD should undergo biochemical testing for VWD. If the relative with VWD possesses a detectable gene change, then DNA testing
+
+should be considered. Research-Base study: The von Willebrand factor gene and genetics of von Willebrand's disease. Results Interpretation:
+
+This disorder could be due to defects in vWF gene transcription, RNA processing, or stability. As additional defects are identified, the accurate diagnosis of vWD at the molecular level may eventually become possible.
+
+Molecular genetics of von Willebrand disease. Results Interpretation:
+
+Type 2A is characterized by a decreased platelet-dependent function of vWF associated with the absence of high molecular weight (HMW) multimers of vWF. In type 2B, defined by an increased affinity of vWF to platelet glycoprotein Ib (GPIb), various amino-acid (aa) substitutions or insertion have been localized within the A1 domain containing the GPIb binding site. Whereas various abnormalities (total, partial or point deletions, point insertions, nonsense mutations) have already been identified in type 3, the molecular basis of type 1 is still unresolved in most cases.
+
+If one parent has been diagnosed with an autosomal dominant form of VWD or both parents are carriers for an autosomal recessive form of VWD, then prenatal testing should be considered This test, however, is less accurate and presents a higher risk of preganancy complication or loss
+
+
+The results of these diagnostic tests are often not accurate due to the following reasons:
+
+
+Birth control pills, hormone therapy, pregnancy, breast feeding, and childbirth - these may cause a rise in the vWf
+Use of aspirin or non-steroidal anti-inflammatories Menstrual cycle Exercise, stress, and crying Cold environment
+
+Hence, repeated testing is necessary to ensure an accurate result and a precise diagnosis will be made.
+
+Medical professionals may misdiagnose a bleeding disorder due to unfamiliarity with the disease and diagnostics tests available. The common misdiagnosis are the following:
+
+
+Heavy menstrual bleeding may be seen as hormonal or gynecological. Bleeding may persist and yet remain undiagnosed, presenting a risk of death in traumatic situations Surgical solutions, such as hysterectomy, may be carried out unnecessarily as a result of misdiagnosis of a bleeding disorder. A low platelet count may be considered the result of leukemia, autoimmunity, or other conditions.
+
+
+
+Research-Based studies: Von Willebrand factor collagen-binding (activity) assay in the diagnosis of von Willebrand disease: a 15-year journey. Results Interpretation:
+
+An optimized vWF:CBA detects primarily high-molecular-weight (HMW) vWF forms and probably only about 30% of the total plasma vWF pool detected by vWF antigen (vWF:Ag). Because these HMW vWF forms are missing in types 2A and 2B vWD, the vWF:CBA is extremely useful in the detection of these qualitative vWD subtypes. In addition, however, concordance of vWF:CBA with vWF:Ag in unison with low vWF levels may alternatively suggest a type 1 vWD, and an absence of both vWF:Ag and vWF:CBA will suggest type 3 vWD. The vWF:CBA is also being investigated in various disease states, as is its usefulness as an effective marker of functional HMW vWF in both desmopressin (DDAVP) and factor-concentrate therapy in vWD.
+
+Potential laboratory misdiagnosis of hemophilia and von Willebrand disorder owing to cold activation of blood samples for testing.
+Results Interpretation:
+
+Researchers processed 39 normal citrate-anticoagulated samples by standard procedures (reference) or stored at low (~4 degrees C) or ambient (~22 degrees C) temperature for 3.5 hours before centrifugation and processing. Samples were tested in parallel for several hemostasis factors, including von Willebrand factor (vWF). Similar results were obtained for all sample
+
+
+
+
+How is von Willebrand's disease treated? 1. Applying pressure
+done with mild bleeds Mild bleeds resolve on its own or it is a self-limiting type 2. Medications and Hormones
+
+
+Utilizing the hormones of oral contraceptives which are administered orally, topically, intravenously or by patch
+
+Estrogen increase the level of vWf and FVIII activity Sometimes used in the long-term treatment of women with mild to moderate VWD.
+Brand names: Thrombinar Avitene Instat
+Amicar These medications are typically given during incidents of localized bleeding in the nose or mouth a synthetic hormone that causes the body to release its own stores of vWf and FVIII, is successful in treating type 1 (almost 80%) and some with type 2A disease This treatment can't be administered with type 2B due to platelet clumping which is detrimental for those affected with type 2B This treatment can't be administered with type 3B due to ineffectivity in increasing vWf levels
+used during incidents of severe bleeding administered either intravenously or through the nasal pathway (nasal spray) Some people may experience the following side-effects: facial flushing tingling sensations headaches
+Intermediate purity FVIII products acts as a replacement for the missing protein
+administered intravenously for vWf type 2 and 3
+
+Recombinant and monoclonal FVIII products do not contain any vWf and cannot be used.
+
+this treatment is utilized when the following conditions occur: Patients who cannot take DDAVP
+Patients need prolonged treatment Patients with Type 1 disease who do not respond to DDAVP Patients with Type 2b disease Patients with Type 3 disease They are used mostly in von Willebrand patients to stop bleeding following minor surgery, tooth extraction, or an injury. These drugs are helpful in controlling intestinal, mouth, and nose bleeding. They may be used alone or together with DDAVP and replacement therapy. These drugs help prevent the breakdown of clotting factors in the blood. Cyklokapron (tranexamic acid) This drug help to hold a clot in place once it has formed.
+Thrombin a natural clotting agent that comes in powder form administered during nose bleed and applied directly on the site of injury
+medicine placed directly on a wound to stop the bleeding.
+3. Body's natural response
+Although not a treatment, pregnancy may increase estrogen and, thereby, decrease the impact of vWd. What are the lifestyle changes in dealing with Von Willebrand Disease?
+For affected children, they should avoid contact sports Avoid bleeding and have a healthy lifestyle
+
+Stay active but avoid activities that could cause bruising (wrestling, football, etc.). People with VWD can generally stay in shape through swimming, walking, hiking, yoga, etc. Consider wearing a medical alert bracelet. If you are unable to explain your condition, the bracelet can notify medical personnel of your condition. Let your dentist and doctors know about your condition.
+
+If you have a child with von Willebrand's, let other caretakers in his life know about his condition so that they will know what steps to take in the event of an accident. Avoid over-the-counter medications that can affect the clotting process:
+
+The prognosis for VWD is generally good, and most individuals have a normal lifespan. The prognosis can depend, however, on accurate diagnosis and appropriate medical treatment.
+
+Women who have this condition generally do not experience excessive bleeding during childbirth.
+
+Since this disease is inherited, genetic counseling may be recommended for parents. A bleeding disorder prognosis is often better if the disease is caught early and brought under control. While such bleeding disorders as hemophilia and von Willebrand disease cannot be cured, they can be managed, allowing people suffering from them to lead active and productive lives.

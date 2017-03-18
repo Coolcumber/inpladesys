@@ -1,0 +1,70 @@
+The earliest known map is a matter of debate. Firstly because the definition of a map is not sharp and secondly because some artifacts that are speculated as maps may actually be something else.
+
+which might have been used to depict the ancient city of atalh y k, has been dated back to the late 7th millennium BCE
+
+The other maps of ancient world include an engraved map of the Babylonian city of Nippur, from the Kassite period from 14th to 12th centuries BCE. The ancient Romans and Greeks created maps, beginning with Anaximander during the 6th century BC. Ptolemy's world map is a map of the known world to the Western society during the 2nd century A.D . Arab scholars translated the works of the Greek geographers into Arabic as early as the 700s. Geographical literature goes back to the 5th century BC in ancient China. The oldest Chinese maps are from the State of Qin and these are dated back to the 4th century BC.
+The book of Xin Yi Xiang Fa Yao WAS published in the year 1092 by Su Song who was a Chinese scientist. The book had a star map with cylindrical projection that was similar to the Mercator projection. It seems that this method of charting had existed in China even prior to this publication but the greatest significance of such star maps by Su Song, is the fact that they represent the oldest existent star maps that are available in the printed form.
+
+Early cartography from India includes legendary paintings and maps of locations that have been described in the Indian epic poetry like Ramayana. Indian cartographic traditions have also covered the locations of Pole star and other constellations. These charts might have been in use in the beginning of the Common Era for the purpose of navigation.
+
+
+
+Mappa mundi is a general term that is used to describe the Medieval European maps of the world.
+
+Almost 1,100 mappae mundi have been known to have survived from the Middle Ages. Nine hundred out of these are found to illustrate manuscripts and the remaining exist in the form of stand-alone documents.
+
+Muhammad al-Idrisi, an Arab geographer, produced Tabula Rogeriana which was his his medieval atlas in 1154. Knowledge of Africa, Indian Ocean and the Far East that was gathered by the Arab merchants and explorers was incorporated with the information that was inherited from the classical geographers. As a result, he created the most accurate world map of his time. As a matter of fact, this map remained as the most accurate map of world for the next three centuries.
+
+
+
+During the Age of Exploration , from 15th century to 17th century, the European cartographers copied the earlier maps and drew their own versions that were based on the explorers' observations that made use of new surveying techniques. The invention of the telescope, magnetic compass and sextant helped in increasing accuracy. Martin Behaim, who was a German cartographer, made one of the the oldest extant globe of the Earth in the year 1492.
+
+Technological changes
+
+Technology has continuously changed in cartography in order to meet the latest demands of new generations of map users and mapmakers. Initially the maps were made manually with brushes and parchment. Due to this reason, they varied in quality and at the same time they were limited in their distribution. The advent of magnetic devices, like compass and magnetic storage devices at a later stage allowed the creation of much more accurate maps and at the same time they had an ability to manipulate and store them digitally
+
+Advancement in mechanical devices like printing press allowed mass production of maps and at the same time there was an ability to make more accurate reproductions from data that was more accurate. Optical technological devices like telescope and sextant allowed for more accurate surveying.
+
+
+
+Easy availability of computers and their peripherals like monitors, printers, plotters, scanners along with computer programs for the purpose of image processing, visualization, spatial analysis and database management, have actually democratized and expanded the map making process. The ability of superimposing spatially located variables on existing maps resulted in the creation of new uses of maps and new industries in exploring and exploiting these potentials.
+
+Most of the commercial-quality maps that are available these days are made with the help of soft wares like CAD, GIS or specialized illustration software. Spatial information can easily be stored in a database and it can be extracted from the data base on demand. These tools have led to dynamic and interactive maps.
+
+
+
+In 21st century, it is actually possible to find a map of almost anything that ranges from the inner working of the human body to the world of cyberspace. As a result, there is now a huge variety of various styles and types of map.
+
+Map symbology
+
+The quality of a map affects the ability of its readers to extract information and also to learn from the map. The Cartographic symbology is developed in an attempt to portray the world effectively and accurately to the map reader. A legend that forms a part of the map explains the pictorial language and it is known as its symbology. The title used indicates the region portrayed by the map. Although each and every map element serves the some purpose, convention dictates inclusion of some elements and at the same time some of them are considered optional. A menu of map elements includes border, north arrow, scale bar, overview map, projection as well as information about the map accuracy, sources and publication.
+
+While examining any landscape, its scale can be intuited from the size of its trees, houses and cars but this is not so in case of a map. Even a simple thing like a north arrow is crucial and it may seem quite obvious that the top of a map points towards north, but this may not be the case.
+
+At the same time, the color is equally important. How a cartographer displays the entire data with the help of different hues can considerably affect the understanding as well as the feel of the map. Different intensities portray different objectives that the cartographer is attempts to get across to his or her audience. Today, personal computers are capable of displaying up to sixteen million distinct colors at a particular time, in spite of the fact that the human eye can distinguish only a small number of these. This fact allows multitude of color options even for the most demanding maps. It must be mentioned that, computers can also be used to hatch patterns in colors so as to give many more options. This is quite beneficial, while symbolizing data in categories like quintile or equal interval classifications.
+
+Quantitative symbols can give a visual measure of relative size or importance that a symbol represents. In order to symbolize the data on a map, two major classes of symbols are used for the purpose portraying quantitative properties. Proportional symbols result in changing their visual weight. These are appropriate for the purpose of extensive statistics.
+
+Map types General vs themati c cartography
+
+In order to understand the ba sics of maps, the field of cartography may be divided into two categories. These are thematic cartography and general cartography. General cartography deals with those maps that have been made for a general audience and thus they contain various features. General maps exhibit a number of reference as well as location systems and these are generally are produced in a series.
+
+Thematic cartogr aphy deals with maps of specific themes in geography and these are oriented towards a specific audience. For example, a dot map showing the production of corn in Indiana. As the quantity of geographic data has actually exploded during the last century, the concept of thematic cartography has become quite useful in interpretation of spatial, cultural as well as social data.
+
+A thematic map is used to di splay spatial pattern of a particular theme or series of attributes. As compared to the reference maps which show a number of geographic features like forests, roads and political boundaries, the thematic maps always emphasize sp atial variation of just one or a very small number of geographic distributions. Such distributions may be physical phenomena like climate or human characteristics that may include health issues and population density . These maps are sometimes referred as graphic essays which portray spatial variations as well as interrelationships of various geographical distributions. Location is important in order to provide a reference base. While general reference maps depict where a particular is in space, the thematic maps can tell a story about that particular place.
+
+
+
+Choropleth maps are those thematic maps that are used to portray various data collection areas like census tracts or counties with color. Using a particular color in this way, the darkness as well as intensity of the color is evaluated by the observer's eye as a measure of concentration or intensity. Orienteering map combines general as well as thematic cartography and it is designed for a specific user community.
+
+Topographic Maps vs Topological Maps
+
+A topograp hic map is mainly concerned with topographic description of a particular place, including the use of contour lines that show elevation. Terrain or relief may be shown in various ways.
+
+A topological m ap is a general type of map and it generally disregards scale and other details and offers clarity of communicating any specific route or information. An iconic example of this case is Beck's London Underground map. Although it is the most commonly used map of "The Tube," but it preserves little reality. It varies the true scale constantly as well as abruptly, it also straightens the curved tracks and at the same time it contorts directions haphazardly. As a matter of fact, the only traits that are preserved by the map are the sequence of different stations, crossings along the tracks and the fact whether a particular station or crossing is located on the north or south of the Thames River. As a matter of fact, those are all the details that a typical passenger wants to know and as a result, so the map fulfills its purpose.
+
+
+One area that has evolved a specific and recognizable variation in maps is that which is used by public transport organisations for guiding passengers on urban rail and metro maps. Most of them are loosely based on 45 degree angles that was originally perfected by Harry Beck and George Dow.
+
+Google Earth and Google Maps are both location based tools but the basic difference between them is that Google Maps is an online tool and on the other hand, Google Earth is basically a stand-alone application that has to be downloaded. Google Earth was released in the year 2005 and it makes use of satellite images along with aerial photographs and on the other hand, Google Maps makes use of only satellite images.
+
