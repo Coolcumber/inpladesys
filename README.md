@@ -33,7 +33,8 @@ Intrinsic plagiarism detection (also called author diarization) attempts to dete
 * a small set of lexical features is selected (TODO: define the features)
 * the features are translated to 0-mean and scaled to unit variance
 * the length of segments is predefined: 7 words
-* k-means clustering is used with a predefined number of authors (*n*=3)
+* Euclidean distance is used
+* k-means clustering is used with a predefined number of authors (*n*=3 for task 3)
 #### Features
 
 #### Model 1
