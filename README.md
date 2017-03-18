@@ -1,6 +1,6 @@
 # Inpladesys - Intrinsic Plagiarism Detection System
 
-This repository is going to contain an implementation and a description paper for an author diarization (and intrinsic plagiarism detection) system as a result of a student project which is a part of [*Text Analysis and Retrieval*](https://www.fer.unizg.hr/predmet/apt) (*TAR*) coursework.
+This repository is going to contain an implementation and a description paper for an author diarization (and intrinsic plagiarism detection) system as a result of a student project which is a part of [*Text Analysis and Retrieval*](https://www.fer.unizg.hr/en/course/taar) (*TAR*) coursework.
 
 ## Author Diarization and Intrinsic Plagiarism Detection
 Author diarization is the problem of segmenting text within a document by the authors, i.e. assignment of every part of text to an author. The analyzed document can be a result of collaborative work or plagiarism by a single author. The problem is more thoroughly described [here](http://pan.webis.de/clef16/pan16-web/author-identification). The problem can be divided into 3 subproblems:
