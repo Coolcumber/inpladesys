@@ -17,7 +17,7 @@ Intrinsic plagiarism detection (also called author diarization) attempts to dete
 * [Abdul Sittar, Hafiz Rizwan Iqbal, and Rao Muhammad Adeel Nawab. Author Diarization Using Cluster-Distance Approach.](http://www.uni-weimar.de/medien/webis/events/pan-16/pan16-papers-final/pan16-author-identification/sittar16-notebook.pdf)
 
 ## [Project Plan](https://drive.google.com/drive/folders/0BzQ2SbanL1zCa1VoSVJBLXBxUXM)
-### Milestones <sub><sup>*dates are in the ISO 8601 format with leading zeros omitted*</sub></sup>
+### Milestones
 #### 2017-3-24 Project plan submission
 #### 2017-4-8 *Baseline checkpoint*
 * at least a working baseline for each subtask
