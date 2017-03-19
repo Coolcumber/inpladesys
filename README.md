@@ -23,19 +23,18 @@ Intrinsic plagiarism detection (also called author diarization) attempts to dete
 * at least a working baseline for each subtask
 * working evaluation
 #### 2017-5-1 *Kuznetsov Checkpoint*
-* a model at least as good as Kuznetsov's
+* a model as good as Kuznetsov's (or at least half as good)
 #### 2017-5-8 Project Checkpoint
 #### 2017-6-9 Project Presentations
 #### 2017-6-18 Project Reviews
 
 ### Models
-#### Baseline proposal E1
-* a small set of lexical features is selected (TODO: define the features)
+#### Baseline 1
+* the whole document is predicted to have been written by a single author
+#### Simple model
+* a small set of lexical features is selected *(TODO: define the features)*
 * the features are translated to 0-mean and scaled to unit variance
 * the length of segments is predefined: 7 words
 * Euclidean distance is used
 * k-means clustering is used with a predefined number of authors (*n*=3 for task 3)
-#### Features
-
 #### Model 1
-#### Model 2
