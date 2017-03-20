@@ -22,11 +22,16 @@ Intrinsic plagiarism detection (also called author diarization) attempts to dete
 #### 2017-4-8 *Baseline checkpoint*
 * at least a working baseline for each subtask
 * working evaluation
-#### 2017-5-1 *Kuznetsov Checkpoint*
-* a model as good as Kuznetsov's (or at least half as good)
-#### 2017-5-8 Project Checkpoint
-#### 2017-6-9 Project Presentations
-#### 2017-6-18 Project Reviews
+#### 2017-5-1 *Kuznetsov checkpoint*
+* a *well-working* model
+#### 2017-5-8 Project checkpoint
+* final model(s)
+#### 2017-5-19 *Paper checkpoint*
+* final paper ready for reviews
+#### 2017-6-9 Project presentations
+* the last project-related action hopefully
+#### 2017-6-18 Project reviews
+#### 2017-6-26 Final papers
 
 ### Models
 #### Baseline 1
