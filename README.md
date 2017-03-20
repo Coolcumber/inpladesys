@@ -38,7 +38,8 @@ Beside the checkpoints defined by the course, we have defined a set of informal 
 * *feature-set-1* - a small set of simple lexical features **TODO**
 #### Feature preprocessing
 * *normalized* - translated to 0-mean and scaled to unit variance
-* *t1* - weighted by minimizing (*variance within class averaged across all classes*) - *λ*(*variance among class-centroids*), where *λ* is a scalar hyperparameter (the problem is described [here](http://mathb.in/134812))
+* *t1* - weighted by minimizing (*variance within class averaged across all classes*) - *λ*(*variance among class-centroids*), where *λ* is a scalar hyperparameter (described [here](http://mathb.in/134812))
+* *neural network* - a fully connected neural network applied over normalized features
 #### Baseline 1
 * the whole document is predicted to have been written by a single author
 #### Simple model
