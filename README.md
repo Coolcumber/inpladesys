@@ -38,7 +38,7 @@ Beside the checkpoints defined by the course, we have defined a set of informal 
 * *feature-set-1* - a small set of simple lexical features **TODO**
 #### Feature preprocessing
 * *normalized* - translated to 0-mean and scaled to unit variance
-* *weighted-1* - weighted by minimizing (*per-class variance averaged across all classes*) - *λ*(*class-centroid variance*), where a class centroid is the *per-class average of features* and *λ* is a scalar hyperparameter  
+* *t1* - weighted by minimizing (*variance within class averaged across all classes*) - *λ*(*variance among class-centroids*), where *λ* is a scalar hyperparameter (the problem is described [here](http://mathb.in/134810))
 #### Baseline 1
 * the whole document is predicted to have been written by a single author
 #### Simple model
@@ -48,6 +48,6 @@ Beside the checkpoints defined by the course, we have defined a set of informal 
   * the length of segments is predefined: 7 words
   * Euclidean distance is used
   * *k-means*(*++*) clustering (with a predefined number of authors (*n*=3) for task 3)
-#### Simple model with weighted features
+#### Simple model with transformed features
 * everything as in *Simple model* except:
-  * feature preprocessing: *weighted-1*
+  * feature preprocessing: *t1*
