@@ -38,7 +38,7 @@ Beside the checkpoints defined by the course, we have defined a set of informal 
 * *feature-set-1* - a small set of simple lexical features **TODO**
 #### Feature preprocessing
 * *normalized* - translated to 0-mean and scaled to unit variance
-* *weighted-1* - weighted by minimizing (*per-class variance averaged across all classes*) - λ(*class-centroid variance*), where a class centroid is the *per-class average of features* and λ is a scalar hyperparameter  
+* *weighted-1* - weighted by minimizing (*per-class variance averaged across all classes*) - *λ*(*class-centroid variance*), where a class centroid is the *per-class average of features* and *λ* is a scalar hyperparameter  
 #### Baseline 1
 * the whole document is predicted to have been written by a single author
 #### Simple model
