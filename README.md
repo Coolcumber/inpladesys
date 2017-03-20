@@ -29,7 +29,6 @@ Intrinsic plagiarism detection (also called author diarization) attempts to dete
 #### 2017-5-19 *Paper checkpoint*
 * final paper ready for reviews
 #### 2017-6-9 Project presentations
-* the last project-related action hopefully
 #### 2017-6-18 Project reviews
 #### 2017-6-26 Final papers
 
