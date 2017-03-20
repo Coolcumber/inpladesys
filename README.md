@@ -34,16 +34,20 @@ Beside the checkpoints defined by the course, we have defined a set of informal 
 #### 2017-6-26 Final papers
 
 ### Models
+#### Feature set
+* *feature-set-1* - a small set of simple lexical features **TODO**
+#### Feature preprocessing
+* *normalized* - translated to 0-mean and scaled to unit variance
+* *weighted-1* - weighted by minimizing the weighted sum of *per-class variance averaged across all classes* and maximizing the *class-centroid variance*, where a class centroid is the *per-class average of features*  
 #### Baseline 1
 * the whole document is predicted to have been written by a single author
 #### Simple model
-* a small set of lexical features is selected *(TODO: define the features)*
-* the features are translated to 0-mean and scaled to unit variance
-* the length of segments is predefined: 7 words
-* Euclidean distance is used
-* k-means clustering is used with a predefined number of authors (*n*=3 for task 3)
+* feature set: *feature-set-1*
+* feature preprocessing: *normalized*
+* clustering/classification:
+  * the length of segments is predefined: 7 words
+  * Euclidean distance is used
+  * *k-means*(*++*) clustering (with a predefined number of authors (*n*=3) for task 3)
 #### Simple model with weighted features
-* the same set of features as in *Simple model*
-* features are weighted by minimizing the weighted sum of *per-class variance averaged across all classes* and maximizing the *class-centroid variance*, where a class centroid is the *per-class average of features*  
-* everything else as in *Simple model*
-#### Model 1
+* everything as in *Simple model* except:
+  * feature preprocessing: *weighted-1*
