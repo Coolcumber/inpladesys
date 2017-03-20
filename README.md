@@ -18,6 +18,7 @@ Intrinsic plagiarism detection (also called author diarization) attempts to dete
 
 ## [Project Plan](https://drive.google.com/drive/folders/0BzQ2SbanL1zCa1VoSVJBLXBxUXM)
 ### Milestones
+Beside the checkpoints defined by the course, we have defined a set of informal checkpoints to ensure that all the project tasks are done on time. These checkpoints are *italicized*.
 #### 2017-3-24 Project plan submission
 #### 2017-4-8 *Baseline checkpoint*
 * at least a working baseline for each subtask
