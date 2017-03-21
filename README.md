@@ -57,5 +57,5 @@ Beside the checkpoints defined by the course, we have defined a set of informal 
 
   
 ##### Simple model with transformed features
-* everything as in *Simple model* except:
-  * feature preprocessing: *t2*
+* Everything as in *Simple model* except:
+  * Feature preprocessing: *t2*
