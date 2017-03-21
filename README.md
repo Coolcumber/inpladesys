@@ -39,7 +39,8 @@ Beside the checkpoints defined by the course, we have defined a set of informal 
 * *feature-set-1* - a small slection of simple lexical features **TODO**
 ##### Feature preprocessing
 * *normalized* - translated to 0-mean and scaled to unit variance
-* *t1* - weighted by minimizing (*variance within class averaged across all classes*) - *λ*(*variance among class-centroids*), where *λ* is a scalar hyperparameter (described [here](http://mathb.in/134812))
+* *t1* - weighted by minimizing (*variance within class averaged across all classes*) - *λ*(*variance among class-centroids*), w*λ* is a scalar hyperparameter (described [here](http://mathb.in/134812))
+* *t2* - weighted by solving constrained minimization as described [here](http://mathb.in/134875)
 * *neural network* - a fully connected neural network applied over normalized features
 #### Complete pipelines or integral models
 ##### Baseline 1
@@ -53,4 +54,4 @@ Beside the checkpoints defined by the course, we have defined a set of informal 
   * *k-means*(*++*) clustering (with a predefined number of authors (*n*=3) for task 3)
 ##### Simple model with transformed features
 * everything as in *Simple model* except:
-  * feature preprocessing: *t1*
+  * feature preprocessing: *t2*
