@@ -38,7 +38,7 @@ Beside the checkpoints defined by the course, we have defined a set of informal 
 ##### Feature sets
 * *feature-set-1* - a small selection of simple lexical features **TODO**
 ##### Feature preprocessing
-* *normalized* - translated to 0-mean and scaled to unit variance
+* *normalized* - translated to 0-mean and scaled to unit variance for each feature
 * *t1* - described [here](http://mathb.in/134812)
 * *t2* - weighted by solving constrained minimization as described [here](http://mathb.in/134887)
 * *neural network* - a fully connected neural network applied over normalized features
