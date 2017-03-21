@@ -40,7 +40,7 @@ Beside the checkpoints defined by the course, we have defined a set of informal 
 ##### Feature preprocessing
 * *normalized* - translated to 0-mean and scaled to unit variance
 * *t1* - weighted by minimizing (*variance within class averaged across all classes*) - *λ*(*variance among class-centroids*), where *λ* is a scalar hyperparameter (described [here](http://mathb.in/134812))
-* *t2* - weighted by solving constrained minimization as described [here](http://mathb.in/134885)
+* *t2* - weighted by solving constrained minimization as described [here](http://mathb.in/134886)
 * *neural network* - a fully connected neural network applied over normalized features
 #### Complete pipelines or integral models
 ##### Baseline 1
