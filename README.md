@@ -44,14 +44,18 @@ Beside the checkpoints defined by the course, we have defined a set of informal 
 * *neural network* - a fully connected neural network applied over normalized features
 #### Complete pipelines or integral models
 ##### Baseline 1
-* the whole document is predicted to have been written by a single author
+* The whole document is predicted to have been written by a single author.
 ##### Simple model
-* feature set: *feature-set-1*
-* feature preprocessing: *normalized*
-* clustering/classification:
-  * the length of segments is predefined: 7 words
+* Description: Firstly, all documents in the training set are segmented into segments of length 7 words. Each segment is labeled by the class that most words within it belong to. For each segment features are measured. A feature transformation is learned over all documents to adapt the feature space for clustering, whereafter the system is ready for author diarization. Author diarization for a document is performed by clustering in the transformed feature space.
+* Text reading: the text is split into segments of length 7
+* Training:
+  * Feature set: *feature-set-1*
+  * Feature preprocessing: *normalized*
+* Clustering/classification:
   * Euclidean distance
   * *k-means*(*++*) clustering (with a predefined number of authors (*n*=3) for task 3)
+
+  
 ##### Simple model with transformed features
 * everything as in *Simple model* except:
   * feature preprocessing: *t2*
