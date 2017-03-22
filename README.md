@@ -40,7 +40,7 @@ Beside the checkpoints defined by the course, we have defined a set of informal 
 ##### Feature preprocessing
 * *normalized* - translated to 0-mean and scaled to unit variance for each feature
 * *t1* - described [here](http://mathb.in/134812)
-* *t2* - feature space linearly transformed to adapt class shapes for k-means clustering - contrained minimization problem described [here](http://mathb.in/134887)
+* *t2* - feature space linearly transformed to adapt class shapes for k-means clustering - contrained minimization problem described [here](http://mathb.in/135013)
 * *neural network* - a fully connected neural network applied over normalized features
 #### Complete pipelines or integral models
 ##### Baseline 1
