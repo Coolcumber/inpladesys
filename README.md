@@ -33,33 +33,34 @@ Beside the checkpoints defined by the course, we have defined a set of informal 
 #### 2017-6-18 Project reviews
 #### 2017-6-26 Final papers
 
-#### Model components
-##### Basic features
+
+### Model components
+#### Basic features
 * *bf1* - a small selection of simple lexical features **TODO**
-##### Feature space transformation
+#### Feature space transformation
 * *normalized* - translated to 0-mean and scaled to unit variance for each feature
 * *fp1* - described [here](http://mathb.in/134812)
 * *fp2* - feature space linearly transformed to adapt class shapes for k-means clustering - contrained minimization problem described [here](http://mathb.in/135013)
 * *average covariance matrix inverse* - feature space linearly transformed to adapt class shapes for k-means clustering - inverse of the average covariance martrix
 * *neural network* - a fully connected neural network applied over normalized features
-##### Clustering
+#### Clustering
 * *k-means* 
-#### Models
-##### Baseline 1
+### Models
+#### Baseline 1
 * description: The whole document is predicted to have been written by a single author.
-##### Abstract model A
+#### Abstract model A
 * description: Firstly, all documents in the training set are segmented into toeken segments of length *n*. Each segment is labeled by the class that most words within it belong to. For each segment features are measured. A feature transformation is learned over all documents to adapt the feature space for clustering, whereafter the system is ready for author diarization. Author diarization for a document is performed by clustering in the transformed feature space.
 * components:
   * basic features
   * feature space transformation
   * clustering
-##### Model A1
+#### Model A1
 * description: text is split into segments of length 7
 * basic features: *bf1*
 * feature transformation: *identity*
 * clustering: *k-means*(*++*), Euclidean distance
 
-##### Model A2
+#### Model A2
 * Description: text is split into segments of length 7
 * basic features: *bf1*
 * feature transformation: *average covariance matrix inverse*
