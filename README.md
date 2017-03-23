@@ -33,25 +33,30 @@ Beside the checkpoints defined by the course, we have defined a set of informal 
 #### 2017-6-18 Project reviews
 #### 2017-6-26 Final papers
 
-### Models
-#### Pipeline components
-##### Feature sets
-* *feature-set-1* - a small selection of simple lexical features **TODO**
-##### Feature preprocessing
+#### Model components
+##### Basic features
+* *bf1* - a small selection of simple lexical features **TODO**
+##### Feature space transformation
 * *normalized* - translated to 0-mean and scaled to unit variance for each feature
-* *t1* - described [here](http://mathb.in/134812)
-* *t2* - feature space linearly transformed to adapt class shapes for k-means clustering - contrained minimization problem described [here](http://mathb.in/135013)
+* *fp1* - described [here](http://mathb.in/134812)
+* *fp2* - feature space linearly transformed to adapt class shapes for k-means clustering - contrained minimization problem described [here](http://mathb.in/135013)
+* *fp3* - feature space linearly transformed to adapt class shapes for k-means clustering - invere of the average covariance martrix
 * *neural network* - a fully connected neural network applied over normalized features
-#### Complete pipelines or integral models
+#### Models
 ##### Baseline 1
 * *Description*: The whole document is predicted to have been written by a single author.
-##### Simple model
-* *Description*: Firstly, all documents in the training set are segmented into segments of length 7 words. Each segment is labeled by the class that most words within it belong to. For each segment features are measured. A feature transformation is learned over all documents to adapt the feature space for clustering, whereafter the system is ready for author diarization. Author diarization for a document is performed by clustering in the transformed feature space.
-* *Text reading*: the text is split into segments of length 7
-* *Training*:
-  * *Feature set*: *feature-set-1*
-  * *Feature preprocessing*: *normalized*
-* *Clustering/classification*: Euclidean distance, *k-means*(*++*) clustering (with a predefined number of authors (*n*=3) for task 3)
+##### Abstract model A
+* Description: Firstly, all documents in the training set are segmented into toeken segments of length *n*. Each segment is labeled by the class that most words within it belong to. For each segment features are measured. A feature transformation is learned over all documents to adapt the feature space for clustering, whereafter the system is ready for author diarization. Author diarization for a document is performed by clustering in the transformed feature space.
+* Components:
+  * basic features
+  * feature space transformation
+  * clustering
+
+##### Model A1
+* Description: text is split into segments of length 7
+* basic features: *bf1*
+* feature transformation: none
+* clustering: Euclidean distance, *k-means*(*++*) (with a predefined number of authors (*n*=3) for task 3)
 
   
 ##### Simple model with transformed features
