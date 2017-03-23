@@ -40,8 +40,10 @@ Beside the checkpoints defined by the course, we have defined a set of informal 
 * *normalized* - translated to 0-mean and scaled to unit variance for each feature
 * *fp1* - described [here](http://mathb.in/134812)
 * *fp2* - feature space linearly transformed to adapt class shapes for k-means clustering - contrained minimization problem described [here](http://mathb.in/135013)
-* *fp3* - feature space linearly transformed to adapt class shapes for k-means clustering - invere of the average covariance martrix
+* *average covariance matrix inverse* - feature space linearly transformed to adapt class shapes for k-means clustering - inverse of the average covariance martrix
 * *neural network* - a fully connected neural network applied over normalized features
+##### Clustering
+* *k-means* 
 #### Models
 ##### Baseline 1
 * *Description*: The whole document is predicted to have been written by a single author.
@@ -51,14 +53,14 @@ Beside the checkpoints defined by the course, we have defined a set of informal 
   * basic features
   * feature space transformation
   * clustering
-
 ##### Model A1
 * Description: text is split into segments of length 7
 * basic features: *bf1*
-* feature transformation: none
-* clustering: Euclidean distance, *k-means*(*++*) (with a predefined number of authors (*n*=3) for task 3)
+* feature transformation: *identity*
+* clustering: *k-means*(*++*), Euclidean distance
 
-  
-##### Simple model with transformed features
-* *Description*: Everything as in *Simple model* except:
-  * *Feature preprocessing*: *t2*
+##### Model A2
+* Description: text is split into segments of length 7
+* basic features: *bf1*
+* feature transformation: *average covariance matrix inverse*
+* clustering: *k-means*(*++*), Euclidean distance
