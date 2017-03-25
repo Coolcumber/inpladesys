@@ -1,0 +1,181 @@
+% Paper template for TAR 2016
+% (C) 2014 Jan Šnajder, Goran Glavaš, Domagoj Alagić, Mladen Karan
+% TakeLab, FER
+
+\documentclass[10pt, a4paper]{article}
+
+\usepackage{tar2016}
+
+\usepackage[utf8]{inputenc}
+\usepackage[pdftex]{graphicx}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\title{Template for writing TAR project papers}
+
+\name{Author1, Author2, Author3} 
+
+\address{
+University of Zagreb, Faculty of Electrical Engineering and Computing\\
+Unska 3, 10000 Zagreb, Croatia\\ 
+\texttt{autor1@xxx.hr}, \texttt{\{autor2,autor3\}@zz.com}\\
+}
+          
+         
+\abstract{ 
+This document provides the instructions on formatting the TAR project paper in \LaTeX{}. This is where you write the abstract (i.e., summary) of the work you carried out. The abstract is a paragraph of text ranging between 70 and 150 words.
+}
+
+\begin{document}
+
+\maketitleabstract
+
+\section{Introduction}
+
+This section is the introduction to your paper. Introduction should not be too elaborate, that is what other sections are for (the Introduction should definitely not spill over to the second page). 
+
+This is the second paragraph of the introduction. In \LaTeX , paragraphs are separated by inserting an empty line in between them.  Avoid very large paragraphs (larger than half of the page height), but also avoid tiny paragraphs (e.g., one-sentence paragraphs).
+
+\section{Second section}
+
+In scientific papers, this section usually (but not necessarily) briefly describes the related research. 
+
+\subsection{First subsection}
+\label{sec:first}
+
+This is a subsection of the second section.
+
+\subsection{Second subsection}
+
+This is the second subsection of the second section. Referencing the (sub)sections in text is performed as follows: ``in Section \ref{sec:first} we have shown \dots''.
+
+\subsubsection{Sub-subsection example} 
+
+This is a sub-subsection. If possible, it is better to avoid sub-subsections. 
+
+\section{Extent of the paper}
+
+The paper should have a minimum of 3 and a maximum of 5 pages, plus an additional page for references.
+
+\section{Figures and tables}
+
+\subsection{Figures}
+
+Here is an example on how to include figures in the paper. Figures are included in \LaTeX{} code immediately \textit{after} the text in which these figures are referenced. Allow \LaTeX{} to place the figure where it believes is best (usually on top of the page of at the position where you would not place the figure). Figures are referenced as follows: ``Figure~\ref{fig:figure1} shows \dots''. Use tilde (\verb.~.) to prevent separation between the word ``Figure'' and its enumeration. 
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=\columnwidth]{drawing.pdf}
+\caption{This is the figure caption. Full sentences should be followed with a dot. The caption should be placed \textit{below} the figure. Caption should be short; details should be explained in the text.}
+\label{fig:figure1}
+\end{center}
+\end{figure}
+
+\subsection{Tables}
+
+There are two types of tables: narrow tables that fit into one column and a wide table that spreads over both columns.
+
+\subsubsection{Narrow tables}
+
+Table~\ref{tab:narrow-table} is an example of a narrow table. Do not use vertical lines in tables -- vertical tables have no effect and they make tables visually less attractive.
+
+\begin{table}
+\caption{This is the caption of the table. Table captions should be placed \textit{above} the table.}
+\label{tab:narrow-table}
+\begin{center}
+\begin{tabular}{ll}
+\toprule
+Heading1 & Heading2 \\
+\midrule
+One & First row text \\
+Two   & Second row text \\
+Three   & Third row text \\
+      & Fourth row text \\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{table}
+
+\subsection{Wide tables}
+
+Table~\ref{tab:wide-table} is an example of a wide table that spreads across both columns. The same can be done for wide figures that should spread across the whole width of the page. 
+
+\begin{table*}
+\caption{Wide-table caption}
+\label{tab:wide-table}
+\begin{center}
+\begin{tabular}{llr}
+\toprule
+Heading1 & Heading2 & Heading3\\
+\midrule
+A & A very long text, longer that the width of a single column & $128$\\
+B & A very long text, longer that the width of a single column & $3123$\\
+C & A very long text, longer that the width of a single column & $-32$\\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{table*}
+
+\section{Math expressions and formulas}
+
+Math expressions and formulas that appear within the sentence should be written inside the so-called \emph{inline} math environment: $2+3$, $\sqrt{16}$, $h(x)=\mathbf{1}(\theta_1 x_1 + \theta_0>0)$. Larger expressions and formulas (e.g., equations) should be written in the so-called \emph{displayed} math environment:
+
+\[
+b^{(i)}_k = \begin{cases}
+1 & \text{if 
+    $k = \text{argmin}_j \| \mathbf{x}^{(i)} - \mathbf{\mu}_j \|$}\\
+0 & \text{otherwise}
+\end{cases}
+\]
+
+Math expressions which you reference in the text should be written inside the \textit{equation} environment:
+
+\begin{equation}\label{eq:kmeans-error}
+J = \sum_{i=1}^N \sum_{k=1}^K 
+b^{(i)}_k \| \mathbf{x}^{(i)} - \mathbf{\mu}_k \|^2
+\end{equation}
+
+Now you can reference equation \eqref{eq:kmeans-error}. If the paragraph continues right after the formula
+
+\begin{equation}
+f(x) = x^2 + \varepsilon
+\end{equation}
+
+\noindent like this one does, use the command \emph{noindent} after the equation to remove the indentation of the row. 
+
+Multi-letter words in the math environment should be written inside the command \emph{mathit}, otherwise \LaTeX{} will insert spacing between the letters to denote the multiplication of values denoted by symbols. For example, compare
+$\mathit{Consistent}(h,\mathcal{D})$ and\\
+$Consistent(h,\mathcal{D})$.
+
+If you need a math symbol, but you don't know the corresponding \LaTeX{} command that generates it, try
+\emph{Detexify}.\footnote{\texttt{http://detexify.kirelabs.org/}}
+
+\section{Referencing literature}
+
+References to other publications should be written in brackets with the last name of the first author and the year of publication, e.g., \citep{chomsky-73}.  Multiple references are written in sequence, one after another, separated by semicolon and without whitespaces in between, e.g., \citep{chomsky-73,chave-64,feigl-58}. References are typically written at the end of the sentence and necessarily before the sentence punctuation.
+
+If the publication is authored by more than one author, only the name of the first author is written, after which abbreviation \emph{et al.}, meaning \emph{et alia}, i.e.,~and others is written as in \citep{johnson-etc}. If the publication is authored by only two authors, then the last names of both authors are written \citep{johnson-howells}.
+
+If the name of the author is incorporated into the text of the sentence, it should not be in the brackets (only the year should be there). E.g.,~``\citet{chomsky-73}
+suggested that \dots''. The difference is whether you reference the publication or the author who wrote it. 
+
+The list of all literature references is given alphabetically at the end of the paper. The form of the reference depends on the type of the bibliographic unit: conference papers,
+\citep{chave-64}, books \citep{butcher-81}, journal articles
+\citep{howells-51}, doctoral dissertations \citep{croft-78}, and book chapters \citep{feigl-58}. 
+
+All of this is automatically produced when using BibTeX. Insert all the BibTeX entries into the file \texttt{tar2016.bib}, and then reference them via their symbolic names.
+
+\section{Conclusion}
+
+Conclusion is the last enumerated section of the paper. It should not exceed half of a column and is typically split into 2--3 paragraphs. No new information should be presented in the conclusion; this section only summarizes and concludes the paper.
+
+\section*{Acknowledgements}
+
+If suitable, you can include the \textit{Acknowledgements} section before inserting the literature references  in order to thank those who helped you in any way to deliver the paper, but are not co-authors of the paper.
+
+\bibliographystyle{tar2016}
+\bibliography{tar2016} 
+
+\end{document}
+
