@@ -1,12 +1,10 @@
 from typing import Tuple, List
-import numpy as np
+from data import Document, Solution
 import random
-from .abstract_dataset import AbstractDataset
-from data.dataset_dir import load_documents, load_solutions
 
 
 class Dataset():
-    def __init__(self, documents: List[np.ndarray], solutions: List[np.ndarray]):
+    def __init__(self, documents: List[Document], solutions: List[Solution]):
         self.documents = documents
         self.solutions = solutions
 
@@ -40,6 +38,6 @@ class Dataset():
 
     @staticmethod
     def load(dataset_directory: str):
-        documents = load_documents(dataset_directory)
-        solutions = load_solutions(dataset_directory)
+        documents = load_documents(dataset_directory)  # TODO
+        solutions = load_solutions(dataset_directory)  # TODO
         return Dataset(documents, solutions)

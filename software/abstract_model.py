@@ -3,7 +3,7 @@ from data import Document, Solution
 from typing import List, Tuple
 
 
-def AbstractAuthorDiarizer(ABC):
+def AbstractAuthorDiarizer(ABC):  # TODO
     def train(self, dataset: List[Tuple[Document, Solution]]):
         pass
 
