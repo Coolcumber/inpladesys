@@ -16,7 +16,7 @@ Intrinsic plagiarism detection (also called author diarization) attempts to dete
 * [Mikhail Kuznetsov, Anastasia Motrenko, Rita Kuznetsova, and Vadim Strijov. Methods for Intrinsic Plagiarism Detection and Author Diarization.](http://www.uni-weimar.de/medien/webis/events/pan-16/pan16-papers-final/pan16-author-identification/kuznetsov16-notebook.pdf)
 * [Abdul Sittar, Hafiz Rizwan Iqbal, and Rao Muhammad Adeel Nawab. Author Diarization Using Cluster-Distance Approach.](http://www.uni-weimar.de/medien/webis/events/pan-16/pan16-papers-final/pan16-author-identification/sittar16-notebook.pdf)
 
-## [Project Plan](https://drive.google.com/drive/folders/0BzQ2SbanL1zCa1VoSVJBLXBxUXM)
+## [Project Plan](https://docs.google.com/document/d/1pgXeCVRM77_fQZ-6INdUnOxNexDIBHycOvu7-TRc0fM/edit?usp=sharing)
 ### Milestones
 Beside the checkpoints defined by the course, we have defined a set of informal checkpoints to ensure that all the project tasks are done on time. These checkpoints are *italicized*.
 #### 2017-3-24 Project plan submission
