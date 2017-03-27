@@ -49,7 +49,7 @@ Beside the checkpoints defined by the course, we have defined a set of informal 
 #### Dummy baseline 1
 * description: The whole document is predicted to have been written by a single author.
 #### Dummy baseline 2
-* description: Geometric random variables and a markov chain are used to generate a random segmentation. The static probabilities and expected segment lengths are computed based on the training set.
+* description: A markov chain is used to generate a random segmentation. The static probabilities and expected segment lengths are computed based on the training set.
 #### Abstract model A
 * description: Firstly, all documents in the training set are segmented into toeken segments of length *n*. Each segment is labeled by the class that most words within it belong to. For each segment features are measured. A feature transformation is learned over all documents to adapt the feature space for clustering, whereafter the system is ready for author diarization. Author diarization for a document is performed by clustering in the transformed feature space.
 * components:
