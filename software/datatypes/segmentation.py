@@ -9,4 +9,5 @@ class Segment():
 
 class Segmentation():  # TODO
     def __init__(self, author_count, segments: List[Segment]):
-        self.author_count = 0
+        self.author_count = author_count
+        self.segments = segments
