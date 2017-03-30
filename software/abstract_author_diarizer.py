@@ -1,5 +1,4 @@
 from abc import ABC, abstractmethod
-
 from datatypes import *
 from typing import List, Tuple
 
