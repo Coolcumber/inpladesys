@@ -1,14 +1,14 @@
+import numpy as np
 from abc import ABC, abstractmethod
-
-from datatypes import *
 from typing import List, Tuple
+from datatypes import *
 
 
-def AbstractAuthorDiarizer(ABC):  # TODO
+def AbstractFeatureExtractor(ABC):  # TODO
     @abstractmethod
     def train(self, dataset: Dataset):
         pass
 
     @abstractmethod
-    def predict(document: Document) -> Segmentation:
+    def get_features(document, segment) -> np.ndarray:
         pass

@@ -20,11 +20,13 @@ class Pan16DatasetLoader(AbstractDatasetLoader):
         files = directory.get_files(
             self.dataset_dir, lambda x: x.endswith(".truth"))
         texts = [file.read_all_text(f) for f in files]
+
         def json_to_segmentation(json_text):
             authseg = json.loads(json_text)["authors"]
             segments = []
             for i, a in enumerate(authseg):
                 for s in a:
-                    segments.append(Segment(i, s["from"], s["to"]))
+                    length = s["to"] - s["from"] + 1
+                    segments.append(Segment(s["from"], length, author=i))
             return Segmentation(len(authseg), segments)
         return [json_to_segmentation(text) for text in texts]

@@ -1,6 +1,5 @@
 from abc import ABC, abstractmethod
-from data import Dataset
-from datatypes import Document, Segmentation
+from datatypes import Document, Segmentation, Dataset
 from typing import List
 
 
@@ -9,9 +8,7 @@ class AbstractDatasetLoader(ABC):
         self.dataset_dir = dataset_dir
 
     def load_dataset(self) -> Dataset:
-        documents = self.load_documents()
-        segmentations = self.load_segmentations()
-        return Dataset(documents, segmentations)
+        return Dataset(self.load_documents(), self.load_segmentations())
 
     @abstractmethod
     def load_documents(self) -> List[str]:
