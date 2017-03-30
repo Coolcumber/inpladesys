@@ -1,7 +1,6 @@
 from abc import ABC, abstractmethod
-from datatypes import *
+from datatypes import Document, Segment, Segmentation, Dataset
 from typing import List, Tuple
-
 
 def AbstractAuthorDiarizer(ABC):  # TODO
     @abstractmethod

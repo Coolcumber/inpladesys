@@ -1,0 +1,1 @@
+from .abstract_author_diarizer import AbstractAuthorDiarizer
