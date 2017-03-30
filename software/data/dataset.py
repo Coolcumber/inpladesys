@@ -13,8 +13,8 @@ class Dataset():
 
     def __getitem__(self, key):
         if isinstance(key, slice):
-            return (self.documents[key.start:key.stop:key.step], 
-                self.segmentations[key.start:key.stop:key.step])
+            return (self.documents[key.start:key.stop:key.step],
+                    self.segmentations[key.start:key.stop:key.step])
         else:  # int
             return self.documents[key], self.segmentations[key]
 
@@ -24,21 +24,20 @@ class Dataset():
 
     def shuffle(self, order_determining_number: float = -1):
         """ Shuffles the data. """
-        document_segmentation_pairs = list(zip(self.documents, self.segmentations))
+        document_segmentation_pairs = list(
+            zip(self.documents, self.segmentations))
         if order_determining_number < 0:
             random.shuffle(document_segmentation_pairs)
         else:
-            random.shuffle(document_segmentation_pairs, lambda: order_determining_number)
-        self.documents[:], self.segmentations[:] = zip(*document_segmentation_pairs)
+            random.shuffle(document_segmentation_pairs,
+                           lambda: order_determining_number)
+        self.documents[:], self.segmentations[:] = zip(
+            *document_segmentation_pairs)
 
     def split(self, start, end):
         """ Splits the dataset into two smaller datasets. """
-        first = Dataset(self.documents[start:end], self.segmentations[start:end])
-        second = Dataset(self.documents[:start] + self.documents[end:], self.segmentations[:start] + self.segmentations[end:])
+        first = Dataset(self.documents[start:end],
+                        self.segmentations[start:end])
+        second = Dataset(self.documents[:start] + self.documents[end:],
+                         self.segmentations[:start] + self.segmentations[end:])
         return first, second
-
-    @staticmethod
-    def load(dataset_directory: str):
-        documents = load_documents(dataset_directory)  # TODO
-        segmentations = load_segmentations(dataset_directory)  # TODO
-        return Dataset(documents, segmentations)

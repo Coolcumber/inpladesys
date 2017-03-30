@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
-from datatypes import Document, Segmentation
+
 from data import Dataset
+from datatypes import Document, Segmentation
 from typing import List, Tuple
 
 

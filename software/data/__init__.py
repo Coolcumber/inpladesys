@@ -1,3 +1,3 @@
 from .dataset import Dataset
-from .dataset_reader import MiniBatchReader
-from data import preparers
+from .abstract_dataset_loader import AbstractDatasetLoader
+from .pan16_dataset_loader import Pan16DatasetLoader
