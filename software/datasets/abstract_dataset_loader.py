@@ -5,8 +5,8 @@ from typing import List
 
 class AbstractDatasetLoader(ABC):
     def __init__(self, dataset_dir: str):
-        self.dataset_dir = dataset_dir
-
+        pass
+        
     def load_dataset(self) -> Dataset:
         return Dataset(self.load_documents(), self.load_segmentations())
 
