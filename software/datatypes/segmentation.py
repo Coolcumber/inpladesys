@@ -32,4 +32,4 @@ class Segmentation():  # TODO
         return len(self.segments)
 
     def __str__(self):
-        return "Segmentation(" & str(self.segments) & ")"
+        return "Segmentation(" + str(self.segments) + ")"

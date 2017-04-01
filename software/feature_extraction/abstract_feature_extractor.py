@@ -3,7 +3,7 @@ from abc import ABC, abstractmethod
 from datatypes import *
 
 
-def AbstractFeatureExtractor(ABC):  # TODO
+class AbstractFeatureExtractor(ABC):  # TODO
     def set_document(self, document):
         """
         As features of a part of a ocument might depend on the surroundong text,
