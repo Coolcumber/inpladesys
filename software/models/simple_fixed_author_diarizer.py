@@ -15,7 +15,7 @@ class SimpleFixedAuthorDiarizer(AbstractAuthorDiarizer):
     def train(self, dataset: Dataset):
         pass
 
-    def predict(self, document: Document) -> Segmentation:
+    def _predict(self, document: Document) -> Segmentation:
         sent_list = sent_tokenize(document)
 
         # Bag of Words feature
@@ -26,7 +26,7 @@ class SimpleFixedAuthorDiarizer(AbstractAuthorDiarizer):
         #  TODO add more features and standardize them
 
         # k-means clustering
-        kmeans = KMeans(n_clusters=self.n).fit(x)
+        kmeans = KMeans(n_clusters=self.n, random_state=22).fit(x)
         predicted_labels = kmeans.labels_
 
         segments = []

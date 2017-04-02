@@ -24,9 +24,10 @@ class DummyStochasticAuthorDiarizer(AbstractAuthorDiarizer):  # TODO
             lens.sort()
             lens = lens[::-1][:self.n] / sum(lens)
             return lens
-        self.probs = np.average([get_author_distribution(segmtn) for segmtn in dataset.segmentations], axis=0)
+        self.probs = np.average([get_author_distribution(segmtn)
+                                 for segmtn in dataset.segmentations], axis=0)
 
-    def predict(self, document: Document) -> Segmentation:
+    def _predict(self, document: Document) -> Segmentation:
         def select_author():
             r = self.rand.random()
             for i, p in enumerate(np.cumsum(self.probs)):
@@ -38,7 +39,7 @@ class DummyStochasticAuthorDiarizer(AbstractAuthorDiarizer):  # TODO
         author = select_author()
         offset = 0
         for i in range(len(document)):
-            if self.rand.random() < (1 - self.probs[author])/self.asl:
+            if self.rand.random() < (1 - self.probs[author]) / self.asl:
                 segments.append(
                     Segment(offset=offset, length=i - offset, author=author))
                 prev = author

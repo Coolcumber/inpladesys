@@ -2,8 +2,8 @@ from typing import List, Tuple
 from collections import namedtuple
 
 
-## Factory method for creating named tuples - used similarly to a constructor
-## Example: assert(Segment(17, 100, author=0).length == 100)
+# Factory method for creating named tuples - used similarly to a constructor
+# Example: assert(Segment(17, 100, author=0).length == 100)
 Segment = namedtuple('Segment', ['offset', 'length', 'author'])
 
 
@@ -14,6 +14,7 @@ class Segmentation():  # TODO
     segm.segments[5] - equivalent to segm[5]
     segm.by_auhor[1] - returns a list of segments associated with author 1
     """
+
     def __init__(self, author_count, segments: List[Segment]):
         self.author_count = author_count
         segments.sort()  # segments are sorted by offset index
@@ -33,3 +34,6 @@ class Segmentation():  # TODO
 
     def __str__(self):
         return "Segmentation(" + str(self.segments) + ")"
+
+    def to_char_sequence(self, length_factor=1):
+        return ''.join([chr(ord('0') + s.author) * int(s.length * length_factor+0.5) for s in self.segments])

@@ -2,19 +2,28 @@ from datasets import Pan16DatasetLoader
 from models import DummySingleAuthorDiarizer, DummyStochasticAuthorDiarizer, SimpleFixedAuthorDiarizer
 import nltk
 
-#nltk.download() #  uncomment if running for first time
+
+def ellipsis(string):
+    return (str(string[:500]) + '...') if len(string) > 500 else string
+
+# nltk.download() #  uncomment if running for first time
 
 dataset_dir = "../data/pan16-author-diarization-training-dataset-problem-a-2016-02-16"
 loader = Pan16DatasetLoader(dataset_dir)
 dataset = loader.load_dataset()
 
-for model in [DummySingleAuthorDiarizer, DummyStochasticAuthorDiarizer]:
-    m = model()
-    m.train(dataset)
-    print("model: " + str(model))
-    print(m.predict(dataset.documents[0]))
-    print()
+models = [
+    (DummySingleAuthorDiarizer, "DummySingleAuthorDiarizer"),
+    (DummyStochasticAuthorDiarizer, "DummyStochasticAuthorDiarizer"),
+    (lambda: SimpleFixedAuthorDiarizer(author_count=2), "SimpleFixedAuthorDiarizer")
+]
 
-s = SimpleFixedAuthorDiarizer(author_count=2)
-print("model: " + str(s))
-print(s.predict(dataset.documents[0]))
+for model in models:
+    m = model[0]()
+    m.fit(dataset.documents, dataset.segmentations)
+    print("model: " + model[1])
+    print("output:")
+    print(ellipsis(m.predict(dataset.documents[2]).to_char_sequence(0.05)))
+    print("truth:")
+    print(ellipsis(dataset.segmentations[2].to_char_sequence(0.05)))
+    print()

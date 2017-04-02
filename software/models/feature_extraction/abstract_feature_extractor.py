@@ -6,9 +6,9 @@ from datatypes import *
 class AbstractFeatureExtractor(ABC):  # TODO
     def set_document(self, document):
         """
-        As features of a part of a ocument might depend on the surroundong text,
-        a feature extractor implementation might like to heve the whole document
-        available.
+        As features of a part of a document might depend on the surroundong 
+        text, a feature extractor implementation might like to heve the whole
+        document available.
         """
         self.document = document
 
