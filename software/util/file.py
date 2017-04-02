@@ -5,5 +5,5 @@ def write_all_text(path: str, text: str):
         fs.flush()
 
 def read_all_text(path: str) -> object:
-    with open(path, mode='r') as fs:
+    with open(path, encoding="utf8", mode='r') as fs:
         return fs.read()
