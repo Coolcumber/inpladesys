@@ -1,3 +1,4 @@
 from .abstract_author_diarizer import AbstractAuthorDiarizer
 from .dummy_single_author_diarizer import DummySingleAuthorDiarizer
 from .dummy_stochastic_author_diarizer import DummyStochasticAuthorDiarizer
+from .simple_fixed_author_diarizer import SimpleFixedAuthorDiarizer
