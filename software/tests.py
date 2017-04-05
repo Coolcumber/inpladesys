@@ -1,7 +1,8 @@
 from datasets import Pan16DatasetLoader
-from models import DummySingleAuthorDiarizer, DummyStochasticAuthorDiarizer, SimpleFixedAuthorDiarizer
-import nltk
 from evaluation import get_confusion_matrix
+from models import (DummySingleAuthorDiarizer, DummyStochasticAuthorDiarizer,
+                    SimpleFixedAuthorDiarizer)
+
 
 def ellipsis(string):
     return (str(string[:500]) + '...') if len(string) > 500 else string

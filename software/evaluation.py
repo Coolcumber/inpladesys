@@ -12,10 +12,10 @@ def get_confusion_matrix(seg_true: Segmentation, seg_pred: Segmentation):
             return -1
         sp_end = sp.offset + sp.length
         return 0
-    sp_iter, sp, sp_end = iter(seg_pred.segments), None, 0
+    sp_iter, sp, sp_end = iter(seg_pred), None, 0
     cm = np.zeros(shape=(seg_true.author_count, seg_pred.author_count), dtype=int)
     nextsp()
-    for st in seg_true.segments:
+    for st in seg_true:
         st_end = st.offset + st.length
         while True:
             if sp.offset < st.offset:
