@@ -25,8 +25,22 @@ class Segmentation():  # TODO
         for s in segments:
             self.by_author[s.author].append(s)
         self.by_segment = segments
+        assert self.is_valid(), "Segments must have positive lengths and not overlap."
 
-    def __getitem__(self, key):  # segments can be accessed by segment index.
+    def is_valid(self) -> bool:
+        prev = self[0]
+        for i in range(1, len(self)):
+            if prev.length == 0:
+                return False
+            if self[i].offset < prev.offset + prev.length:
+                return False
+            prev = self[i]
+        if prev.length == 0:
+            return False
+        return True
+
+    # segments can be accessed by index.
+    def __getitem__(self, key) -> Segment:
         return self.segments[key]
 
     def __len__(self):
@@ -36,4 +50,4 @@ class Segmentation():  # TODO
         return "Segmentation(" + str(self.segments) + ")"
 
     def to_char_sequence(self, length_factor=1):
-        return ''.join([chr(ord('0') + s.author) * int(s.length * length_factor+0.5) for s in self.segments])
+        return ''.join([chr(ord('0') + s.author) * int(s.length * length_factor + 0.5) for s in self.segments])

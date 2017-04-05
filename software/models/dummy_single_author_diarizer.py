@@ -4,7 +4,7 @@ from .abstract_author_diarizer import AbstractAuthorDiarizer
 
 
 class DummySingleAuthorDiarizer(AbstractAuthorDiarizer):  # TODO
-    def train(self, dataset: Dataset):
+    def train(self, dataset: Dataset=None):
         pass
 
     def _predict(self, document: Document) -> Segmentation:
