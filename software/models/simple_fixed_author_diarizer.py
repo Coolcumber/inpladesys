@@ -1,8 +1,10 @@
 import nltk
 import numpy as np
+from scipy import sparse
 from nltk import sent_tokenize
 from nltk import word_tokenize
 from collections import Counter
+from sklearn import preprocessing
 from sklearn.cluster import KMeans
 from sklearn.feature_extraction.text import CountVectorizer
 from datatypes import Document, Segment, Segmentation, Dataset
@@ -21,18 +23,18 @@ class SimpleFixedAuthorDiarizer(AbstractAuthorDiarizer):
         sent_count = len(sent_list)
 
         # Bag of Words feature
-        vectorizer = CountVectorizer(max_features=100)
+        max_bow_features = 100
+        vectorizer = CountVectorizer(max_features=max_bow_features)
         bow = vectorizer.fit_transform(sent_list)
-        x = bow
 
         sent_length = []  # word count per sentence
         avg_token_length = []
+        pos_counts = []
 
         univ_tagset = ['ADJ', 'ADP', 'ADV', 'CONJ', 'DET', 'NOUN',
                        'NUM', 'PRT', 'PRON', 'VERB', '.', 'X']  # universal POS tagset (TODO hard coded curr.)
-        pos_counts = []
 
-        for sentence in range(sent_count):
+        for sentence in sent_list:
             tokens = word_tokenize(sentence)
 
             # sentence length feature
@@ -54,19 +56,28 @@ class SimpleFixedAuthorDiarizer(AbstractAuthorDiarizer):
 
             pos_counts.append(count_vals.copy())
 
+        # merging features
+        sent_length = np.array([sent_length]).reshape((sent_count, 1))
+        avg_token_length = np.array([avg_token_length]).reshape((sent_count, 1))
+        pos_counts = np.array(pos_counts).reshape((sent_count, len(univ_tagset)))
 
-        # TODO merge to one vector and standardize features
+        x = sparse.hstack([bow, sent_length, avg_token_length, pos_counts], dtype=np.float64).toarray()
+
+        # standardization to zero mean and unit variance
+        x_scaled = preprocessing.scale(x, axis=0)
 
         # k-means clustering
-        kmeans = KMeans(n_clusters=self.n, random_state=22).fit(x)
+        kmeans = KMeans(n_clusters=self.n, random_state=22).fit(x_scaled)
         predicted_labels = kmeans.labels_
 
         segments = []
+        start = 0
         for i in range(sent_count):
             sentence = sent_list[i]
             author = predicted_labels[i]
             length = len(sentence)
-            offset = document.index(sentence)
+            offset = document.index(sentence, start)
+            start = length + offset
             segments.append(Segment(offset=offset, length=length, author=author))
 
         return Segmentation(self.n, segments)
