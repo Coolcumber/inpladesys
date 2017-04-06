@@ -46,6 +46,6 @@ class DummyStochasticAuthorDiarizer(AbstractAuthorDiarizer):  # TODO
                 while author == prev:
                     author = select_author()
                 offset = i
-            segments.append(
-                Segment(offset=offset, length=len(document) - offset, author=author))
+        segments.append(
+            Segment(offset=offset, length=len(document) - offset, author=author))
         return Segmentation(self.n, segments)

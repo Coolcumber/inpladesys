@@ -1,10 +1,46 @@
-from typing import List, Tuple
 from collections import namedtuple
+
+from typing import List, Tuple
 
 
 # Factory method for creating named tuples - used similarly to a constructor
 # Example: assert(Segment(17, 100, author=0).length == 100)
-Segment = namedtuple('Segment', ['offset', 'length', 'author'])
+
+class Segment():  # namedtuple('Segment', ['offset', 'length', 'author'])):
+    """
+    endOffset is exclusive, i.e. djacent segments (s1 s2) should have 
+    s1.endOffset = s2.offset.
+    """
+    """def __new__(cls, offset, length, author):
+        self = super(Segment, cls).__new__(cls, offset, length, author)
+        # self.end = offset + length
+        return self"""
+
+    def __init__(self, offset, length, author):
+        self.offset, self.length, self.author = offset, length, author
+
+    @property
+    def endOffset(self):
+        return self.offset + self.length
+
+    def moveEndOffsetTo(self, value):
+        self.length += value - self.offset
+
+    def moveOffsetTo(self, value):
+        self.length += value - self.offset
+        self.offset = value
+
+    def coversCompletely(self, other):
+        return self.offset <= other.offset and other.endOffset <= self.endOffset
+
+    def coversBeginningOf(self, other):
+        return self.offset <= other.offset and self.endOffset < other.endOffset
+
+    def __str__(self):
+        return "Segment(offset={}, length={}, author={})".format(self.offset, self.length, self.author)
+    
+    def __repr__(self):
+        str(self)
 
 
 class Segmentation(list):  # TODO
@@ -15,28 +51,50 @@ class Segmentation(list):  # TODO
     segm.by_auhor[1] - returns a list of segments associated with author 1
     """
 
-    def __init__(self, author_count, segments: List[Segment]):
-        self.author_count = author_count
-        segments.sort()  # segments are sorted by offset index
-        self._segments = segments
-        self.by_author = dict()  # segments can be accessed by author index.
-        self.segment_length_sum = sum(s.length for s in segments)
-        for i in range(author_count):
-            self.by_author[i] = []
-        for s in segments:
-            self.by_author[s.author].append(s)
-        self.by_segment = segments
-        assert self.is_valid(), "Segments must have positive lengths and not overlap."
+    def __init__(self, author_count, segments: List[Segment],
+                 repair=False, maxRepairableError=0, document_length=-1):
 
-    def is_valid(self) -> bool:
+        self.author_count = author_count
+        # segments are sorted by offset index
+        segments.sort(key=lambda x: x.offset)
+        self._segments = segments
+
+        # segments can be accessed by author index.
+        self.by_author = dict((i, []) for i in range(author_count))
+        for s in self:
+            self.by_author[s.author].append(s)
+
+        assert all(s.length > 0 for s in self), "Segment length must be positive."
+
+        assert self.validate(repair, maxRepairableError), \
+            "Segments must have positive lengths and not overlap."
+
+        if document_length != -1:
+            self[-1].moveEndOffsetTo(document_length)
+
+    def validate(self, repair=False, tolerance=0) -> bool:
+        # assumes segments sorted by offset, then by length
         prev = self[0]
         for i in range(1, len(self)):
-            if prev.length == 0 or self[i].offset != prev.offset + prev.length:
-                return False
-            prev = self[i]
-        if prev.length == 0:
-            return False
+            curr = self[i]
+            d = curr.offset - prev.endOffset
+            if d != 0:
+                if repair:
+                    if abs(d) > tolerance:
+                        return False
+                    lp, lc = prev.length, curr.length
+                    ltot = max(prev.endOffset, curr.endOffset) - prev.offset
+                    prev.length = max(1, ltot * lp // (lp + lc))
+                    curr.length = ltot - prev.length
+                    curr.offset = prev.endOffset
+                else:
+                    return False
+            prev = curr
         return True
+
+    @property
+    def document_length(self):
+        return self[-1].endOffset
 
     # segments can be accessed by index.
     def __getitem__(self, key) -> Segment:
