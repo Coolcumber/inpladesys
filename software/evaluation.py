@@ -1,6 +1,6 @@
-from collections import namedtuple
 import numpy as np
-from datatypes import Segmentation, Segment
+
+from datatypes import Segmentation
 
 
 def get_confusion_matrix(seg_true: Segmentation, seg_pred: Segmentation):
@@ -65,6 +65,23 @@ def precision(bcm): return bcm.tp() / (bcm.tp() + bcm.fp() + 2e-16)
 
 def recall(bcm): return bcm.tp() / (bcm.tp() + bcm.fn() + 2e-16)
 
+def bCubed_precision(cm):
+    cm_sum = np.sum(cm)
+    squared_cm = cm ** 2
+    numerators = np.sum(squared_cm, axis=0)
+    denominators = np.sum(cm, axis=0)
+    return np.sum(numerators / denominators) / cm_sum
+
+def bCubed_recall(cm):
+    cm_sum = np.sum(cm)
+    squared_cm = cm ** 2
+    numerators = np.sum(squared_cm, axis=1)
+    denominators = np.sum(cm, axis=1)
+    return np.sum(numerators / denominators) / cm_sum
+
+def bCubed_f1_score(cm):
+    p, r = bCubed_precision(cm), bCubed_recall(cm)
+    return 2 * p * r / (p + r + 2e-16)
 
 def f1_score(bcm):
     p, r = precision(bcm), recall(bcm)
@@ -94,11 +111,26 @@ class Scorer(): # TODO
         return measure(self.bcm_sum)
 
     def bCubed(self, measure):
-        # http://goo.gl/HJLMNm
-        # http://nlp.uned.es/docs/amigo2007a.pdf
-        pass  # TODO
+        # TODO ?
+        pass
 
 if False:
     a = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
     s = Scorer(a)
     print(s.macro(f1_score))
+
+    cm = np.array([[4, 1, 0],
+                   [0, 2, 4],
+                   [0, 0, 1],
+                   [0, 0, 1],
+                   [0, 0, 1]])
+
+    print(bCubed_precision(cm))
+    print(bCubed_recall(cm))
+    print(bCubed_f1_score(cm))
+
+
+
+
+
+
