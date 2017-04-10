@@ -1,6 +1,5 @@
 from datasets import Pan16DatasetLoader
-from evaluation import *
-from evaluation import get_confusion_matrix, Scorer
+from evaluation import get_confusion_matrix, BCubedScorer
 from models import (DummySingleAuthorDiarizer, DummyStochasticAuthorDiarizer,
                     SimpleFixedAuthorDiarizer)
 
@@ -40,8 +39,8 @@ for model in models:
     print("confusion matrix:")
     cm = get_confusion_matrix(truth, pred)
     print(cm)
-    s = Scorer(cm)
-    print("BCubed precision:", s.bCubed("precision"))
-    print("BCubed recall:", s.bCubed("recall"))
-    print("BCubed F1 score:", s.bCubed("f1_score"))
+    bc = BCubedScorer(cm)
+    print("BCubed precision:", bc.precision())
+    print("BCubed recall:", bc.recall())
+    print("BCubed F1 score:", bc.f1_score())
 

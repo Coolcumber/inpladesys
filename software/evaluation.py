@@ -1,6 +1,7 @@
 import numpy as np
-
+import abc
 from datatypes import Segmentation
+from abc import ABC
 
 
 def get_confusion_matrix(seg_true: Segmentation, seg_pred: Segmentation):
@@ -38,6 +39,7 @@ def get_confusion_matrix(seg_true: Segmentation, seg_pred: Segmentation):
     return cm
 
 ### TODO
+
 
 class BinaryConfusionMatrix(np.ndarray): # TODO
     def __new__(cls, conf_mat, i):
@@ -77,71 +79,116 @@ def fa_score(bcm, a):
     return 2 * (1 + a) * p * r / (a * p + r + 2e-16)
 
 
-class Scorer(): # TODO
+class BinaryScorer:
+
+    @staticmethod
+    def accuracy(cm): return np.trace(cm) / sum(cm)
+
+    @staticmethod
+    def precision(bcm): return bcm.tp() / (bcm.tp() + bcm.fp() + 2e-16)
+
+    @staticmethod
+    def recall(bcm): return bcm.tp() / (bcm.tp() + bcm.fn() + 2e-16)
+
+    @staticmethod
+    def f1_score(bcm):
+        p, r = precision(bcm), recall(bcm)
+        return 2 * p * r / (p + r + 2e-16)
+
+    @staticmethod
+    def fa_score(bcm, a):
+        p, r = precision(bcm), recall(bcm)
+        a *= a
+        return 2 * (1 + a) * p * r / (a * p + r + 2e-16)
+
+
+class AbstractScorer(ABC):
     def __init__(self, confusion_matrix):
         self.cm = confusion_matrix
-        self.extended_cm = confusion_matrix
 
-        extra_cols = self.cm.shape[0] - self.cm.shape[1]
-        extra_rows = -extra_cols
+    @abc.abstractmethod
+    def precision(self):
+        raise NotImplementedError()
 
-        if extra_cols > 0:
-            extra = np.zeros((self.cm.shape[0], extra_cols))
-            self.extended_cm = np.hstack((self.cm, extra))
+    @abc.abstractmethod
+    def recall(self):
+        raise NotImplementedError()
 
-        elif extra_rows > 0:
-            extra = np.zeros((extra_rows, self.cm.shape[1]))
-            self.extended_cm = np.vstack((self.cm, extra))
+    def f1_score(self):
+        p, r = self.precision(), self.recall()
+        return 2 * p * r / (p + r + 2e-16)
 
-        self.bcms = [BinaryConfusionMatrix(self.extended_cm, i)
-                     for i in range(self.extended_cm.shape[0])]
-        self.bcm_sum = np.sum(self.bcms, axis=0)
+    def fa_score(self, a):
+        p, r = self.precision(), self.recall()
+        a *= a
+        return 2 * (1 + a) * p * r / (a * p + r + 2e-16)
 
-    def wambo(self, measure):
-        return measure(self.cm)
 
-    def macro(self, measure):
-        return np.average(np.array([measure(bcm) for bcm in self.bcms]), axis=0)
+class MicroScorer(AbstractScorer):
+    def __init__(self, square_confusion_matrix):
+        super().__init__(square_confusion_matrix)
+        self.bcms = [BinaryConfusionMatrix(self.cm, i)
+                     for i in range(self.cm.shape[0])]
+        self.bcm_sum = BinaryConfusionMatrix(np.sum(self.bcms, axis=0), 0)
 
-    def micro(self, measure):
-        return measure(self.bcm_sum)
+    def recall(self):
+        return self.bcm_sum.tp() / (self.bcm_sum.tp() + self.bcm_sum.fn() + 2e-16)
 
-    def bCubed(self, measure: str):
-        def precision(cm):
-            cm_sum = np.sum(cm)
-            squared_cm = cm ** 2
-            numerators = np.sum(squared_cm, axis=0)
-            denominators = np.sum(cm, axis=0)
-            return np.sum(numerators / denominators) / cm_sum
+    def precision(self):
+        return self.bcm_sum.tp() / (self.bcm_sum.tp() + self.bcm_sum.fp() + 2e-16)
 
-        def recall(cm):
-            cm_sum = np.sum(cm)
-            squared_cm = cm ** 2
-            numerators = np.sum(squared_cm, axis=1)
-            denominators = np.sum(cm, axis=1)
-            return np.sum(numerators / denominators) / cm_sum
 
-        def f1_score(cm):
-            p, r = precision(cm), recall(cm)
-            return 2 * p * r / (p + r + 2e-16)
+class MacroScorer(AbstractScorer):
+    def __init__(self, square_confusion_matrix):
+        super().__init__(square_confusion_matrix)
+        self.bcms = [BinaryConfusionMatrix(self.cm, i)
+                     for i in range(self.cm.shape[0])]
 
-        if measure == 'precision':
-            return precision(self.cm)
+    def recall(self):
+        r_sum = 0
+        for bcm in self.bcms:
+            r_sum += bcm.tp() / (bcm.tp() + bcm.fn())
+        return r_sum / len(self.bcms)
 
-        elif measure == 'recall':
-            return recall(self.cm)
+    def precision(self):
+        p_sum = 0
+        for bcm in self.bcms:
+            p_sum += bcm.tp() / (bcm.tp() + bcm.fp())
+        return p_sum / len(self.bcms)
 
-        elif measure == 'f1_score':
-            return f1_score(self.cm)
+    def f1_score(self):
+        f_sum = 0
+        for bcm in self.bcms:
+            f_sum += BinaryScorer.f1_score(bcm)
+        return f_sum / len(self.bcms)
 
-        else:
-            message = 'Unknown measure: {}'.format(measure)
-            raise ValueError(message)
+    def fa_score(self, a):
+        fa_sum = 0
+        for bcm in self.bcms:
+            fa_sum += BinaryScorer.fa_score(bcm)
+        return fa_sum / len(self.bcms)
+
+
+class BCubedScorer(AbstractScorer):
+    def __init__(self, confusion_matrix):
+        super().__init__(confusion_matrix)
+        self.cm_sum = np.sum(self.cm)
+        self.squared_cm = self.cm ** 2
+
+    def recall(self):
+        numerators = np.sum(self.squared_cm, axis=1)
+        denominators = np.sum(self.cm, axis=1)
+        return np.sum(numerators / denominators) / self.cm_sum
+
+    def precision(self):
+        numerators = np.sum(self.squared_cm, axis=0)
+        denominators = np.sum(self.cm, axis=0)
+        return np.sum(numerators / denominators) / self.cm_sum
 
 if True:
     a = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
-    s = Scorer(a)
-    print(s.macro(f1_score))
+    print(MacroScorer(a).f1_score())
+    print()
 
     cm = np.array([[4, 1, 0],
                    [0, 2, 4],
@@ -149,11 +196,24 @@ if True:
                    [0, 0, 1],
                    [0, 0, 1]])
 
-    s = Scorer(cm)
-    print(s.bCubed('precision'))
-    print(s.bCubed('recall'))
-    print(s.bCubed('f1_score'))
+    bc = BCubedScorer(cm)
+    print(bc.precision())
+    print(bc.recall())
+    print(bc.f1_score())
+    print()
 
+    s = np.array([[1, 3], [2, 4]])
+
+    m = MicroScorer(s)
+    print(m.precision())
+    print(m.recall())
+    print(m.f1_score())
+    print()
+
+    M = MacroScorer(s)
+    print(M.precision())
+    print(M.recall())
+    print(M.f1_score())
 
 
 
