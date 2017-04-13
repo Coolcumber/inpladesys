@@ -2,6 +2,7 @@ from datasets import Pan16DatasetLoader
 from evaluation import get_confusion_matrix, BCubedScorer
 from models import (DummySingleAuthorDiarizer, DummyStochasticAuthorDiarizer,
                     SimpleFixedAuthorDiarizer)
+import numpy as np
 
 
 def ellipsis(string):
@@ -21,17 +22,32 @@ dataset = Pan16DatasetLoader(dataset_dirs[2]).load_dataset()
 models = [
     (DummySingleAuthorDiarizer, "DummySingleAuthorDiarizer"),
     (DummyStochasticAuthorDiarizer, "DummyStochasticAuthorDiarizer"),
-    (lambda: SimpleFixedAuthorDiarizer(author_count=7), "SimpleFixedAuthorDiarizer")
+    (lambda: SimpleFixedAuthorDiarizer(author_count=4), "SimpleFixedAuthorDiarizer")
 ]
 
-print("Running models...")
-docind = 5
+
+def named(factory, name):
+    def nc(): return factory()
+    nc.name = name
+    nc.__str__ = lambda self: self.name
+    return nc
+
+
+models = [
+    (DummySingleAuthorDiarizer, "DummySingleAuthorDiarizer"),
+    (DummyStochasticAuthorDiarizer, "DummyStochasticAuthorDiarizer"),
+    (lambda: SimpleFixedAuthorDiarizer(author_count=4), "SimpleFixedAuthorDiarizer")
+]
+models = [named(*m) for m in models]
+
+print("Testing on a single document...")
+docind = 8
 for model in models:
-    m = model[0]()
+    m = model()
     m.fit(dataset.documents, dataset.segmentations)
     pred = m.predict(dataset.documents[docind])
     truth = dataset.segmentations[docind]
-    print("model: " + model[1])
+    print("model: " + model.name)
     print("output:")
     print(ellipsis(pred.to_char_sequence(0.05)))
     print("truth:")
@@ -44,3 +60,20 @@ for model in models:
     print("BCubed recall:", bc.recall())
     print("BCubed F1 score:", bc.f1_score())
 
+print("Testing on the dataset...")
+modelsToScores = dict(
+    (m.name, np.array([0, 0, 0], dtype=float)) for m in models)
+for model in models:
+    m = model()
+    m.fit(dataset.documents, dataset.segmentations)
+    for d in dataset.documents:
+        pred = m.predict(dataset.documents[docind])
+        truth = dataset.segmentations[docind]
+        bc = BCubedScorer(get_confusion_matrix(truth, pred))
+        modelsToScores[model.name] += np.array([bc.precision(),
+                                                bc.recall(), bc.f1_score()])
+
+for model in models:
+    modelsToScores[model.name] /= len(dataset.documents)
+    print(model.name)
+    print(modelsToScores[model.name])

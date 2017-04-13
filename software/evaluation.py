@@ -153,7 +153,7 @@ class BCubedScorer(AbstractScorer):
         return np.sum(numerators / denominators) / self.cm_sum
 
 
-if True:
+if __name__ == "__main__":
     a = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
     print(MacroScorer(a).f1_score())
     print()
