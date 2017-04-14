@@ -1,6 +1,6 @@
 import numpy as np
 from abc import ABC, abstractmethod
-from datatypes import *
+from inpladesys.datatypes import *
 
 
 class AbstractFeatureExtractor(ABC):  # TODO

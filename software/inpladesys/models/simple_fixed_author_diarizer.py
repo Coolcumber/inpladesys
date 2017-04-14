@@ -7,7 +7,7 @@ from collections import Counter
 from sklearn import preprocessing
 from sklearn.cluster import KMeans
 from sklearn.feature_extraction.text import CountVectorizer
-from datatypes import Document, Segment, Segmentation, Dataset
+from inpladesys.datatypes import Document, Segment, Segmentation, Dataset
 from .abstract_author_diarizer import AbstractAuthorDiarizer
 
 
