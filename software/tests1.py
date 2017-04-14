@@ -1,6 +1,6 @@
-from datasets import Pan16DatasetLoader
-from evaluation import get_confusion_matrix, BCubedScorer
-from models import (DummySingleAuthorDiarizer, DummyStochasticAuthorDiarizer,
+from inpladesys.datasets import Pan16DatasetLoader
+from inpladesys.evaluation import get_confusion_matrix, BCubedScorer
+from inpladesys.models import (DummySingleAuthorDiarizer, DummyStochasticAuthorDiarizer,
                     SimpleFixedAuthorDiarizer)
 import numpy as np
 
@@ -17,7 +17,7 @@ dataset_dirs = [
     "../data/pan16-author-diarization-training-dataset-problem-c-2016-02-16"
 ]
 print("Loading dataset...")
-dataset = Pan16DatasetLoader(dataset_dirs[2]).load_dataset()
+dataset = Pan16DatasetLoader(dataset_dirs[1]).load_dataset()
 
 models = [
     (DummySingleAuthorDiarizer, "DummySingleAuthorDiarizer"),

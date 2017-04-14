@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from datatypes import Document, Segmentation, Dataset
+from inpladesys.datatypes import Document, Segmentation, Dataset
 from typing import List
 
 

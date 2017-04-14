@@ -1,5 +1,5 @@
 from typing import Tuple, List
-from datatypes import Document, Segment, Segmentation
+from inpladesys.datatypes import Document, Segment, Segmentation
 import random
 
 

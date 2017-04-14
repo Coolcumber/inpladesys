@@ -38,9 +38,9 @@ class Segment():  # namedtuple('Segment', ['offset', 'length', 'author'])):
 
     def __str__(self):
         return "Segment(offset={}, length={}, author={})".format(self.offset, self.length, self.author)
-    
+
     def __repr__(self):
-        str(self)
+        return "Segment(offset={}, length={}, author={})".format(self.offset, self.length, self.author)
 
 
 class Segmentation(list):  # TODO
@@ -52,62 +52,59 @@ class Segmentation(list):  # TODO
     """
 
     def __init__(self, author_count, segments: List[Segment],
-                 repair=False, maxRepairableError=0, document_length=-1):
-
-        self.author_count = author_count
+                 maxRepairableError=0, document_length=-1):
         # segments are sorted by offset index
-        segments.sort(key=lambda x: x.offset)
-        self._segments = segments
+        self.extend(segments)
+        self.sort(key=lambda x: x.offset)
 
         # segments can be accessed by author index.
+        self.author_count = author_count
         self.by_author = dict((i, []) for i in range(author_count))
         for s in self:
             self.by_author[s.author].append(s)
 
-        assert all(s.length > 0 for s in self), "Segment length must be positive."
+        for i, s in enumerate(self):
+            assert s.length > 0, "Segment length must be positive." + \
+                " Segment {} has length {}.".format(i, s.length)
 
-        assert self.validate(repair, maxRepairableError), \
-            "Segments must have positive lengths and not overlap."
+        possible_error = self.fix_if_possible(maxRepairableError)
+        assert possible_error is None, \
+            "Consecutive segments must not overlap or be disjoint" + \
+            " by more than maxRepairableError={}. Error at segment {}."\
+            .format(maxRepairableError, possible_error) + \
+            " Context (the segment and its neighbours): " + str(self[possible_error - 1: possible_error + 2])
 
         if document_length != -1:
-            self[-1].moveEndOffsetTo(document_length)
+            assert(abs(document_length - 1 -
+                       self[-1].endOffset) < maxRepairableError)
+            self[-1].moveEndOffsetTo(document_length - 1)
 
-    def validate(self, repair=False, tolerance=0) -> bool:
+    def fix_if_possible(self, tolerance=0) -> bool:
         # assumes segments sorted by offset, then by length
         prev = self[0]
         for i in range(1, len(self)):
             curr = self[i]
             d = curr.offset - prev.endOffset
             if d != 0:
-                if repair:
+                if tolerance > 0:
                     if abs(d) > tolerance:
-                        return False
+                        return i
                     lp, lc = prev.length, curr.length
                     ltot = max(prev.endOffset, curr.endOffset) - prev.offset
                     prev.length = max(1, ltot * lp // (lp + lc))
                     curr.length = ltot - prev.length
                     curr.offset = prev.endOffset
                 else:
-                    return False
+                    return i
             prev = curr
-        return True
+        return None
 
     @property
     def document_length(self):
         return self[-1].endOffset
 
-    # segments can be accessed by index.
-    def __getitem__(self, key) -> Segment:
-        return self._segments[key]
-
-    def __len__(self):
-        return len(self._segments)
-
     def __str__(self):
-        return "Segmentation(" + str(self._segments) + ")"
-
-    def __iter__(self):
-        return self._segments.__iter__()
+        return "Segmentation(" + str(self) + ")"
 
     def to_char_sequence(self, length_factor=1):
-        return ''.join([chr(ord('0') + s.author) * int(s.length * length_factor + 0.5) for s in self._segments])
+        return ''.join([chr(ord('0') + s.author) * int(s.length * length_factor + 0.5) for s in self])

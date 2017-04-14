@@ -1,8 +1,8 @@
 import json
 
-from datatypes import Document, Segment, Segmentation
+from inpladesys.datatypes import Document, Segment, Segmentation
 from typing import List
-from util import directory, file
+from inpladesys.util import directory, file
 
 from .abstract_dataset_loader import AbstractDatasetLoader
 
