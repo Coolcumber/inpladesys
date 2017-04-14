@@ -1,6 +1,6 @@
 import numpy as np
 import abc
-from datatypes import Segmentation
+from inpladesys.datatypes import Segmentation
 from abc import ABC
 
 
