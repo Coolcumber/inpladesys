@@ -1,0 +1,42 @@
+<diagram program="umletino" version="14.2"><zoom_level>10</zoom_level><help_text>SimpleClass</help_text><element><id>UMLClass</id><coordinates><x>60</x><y>230</y><w>210</w><h>110</h></coordinates><panel_attributes>Model
+--
+
++train()
++predict()
+--
+Responsibilities
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>410</x><y>150</y><w>330</w><h>190</h></coordinates><panel_attributes>&lt;&lt;Iterator&gt;&gt;
+DocumentFeatureSetExtractor
+--
+-document
+-feature_extractors:List
+-feature_set_hyperparams:List
+-counters 
+--
+#extract_feature_sets()
+#next_feature_set(): (feature_set_hyperparams, np.ndarray)
+--
+Responsibilities
+-- feature set extraction for every
+token in every window</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>400</x><y>590</y><w>150</w><h>30</h></coordinates><panel_attributes>/AbstractFeatureExtractor/
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>300</x><y>500</y><w>100</w><h>30</h></coordinates><panel_attributes>BoWFeatureEx</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>430</x><y>500</y><w>100</w><h>30</h></coordinates><panel_attributes>PoSFeatureEx</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>550</x><y>500</y><w>150</w><h>30</h></coordinates><panel_attributes>FunctionWordsFeatureEx</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>350</x><y>520</y><w>140</w><h>90</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>120;70;120;30;10;30;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>460</x><y>520</y><w>150</w><h>90</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;70;10;30;130;30;130;10</additional_attributes></element><element><id>Relation</id><coordinates><x>340</x><y>330</y><w>230</w><h>190</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>210;10;210;110;10;110;10;170</additional_attributes></element><element><id>Relation</id><coordinates><x>460</x><y>330</y><w>110</w><h>190</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>90;10;90;110;10;110;10;170</additional_attributes></element><element><id>Relation</id><coordinates><x>460</x><y>330</y><w>170</w><h>190</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>90;10;90;110;10;110;150;110;150;170</additional_attributes></element><element><id>UMLNote</id><coordinates><x>320</x><y>370</y><w>220</w><h>60</h></coordinates><panel_attributes>Ovo je inače veza čvrste kompozicije 
+(crni romb), a ne agregacije, no nema
+je u popisu UML koncepata.
+bg=yellow
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLNote</id><coordinates><x>170</x><y>450</y><w>170</w><h>50</h></coordinates><panel_attributes>Ovih FExova ima po potrebi,
+ovisno koliko ih je upaljeno u
+JSON-u
+
+bg=yellow</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>40</x><y>0</y><w>300</w><h>180</h></coordinates><panel_attributes>LearningPipeline
+--
+-feature_list_file_name
+-feature_set_extractor
+-model
+-dataset
+--
+Responsibilities:
+- model trains/predicts results for every feature set 
+extracted for every document
+ - saves results in list of tuples (example):
+(doc_id, fs_id, model_hyp_id, result_measure)
+      </panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>330</x><y>60</y><w>200</w><h>110</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;180;10;180;90</additional_attributes></element><element><id>Relation</id><coordinates><x>150</x><y>170</y><w>30</w><h>80</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;60</additional_attributes></element></diagram>
