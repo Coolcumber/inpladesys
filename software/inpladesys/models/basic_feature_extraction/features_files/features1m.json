@@ -1,0 +1,28 @@
+{
+  "features": [
+    {
+      "used":1,
+      "id":1,
+      "class_name":"BagOfWordsExtractor",
+      "params": {
+          "max_features":100
+        }
+    },
+    {
+      "used":1,
+      "id":2,
+      "class_name":"PartOfSpeechExtractor",
+      "params": {
+        "dimension":100
+      }
+    },
+    {
+      "used":0,
+      "id":3,
+      "class_name":"FunctionWordsExtractor",
+      "params": {
+        "min":100, "max":200, "step":20
+      }
+    }
+  ]
+}

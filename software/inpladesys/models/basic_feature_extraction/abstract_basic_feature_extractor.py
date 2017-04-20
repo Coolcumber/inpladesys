@@ -4,10 +4,11 @@ from inpladesys.datatypes import *
 
 
 class AbstractBasicFeatureExtractor(ABC):  # TODO
+
     @abstractmethod
-    def fit(self, dataset: Dataset):  # TODO: define signature
+    def fit(self, document: Document):
         pass
 
     @abstractmethod
-    def predict(self, documents, segments) -> np.ndarray: # TODO: define signature
+    def transform(self, documents, segments) -> np.ndarray: # TODO: define signature
         pass
