@@ -4,7 +4,7 @@ from inpladesys.models.preprocessors.basic_preprocessors import TokenizerPreproc
 
 class SlidingWindow:
 
-    def __init__(self, data):
+    def __init__(self, data: dict):
         self.data = data
 
 
@@ -97,14 +97,3 @@ if True:
         print('Raw left:', d['raw_left_context'])
         print('Raw right:', d['raw_right_context'])
         print()
-
-
-
-
-
-
-
-
-
-
-

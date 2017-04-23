@@ -8,9 +8,9 @@ class AbstractSingleFeatureExtractor(ABC):
         self.params = params
 
     @abstractmethod
-    def fit(self, text_data):  # TODO should be just transform ? define signature...
+    def fit(self, document, preprocessed_document=None):  # TODO should be just transform ? define signature...
         pass
 
     @abstractmethod
-    def transform(self, text_data):
+    def transform(self, sliding_window: SlidingWindow):
         pass

@@ -1,4 +1,3 @@
-import json
 from sklearn.feature_extraction.text import CountVectorizer
 from inpladesys.models.basic_feature_extraction.abstract_single_feature_extractor import AbstractSingleFeatureExtractor
 
@@ -10,6 +9,7 @@ class BagOfWordsExtractor(AbstractSingleFeatureExtractor):
         self.cv = CountVectorizer(max_features=params['max_features'])
 
     def fit(self, text_data):
+        print('bow print')
         pass
 
     def transform(self, text_data):

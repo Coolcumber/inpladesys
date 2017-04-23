@@ -6,7 +6,8 @@
       "class_name":"BagOfWordsExtractor",
       "params": {
           "max_features":100
-        }
+        },
+      "module_name":"inpladesys.models.basic_feature_extraction.features.simple.bow"
     },
     {
       "used":1,
@@ -14,7 +15,8 @@
       "class_name":"PartOfSpeechExtractor",
       "params": {
         "dimension":100
-      }
+      },
+      "module_name":"inpladesys.models.basic_feature_extraction.features.simple"
     },
     {
       "used":0,
@@ -22,7 +24,8 @@
       "class_name":"FunctionWordsExtractor",
       "params": {
         "min":100, "max":200, "step":20
-      }
+      },
+      "module_name":"inpladesys.models.basic_feature_extraction.features.simple"
     }
   ]
 }
