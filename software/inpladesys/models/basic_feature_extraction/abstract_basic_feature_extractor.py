@@ -6,9 +6,8 @@ import json
 
 class AbstractBasicFeatureExtractor(ABC):  # TODO
 
-    def __init__(self, features_file_name, preprocessor=None):
+    def __init__(self, features_file_name):
         self.features = json.load(open(features_file_name, 'r'))['features']
-        self.preprocessor = preprocessor
 
     @abstractmethod
     def fit(self, document: Document):

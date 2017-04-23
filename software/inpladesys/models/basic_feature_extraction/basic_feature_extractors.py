@@ -7,8 +7,6 @@ class BasicFeatureExtractor(AbstractBasicFeatureExtractor):
 
     def fit(self, document: Document):
         pass
-        # if self.preprocessor
-        # preprocess
         # iterate through sliding windows
 
     def transform(self, documents, segments) -> np.ndarray:

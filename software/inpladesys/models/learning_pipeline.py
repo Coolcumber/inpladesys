@@ -13,7 +13,7 @@ class LearningPipeline:
         self.feature_postprocessor = parameters['feature_postprocessor']
         self.model = parameters['model']
 
-    def do_chain(self):  # TODO split dataset into train, validation and test set if needed
+    def do_chain(self):  # TODO split dataset into train, validation and test set if needed here ??
         for i in range(self.dataset.size):
             document, segmentation = self.dataset[i]
             preprocessed_doc = self.document_preprocessor.fit_transform(document)
