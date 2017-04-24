@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-import json
+from inpladesys.models.basic_feature_extraction.sliding_window import SlidingWindow
 
 
 class AbstractSingleFeatureExtractor(ABC):
@@ -8,7 +8,7 @@ class AbstractSingleFeatureExtractor(ABC):
         self.params = params
 
     @abstractmethod
-    def fit(self, document, preprocessed_document=None):  # TODO should be just transform ? define signature...
+    def fit(self, document, preprocessed_document=None):  #TODO is preprocessed_document even needed here ??
         pass
 
     @abstractmethod

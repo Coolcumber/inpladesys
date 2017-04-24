@@ -3,3 +3,4 @@ from .dummy_single_author_diarizer import DummySingleAuthorDiarizer
 from .dummy_stochastic_author_diarizer import DummyStochasticAuthorDiarizer
 from .simple_fixed_author_diarizer import SimpleFixedAuthorDiarizer
 from .preprocessors.basic_preprocessors import TokenizerPreprocessor
+from .basic_feature_extraction.basic_feature_extractor import BasicFeatureExtractor

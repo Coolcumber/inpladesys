@@ -36,7 +36,7 @@ class AbstractSlidingWindowIterator(ABC):
 class TokenBasedSlidingWindowIterator(AbstractSlidingWindowIterator):
 
     def __init__(self, preprocessed_document, raw_document, context_size):
-        super(TokenBasedSlidingWindowIterator, self).__init__(raw_document, context_size, preprocessed_document)
+        super().__init__(raw_document, context_size, preprocessed_document)
         self.token_i = 0
         self.n_tokens = len(preprocessed_document)
         self.tokens = [i[0] for i in preprocessed_document]
@@ -82,7 +82,7 @@ class TokenBasedSlidingWindowIterator(AbstractSlidingWindowIterator):
         return SlidingWindow(data)
 
 
-if True:
+if False:
     raw_doc = "This is a first sentence. This is a second sentence."
     tokens = TokenizerPreprocessor().fit_transform(raw_doc)
     print(tokens)

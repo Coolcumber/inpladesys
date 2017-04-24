@@ -10,7 +10,7 @@
       "module_name":"inpladesys.models.basic_feature_extraction.features.simple.bow"
     },
     {
-      "used":1,
+      "used":0,
       "id":2,
       "class_name":"PartOfSpeechExtractor",
       "params": {
