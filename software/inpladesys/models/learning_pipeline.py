@@ -20,9 +20,12 @@ class LearningPipeline:
             document, segmentation = self.dataset[i]
             preprocessed_document = self.document_preprocessor.fit_transform(document)
             self.basic_feature_extractor.fit(document, preprocessed_document)
-            document_features = self.basic_feature_extractor.transform(document)
+            document_features = self.basic_feature_extractor.transform(document, preprocessed_document,
+                                                                       self.context_size)
             print(document_features)
             # TODO split dataset into train, validation and test set if needed here ??
+
+            # TODO model, evaluation, log
 
 
 
