@@ -23,9 +23,13 @@ class LearningPipeline:
             document_features = self.basic_feature_extractor.transform(document, preprocessed_document,
                                                                        self.context_size)
             print(document_features)
-            # TODO split dataset into train, validation and test set if needed here ??
 
-            # TODO model, evaluation, log
+            # TODO postprocess features (transformations etc.)
+            # TODO split dataset into train, validation and test set if needed here or in model ??
+            # TODO learn model, find optimal hyperparams if needed
+            # TODO postprocess model results
+            # TODO evaluate results
+            # TODO write all necessary params to log file
 
 
 
