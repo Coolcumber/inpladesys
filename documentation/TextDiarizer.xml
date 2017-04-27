@@ -1,0 +1,36 @@
+<diagram program="umletino" version="14.2"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>300</x><y>180</y><w>220</w><h>130</h></coordinates><panel_attributes>TextDiarizer
+--
+-tbe: TextFeatureExtractor
+-vfe: VectorFeatureExtractor
+-clusterer: Clusterer
+-postproc: Postprocessor
+--
++fit(D: List[Doc], S: List[Segmn])
++predict(D: List[Doc])</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>580</x><y>180</y><w>270</w><h>70</h></coordinates><panel_attributes>BasicFeatureExtractor
+--
+--
++fit(D: List[Doc] [, S: List[Segm]])
++predict(D: List[Doc], W: List[Win]): List[Vector]</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>580</x><y>270</y><w>270</w><h>70</h></coordinates><panel_attributes>VectorFeatureExtractor
+--
+--
++fit(X: List[Vector], Y: List[Segmn])
++predict(X: List[Vector]): List[Vector]</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>580</x><y>360</y><w>270</w><h>50</h></coordinates><panel_attributes>Clusterer
+--
+--
++predict(X: List[Vector] [, n: int]): List[Segmn]</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>580</x><y>430</y><w>270</w><h>50</h></coordinates><panel_attributes>Postprocessor
+--
+--
++predict(X: List[Segmn]): List[Segmn]</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLNote</id><coordinates><x>300</x><y>330</y><w>230</w><h>150</h></coordinates><panel_attributes>TextDiarizer.fit(D, S):
+  bfe.fit(D[, S])
+  vfe.fit(vfe.predict(D, W), S)
+
+TextDiarizer.predict(D):
+  basic_features = bfe.predict(D)
+  hl_features = vfe.predict(features)
+  clusters = clusterer.predict(hl_features)
+  return postproc.predict(clusters)
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLNote</id><coordinates><x>70</x><y>180</y><w>190</w><h>90</h></coordinates><panel_attributes>alias
+  Doc = Document
+  Segmn = Segmentation
+  BFE = BasicFeatureExtractor
+  Win = Window (center, radius)</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>510</x><y>190</y><w>90</w><h>100</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;80;40;80;40;10;70;10</additional_attributes></element><element><id>Relation</id><coordinates><x>510</x><y>260</y><w>90</w><h>50</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;40;10;40;30;70;30</additional_attributes></element><element><id>Relation</id><coordinates><x>510</x><y>260</y><w>90</w><h>140</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;40;10;40;120;70;120</additional_attributes></element><element><id>Relation</id><coordinates><x>510</x><y>260</y><w>90</w><h>210</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;40;10;40;190;70;190</additional_attributes></element></diagram>
