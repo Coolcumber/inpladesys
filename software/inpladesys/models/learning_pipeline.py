@@ -20,13 +20,14 @@ class LearningPipeline:
     def do_chain(self):
         documents_features = []
 
-        for i in range(1): #self.dataset.size
+        for i in range(self.dataset.size): #self.dataset.size
             document, segmentation = self.dataset[i]
             preprocessed_document = self.document_preprocessor.fit_transform(document)
             self.basic_feature_extractor.fit(document, preprocessed_document)
             document_features = self.basic_feature_extractor.transform(document, preprocessed_document,
                                                                        self.context_size)
-            #print(document_features)
+            print(document_features.shape)
+
             # TODO postprocess features (transformations etc.)
 
             documents_features.append(document_features)
@@ -36,9 +37,8 @@ class LearningPipeline:
 
         # TODO postprocess model results
 
-        results = np.array([0, 0, 0])
-
         # TODO evaluate results
+        results = np.array([0, 0, 0])
         for i in range(self.dataset.size):
             truth = self.dataset.segmentations[i]
             pred = pred_segmentations[i]

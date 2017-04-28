@@ -5,7 +5,11 @@
       "id":1,
       "class_name":"BagOfWordsExtractor",
       "params": {
-          "max_features":100
+        "max_features":100,
+        "lowercase":"True",
+        "min_ngram_range":1,
+        "max_ngram_range":1,
+        "token_pattern":"(?u)\\b\\w+\\b"
         },
       "module_name":"inpladesys.models.basic_feature_extraction.features.simple.bow"
     },

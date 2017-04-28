@@ -1,6 +1,7 @@
 from inpladesys.models.basic_feature_extraction.abstract_basic_feature_extractor import AbstractBasicFeatureExtractor
 from inpladesys.datatypes import Document
 from inpladesys.models.basic_feature_extraction.sliding_window import TokenBasedSlidingWindowIterator
+from scipy import sparse
 import numpy as np
 
 
@@ -25,8 +26,9 @@ class BasicFeatureExtractor(AbstractBasicFeatureExtractor):
             sliding_window = swi.next()
             feature_vector = []
             for feature_extractor in self.single_feature_extractors:
-                feature_vector += feature_extractor.transform(sliding_window)
+                feature_vector.append(feature_extractor.transform(sliding_window))
+            feature_vector = sparse.hstack(feature_vector, dtype=np.float64).toarray()
             feature_vectors.append(feature_vector)
-        return np.array(feature_vectors)
+        return np.array(feature_vectors).reshape((len(feature_vectors), feature_vector.shape[1]))
 
 
