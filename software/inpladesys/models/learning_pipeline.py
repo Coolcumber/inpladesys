@@ -1,8 +1,10 @@
-import json
+import numpy as np
 from inpladesys.datasets import Pan16DatasetLoader
 from inpladesys.models import SimpleFixedAuthorDiarizer
 from inpladesys.models.preprocessors.basic_preprocessors import TokenizerPreprocessor
 from inpladesys.models.basic_feature_extraction.basic_feature_extractor import BasicFeatureExtractor
+from inpladesys.evaluation import BCubedScorer
+from inpladesys.evaluation import get_confusion_matrix
 
 
 class LearningPipeline:
@@ -16,20 +18,39 @@ class LearningPipeline:
         self.model = parameters['model']
 
     def do_chain(self):
+        documents_features = []
+
         for i in range(1): #self.dataset.size
             document, segmentation = self.dataset[i]
             preprocessed_document = self.document_preprocessor.fit_transform(document)
             self.basic_feature_extractor.fit(document, preprocessed_document)
             document_features = self.basic_feature_extractor.transform(document, preprocessed_document,
                                                                        self.context_size)
-            print(document_features)
-
+            #print(document_features)
             # TODO postprocess features (transformations etc.)
-            # TODO split dataset into train, validation and test set if needed here or in model ??
-            # TODO learn model, find optimal hyperparams if needed
-            # TODO postprocess model results
-            # TODO evaluate results
-            # TODO write all necessary params to log file
+
+            documents_features.append(document_features)
+
+        # TODO is it better to use fit and _predict separately ??
+        pred_segmentations = self.model.fit_predict(self.dataset, documents_features)
+
+        # TODO postprocess model results
+
+        results = np.array([0, 0, 0])
+
+        # TODO evaluate results
+        for i in range(self.dataset.size):
+            truth = self.dataset.segmentations[i]
+            pred = pred_segmentations[i]
+
+            # use Micro and Macro scorer for task a, and BCubed for tasks b and c
+            bc = BCubedScorer(get_confusion_matrix(truth, pred))
+            results += np.array([bc.precision(), bc.recall(), bc.f1_score()])
+
+        results /= self.dataset.size
+        print(results)
+
+        # TODO write all necessary params to log file
 
 
 
