@@ -25,13 +25,35 @@
       "module_name":"inpladesys.models.basic_feature_extraction.features.simple.char_ngrams"
     },
     {
-      "used":0,
+      "used":1,
       "id":3,
-      "class_name":"FunctionWordsExtractor",
+      "class_name":"AvgTokenLengthExtractor",
+      "params": {},
+      "module_name":"inpladesys.models.basic_feature_extraction.features.simple.avg_token_length"
+    },
+    {
+      "used":1,
+      "id":4,
+      "class_name":"StopWordsExtractor",
+      "params": {},
+      "module_name":"inpladesys.models.basic_feature_extraction.features.simple.stop_words"
+    },
+    {
+      "used":1,
+      "id":4,
+      "class_name":"SpecialCharactersExtractor",
       "params": {
-        "min":100, "max":200, "step":20
+        "max_features":30,
+        "token_pattern":"[^\\w]{1,4}"
       },
-      "module_name":"inpladesys.models.basic_feature_extraction.features.simple"
+      "module_name":"inpladesys.models.basic_feature_extraction.features.simple.special_characters"
+    },
+    {
+      "used":1,
+      "id":5,
+      "class_name":"POSTagCountExtractor",
+      "params": {},
+      "module_name":"inpladesys.models.basic_feature_extraction.features.simple.pos_tags"
     }
   ]
 }

@@ -10,9 +10,10 @@ class TokenizerPreprocessor(AbstractPreprocessor):
         offset = 0
         tokens = word_tokenize(raw_text)
         for token in tokens:
+            real_token = token
             if token == "''" or token == '``':  # http://stackoverflow.com/questions/32185072/nltk-word-tokenize-behaviour-for-double-quotation-marks-is-confusing
-                token = '"'
+                 token = '"'
             offset = raw_text.index(token, offset)
-            token_spans.append((token, offset, offset + len(token)))
+            token_spans.append((real_token, offset, offset + len(token)))
             offset += len(token)
         return token_spans

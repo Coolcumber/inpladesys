@@ -21,15 +21,16 @@ class LearningPipeline:
     def do_chain(self):
         documents_features = []
 
+        print('Extracting features...')
         start_time = time.time()
 
-        for i in range(self.dataset.size): #self.dataset.size
+        for i in range(self.dataset.size):
             document, segmentation = self.dataset[i]
             preprocessed_document = self.document_preprocessor.fit_transform(document)
             self.basic_feature_extractor.fit(document, preprocessed_document)
             document_features = self.basic_feature_extractor.transform(document, preprocessed_document,
                                                                        self.context_size)
-            print(document_features.shape)
+            print('Document {}/{}: {}'.format(i+1, self.dataset.size, document_features.shape))
 
             # TODO postprocess features (transformations etc.)
 
