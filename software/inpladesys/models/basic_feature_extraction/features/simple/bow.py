@@ -14,11 +14,10 @@ class BagOfWordsExtractor(AbstractSingleFeatureExtractor):
                                   ngram_range=(params['min_ngram_range'], params['max_ngram_range']),
                                   token_pattern=params['token_pattern'])  # default is "(?u)\\b\\w+\\b" (tokens of 2 or more alphanumeric characters (punctuation is completely ignored and always treated as a token separator))
 
-    def fit(self, document, preprocessed_document=None):
-        tokens = [t[0] for t in preprocessed_document]
+    def fit(self, document, preprocessed_document=None, tokens=None):
         self.cv.fit(tokens)
 
     def transform(self, sliding_window: SlidingWindow):
         data = sliding_window.data
         tokens = data['left_context_tokens'] + data['right_context_tokens']
-        return self.cv.transform([" ".join(tokens)])
+        return self.cv.transform([" ".join(tokens)])  # TODO use raw contexts for better performance ?

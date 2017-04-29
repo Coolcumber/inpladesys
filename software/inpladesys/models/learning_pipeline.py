@@ -1,3 +1,4 @@
+import time
 import numpy as np
 from inpladesys.datasets import Pan16DatasetLoader
 from inpladesys.models import SimpleFixedAuthorDiarizer
@@ -20,6 +21,8 @@ class LearningPipeline:
     def do_chain(self):
         documents_features = []
 
+        start_time = time.time()
+
         for i in range(self.dataset.size): #self.dataset.size
             document, segmentation = self.dataset[i]
             preprocessed_document = self.document_preprocessor.fit_transform(document)
@@ -31,6 +34,8 @@ class LearningPipeline:
             # TODO postprocess features (transformations etc.)
 
             documents_features.append(document_features)
+
+        print('Extraction time (s): ', time.time() - start_time)
 
         # TODO is it better to use fit and _predict separately ??
         pred_segmentations = self.model.fit_predict(self.dataset, documents_features)
@@ -68,7 +73,7 @@ if True:
 
     params = dict()
     params['dataset'] = dataset
-    params['context_size'] = 20
+    params['context_size'] = 100
     params['document_preprocessor'] = TokenizerPreprocessor()
     params['basic_feature_extractor'] = BasicFeatureExtractor(features_file_name)
     params['feature_postprocessor'] = None

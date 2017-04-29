@@ -8,6 +8,7 @@ import numpy as np
 class BasicFeatureExtractor(AbstractBasicFeatureExtractor):
 
     def fit(self, document: Document, preprocessed_document=None):
+        tokens = [t[0] for t in preprocessed_document]
         del self.single_feature_extractors[:]  # single feature extractor objects should be deleted before every fit
         for feature in self.features:
             if feature['used'] == 1:
@@ -16,7 +17,7 @@ class BasicFeatureExtractor(AbstractBasicFeatureExtractor):
                 params = feature['params']
                 FeatureExtractorClass = self.load_class(module_name, class_name)
                 feature_extractor = FeatureExtractorClass(params)
-                feature_extractor.fit(document, preprocessed_document)
+                feature_extractor.fit(document, preprocessed_document, tokens)
                 self.single_feature_extractors.append(feature_extractor)
 
     def transform(self, document, preprocessed_document, context_size) -> np.ndarray:

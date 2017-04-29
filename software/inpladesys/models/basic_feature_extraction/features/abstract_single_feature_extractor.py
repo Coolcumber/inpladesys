@@ -8,7 +8,7 @@ class AbstractSingleFeatureExtractor(ABC):
         self.params = params
 
     @abstractmethod
-    def fit(self, document, preprocessed_document=None):  #TODO is preprocessed_document even needed here ??
+    def fit(self, document, preprocessed_document=None, tokens=None):  #TODO is preprocessed_document even needed here ??
         pass
 
     @abstractmethod

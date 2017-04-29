@@ -14,13 +14,15 @@
       "module_name":"inpladesys.models.basic_feature_extraction.features.simple.bow"
     },
     {
-      "used":0,
+      "used":1,
       "id":2,
-      "class_name":"PartOfSpeechExtractor",
+      "class_name":"CharNGramsExtractor",
       "params": {
-        "dimension":100
+        "max_features":200,
+        "min_ngram_range":3,
+        "max_ngram_range":3
       },
-      "module_name":"inpladesys.models.basic_feature_extraction.features.simple"
+      "module_name":"inpladesys.models.basic_feature_extraction.features.simple.char_ngrams"
     },
     {
       "used":0,
