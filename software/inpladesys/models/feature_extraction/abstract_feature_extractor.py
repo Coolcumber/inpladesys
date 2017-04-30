@@ -1,25 +1,21 @@
 import numpy as np
 from abc import ABC, abstractmethod
-from inpladesys.datatypes import *
+from typing import List
 
 
 class AbstractFeatureExtractor(ABC):  # TODO
-    def set_document(self, document):
-        """
-        As features of a part of a document might depend on the surroundong 
-        text, a feature extractor implementation might like to heve the whole
-        document available.
-        """
-        self.document = document
-
     @abstractmethod
-    def train(self, dataset: Dataset):
+    def fit(self, X: List[np.ndarray], G: List[np.ndarray]):
+        # with self.graph.as_default():
+        """
+        :param X: list of 2D arrays (or lists) containing vectors as rows
+        :param G: list of arrays (or lists) of integers representing groups
+        """
         pass
 
     @abstractmethod
-    def get_features(self, segments) -> np.ndarray:
+    def transform(self, X: List[np.ndarray]) -> List[np.ndarray]:
         """
-        Returns an array of feature vectors for a list of segments or a single
-        segment.
+         :param X: list of 2D arrays (or lists) containing vectors as rows
         """
         pass
