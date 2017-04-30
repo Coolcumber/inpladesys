@@ -6,19 +6,19 @@ import numpy as np
 
 class AbstractAuthorDiarizer(ABC):  # TODO
     # scikit.learn-compatible interface - either override this or train
-    def fit(self, documents: List[Document], segmentations: List[Segmentation], documents_features: List[np.ndarray]=None):
+    def fit(self, documents: List[Document], segmentations: List[Segmentation]):
         """
         Fit (or train) is used to learn a feature transformation for better 
         clustering.
         """
-        self.train(Dataset(documents, segmentations, documents_features))
+        self.train(Dataset(documents, segmentations))
     
     # alternative interface - either override this or fit
-    def train(self, dataset: Dataset, documents_features: np.ndarray=None):
-        self.fit(dataset.documents, dataset.segmentations, documents_features)
+    def train(self, dataset: Dataset):
+        self.fit(dataset.documents, dataset.segmentations)
     
     @abstractmethod
-    def _predict(self, document: Document, features: np.ndarray=None) -> Segmentation:
+    def _predict(self, document: Document) -> Segmentation:
         pass
 
     def fit_predict(self, dataset: Dataset, documents_features: List[np.ndarray],

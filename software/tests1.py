@@ -66,7 +66,7 @@ modelsToScores = dict(
 for model in models:
     m = model()
     m.fit(dataset.documents, dataset.segmentations)
-    for i in dataset.documents:  # TODO d is not used ??
+    for d in dataset.documents:  # TODO d is not used ??
         pred = m.predict(dataset.documents[docind])
         truth = dataset.segmentations[docind]
         bc = BCubedScorer(get_confusion_matrix(truth, pred))
