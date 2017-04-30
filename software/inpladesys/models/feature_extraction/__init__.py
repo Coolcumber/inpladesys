@@ -1,4 +1,4 @@
 from .abstract_feature_extractor import AbstractFeatureExtractor
 
 # Implementations
-from .grouprepell_feature_extractor import GroupRepellFeatureExtractor
+from .grouprepel_feature_extractor import GroupRepelFeatureExtractor
