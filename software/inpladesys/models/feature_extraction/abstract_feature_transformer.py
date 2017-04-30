@@ -3,7 +3,7 @@ from abc import ABC, abstractmethod
 from typing import List
 
 
-class AbstractFeatureExtractor(ABC):  # TODO
+class AbstractFeatureTransformer(ABC):  # TODO
     @abstractmethod
     def fit(self, X: List[np.ndarray], G: List[np.ndarray]):
         # with self.graph.as_default():

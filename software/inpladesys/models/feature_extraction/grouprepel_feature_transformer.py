@@ -1,11 +1,11 @@
 import numpy as np
 import tensorflow as tf
-from inpladesys.models.feature_extraction.abstract_feature_extractor import \
-    AbstractFeatureExtractor
+from inpladesys.models.feature_extraction.abstract_feature_transformer import \
+    AbstractFeatureTransformer
 from typing import List
 
 
-class GroupRepelFeatureExtractor(AbstractFeatureExtractor):
+class GroupRepelFeatureTransformer(AbstractFeatureTransformer):
     def __init__(self, input_dimension, output_dimension,
                  additional_layer_count=2, iteration_count=10000):
         self.iteration_count = iteration_count
@@ -147,6 +147,6 @@ if __name__ == "__main__":
          [0, -2, 0]], dtype=np.float)
     labels = np.array([0, 0, 0, 1, 1, 2, 2, 3, 3, 3, 4, 4, 4])
 
-    cpn = GroupRepelFeatureExtractor(3, 2)
+    cpn = GroupRepelFeatureTransformer(3, 2)
 
     cpn.fit([vectors], [labels])
