@@ -28,7 +28,7 @@ class BasicFeatureExtractor(AbstractBasicFeatureExtractor):
             feature_vector = []
             for feature_extractor in self.single_feature_extractors:
                 feature_vector.append(feature_extractor.transform(sliding_window))
-            feature_vector = sparse.hstack(feature_vector, dtype=np.float32).toarray()
+            feature_vector = sparse.hstack(feature_vector, dtype=np.float32).toarray()  # TODO leave data sparse
             feature_vectors.append(feature_vector)
         return np.array(feature_vectors).reshape((len(feature_vectors), feature_vector.shape[1]))
 

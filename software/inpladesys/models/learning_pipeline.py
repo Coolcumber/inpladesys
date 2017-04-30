@@ -1,11 +1,11 @@
 import time
 import numpy as np
 from inpladesys.datasets import Pan16DatasetLoader
-from inpladesys.models import SimpleFixedAuthorDiarizer
 from inpladesys.models.preprocessors.basic_preprocessors import TokenizerPreprocessor
 from inpladesys.models.basic_feature_extraction.basic_feature_extractor import BasicFeatureExtractor
-from inpladesys.evaluation import BCubedScorer
+from inpladesys.evaluation import *
 from inpladesys.evaluation import get_confusion_matrix
+from inpladesys.models.clustering.k_menans_diarizer import KMeansDiarizer
 
 
 class LearningPipeline:
@@ -24,7 +24,9 @@ class LearningPipeline:
         print('Extracting features...')
         start_time = time.time()
 
-        for i in range(self.dataset.size):
+        preprocessed_docs = []
+
+        for i in range(self.dataset.size):  #self.dataset.size
             document, segmentation = self.dataset[i]
             preprocessed_document = self.document_preprocessor.fit_transform(document)
             self.basic_feature_extractor.fit(document, preprocessed_document)
@@ -35,26 +37,32 @@ class LearningPipeline:
             # TODO postprocess features (transformations etc.)
 
             documents_features.append(document_features)
+            preprocessed_docs.append(preprocessed_document)
 
         print('Extraction time (s): ', time.time() - start_time)
 
-        # TODO is it better to use fit and _predict separately ??
-        pred_segmentations = self.model.fit_predict(self.dataset, documents_features)
+        if True:
 
-        # TODO postprocess model results
+            print('Running model..')
+            # TODO is it better to use fit and _predict separately ??
+            pred_segmentations = self.model.fit_predict(self.dataset, documents_features, preprocessed_docs)
 
-        # TODO evaluate results
-        results = np.array([0, 0, 0])
-        for i in range(self.dataset.size):
-            truth = self.dataset.segmentations[i]
-            pred = pred_segmentations[i]
+            # TODO postprocess model results
 
-            # use Micro and Macro scorer for task a, and BCubed for tasks b and c
-            bc = BCubedScorer(get_confusion_matrix(truth, pred))
-            results += np.array([bc.precision(), bc.recall(), bc.f1_score()])
 
-        results /= self.dataset.size
-        print(results)
+            # TODO evaluate results
+            print('Evaluating...')
+            results = np.array([0, 0, 0], dtype=np.float64)
+            for i in range(self.dataset.size):  #self.dataset.size
+                truth = self.dataset.segmentations[i]
+                pred = pred_segmentations[i]
+
+                # use Micro and Macro scorer for task a, and BCubed for tasks b and c
+                bc = BCubedScorer(get_confusion_matrix(truth, pred))
+                results += np.array([bc.precision(), bc.recall(), bc.f1_score()])
+
+            results /= self.dataset.size
+            print(results)
 
         # TODO write all necessary params to log file
 
@@ -78,7 +86,7 @@ if True:
     params['document_preprocessor'] = TokenizerPreprocessor()
     params['basic_feature_extractor'] = BasicFeatureExtractor(features_file_name)
     params['feature_postprocessor'] = None
-    params['model'] = SimpleFixedAuthorDiarizer(author_count=3)  # TODO remove author_count from constructor
+    params['model'] = KMeansDiarizer()
 
     pipeline = LearningPipeline(params)
     pipeline.do_chain()

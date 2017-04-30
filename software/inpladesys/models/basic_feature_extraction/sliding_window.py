@@ -40,6 +40,7 @@ class TokenBasedSlidingWindowIterator(AbstractSlidingWindowIterator):
         self.token_i = 0
         self.n_tokens = len(preprocessed_document)
         self.tokens = [i[0] for i in preprocessed_document]
+        self.pos_tags = [i[3] for i in preprocessed_document]
         self.half_context_size = context_size // 2
 
     def has_next(self):
@@ -51,10 +52,12 @@ class TokenBasedSlidingWindowIterator(AbstractSlidingWindowIterator):
         left_bound = self.token_i - self.half_context_size
         left_i = left_bound if left_bound >= 0 else 0
         left_context_tokens = self.tokens[left_i:self.token_i]
+        left_context_pos_tags = self.pos_tags[left_i:self.token_i]
 
         right_bound = self.token_i + self.half_context_size + 1
         right_i = right_bound if right_bound <= self.n_tokens else self.n_tokens
         right_context_tokens = self.tokens[self.token_i+1:right_i]
+        right_context_pos_tags = self.pos_tags[self.token_i+1:right_i]
 
         start = self.preprocessed_doc[left_i][1]
         end = self.preprocessed_doc[self.token_i][1]
@@ -74,6 +77,8 @@ class TokenBasedSlidingWindowIterator(AbstractSlidingWindowIterator):
             'token': token,
             'left_context_tokens': left_context_tokens,
             'right_context_tokens': right_context_tokens,
+            'left_context_pos_tags': left_context_pos_tags,
+            'right_context_pos_tags': right_context_pos_tags,
             'raw_left_context': raw_left_context,
             'raw_right_context': raw_right_context,
             'raw_window_text': raw_window_text

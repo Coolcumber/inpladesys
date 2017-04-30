@@ -19,6 +19,5 @@ class POSTagCountExtractor(AbstractSingleFeatureExtractor):
         pass
 
     def transform(self, sliding_window: SlidingWindow):
-        tokens = sliding_window.data['left_context_tokens'] + sliding_window.data['right_context_tokens']
-        tags = pos_tag(tokens, tagset='universal', lang='eng')
-        return self.cv.transform([" ".join([t[1] for t in tags])])
+        pos_tags = sliding_window.data['left_context_pos_tags'] + sliding_window.data['right_context_pos_tags']
+        return self.cv.transform([" ".join(pos_tags)])
