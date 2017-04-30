@@ -15,7 +15,7 @@ class LearningPipeline:
         self.context_size = parameters['context_size']
         self.document_preprocessor = parameters['document_preprocessor']
         self.basic_feature_extractor = parameters['basic_feature_extractor']  # TODO rename to basic
-        self.feature_postprocessor = parameters['feature_postprocessor']
+        self.feature_transformer = parameters['feature_transformer']
         self.model = parameters['model']
 
     def do_chain(self):
@@ -85,7 +85,7 @@ if True:
     params['context_size'] = 100
     params['document_preprocessor'] = TokenizerPreprocessor()
     params['basic_feature_extractor'] = BasicFeatureExtractor(features_file_name)
-    params['feature_postprocessor'] = None
+    params['feature_transformer'] = None
     params['model'] = KMeansDiarizer()
 
     pipeline = LearningPipeline(params)
