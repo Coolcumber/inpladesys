@@ -3,6 +3,8 @@ import abc
 from inpladesys.datatypes import Segmentation
 from abc import ABC
 
+Epsilon = 2e-16
+
 
 def get_confusion_matrix(seg_true: Segmentation, seg_pred: Segmentation):
     def nextsp():  # < >
@@ -13,6 +15,7 @@ def get_confusion_matrix(seg_true: Segmentation, seg_pred: Segmentation):
             return -1
         sp_end = sp.offset + sp.length
         return 0
+
     sp_iter, sp, sp_end = iter(seg_pred), None, 0
     cm = np.zeros(shape=(seg_true.author_count, seg_pred.author_count),
                   dtype=int)
@@ -23,7 +26,7 @@ def get_confusion_matrix(seg_true: Segmentation, seg_pred: Segmentation):
             if sp.offset < st.offset:
                 if sp_end < st_end:  # .<[>].
                     cm[st.author, sp.author] += sp.length - \
-                        (st.offset - sp.offset)
+                                                (st.offset - sp.offset)
                     if nextsp() == -1:
                         return cm
                 else:  # .<[]>.
@@ -59,26 +62,25 @@ class BinaryConfusionMatrix(np.ndarray):  # TODO
 
 
 class BinaryScorer:
-
     @staticmethod
     def accuracy(cm): return np.trace(cm) / sum(cm)
 
     @staticmethod
-    def precision(bcm): return bcm.tp() / (bcm.tp() + bcm.fp() + 2e-16)
+    def precision(bcm): return bcm.tp() / (bcm.tp() + bcm.fp() + Epsilon)
 
     @staticmethod
-    def recall(bcm): return bcm.tp() / (bcm.tp() + bcm.fn() + 2e-16)
+    def recall(bcm): return bcm.tp() / (bcm.tp() + bcm.fn() + Epsilon)
 
     @staticmethod
     def f1_score(bcm):
         p, r = BinaryScorer.precision(bcm), BinaryScorer.recall(bcm)
-        return 2 * p * r / (p + r + 2e-16)
+        return 2 * p * r / (p + r + Epsilon)
 
     @staticmethod
     def fa_score(bcm, a):
         p, r = BinaryScorer.precision(bcm), BinaryScorer.recall(bcm)
         a *= a
-        return 2 * (1 + a) * p * r / (a * p + r + 2e-16)
+        return 2 * (1 + a) * p * r / (a * p + r + Epsilon)
 
 
 class AbstractScorer(ABC):
@@ -95,12 +97,12 @@ class AbstractScorer(ABC):
 
     def f1_score(self):
         p, r = self.precision(), self.recall()
-        return 2 * p * r / (p + r + 2e-16)
+        return 2 * p * r / (p + r + Epsilon)
 
     def fa_score(self, a):
         p, r = self.precision(), self.recall()
         a *= a
-        return 2 * (1 + a) * p * r / (a * p + r + 2e-16)
+        return 2 * (1 + a) * p * r / (a * p + r + Epsilon)
 
 
 class MicroScorer(AbstractScorer):
@@ -124,16 +126,20 @@ class MacroScorer(AbstractScorer):
                      for i in range(self.cm.shape[0])]
 
     def recall(self):
-        return sum(BinaryScorer.recall(bcm) for bcm in self.bcms) / len(self.bcms)
+        return sum(BinaryScorer.recall(bcm) for bcm in self.bcms) / len(
+            self.bcms)
 
     def precision(self):
-        return sum(BinaryScorer.precision(bcm) for bcm in self.bcms) / len(self.bcms)
+        return sum(BinaryScorer.precision(bcm) for bcm in self.bcms) / len(
+            self.bcms)
 
     def f1_score(self):
-        return sum(BinaryScorer.f1_score(bcm) for bcm in self.bcms) / len(self.bcms)
+        return sum(BinaryScorer.f1_score(bcm) for bcm in self.bcms) / len(
+            self.bcms)
 
     def fa_score(self, a):
-        return sum(BinaryScorer.fa_score(bcm, a) for bcm in self.bcms) / len(self.bcms)
+        return sum(BinaryScorer.fa_score(bcm, a) for bcm in self.bcms) / len(
+            self.bcms)
 
 
 class BCubedScorer(AbstractScorer):
@@ -150,7 +156,7 @@ class BCubedScorer(AbstractScorer):
     def precision(self):
         numerators = np.sum(self.squared_cm, axis=0)
         denominators = np.sum(self.cm, axis=0)
-        return np.sum(numerators / denominators) / self.cm_sum
+        return np.sum(numerators / (denominators + Epsilon)) / self.cm_sum
 
 
 if __name__ == "__main__":

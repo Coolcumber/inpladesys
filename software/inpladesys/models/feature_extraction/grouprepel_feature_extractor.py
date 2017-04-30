@@ -20,10 +20,6 @@ class GroupRepelFeatureExtractor(AbstractFeatureExtractor):
                               additional_layer_count)
 
     def fit(self, X: List[np.ndarray], G: List[np.ndarray]):
-        """
-        :param X: list of 2D arrays (or lists) containing vectors as rows
-        :param G: list of arrays (or lists) of integers representing groups
-        """
         with self.graph.as_default():
             self.sess.run(tf.global_variables_initializer())
             for i in range(self.iteration_count):
@@ -37,9 +33,8 @@ class GroupRepelFeatureExtractor(AbstractFeatureExtractor):
                         print(y)
 
     def transform(self, X: List[np.ndarray]) -> List[np.ndarray]:
-        """
-         :param X: list of 2D arrays (or lists) containing vectors as rows
-        """
+        if X is not list:
+            return self.sess.run([self.y], {self.x: X})
         with self.graph.as_default():
             return [self.sess.run([self.y], {self.x: x}) for x in X]
 
