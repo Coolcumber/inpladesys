@@ -36,11 +36,18 @@ class Segment():  # namedtuple('Segment', ['offset', 'length', 'author'])):
     def coversBeginningOf(self, other):
         return self.offset <= other.offset and self.endOffset < other.endOffset
 
+    def contans(self, n: int):
+        return n >= self.offset and n < self.endOffset
+
     def __str__(self):
-        return "Segment(offset={}, length={}, author={})".format(self.offset, self.length, self.author)
+        return "Segment(offset={}, length={}, author={})".format(self.offset,
+                                                                 self.length,
+                                                                 self.author)
 
     def __repr__(self):
-        return "Segment(offset={}, length={}, author={})".format(self.offset, self.length, self.author)
+        return "Segment(offset={}, length={}, author={})".format(self.offset,
+                                                                 self.length,
+                                                                 self.author)
 
 
 class Segmentation(list):  # TODO
@@ -65,18 +72,20 @@ class Segmentation(list):  # TODO
 
         for i, s in enumerate(self):
             assert s.length > 0, "Segment length must be positive." + \
-                " Segment {} has length {}.".format(i, s.length)
+                                 " Segment {} has length {}.".format(i,
+                                                                     s.length)
 
         possible_error = self.fix_if_possible(maxRepairableError)
         assert possible_error is None, \
             "Consecutive segments must not overlap or be disjoint" + \
-            " by more than maxRepairableError={}. Error at segment {}."\
-            .format(maxRepairableError, possible_error) + \
-            " Context (the segment and its neighbours): " + str(self[possible_error - 1: possible_error + 2])
+            " by more than maxRepairableError={}. Error at segment {}." \
+                .format(maxRepairableError, possible_error) + \
+            " Context (the segment and its neighbours): " + str(
+                self[possible_error - 1: possible_error + 2])
 
         if document_length != -1:
-            assert(abs(document_length - 1 -
-                       self[-1].endOffset) < maxRepairableError)
+            assert (abs(document_length - 1 -
+                        self[-1].endOffset) < maxRepairableError)
             self[-1].moveEndOffsetTo(document_length - 1)
 
     def fix_if_possible(self, tolerance=0) -> bool:
@@ -107,4 +116,6 @@ class Segmentation(list):  # TODO
         return "Segmentation(" + str(self) + ")"
 
     def to_char_sequence(self, length_factor=1):
-        return ''.join([chr(ord('0') + s.author) * int(s.length * length_factor + 0.5) for s in self])
+        return ''.join(
+            [chr(ord('0') + s.author) * int(s.length * length_factor + 0.5) for
+             s in self])

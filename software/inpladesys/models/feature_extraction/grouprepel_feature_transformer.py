@@ -1,11 +1,11 @@
 import numpy as np
 import tensorflow as tf
-from inpladesys.models.feature_extraction.abstract_feature_extractor import \
-    AbstractFeatureExtractor
+from inpladesys.models.feature_extraction.abstract_feature_transformer import \
+    AbstractFeatureTransformer
 from typing import List
 
 
-class GroupRepelFeatureExtractor(AbstractFeatureExtractor):
+class GroupRepelFeatureTransformer(AbstractFeatureTransformer):
     def __init__(self, input_dimension, output_dimension,
                  additional_layer_count=2, iteration_count=10000):
         self.iteration_count = iteration_count
@@ -20,10 +20,6 @@ class GroupRepelFeatureExtractor(AbstractFeatureExtractor):
                               additional_layer_count)
 
     def fit(self, X: List[np.ndarray], G: List[np.ndarray]):
-        """
-        :param X: list of 2D arrays (or lists) containing vectors as rows
-        :param G: list of arrays (or lists) of integers representing groups
-        """
         with self.graph.as_default():
             self.sess.run(tf.global_variables_initializer())
             for i in range(self.iteration_count):
@@ -37,9 +33,8 @@ class GroupRepelFeatureExtractor(AbstractFeatureExtractor):
                         print(y)
 
     def transform(self, X: List[np.ndarray]) -> List[np.ndarray]:
-        """
-         :param X: list of 2D arrays (or lists) containing vectors as rows
-        """
+        if X is not list:
+            return self.sess.run([self.y], {self.x: X})
         with self.graph.as_default():
             return [self.sess.run([self.y], {self.x: x}) for x in X]
 
@@ -152,6 +147,6 @@ if __name__ == "__main__":
          [0, -2, 0]], dtype=np.float)
     labels = np.array([0, 0, 0, 1, 1, 2, 2, 3, 3, 3, 4, 4, 4])
 
-    cpn = GroupRepelFeatureExtractor(3, 2)
+    cpn = GroupRepelFeatureTransformer(3, 2)
 
     cpn.fit([vectors], [labels])

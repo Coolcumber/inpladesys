@@ -17,7 +17,7 @@ dataset_dirs = [
     "../data/pan16-author-diarization-training-dataset-problem-c-2016-02-16"
 ]
 print("Loading dataset...")
-dataset = Pan16DatasetLoader(dataset_dirs[1]).load_dataset()
+dataset = Pan16DatasetLoader(dataset_dirs[2]).load_dataset()
 
 models = [
     (DummySingleAuthorDiarizer, "DummySingleAuthorDiarizer"),
@@ -66,9 +66,8 @@ modelsToScores = dict(
 for model in models:
     m = model()
     m.fit(dataset.documents, dataset.segmentations)
-    for d in dataset.documents:  # TODO d is not used ??
-        pred = m.predict(dataset.documents[docind])
-        truth = dataset.segmentations[docind]
+    for d, truth in zip(dataset.documents, dataset.segmentations):
+        pred = m.predict(d)
         bc = BCubedScorer(get_confusion_matrix(truth, pred))
         modelsToScores[model.name] += np.array([bc.precision(),
                                                 bc.recall(), bc.f1_score()])
