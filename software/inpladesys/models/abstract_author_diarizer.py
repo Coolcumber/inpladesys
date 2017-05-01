@@ -39,7 +39,7 @@ class AbstractAuthorDiarizer(ABC):  # TODO
         pass
 
     # Do not override if not really necessary
-    def predict(self, doc) -> List[Segmentation]:
+    def predict(self, doc):
         if type(doc) is Document:
             return self._predict(doc)
         return [self._predict(d) for d in doc]

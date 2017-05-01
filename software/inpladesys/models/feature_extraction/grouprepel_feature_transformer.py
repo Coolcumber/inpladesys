@@ -102,7 +102,7 @@ class GroupRepelFeatureTransformer(AbstractFeatureTransformer):
             )[1]
 
         # Inputs
-        x = tf.placeholder(tf.float32, shape=[None, self.x_dim])
+        x = tf.placeholder(tf.float32, shape=[None, x_dim])
         labels = tf.placeholder(tf.int32, shape=[None])
 
         # Output

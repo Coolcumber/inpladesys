@@ -5,7 +5,7 @@ import numpy as np
 import random
 
 
-class DummyStochasticAuthorDiarizer(AbstractAuthorDiarizer):  # TODO
+class DummyStochasticAuthorDiarizer(AbstractAuthorDiarizer):
     def __init__(self, author_count=5, average_segment_length=500, random_state=-1):
         self.random_state = random_state
         self.n = author_count

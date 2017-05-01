@@ -22,7 +22,7 @@ class AbstractFeatureTransformer(ABC):  # TODO
         pass
 
     @abstractmethod
-    def _transform_one(self, X: np.ndarray) -> Listnp.ndarray:
+    def _transform(self, X: np.ndarray) -> np.ndarray:
         """
          :param X: list of 2D arrays (or lists) containing feature vectors
         """
