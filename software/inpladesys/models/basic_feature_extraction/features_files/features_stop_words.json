@@ -1,0 +1,59 @@
+{
+  "features": [
+    {
+      "used":1,
+      "id":1,
+      "class_name":"BagOfWordsExtractor",
+      "params": {
+        "max_features":100,
+        "lowercase":"True",
+        "min_ngram_range":1,
+        "max_ngram_range":1,
+        "token_pattern":"(?u)\\b\\w+\\b"
+        },
+      "module_name":"inpladesys.models.basic_feature_extraction.features.simple.bow"
+    },
+    {
+      "used":1,
+      "id":2,
+      "class_name":"CharNGramsExtractor",
+      "params": {
+        "max_features":200,
+        "min_ngram_range":3,
+        "max_ngram_range":3
+      },
+      "module_name":"inpladesys.models.basic_feature_extraction.features.simple.char_ngrams"
+    },
+    {
+      "used":1,
+      "id":3,
+      "class_name":"AvgTokenLengthExtractor",
+      "params": {},
+      "module_name":"inpladesys.models.basic_feature_extraction.features.simple.avg_token_length"
+    },
+    {
+      "used":1,
+      "id":4,
+      "class_name":"StopWordsExtractor",
+      "params": {},
+      "module_name":"inpladesys.models.basic_feature_extraction.features.simple.stop_words"
+    },
+    {
+      "used":1,
+      "id":4,
+      "class_name":"SpecialCharactersExtractor",
+      "params": {
+        "max_features":30,
+        "token_pattern":"[^\\w]{1,4}"
+      },
+      "module_name":"inpladesys.models.basic_feature_extraction.features.simple.special_characters"
+    },
+    {
+      "used":1,
+      "id":5,
+      "class_name":"POSTagCountExtractor",
+      "params": {},
+      "module_name":"inpladesys.models.basic_feature_extraction.features.simple.pos_tags"
+    }
+  ]
+}
