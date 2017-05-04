@@ -20,5 +20,5 @@ class AvgTokenLengthExtractor(AbstractSingleFeatureExtractor):
         for token in sliding_window.data['right_context_tokens']:
             avg_length += len(token)
             count += 1
-        return np.array([avg_length / count])
+        return avg_length / count
 

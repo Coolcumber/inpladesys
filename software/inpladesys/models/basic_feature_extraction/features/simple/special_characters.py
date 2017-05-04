@@ -2,6 +2,7 @@ import numpy as np
 from sklearn.feature_extraction.text import CountVectorizer
 from inpladesys.models.basic_feature_extraction.features.abstract_single_feature_extractor import AbstractSingleFeatureExtractor
 from inpladesys.models.basic_feature_extraction.sliding_window import SlidingWindow
+from scipy import sparse
 
 
 class SpecialCharactersExtractor(AbstractSingleFeatureExtractor):
@@ -18,6 +19,7 @@ class SpecialCharactersExtractor(AbstractSingleFeatureExtractor):
         self.cv.fit(tokens)
 
     def transform(self, sliding_window: SlidingWindow):
-        return np.sum(self.cv.transform(sliding_window.data['left_context_tokens']).toarray(), axis=0) + \
+        s = np.sum(self.cv.transform(sliding_window.data['left_context_tokens']).toarray(), axis=0) + \
                np.sum(self.cv.transform(sliding_window.data['right_context_tokens']).toarray(), axis=0)
+        return sparse.csr_matrix(s)
 

@@ -59,7 +59,7 @@ class LearningPipeline:
 
                 # use Micro and Macro scorer for task a, and BCubed for tasks b and c
                 bc = BCubedScorer(get_confusion_matrix(truth, pred))
-                results += np.array([bc.precision(), bc.recall(), bc.f1_score()])
+                results += np.array([bc.recall(), bc.precision(), bc.f1_score()])
 
             results /= self.dataset.size
             print(results)
