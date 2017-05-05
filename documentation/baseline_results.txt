@@ -1,0 +1,30 @@
+Baselines:
+	Task a: [Micro P R F1] [Macro P R F1]
+		DummySingleAuthorDiarizer
+		[ 0.87425441  0.87425441  0.87425441] [ 0.4371272   0.5         0.46606892]
+
+		DummyStochasticAuthorDiarizer
+		[ 0.79493493  0.79493493  0.79493493] [ 0.4680959   0.48190138  0.4721495 ]
+
+		SimpleFixedAuthorDiarizer
+		[ 0.5476982  0.5476982  0.5476982] [ 0.51211275  0.50818829  0.40438761]
+
+	Task b: B3[P R F1]
+		DummySingleAuthorDiarizer
+		[ 0.32794174  1.          0.47108445]
+
+		DummyStochasticAuthorDiarizer
+		[ 0.38421403  0.4661591   0.40395842]
+		
+		SimpleFixedAuthorDiarizer
+		[ 0.43354883  0.50182493  0.45300086]
+
+	Task c: B3[P R F1]
+		DummySingleAuthorDiarizer
+		[ 0.37209235  1.          0.51758797]
+
+		DummyStochasticAuthorDiarizer
+		[ 0.44800517  0.46915933  0.43791578]
+
+		SimpleFixedAuthorDiarizer
+		[ 0.4517235   0.53974621  0.45378557]

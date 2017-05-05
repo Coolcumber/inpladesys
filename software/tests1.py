@@ -1,5 +1,5 @@
 from inpladesys.datasets import Pan16DatasetLoader
-from inpladesys.evaluation import get_confusion_matrix, BCubedScorer
+from inpladesys.evaluation import get_confusion_matrix, BCubedScorer, MacroScorer, MicroScorer
 from inpladesys.models import (DummySingleAuthorDiarizer, DummyStochasticAuthorDiarizer,
                     SimpleFixedAuthorDiarizer)
 import numpy as np
@@ -17,7 +17,8 @@ dataset_dirs = [
     "../data/pan16-author-diarization-training-dataset-problem-c-2016-02-16"
 ]
 print("Loading dataset...")
-dataset = Pan16DatasetLoader(dataset_dirs[2]).load_dataset()
+dataset_dir_index = 0
+dataset = Pan16DatasetLoader(dataset_dirs[dataset_dir_index]).load_dataset()
 
 models = [
     (DummySingleAuthorDiarizer, "DummySingleAuthorDiarizer"),
@@ -55,10 +56,10 @@ for model in models:
     print("confusion matrix:")
     cm = get_confusion_matrix(truth, pred)
     print(cm)
-    bc = BCubedScorer(cm)
-    print("BCubed precision:", bc.precision())
-    print("BCubed recall:", bc.recall())
-    print("BCubed F1 score:", bc.f1_score())
+    scorer = BCubedScorer(cm)
+    print("BCubed precision:", scorer.precision())
+    print("BCubed recall:", scorer.recall())
+    print("BCubed F1 score:", scorer.f1_score())
 
 print("Testing on the dataset...")
 modelsToScores = dict(
@@ -67,10 +68,23 @@ for model in models:
     m = model()
     m.fit(dataset.documents, dataset.segmentations)
     for d, truth in zip(dataset.documents, dataset.segmentations):
+        if isinstance(m, SimpleFixedAuthorDiarizer):
+            if dataset_dir_index != 2:  # tasks a and b
+                m.author_count = truth.author_count
+            else:  # task c
+                m.choose_author_count(d)
         pred = m.predict(d)
-        bc = BCubedScorer(get_confusion_matrix(truth, pred))
-        modelsToScores[model.name] += np.array([bc.precision(),
-                                                bc.recall(), bc.f1_score()])
+        if dataset_dir_index == 0:  # task a
+            cm = get_confusion_matrix(truth, pred)
+            if isinstance(m, DummySingleAuthorDiarizer):
+                cm = np.hstack((cm, np.array([[0], [0]])))
+            scorer = MacroScorer(cm)  # use Micro AND Macro Scorer for task a!!
+            modelsToScores[model.name] += np.array([scorer.precision(),
+                                                    scorer.recall(), scorer.f1_score()])
+        else:  # tasks b and c
+            scorer = BCubedScorer(get_confusion_matrix(truth, pred))
+            modelsToScores[model.name] += np.array([scorer.precision(),
+                                                scorer.recall(), scorer.f1_score()])
 
 for model in models:
     modelsToScores[model.name] /= len(dataset.documents)

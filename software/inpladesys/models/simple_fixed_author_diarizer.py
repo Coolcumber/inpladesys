@@ -12,8 +12,8 @@ from .abstract_author_diarizer import AbstractAuthorDiarizer
 
 
 class SimpleFixedAuthorDiarizer(AbstractAuthorDiarizer):
-    def __init__(self, author_count):  # author count should be given in advance
-        self.n = author_count
+    def __init__(self, author_count=2):  # author count should be actually given in advance
+        self.author_count = author_count
 
     def train(self, dataset: Dataset):
         pass
@@ -67,7 +67,7 @@ class SimpleFixedAuthorDiarizer(AbstractAuthorDiarizer):
         x_scaled = preprocessing.scale(x, axis=0)
 
         # k-means clustering
-        kmeans = KMeans(n_clusters=self.n, random_state=22).fit(x_scaled)
+        kmeans = KMeans(n_clusters=self.author_count, random_state=22).fit(x_scaled)
         predicted_labels = kmeans.labels_
 
         segments = []
@@ -80,5 +80,11 @@ class SimpleFixedAuthorDiarizer(AbstractAuthorDiarizer):
             start = length + offset
             segments.append(Segment(offset=offset, length=length, author=author))
 
-        return Segmentation(self.n, segments, maxRepairableError=60, document_length=len(document)) # TODO: 
+        return Segmentation(self.author_count, segments, maxRepairableError=60, document_length=len(document)) # TODO:
+
+    def choose_author_count(self, document):
+        len_d = len(document)
+        self.author_count = int(np.rint(0.0003*len_d))
+        if self.author_count == 0:
+            self.author_count += 1
 
