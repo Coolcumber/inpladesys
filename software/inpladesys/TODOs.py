@@ -1,4 +1,5 @@
 # TODO allow SimpleFixedAuthorDiarizer to adjust number of authors in BASELINE tests
+# TODO implement scorers as parameters for learning pipeline ?
 # TODO implement interfacce for models
 # TODO fix warnings in training
 # TODO add new features (new "iteration"):
