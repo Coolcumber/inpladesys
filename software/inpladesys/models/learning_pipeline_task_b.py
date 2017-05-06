@@ -25,8 +25,9 @@ class LearningPipeline:
         start_time = time.time()
 
         preprocessed_docs = []
+        dataset_size = self.dataset.size
 
-        for i in range(self.dataset.size):  #self.dataset.size
+        for i in range(dataset_size):  #self.dataset.size
             document, segmentation = self.dataset[i]
             preprocessed_document = self.document_preprocessor.fit_transform(document)
             self.basic_feature_extractor.fit(document, preprocessed_document)
@@ -53,7 +54,7 @@ class LearningPipeline:
             # TODO evaluate results
             print('Evaluating...')
             results = np.array([0, 0, 0], dtype=np.float64)
-            for i in range(self.dataset.size):  #self.dataset.size
+            for i in range(dataset_size):  #self.dataset.size
                 truth = self.dataset.segmentations[i]
                 pred = pred_segmentations[i]
 
@@ -82,7 +83,7 @@ if True:
 
     params = dict()
     params['dataset'] = dataset
-    params['context_size'] = 100
+    params['context_size'] = 140
     params['document_preprocessor'] = TokenizerPreprocessor()
     params['basic_feature_extractor'] = BasicFeatureExtractor(features_file_name)
     params['feature_transformer'] = None
