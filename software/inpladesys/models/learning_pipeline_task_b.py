@@ -58,7 +58,7 @@ class LearningPipeline:
                 pred = pred_segmentations[i]
 
                 # use Micro and Macro scorer for task a, and BCubed for tasks b and c
-                bc = MacroScorer(get_confusion_matrix(truth, pred))
+                bc = BCubedScorer(get_confusion_matrix(truth, pred))
                 results += np.array([bc.recall(), bc.precision(), bc.f1_score()])
 
             results /= self.dataset.size
