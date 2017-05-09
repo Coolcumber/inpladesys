@@ -1,3 +1,4 @@
 from .document import Document
-from .segmentation import Segment, Segmentation
+from .segment import Segment
+from .segmentation import Segmentation
 from .dataset import Dataset

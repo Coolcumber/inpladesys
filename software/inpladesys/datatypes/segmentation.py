@@ -1,53 +1,7 @@
 from collections import namedtuple
-
 from typing import List, Tuple
-
-
-# Factory method for creating named tuples - used similarly to a constructor
-# Example: assert(Segment(17, 100, author=0).length == 100)
-
-class Segment():  # namedtuple('Segment', ['offset', 'length', 'author'])):
-    """
-    endOffset is exclusive, i.e. djacent segments (s1 s2) should have 
-    s1.endOffset = s2.offset.
-    """
-    """def __new__(cls, offset, length, author):
-        self = super(Segment, cls).__new__(cls, offset, length, author)
-        # self.end = offset + length
-        return self"""
-
-    def __init__(self, offset, length, author):
-        self.offset, self.length, self.author = offset, length, author
-
-    @property
-    def endOffset(self):
-        return self.offset + self.length
-
-    def moveEndOffsetTo(self, value):
-        self.length += value - self.offset
-
-    def moveOffsetTo(self, value):
-        self.length += value - self.offset
-        self.offset = value
-
-    def coversCompletely(self, other):
-        return self.offset <= other.offset and other.endOffset <= self.endOffset
-
-    def coversBeginningOf(self, other):
-        return self.offset <= other.offset and self.endOffset < other.endOffset
-
-    def contans(self, n: int):
-        return n >= self.offset and n < self.endOffset
-
-    def __str__(self):
-        return "Segment(offset={}, length={}, author={})".format(self.offset,
-                                                                 self.length,
-                                                                 self.author)
-
-    def __repr__(self):
-        return "Segment(offset={}, length={}, author={})".format(self.offset,
-                                                                 self.length,
-                                                                 self.author)
+from .segment import Segment
+import numpy as np
 
 
 class Segmentation(list):  # TODO
@@ -79,7 +33,7 @@ class Segmentation(list):  # TODO
         assert possible_error is None, \
             "Consecutive segments must not overlap or be disjoint" + \
             " by more than maxRepairableError={}. Error at segment {}." \
-                .format(maxRepairableError, possible_error) + \
+            .format(maxRepairableError, possible_error) + \
             " Context (the segment and its neighbours): " + str(
                 self[possible_error - 1: possible_error + 2])
 
@@ -111,6 +65,14 @@ class Segmentation(list):  # TODO
     @property
     def document_length(self):
         return self[-1].endOffset
+
+    def positions_to_authors(self, positions):
+        authors = np.empty(len(positions))
+        j = 0
+        for i, p in enumerate(positions):
+            while not self[j].contains(p):
+                j+=1
+            authors[i] = self[j].author
 
     def __str__(self):
         return "Segmentation(" + str(self) + ")"
