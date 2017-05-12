@@ -17,6 +17,15 @@ vectors = np.array(
      [0, -2, 0]], dtype=np.float)
 labels = np.array([0, 0, 0, 1, 1, 2, 2, 3, 3, 3, 4, 4, 4])
 
-cpn = GroupRepelFeatureTransformer(3, 2)
+grft = GroupRepelFeatureTransformer(3, 2, iteration_count=1000)
 
-cpn.fit([vectors], [labels])
+grft.fit([vectors], [labels])
+
+result = grft.transform(vectors)[0]
+
+print(result)
+
+import matplotlib.pyplot as plt
+c = np.arange(result.shape[0])
+plt.scatter(result[:, 0],result[:, 1], c=c)
+plt.show()

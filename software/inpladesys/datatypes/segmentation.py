@@ -66,10 +66,10 @@ class Segmentation(list):  # TODO
     def document_length(self):
         return self[-1].endOffset
 
-    def positions_to_authors(self, positions):
-        authors = np.empty(len(positions))
+    def offsets_to_authors(self, offsets): #TODO optimize
+        authors = np.empty(len(offsets))
         j = 0
-        for i, p in enumerate(positions):
+        for i, p in enumerate(offsets):
             while not self[j].contains(p):
                 j+=1
             authors[i] = self[j].author

@@ -3,6 +3,7 @@ import tensorflow as tf
 from inpladesys.models.feature_transformation.abstract_feature_transformer import \
     AbstractFeatureTransformer
 from typing import List
+from inpladesys.datatypes import Dataset
 
 
 class GroupRepelFeatureTransformer(AbstractFeatureTransformer):
@@ -25,8 +26,10 @@ class GroupRepelFeatureTransformer(AbstractFeatureTransformer):
     def fit(self, X: List[np.ndarray], G: List[np.ndarray]):
         with self.graph.as_default():
             self.sess.run(tf.global_variables_initializer())
+            ds = Dataset(X[:], G[:])
             for i in range(self.iteration_count):
-                for x, labels in zip(X, G):
+                ds.shuffle()
+                for x, labels in ds:
                     fetches = [self.train_step_nd, self.loss_nd, self.y]
                     feed_dict = {self.x: x, self.labels: labels}
                     _, cost, y = self.sess.run(fetches, feed_dict)
@@ -35,9 +38,9 @@ class GroupRepelFeatureTransformer(AbstractFeatureTransformer):
                         print(y)
 
     def transform(self, X: List[np.ndarray]) -> List[np.ndarray]:
-        if X is not list:
-            return self.sess.run([self.y], {self.x: X})
         with self.graph.as_default():
+            if X is not list:
+                return self.sess.run([self.y], {self.x: X})
             return [self.sess.run([self.y], {self.x: x}) for x in X]
 
     def _build_graph(self, x_dim, y_dim, nonlinear_layer_count):
@@ -49,16 +52,14 @@ class GroupRepelFeatureTransformer(AbstractFeatureTransformer):
             return tf.Variable(tf.truncated_normal([size], 0, 0.1))
 
         def transform(x):
+            nlc = nonlinear_layer_count
             w = [fc(x_dim, 2 * x_dim)]
-            w += [
-                fc(2 * x_dim, 2 * x_dim)
-                for i in range(nonlinear_layer_count - 1)
-            ]
+            w += [fc(2 * x_dim, 2 * x_dim) for i in range(nlc - 1)]
             b = [bias(2 * x_dim)]
-            b += [bias(2 * x_dim) for i in range(nonlinear_layer_count - 1)]
+            b += [bias(2 * x_dim) for i in range(nlc - 1)]
             for i in range(len(w)):
                 x = tf.nn.tanh(tf.matmul(x, w[i]) + b[i])
-            prevdim = 2 * x_dim if nonlinear_layer_count > 0 else x_dim
+            prevdim = 2 * x_dim if nlc > 0 else x_dim
             x = tf.matmul(x, fc(prevdim, y_dim))
             return x
 
@@ -89,16 +90,17 @@ class GroupRepelFeatureTransformer(AbstractFeatureTransformer):
             return tf.while_loop(
                 lambda i, e: tf.less(i, centroid_count),
                 lambda i, e: (i + 1, e + loss(i)),
-                [tf.constant(0), tf.constant(.0)], )[1]
+                [tf.constant(0), tf.constant(.0)])[1]
 
         def get_outer_loss(centroids):
             def get_energy(i):  # TODO: optimize - halve the calculations
                 others = tf.concat(
                     [centroids[:i, :], centroids[i + 1:, :]], axis=0)
                 diffs = others - centroids[i, :]
-                distances = tf.sqrt(tf.reduce_sum(diffs**2, axis=1))
-                # return tf.reduce_mean(1 / distances)
-                return tf.max(1e8, tf.reduce_mean(1 / distances))
+                distances = tf.reduce_sum(diffs**2, axis=1)
+                return tf.reduce_mean(1/distances)
+                #distances = tf.sqrt(tf.reduce_sum(diffs**2, axis=1))
+                #return tf.reduce_mean(1 / distances)
 
             return tf.while_loop(
                 lambda i, e: tf.less(i, centroid_count),
@@ -120,7 +122,7 @@ class GroupRepelFeatureTransformer(AbstractFeatureTransformer):
         outer_loss = get_outer_loss(centroids)
 
         loss = inner_loss + outer_loss
-        optimizer = tf.train.RMSPropOptimizer(5e-5, decay=0.9)
+        optimizer = tf.train.RMSPropOptimizer(3e-4, decay=0.9)
         train_step = optimizer.minimize(loss)
 
         # Variables for evaluation
@@ -130,7 +132,7 @@ class GroupRepelFeatureTransformer(AbstractFeatureTransformer):
         self.centroids = centroids
 
 
-if __name__ == "__main__":
+"""if __name__ == "__main__":
     vectors = np.array(
         [[-1, 1, 1],
          [-1, 1, 1],
@@ -148,6 +150,12 @@ if __name__ == "__main__":
         dtype=np.float)
     labels = np.array([0, 0, 0, 1, 1, 2, 2, 3, 3, 3, 4, 4, 4])
 
-    cpn = GroupRepelFeatureTransformer(3, 2)
+    cpn = GroupRepelFeatureTransformer(3, 2, iteration_count=100)
 
-    cpn.fit([vectors], [labels])
+    result = cpn.fit([vectors], [labels])
+
+    print(result[:, 0], result[:, 1])
+
+    import matplotlib.pyplot as plt
+    plt.scatter(result[:, 0], result[:, 1])
+    plt.show()"""
