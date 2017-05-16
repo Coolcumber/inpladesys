@@ -1,5 +1,6 @@
 from inpladesys.models.feature_transformation import GroupRepelFeatureTransformer
 import numpy as np
+import tensorflow as tf
 
 vectors = np.array(
     [[-1, 1, 1],
@@ -17,15 +18,16 @@ vectors = np.array(
      [0, -2, 0]], dtype=np.float)
 labels = np.array([0, 0, 0, 1, 1, 2, 2, 3, 3, 3, 4, 4, 4])
 
+
 grft = GroupRepelFeatureTransformer(
-    3, 2, nonlinear_layer_count=2, iteration_count=4000)
-
-grft.fit([vectors], [labels])
-
-result = grft.transform(vectors)[0]
-
-print(result)
-
+    3, 2, nonlinear_layer_count=2, iteration_count=50, reinitialize_on_fit=False)
+ 
 import matplotlib.pyplot as plt
-plt.scatter(result[:, 0], result[:, 1], c=labels)
-plt.show()
+plt.ion()
+
+for i in range(100):
+    grft.fit([vectors], [labels])
+    result = grft.transform(vectors)[0]
+    plt.clf()
+    plt.scatter(result[:, 0], result[:, 1], c=labels)
+    plt.pause(0.05)
