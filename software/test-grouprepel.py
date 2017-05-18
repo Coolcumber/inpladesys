@@ -20,7 +20,7 @@ labels = np.array([0, 0, 0, 1, 1, 2, 2, 3, 3, 3, 4, 4, 4])
 
 
 grft = GroupRepelFeatureTransformer(
-    3, 2, nonlinear_layer_count=2, iteration_count=50, reinitialize_on_fit=False)
+    3, 2, nonlinear_layer_count=1, iteration_count=50, reinitialize_on_fit=False)
  
 import matplotlib.pyplot as plt
 plt.ion()
