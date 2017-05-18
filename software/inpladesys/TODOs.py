@@ -1,6 +1,6 @@
-# TODO allow SimpleFixedAuthorDiarizer to adjust number of authors in BASELINE tests
+# + TODO allow SimpleFixedAuthorDiarizer to adjust number of authors in BASELINE tests
 # TODO implement scorers as parameters for learning pipeline ?
-# TODO implement interfacce for models
+# + TODO implement interfacce for models
 # TODO fix warnings in training
 # TODO add new features (new "iteration"):
 #   - type-token ratio (vocabulary richness)
@@ -8,7 +8,7 @@
 #   - char n-grams of POS tags
 #   - chunks (phrases)
 #   - synonyms ?
-# TODO try other algorithms
+# TODO try other algorithms: DBSCAN, OPTICS, HAC, Spectral, EM
 # TODO add writing of test results to a file
 # TODO experiment with params (what combs ?)
 # TODO solve task a

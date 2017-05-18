@@ -5,7 +5,9 @@ from inpladesys.models.preprocessors.basic_preprocessors import TokenizerPreproc
 from inpladesys.models.basic_feature_extraction.basic_feature_extractor import BasicFeatureExtractor
 from inpladesys.evaluation import *
 from inpladesys.evaluation import get_confusion_matrix
-from inpladesys.models.clustering.k_menans_diarizer import KMeansDiarizer
+from inpladesys.models.clustering.k_means_diarizer import KMeansDiarizer
+from inpladesys.models.clustering.hac_diarizer import AgglomerativeDiarizer
+
 
 
 class LearningPipeline:
@@ -25,9 +27,9 @@ class LearningPipeline:
         start_time = time.time()
 
         preprocessed_docs = []
-        dataset_size = self.dataset.size
+        dataset_size = 6 #self.dataset.size
 
-        for i in range(dataset_size):  #self.dataset.size
+        for i in range(dataset_size):
             document, segmentation = self.dataset[i]
             preprocessed_document = self.document_preprocessor.fit_transform(document)
             self.basic_feature_extractor.fit(document, preprocessed_document)
@@ -46,15 +48,14 @@ class LearningPipeline:
 
             print('Running model..')
             # TODO is it better to use fit and _predict separately ??
-            pred_segmentations = self.model.fit_predict(self.dataset, documents_features, preprocessed_docs)
+            pred_segmentations = self.model.fit_predict(preprocessed_docs, documents_features, self.dataset)
 
             # TODO postprocess model results
-
 
             # TODO evaluate results
             print('Evaluating...')
             results = np.array([0, 0, 0], dtype=np.float64)
-            for i in range(dataset_size):  #self.dataset.size
+            for i in range(dataset_size):
                 truth = self.dataset.segmentations[i]
                 pred = pred_segmentations[i]
 
@@ -62,7 +63,7 @@ class LearningPipeline:
                 bc = BCubedScorer(get_confusion_matrix(truth, pred))
                 results += np.array([bc.recall(), bc.precision(), bc.f1_score()])
 
-            results /= self.dataset.size
+            results /= dataset_size
             print(results)
 
         # TODO write all necessary params to log file
@@ -83,11 +84,11 @@ if True:
 
     params = dict()
     params['dataset'] = dataset
-    params['context_size'] = 140
+    params['context_size'] = 140  # 140 for kmeans
     params['document_preprocessor'] = TokenizerPreprocessor()
     params['basic_feature_extractor'] = BasicFeatureExtractor(features_file_name)
     params['feature_transformer'] = None
-    params['model'] = KMeansDiarizer()
+    params['model'] = AgglomerativeDiarizer() #AgglomerativeDiarizer()  #KMeansDiarizer()
 
     pipeline = LearningPipeline(params)
     pipeline.do_chain()

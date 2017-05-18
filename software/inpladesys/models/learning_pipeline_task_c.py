@@ -5,7 +5,7 @@ from inpladesys.models.preprocessors.basic_preprocessors import TokenizerPreproc
 from inpladesys.models.basic_feature_extraction.basic_feature_extractor import BasicFeatureExtractor
 from inpladesys.evaluation import *
 from inpladesys.evaluation import get_confusion_matrix
-from inpladesys.models.clustering.k_menans_diarizer import KMeansDiarizer
+from inpladesys.models.clustering.k_means_diarizer import KMeansDiarizer
 
 
 class LearningPipeline:
