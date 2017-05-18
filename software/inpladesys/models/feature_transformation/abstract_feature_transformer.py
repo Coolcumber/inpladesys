@@ -21,9 +21,8 @@ class AbstractFeatureTransformer(ABC):  # TODO
         """
         pass
 
-    @abstractmethod
-    def _transform(self, X: np.ndarray) -> np.ndarray:
+    def transform_(self, X: np.ndarray) -> np.ndarray:
         """
          :param X: list of 2D arrays (or lists) containing feature vectors
         """
-        pass
+        return self.transform([X])[0]
