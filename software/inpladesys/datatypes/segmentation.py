@@ -13,7 +13,7 @@ class Segmentation(list):  # TODO
     """
 
     def __init__(self, author_count, segments: List[Segment],
-                 maxRepairableError=0, document_length=-1):
+                 max_repairable_error=0, document_length=-1):
         # segments are sorted by offset index
         self.extend(segments)
         self.sort(key=lambda x: x.offset)
@@ -29,17 +29,17 @@ class Segmentation(list):  # TODO
                                  " Segment {} has length {}.".format(i,
                                                                      s.length)
 
-        possible_error = self.fix_if_possible(maxRepairableError)
+        possible_error = self.fix_if_possible(max_repairable_error)
         assert possible_error is None, \
             "Consecutive segments must not overlap or be disjoint" + \
-            " by more than maxRepairableError={}. Error at segment {}." \
-            .format(maxRepairableError, possible_error) + \
+            " by more than max_repairable_error={}. Error at segment {}." \
+                .format(max_repairable_error, possible_error) + \
             " Context (the segment and its neighbours): " + str(
                 self[possible_error - 1: possible_error + 2])
 
         if document_length != -1:
             assert (abs(document_length - 1 -
-                        self[-1].endOffset) < maxRepairableError)
+                        self[-1].endOffset) < max_repairable_error)
             self[-1].moveEndOffsetTo(document_length - 1)
 
     def fix_if_possible(self, tolerance=0) -> bool:
@@ -66,13 +66,14 @@ class Segmentation(list):  # TODO
     def document_length(self):
         return self[-1].endOffset
 
-    def offsets_to_authors(self, offsets): #TODO optimize
-        authors = np.empty(len(offsets))
+    def offsets_to_authors(self, offsets):  # TODO optimize
+        authors = []
         j = 0
         for i, p in enumerate(offsets):
             while not self[j].contains(p):
-                j+=1
-            authors[i] = self[j].author
+                j += 1
+            authors.append(self[j].author)
+        return np.array(authors)
 
     def __str__(self):
         return "Segmentation(" + str(self) + ")"

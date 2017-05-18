@@ -7,14 +7,15 @@ class Dataset():
     def __init__(self, documents: List[Document], segmentations: List[Segmentation]):
         self.documents = documents
         self.segmentations = segmentations
+        self.rand = random.Random()
 
     def __len__(self):
         return len(self.documents)
 
     def __getitem__(self, key):
         if isinstance(key, slice):
-            return (self.documents[key.start:key.stop:key.step],
-                    self.segmentations[key.start:key.stop:key.step])
+            return Dataset(self.documents[key.start:key.stop:key.step],
+                           self.segmentations[key.start:key.stop:key.step])
         else:  # int
             return self.documents[key], self.segmentations[key]
 
@@ -26,11 +27,9 @@ class Dataset():
         """ Shuffles the data. """
         document_segmentation_pairs = list(
             zip(self.documents, self.segmentations))
-        if order_determining_number < 0:
-            random.shuffle(document_segmentation_pairs)
-        else:
-            random.shuffle(document_segmentation_pairs,
-                           lambda: order_determining_number)
+        if order_determining_number >= 0:
+            self.rand.seed(order_determining_number)
+        self.rand.shuffle(document_segmentation_pairs)
         self.documents[:], self.segmentations[:] = zip(
             *document_segmentation_pairs)
 

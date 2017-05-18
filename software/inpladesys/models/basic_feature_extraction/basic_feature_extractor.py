@@ -6,7 +6,8 @@ import numpy as np
 
 
 class BasicFeatureExtractor(AbstractBasicFeatureExtractor):
-    def __init__(self, context_size=50):
+    def __init__(self, features_file_name, context_size=50):
+        super().__init__(features_file_name)
         self.context_size = context_size
 
     def fit(self, document: Document, preprocessed_document=None):
