@@ -8,10 +8,10 @@ from inpladesys.datatypes import Dataset
 
 class GroupRepelFeatureTransformer(AbstractFeatureTransformer):
     def __init__(self,
-                 input_dimension,
                  output_dimension,
                  reinitialize_on_fit,
-                 nonlinear_layer_count=1,
+                 input_dimension=None,
+                 nonlinear_layer_count=0,
                  nonlinearity=tf.nn.tanh,
                  learning_rate=1e-3,
                  iteration_count=10000,
@@ -24,15 +24,24 @@ class GroupRepelFeatureTransformer(AbstractFeatureTransformer):
         self.x, self.labels, self.y = [None] * 3
         self.train_step_nd, self.loss_nd = [None] * 2
 
-        self.graph = tf.Graph()
-        with self.graph.as_default():
-            self.sess = tf.Session()
-            self._build_graph(input_dimension, output_dimension,
-                              nonlinear_layer_count, nonlinearity,
-                              learning_rate, regularization)
+        def initialize(input_dimension):
+            self.graph = tf.Graph()
+            with self.graph.as_default():
+                self.sess = tf.Session()
+                self._build_graph(input_dimension, output_dimension,
+                                  nonlinear_layer_count, nonlinearity,
+                                  learning_rate, regularization)
+            self._build_graph_if_not_built = lambda x: None
+
+        self._build_graph_if_not_built = lambda input_dim: initialize(input_dim)
+
+        if input_dimension is not None:
+            initialize(input_dimension)
+
         self.verbose = verbose
 
     def fit(self, X: List[np.ndarray], G: List[np.ndarray]):
+        self._build_graph_if_not_built(X[0].shape[1])
         assert (len(X) == len(G))
         with self.graph.as_default():
             if self.reinitialize_on_fit or not self.initialized:
@@ -50,9 +59,7 @@ class GroupRepelFeatureTransformer(AbstractFeatureTransformer):
                     print(cost)
 
     def transform(self, X: List[np.ndarray]) -> List[np.ndarray]:
-        # with self.graph.as_default():
-        #    if X is not list:
-        #        return self.sess.run([self.y], {self.x: X})
+        self._build_graph_if_not_built(X[0].shape[1])
         return [self.sess.run([self.y], {self.x: x})[0] for x in X]
 
     def _build_graph(self, x_dim, y_dim, nonlinear_layer_count, nonlinearity, learning_rate, regularization):
@@ -136,7 +143,7 @@ class GroupRepelFeatureTransformer(AbstractFeatureTransformer):
         centroid_loss = get_centroid_loss(centroids, centroid_count)
         r_loss = sum(tf.reduce_mean(p ** 2) for p in r_params)
 
-        a = 0.5
+        a = 0.8
         group_loss = a * group_loss + 1e-6
         centroid_loss = (1 - a) * centroid_loss + 1e-6
         loss = group_loss + centroid_loss  # + \

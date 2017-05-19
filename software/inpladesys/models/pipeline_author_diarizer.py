@@ -13,7 +13,7 @@ class PipelineAuthorDiarizer(AbstractAuthorDiarizer):
         # TODO: move to bfe constructor
         # self.bfe.context_size = parameters['context_size']
         self.ft = parameters['feature_transformer']
-        self.segmentation_generator = parameters['model']
+        self.clusterer = parameters['clusterer']
         self.cacher = Cacher(cache_dir, dummy=cache_dir is None)
 
     def train(self, dataset: Dataset):
@@ -44,30 +44,25 @@ class PipelineAuthorDiarizer(AbstractAuthorDiarizer):
         preprocessed_docs, document_token_features, document_token_labels = preprocess_training_data()
 
         print("(4/5) Training feature transformer...")
-        basic_feature_count = document_token_features[0].shape[1]
-        self.ft = GroupRepelFeatureTransformer(
-            input_dimension=basic_feature_count,
-            output_dimension=2,
-            reinitialize_on_fit=False,
-            nonlinear_layer_count=0,
-            iteration_count=1,
-            learning_rate=5e-3)
-        x, y = document_token_features[0:1], document_token_labels[0:1]
+        x, y = document_token_features[:], document_token_labels[:]
         self.ft.fit(x, y)
 
-        import matplotlib.pyplot as plt
+        if True:
+            import matplotlib.pyplot as plt
 
-        for i in range(100):
-            self.ft.fit(x, y)
-            h = self.ft.transform(x)[0]
-            plt.clf()
-            hx = h[:, 1]
-            plt.scatter(h[:, 0], h[:, 1], c=y[0])
-            plt.pause(0.05)
+            x1 = x[0:1]
+            y1 = y[0:1]
+            for i in range(100):
+                self.ft.fit(x, y)
+                h = self.ft.transform(x1)[0]
+                plt.clf()
+                hx = h[:, 1]
+                plt.scatter(h[:, 0], h[:, 1], c=y1[0])
+                plt.pause(0.05)
 
-            # h = self.ft.transform(x[0])
-            # plt.scatter(h[:, 0], h[:, 1], c=y[:,0])
-            # plt.show()
+                # h = self.ft.transform(x[0])
+                # plt.scatter(h[:, 0], h[:, 1], c=y[:,0])
+                # plt.show()
 
     def _predict(self, document: Document) -> Segmentation:
         pass  # TODO
