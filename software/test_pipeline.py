@@ -31,6 +31,6 @@ params['clusterer'] = KMeans()
 
 pad = PipelineAuthorDiarizer(params, cache_dir=".pipeline-cache")
 dataset.shuffle(order_determining_number=1337)
-train_data, test_data = dataset.split(0, int(0.7 * dataset.size))
+train_data, test_data = dataset.split(0, 2+0*int(0.7 * dataset.size))
 # train_data, validation_data = train_data.split(0, int(0.7*train_data.size))
 pad.train(train_data)
