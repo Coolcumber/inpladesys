@@ -95,7 +95,7 @@ if True:
     task = 'a'
 
     if task == 'a':
-        print("Loading dataset...")
+        print("Loading dataset for task ", task, "...")
         params['dataset'] = Pan16DatasetLoader(dataset_dirs[0]).load_dataset()
         params['context_size'] = 16
         params['document_preprocessor'] = TokenizerPreprocessor()
@@ -106,7 +106,7 @@ if True:
         params['scorer_class_2'] = MacroScorer
 
     elif task == 'b':
-        print("Loading dataset...")
+        print("Loading dataset for task ", task, "...")
         params['dataset'] = Pan16DatasetLoader(dataset_dirs[1]).load_dataset()
         params['context_size'] = 140  # 140 for kmeans
         params['document_preprocessor'] = TokenizerPreprocessor()
@@ -117,7 +117,7 @@ if True:
         params['scorer_class_2'] = None
 
     elif task == 'c':
-        print("Loading dataset...")
+        print("Loading dataset for task ", task, "...")
         params['dataset'] = Pan16DatasetLoader(dataset_dirs[2]).load_dataset()
         params['context_size'] = 100
         params['document_preprocessor'] = TokenizerPreprocessor()

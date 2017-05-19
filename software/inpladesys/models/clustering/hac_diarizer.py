@@ -5,6 +5,8 @@ from inpladesys.datatypes import *
 from sklearn import preprocessing
 from sklearn.cluster import AgglomerativeClustering
 import time
+from inpladesys.models.misc.misc import generate_segmentation
+
 
 class AgglomerativeDiarizer(AbstractDiarizer):
 
@@ -13,7 +15,7 @@ class AgglomerativeDiarizer(AbstractDiarizer):
 
         assert len(documents_features) == len(preprocessed_documents)
 
-        segmentations = []
+        document_label_lists = []
 
         for i in range(len(documents_features)):
             start_time = time.time()
@@ -37,19 +39,9 @@ class AgglomerativeDiarizer(AbstractDiarizer):
                                                linkage='average')
 
             labels = diarizer.fit_predict(x_scaled)
-
-            segments = []
-
-            for k in range(doc_features.shape[0]):
-                author = labels[k]
-                prep_token = preprocessed_doc_tokens[k]
-                offset = prep_token[1]
-                length = prep_token[2] - prep_token[1]
-                segments.append(Segment(offset=offset, length=length, author=author))
-
-            segmentations.append(
-                Segmentation(num_authors, segments, max_repairable_error=60, document_length=len(dataset.documents[i])))
+            document_label_lists.append(labels)
 
             print('Document', i+1, '/', len(documents_features), 'in', time.time()-start_time, 's')
 
-        return segmentations
+        return generate_segmentation(preprocessed_documents, documents_features,
+                                     document_label_lists, dataset.documents)
