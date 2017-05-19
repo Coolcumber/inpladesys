@@ -13,7 +13,15 @@ class Cacher:
         if not os.path.exists(dir):
             os.makedirs(dir)
         self._files = set(path.splitext(file)[0] for file in os.listdir(dir))
-        pass
+
+    @staticmethod
+    def dummy():
+        return Cacher(dir=None, dummy=True)
+
+    def clear(self):
+        for f in self._files:
+            os.remove(f)
+        self._files = set()
 
     def _open(self, name, mode):
         return open(path.join(self._dir, name + ".p"), mode)
