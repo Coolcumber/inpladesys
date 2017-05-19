@@ -17,9 +17,9 @@ class AbstractAuthorDiarizer(ABC):  # TODO
     def train(self, dataset: Dataset):
         self.fit(dataset.documents, dataset.segmentations)
     
-    @abstractmethod
-    def _predict(self, document: Document) -> Segmentation:
-        pass
+    #@abstractmethod
+    #def _predict(self, document: Document) -> Segmentation:
+    #    pass
 
     def fit_predict(self, dataset: Dataset, documents_features: List[np.ndarray],
                     preprocessed_documents: List[tuple]=None) -> List[Segmentation]:
