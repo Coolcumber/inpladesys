@@ -29,7 +29,7 @@ class LearningPipeline:
         start_time = time.time()
 
         preprocessed_docs = []
-        dataset_size = self.dataset.size
+        dataset_size = 10 #self.dataset.size
 
         for i in range(dataset_size):
             document, segmentation = self.dataset[i]
