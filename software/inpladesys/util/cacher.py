@@ -57,10 +57,10 @@ if __name__ == "__main__":
     print(c["a"])
 
 
-    @c.cache()
+    @c()
     def test():
         import time
-        return time.ctime(), "kupus"
+        return time.ctime(), "foo"
 
 
     print(test())
