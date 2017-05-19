@@ -24,27 +24,32 @@ class PipelineAuthorDiarizer(AbstractAuthorDiarizer):
         preprocessed_corpus = self.preprocessor.fit_transform(corpus)
         self.bfe.fit(corpus, preprocessed_corpus)
 
-        @self.cacher.cache()
-        def preprocess_training_data():
-            preprocessed_docs = []
-            document_token_features = []  # [document index][token index]
-            document_token_labels = []
+        @self.cacher("preprocessed-training-datapoints")
+        def get_preprocessed_data(documents):
+            documents_tokens = []
+            documents_tokens_features = []  # [document index][token index]
             for i in range(dataset.size):
-                doc = docs[i]
-                prepr_doc = self.preprocessor.fit_transform(docs[i])
-                preprocessed_docs.append(prepr_doc)
-                document_token_features.append(
-                    preprocessing.scale(self.bfe.transform(doc, prepr_doc)))
-                o2a = segmentations[i].offsets_to_authors
-                document_token_labels.append(o2a(t[1] for t in prepr_doc))
+                doc = documents[i]
+                tokens = self.preprocessor.fit_transform(docs[i])
+                documents_tokens.append(tokens)
+                documents_tokens_features.append(
+                    preprocessing.scale(self.bfe.transform(doc, tokens)))
                 print('Document {}/{}'.format(i + 1, dataset.size))
-            return preprocessed_docs, document_token_features, document_token_labels
+            return documents_tokens, documents_tokens_features
 
-        print("(2/5) Preprocessing training data...")
-        preprocessed_docs, document_token_features, document_token_labels = preprocess_training_data()
+        @self.cacher("preprocessed-training-labels")
+        def get_document_token_labels(documents_tokens, segmentations):
+            o2a = lambda i, offset: segmentations[i].offsets_to_authors(offset)
+            return [o2a(i, (t[1] for t in tokens)) for i, tokens in enumerate(documents_tokens)]
+
+        print("(2/5) Preprocessing training data: basic features...")
+        documents_tokens, documents_tokens_features = get_preprocessed_data(docs)
+
+        print("(3/5) Preprocessing training data: labels...")
+        document_token_labels = get_document_token_labels(documents_tokens, segmentations)
 
         print("(4/5) Training feature transformer...")
-        x, y = document_token_features[:], document_token_labels[:]
+        x, y = documents_tokens_features[:], document_token_labels[:]
         self.ft.fit(x, y)
 
         if True:

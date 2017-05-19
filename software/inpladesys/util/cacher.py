@@ -27,16 +27,26 @@ class Cacher:
     def __setitem__(self, key, value):
         pickle.dump(value, self._open(key, 'wb'))
 
-    def cache(self):
+    def __call__(self, name=None):
+        """
+        :param name: name of the file to store the result in - set to function name if not stated
+        """
         def decorator(func):
+            nonlocal name
+            if name is None:
+                name = func.__name__
             if self._dummy:
-                return lambda: value
-            elif func.__name__ in self:
-                return lambda: self[func.__name__]
+                return func
+            elif name in self:
+                def wrapper(*args, **kwargs):
+                    return self[name]
+                return wrapper
             else:
-                value = func()
-                self[func.__name__] = value
-                return lambda: value
+                def wrapper(*args, **kwargs):
+                    value = func(*args, **kwargs)
+                    self[name] = value
+                    return value
+                return wrapper
         return decorator
 
 
@@ -46,9 +56,11 @@ if __name__ == "__main__":
     c["b"] = [i ** 2 for i in range(5)]
     print(c["a"])
 
-    @c.cache()
+
+    @c()
     def test():
         import time
-        return time.ctime(), "kupus"
+        return time.ctime(), "foo"
+
 
     print(test())
