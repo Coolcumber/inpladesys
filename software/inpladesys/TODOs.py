@@ -9,6 +9,8 @@
 #   + char n-grams of POS tags
 #   - chunks (phrases)
 #   - synonyms ?
+#   - lexical density: the ratio of content words to grammatical words
+#   - LSA/LSI/word2vec udaljenosti trenutnog tokena od ostalih u windowu
 # TODO try other algorithms: DBSCAN, OPTICS, HAC, Spectral, EM
 # TODO add writing of test results to a file
 # TODO experiment with params (what combs ?)

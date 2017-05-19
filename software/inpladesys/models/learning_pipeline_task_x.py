@@ -7,7 +7,7 @@ from inpladesys.evaluation import *
 from inpladesys.evaluation import get_confusion_matrix
 from inpladesys.models.clustering.k_means_diarizer import KMeansDiarizer
 from inpladesys.models.clustering.hac_diarizer import AgglomerativeDiarizer
-
+from inpladesys.models.clustering.dbscan_diarizer import DBSCANDiarizer
 
 
 class LearningPipeline:
@@ -29,7 +29,7 @@ class LearningPipeline:
         start_time = time.time()
 
         preprocessed_docs = []
-        dataset_size = 10 #self.dataset.size
+        dataset_size = 1 #self.dataset.size
 
         for i in range(dataset_size):
             document, segmentation = self.dataset[i]
@@ -92,7 +92,7 @@ if True:
     params = dict()
 
     # Change the task here
-    task = 'a'
+    task = 'c'
 
     if task == 'a':
         print("Loading dataset for task ", task, "...")
@@ -119,11 +119,11 @@ if True:
     elif task == 'c':
         print("Loading dataset for task ", task, "...")
         params['dataset'] = Pan16DatasetLoader(dataset_dirs[2]).load_dataset()
-        params['context_size'] = 100
+        params['context_size'] = 140
         params['document_preprocessor'] = TokenizerPreprocessor()
         params['basic_feature_extractor'] = BasicFeatureExtractor(features_file_name)
         params['feature_transformer'] = None
-        params['model'] = AgglomerativeDiarizer()  # AgglomerativeDiarizer()  #KMeansDiarizer()
+        params['model'] = DBSCANDiarizer()  # AgglomerativeDiarizer()  #KMeansDiarizer()
         params['scorer_class_1'] = BCubedScorer
         params['scorer_class_2'] = None
 
