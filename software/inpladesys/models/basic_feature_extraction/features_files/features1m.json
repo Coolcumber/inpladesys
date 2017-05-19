@@ -54,6 +54,24 @@
       "class_name":"POSTagCountExtractor",
       "params": {},
       "module_name":"inpladesys.models.basic_feature_extraction.features.simple.pos_tags"
+    },
+    {
+      "used":1,
+      "id":6,
+      "class_name":"TypeTokenRatioExtractor",
+      "params": {
+        "token_pattern":"(?u)\\b\\w+\\b"},
+      "module_name":"inpladesys.models.basic_feature_extraction.features.simple.type_token_ratio"
+    },
+    {
+      "used":0,
+      "id":7,
+      "class_name":"CharNGramsOfPOSTagsExtractor",
+      "params": {
+        "min_ngram_range":3,
+        "max_ngram_range":3
+      },
+      "module_name":"inpladesys.models.basic_feature_extraction.features.simple.pos_tag_char_ngrams"
     }
   ]
 }
