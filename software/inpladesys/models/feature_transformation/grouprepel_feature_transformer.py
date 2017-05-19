@@ -10,11 +10,13 @@ class GroupRepelFeatureTransformer(AbstractFeatureTransformer):
     def __init__(self,
                  input_dimension,
                  output_dimension,
+                 reinitialize_on_fit,
                  nonlinear_layer_count=1,
                  nonlinearity=tf.nn.tanh,
+                 learning_rate=1e-3,
                  iteration_count=10000,
                  regularization=1,
-                 reinitialize_on_fit=True):
+                 verbose=False):
         self.iteration_count = iteration_count
         self.reinitialize_on_fit = reinitialize_on_fit
         self.initialized = False
@@ -26,9 +28,12 @@ class GroupRepelFeatureTransformer(AbstractFeatureTransformer):
         with self.graph.as_default():
             self.sess = tf.Session()
             self._build_graph(input_dimension, output_dimension,
-                              nonlinear_layer_count, nonlinearity, regularization)
+                              nonlinear_layer_count, nonlinearity,
+                              learning_rate, regularization)
+        self.verbose = verbose
 
     def fit(self, X: List[np.ndarray], G: List[np.ndarray]):
+        assert (len(X) == len(G))
         with self.graph.as_default():
             if self.reinitialize_on_fit or not self.initialized:
                 self.sess.run(tf.global_variables_initializer())
@@ -40,17 +45,17 @@ class GroupRepelFeatureTransformer(AbstractFeatureTransformer):
                     fetches = [self.train_step_nd, self.loss_nd, self.y]
                     feed_dict = {self.x: x, self.labels: labels}
                     _, cost, y = self.sess.run(fetches, feed_dict)
-                    if i % 100 == 9:
+                    if self.verbose and i % 100 == 9:
                         print(cost)
-                        print(y)
+                    print(cost)
 
     def transform(self, X: List[np.ndarray]) -> List[np.ndarray]:
-        with self.graph.as_default():
-            if X is not list:
-                return self.sess.run([self.y], {self.x: X})
-            return [self.sess.run([self.y], {self.x: x}) for x in X]
+        # with self.graph.as_default():
+        #    if X is not list:
+        #        return self.sess.run([self.y], {self.x: X})
+        return [self.sess.run([self.y], {self.x: x})[0] for x in X]
 
-    def _build_graph(self, x_dim, y_dim, nonlinear_layer_count, nonlinearity, regularization):
+    def _build_graph(self, x_dim, y_dim, nonlinear_layer_count, nonlinearity, learning_rate, regularization):
         def fc(in_size: int, out_size: int):
             w = tf.Variable(tf.truncated_normal([in_size, out_size], 0, 0.1))
             r_params.append(w)
@@ -96,6 +101,7 @@ class GroupRepelFeatureTransformer(AbstractFeatureTransformer):
         def get_centroids(y, labels, centroid_count):
             def centroid(i):
                 return tf.reshape(tf.reduce_mean(extract_group(y, labels, i), axis=0), [1, y_dim])
+
             return fori(1, centroid_count,
                         lambda i, c: tf.concat([c, centroid(i)], axis=0),
                         centroid(0), tf.TensorShape([None, y_dim]))
@@ -103,13 +109,15 @@ class GroupRepelFeatureTransformer(AbstractFeatureTransformer):
         def get_group_loss(y, labels, centroids, centroid_count):
             def loss(i):
                 group = extract_group(y, labels, i)
-                return tf.reduce_mean((group - centroids[i])**2)
+                return tf.reduce_mean((group - centroids[i]) ** 2)
+
             return fori(0, centroid_count, lambda i, e: e + loss(i), tf.constant(.0))
 
         def get_centroid_loss(centroids, centroid_count):
             def get_part(i):
                 diffs = centroids[i + 1:, :] - centroids[i, :]
-                return tf.reduce_sum(1 / tf.reduce_sum(diffs**2, axis=1))
+                return tf.reduce_sum(1 / tf.reduce_sum(diffs ** 2, axis=1))
+
             n = tf.cast(centroid_count, tf.float32)
             return fori(0, centroid_count - 1, lambda i, e: e + get_part(i), tf.constant(.0)) / n
 
@@ -126,16 +134,16 @@ class GroupRepelFeatureTransformer(AbstractFeatureTransformer):
 
         group_loss = get_group_loss(y, labels, centroids, centroid_count)
         centroid_loss = get_centroid_loss(centroids, centroid_count)
-        r_loss = sum(tf.reduce_mean(p**2) for p in r_params)
+        r_loss = sum(tf.reduce_mean(p ** 2) for p in r_params)
 
         a = 0.5
-        group_loss = a * group_loss  + 1e-6
+        group_loss = a * group_loss + 1e-6
         centroid_loss = (1 - a) * centroid_loss + 1e-6
         loss = group_loss + centroid_loss  # + \
-        #0.2 * tf.reduce_mean(tf.reduce_sum(centroids**2, axis=1)) + r_loss
-        #loss = 1/(1/group_loss + 1/centroid_loss)
+        # 0.2 * tf.reduce_mean(tf.reduce_sum(centroids**2, axis=1)) + r_loss
+        # loss = 1/(1/group_loss + 1/centroid_loss)
 
-        optimizer = tf.train.RMSPropOptimizer(3e-4, decay=0.9)
+        optimizer = tf.train.RMSPropOptimizer(learning_rate=learning_rate, decay=0.9)
         train_step = optimizer.minimize(loss)
 
         # Variables for evaluation

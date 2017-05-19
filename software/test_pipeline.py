@@ -2,7 +2,7 @@ from inpladesys.datasets import Pan16DatasetLoader
 from inpladesys.models.preprocessors.basic_preprocessors import TokenizerPreprocessor
 from inpladesys.models.basic_feature_extraction.basic_feature_extractor import BasicFeatureExtractor
 from inpladesys.models.pipeline_author_diarizer import PipelineAuthorDiarizer
-import numpy as np
+from  inpladesys.util.cacher import Cacher
 
 dataset_dirs = [
     "../data/pan16-author-diarization-training-dataset-problem-a-2016-02-16",
@@ -19,11 +19,11 @@ params = dict()
 # params['dataset'] = dataset
 # params['context_size'] = 100
 params['document_preprocessor'] = TokenizerPreprocessor()
-params['basic_feature_extractor'] = BasicFeatureExtractor(features_file_name, context_size=50)
+params['basic_feature_extractor'] = BasicFeatureExtractor(features_file_name, context_size=30)
 params['feature_transformer'] = None
 # params['model'] = KMeansDiarizer()
 params['model'] = None
-pad = PipelineAuthorDiarizer(params)
+pad = PipelineAuthorDiarizer(params, cache_dir=".pipeline-cache")
 dataset.shuffle(order_determining_number=1337)
-dataset = dataset[0:10]
+dataset = dataset[0:2]
 pad.train(dataset)
