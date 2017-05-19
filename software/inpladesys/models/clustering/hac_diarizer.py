@@ -48,7 +48,7 @@ class AgglomerativeDiarizer(AbstractDiarizer):
                 segments.append(Segment(offset=offset, length=length, author=author))
 
             segmentations.append(
-                Segmentation(num_authors, segments, maxRepairableError=60, document_length=len(dataset.documents[i])))
+                Segmentation(num_authors, segments, max_repairable_error=60, document_length=len(dataset.documents[i])))
 
             print('Document', i+1, '/', len(documents_features), 'in', time.time()-start_time, 's')
 

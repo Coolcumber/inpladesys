@@ -52,7 +52,7 @@ class KMeansDiarizer(AbstractDiarizer):
                 length = prep_token[2] - prep_token[1]
                 segments.append(Segment(offset=offset, length=length, author=author))
 
-            segmentations.append(Segmentation(num_authors, segments, maxRepairableError=60, document_length=len(dataset.documents[i])))
+            segmentations.append(Segmentation(num_authors, segments, max_repairable_error=60, document_length=len(dataset.documents[i])))
 
         return segmentations
 
