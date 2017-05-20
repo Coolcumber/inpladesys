@@ -3,6 +3,7 @@ from abc import abstractmethod
 from typing import List
 import numpy as np
 from inpladesys.datatypes import *
+from inpladesys.models.model_selection.abstract_model_selector import AbstractModelSelector
 
 
 class AbstractDiarizer(ABC):
@@ -10,7 +11,7 @@ class AbstractDiarizer(ABC):
     @abstractmethod
     def fit_predict(self, preprocessed_documents: List[List[tuple]],
                     documents_features: List[np.ndarray],
-                    dataset: Dataset) -> List[Segmentation]:
+                    dataset: Dataset, hyperparams=None) -> List[Segmentation]:
         """
         sklearn compatible fit_predict method. Override for model implementation.
         :param preprocessed_documents: List of lists of tuples. Each list of tuples represents
@@ -21,3 +22,7 @@ class AbstractDiarizer(ABC):
         :return: List of Segmentations obtained by the implemented model
         """
         raise NotImplementedError
+
+    @abstractmethod
+    def get_model_selector(self) -> AbstractModelSelector:
+        return None

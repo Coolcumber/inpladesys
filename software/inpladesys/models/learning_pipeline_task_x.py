@@ -8,6 +8,7 @@ from inpladesys.evaluation import get_confusion_matrix
 from inpladesys.models.clustering.k_means_diarizer import KMeansDiarizer
 from inpladesys.models.clustering.hac_diarizer import AgglomerativeDiarizer
 from inpladesys.models.clustering.dbscan_diarizer import DBSCANDiarizer
+from inpladesys.models.misc.misc import custom_train_test_split
 
 
 class LearningPipeline:
@@ -29,7 +30,7 @@ class LearningPipeline:
         start_time = time.time()
 
         preprocessed_docs = []
-        dataset_size = 1 #self.dataset.size
+        dataset_size = self.dataset.size
 
         for i in range(dataset_size):
             document, segmentation = self.dataset[i]
@@ -48,9 +49,22 @@ class LearningPipeline:
 
         if True:
 
+            print('Selecting model...')
+            model_selector = self.model.get_model_selector()
+
+            prep_docs_train, prep_docs_test, \
+                doc_features_train, doc_features_test, \
+                author_counts_train, author_counts_test, \
+                dataset_train, dataset_test = custom_train_test_split(preprocessed_docs, documents_features, self.dataset,
+                                                                      train_size=0.1, random_state=7)
+
+            optimal_hyperparams = model_selector.select_model(prep_docs_train, doc_features_train,
+                                                              dataset_train.documents, dataset_train.segmentations)
+
             print('Running model..')
             # TODO is it better to use fit and _predict separately ??
-            pred_segmentations = self.model.fit_predict(preprocessed_docs, documents_features, self.dataset)
+            pred_segmentations = self.model.fit_predict(prep_docs_test, doc_features_test,
+                                                        dataset_test, optimal_hyperparams)
 
             # TODO postprocess model results
 
@@ -59,8 +73,8 @@ class LearningPipeline:
             results_1 = np.array([0, 0, 0], dtype=np.float64)
             results_2 = np.array([0, 0, 0], dtype=np.float64)
 
-            for i in range(dataset_size):
-                truth = self.dataset.segmentations[i]
+            for i in range(len(pred_segmentations)):
+                truth = dataset_test.segmentations[i]
                 pred = pred_segmentations[i]
 
                 scorer_1 = self.scorer_1(get_confusion_matrix(truth, pred))

@@ -44,10 +44,13 @@ def custom_train_test_split(preprocessed_documents: List[List[tuple]], documents
     author_counts_train = [dataset.segmentations[i].author_count for i in i_train]
     author_counts_test = [dataset.segmentations[i].author_count for i in i_test]
 
-    documents_train = [dataset.documents[i] for i in i_train]
-    documents_test = [dataset.documents[i] for i in i_test]
+    dataset_train = Dataset([dataset.documents[i] for i in i_train],
+                            [dataset.segmentations[i] for i in i_train])
+
+    dataset_test = Dataset([dataset.documents[i] for i in i_test],
+                           [dataset.segmentations[i] for i in i_test])
 
     return prep_docs_train, prep_docs_test, \
-           doc_features_train, doc_features_test, \
-           author_counts_train, author_counts_test, \
-           documents_train, documents_test
+        doc_features_train, doc_features_test, \
+        author_counts_train, author_counts_test, \
+        dataset_train, dataset_test
