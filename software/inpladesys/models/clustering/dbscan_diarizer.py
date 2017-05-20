@@ -1,5 +1,5 @@
 from inpladesys.models.abstract_diarizer import AbstractDiarizer
-from inpladesys.models.misc.misc import generate_segmentation
+from inpladesys.models.misc.misc import generate_segmentation, find_cluster_for_noisy_samples
 from sklearn.preprocessing import StandardScaler
 from inpladesys.models.model_selection.abstract_model_selector import AbstractModelSelector
 from inpladesys.models.model_selection.DBSCAN_model_selector import DBSCANModelSelector
@@ -7,6 +7,7 @@ from typing import List
 import numpy as np
 from inpladesys.datatypes import *
 from sklearn import preprocessing
+from scipy.sparse import issparse
 from sklearn.cluster import DBSCAN
 import time
 
@@ -34,27 +35,19 @@ class DBSCANDiarizer(AbstractDiarizer):
             # lsa = make_pipeline(svd, normalizer)
             # x_scaled = lsa.fit_transform(doc_features)
 
-            x_scaled = StandardScaler().fit_transform(doc_features)  #preprocessing.scale(doc_features, axis=0)
+            x_scaled = StandardScaler(with_mean=not issparse(doc_features)).fit_transform(doc_features)  #preprocessing.scale(doc_features, axis=0)
             # x_scaled = doc_features
 
             diarizer = DBSCAN(eps=hyperparams['eps'],
                               min_samples=hyperparams['min_samples'],
                               metric=hyperparams['metric'],
-                              algorithm='auto',  # The algorithm to be used by the NearestNeighbors module to compute pointwise distances and find nearest neighbors.
-                              leaf_size=30)  # Leaf size passed to BallTree or cKDTree.
+                              algorithm='brute')  # The algorithm to be used by the NearestNeighbors module to compute pointwise distances and find nearest neighbors.
+
 
             labels = diarizer.fit_predict(x_scaled)
-            predicted_label_lists.append(labels)
-
             estimated_n_clusters = len(set(labels)) - (1 if -1 in labels else 0)
-
-            # TODO what with this ?
-            noisy = 0
-            non_clustered_label = max(labels) + 1
-            for l in range(len(labels)):
-                if labels[l] == -1:
-                    labels[l] = non_clustered_label
-                    noisy += 1
+            noisy = find_cluster_for_noisy_samples(labels)
+            predicted_label_lists.append(labels)
 
             print('Document', i+1, '/', len(documents_features), 'in', time.time()-start_time, 's',)
             print('Real author count = {}, estimated = {}, noisy = '.format(true_n_clusters,
@@ -66,8 +59,12 @@ class DBSCANDiarizer(AbstractDiarizer):
 
     def get_model_selector(self) -> AbstractModelSelector:
         hyperparams = {
-            'eps': [i for i in range(4, 6, 0.3)],
-            'min_samples': [i for i in range(1, 10, 1)],
-            'metric': ['euclidean', 'manhattan', 'cosine']
+            'eps': np.arange(4, 6),
+            'min_samples': [i for i in range(1, 2)],
+            'metric': ['euclidean', 'manhattan'] # cosine ?
         }
-        return DBSCANModelSelector(hyperparams=hyperparams, scaler=StandardScaler())
+        return DBSCANModelSelector(hyperparams=hyperparams, scaler=StandardScaler)
+
+
+
+
