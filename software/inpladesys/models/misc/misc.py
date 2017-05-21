@@ -4,6 +4,7 @@ import numpy as np
 from inpladesys.datatypes.dataset import Dataset
 from collections import Counter
 from sklearn.model_selection import train_test_split
+import time
 
 
 def generate_segmentation(preprocessed_documents: List[List[tuple]], documents_features: List[np.ndarray],
@@ -58,20 +59,30 @@ def custom_train_test_split(preprocessed_documents: List[List[tuple]], documents
 
 
 def find_cluster_for_noisy_samples(predicted_labels, context_size=10):
-    noisy = 0
+    start = time.time()
     len_ = len(predicted_labels)
-    for i in range(len_):
-        if predicted_labels[i] == -1:
-            noisy += 1
-            left_diff = i-context_size
-            left = left_diff if left_diff >= 0 else 0
-            right_diff = i+context_size
-            right = right_diff if right_diff < len_ else len_-1
-            counter = Counter(predicted_labels[left:right+1])
-            found, curr = 0, 0
-            while found == 0:
-                if counter.most_common()[curr][0] != -1:
-                    predicted_labels[i] = counter.most_common()[curr][0]
-                    found = 1
-                curr += 1
+    counter = Counter(predicted_labels)
+    noisy = counter[-1]
+    if -1 in counter.keys():
+        if len(counter.most_common()) == 1:
+            predicted_labels[:] = 100
+        else:
+            for i in range(len_):
+                if predicted_labels[i] == -1:
+                    left_diff = i-context_size
+                    left = left_diff if left_diff >= 0 else 0
+                    right_diff = i+context_size
+                    right = right_diff if right_diff < len_ else len_
+                    counter = Counter(predicted_labels[left:right])
+                    if -1 in counter.keys():
+                        if len(counter.most_common()) == 1:
+                            predicted_labels[left:right] = 100
+                        else:
+                            found, curr = 0, 0
+                            while found == 0:
+                                if counter.most_common()[curr][0] != -1:
+                                    predicted_labels[i] = counter.most_common()[curr][0]
+                                    found = 1
+                                curr += 1
+    #print('Noisy labels reclustered in {}'.format(time.time()-start))
     return noisy

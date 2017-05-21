@@ -26,7 +26,7 @@ class DBSCANModelSelector(AbstractModelSelector):
 
                     print('Combination {}/{}'.format(current_comb, total_hyperparams))
                     predicted_label_lists = []
-                    model = DBSCAN(eps=eps, min_samples=min_samples, metric=metric)
+                    model = DBSCAN(eps=eps, min_samples=min_samples, metric=metric, algorithm='brute')
 
                     for i in range(len(x_scaled)):
                         x = x_scaled[i]
