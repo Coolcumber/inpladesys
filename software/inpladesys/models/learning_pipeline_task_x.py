@@ -8,6 +8,8 @@ from inpladesys.evaluation import get_confusion_matrix
 from inpladesys.models.clustering.k_means_diarizer import KMeansDiarizer
 from inpladesys.models.clustering.hac_diarizer import AgglomerativeDiarizer
 from inpladesys.models.clustering.dbscan_diarizer import DBSCANDiarizer
+from inpladesys.models.misc.misc import custom_train_test_split
+from  inpladesys.util.cacher import Cacher
 
 
 class LearningPipeline:
@@ -21,36 +23,59 @@ class LearningPipeline:
         self.model = parameters['model']
         self.scorer_1 = parameters['scorer_class_1']
         self.scorer_2 = parameters['scorer_class_2']
+        self.cacher = parameters['cacher']
+
+        self.dataset_size = self.dataset.size
+
+    def extract_features(self):
+        @self.cacher('doc-features-prep-docs')
+        def extract(self):
+            print('Extracting features...')
+            start_time = time.time()
+
+            documents_features = []
+            preprocessed_docs = []
+
+            for i in range(self.dataset_size):
+                document, segmentation = self.dataset[i]
+                preprocessed_document = self.document_preprocessor.fit_transform(document)
+                self.basic_feature_extractor.fit(document, preprocessed_document)
+                document_features = self.basic_feature_extractor.transform(document, preprocessed_document,
+                                                                           self.context_size)
+                print('Document {}/{}: {}'.format(i + 1, self.dataset_size, document_features.shape))
+
+                # TODO postprocess features (transformations etc.)
+
+                documents_features.append(document_features)
+                preprocessed_docs.append(preprocessed_document)
+
+            print('Extraction time (s): ', time.time() - start_time)
+            return documents_features, preprocessed_docs
+        return extract(self)
 
     def do_chain(self):
-        documents_features = []
-
-        print('Extracting features...')
-        start_time = time.time()
-
-        preprocessed_docs = []
-        dataset_size = 1 #self.dataset.size
-
-        for i in range(dataset_size):
-            document, segmentation = self.dataset[i]
-            preprocessed_document = self.document_preprocessor.fit_transform(document)
-            self.basic_feature_extractor.fit(document, preprocessed_document)
-            document_features = self.basic_feature_extractor.transform(document, preprocessed_document,
-                                                                       self.context_size)
-            print('Document {}/{}: {}'.format(i+1, dataset_size, document_features.shape))
-
-            # TODO postprocess features (transformations etc.)
-
-            documents_features.append(document_features)
-            preprocessed_docs.append(preprocessed_document)
-
-        print('Extraction time (s): ', time.time() - start_time)
+        documents_features, preprocessed_docs = self.extract_features()
 
         if True:
 
+            print('Selecting model...')
+            model_selector = self.model.get_model_selector()
+
+            prep_docs_train, prep_docs_test, \
+                doc_features_train, doc_features_test, \
+                author_counts_train, author_counts_test, \
+                dataset_train, dataset_test = custom_train_test_split(preprocessed_docs, documents_features, self.dataset,
+                                                                      train_size=0.1, random_state=7)
+
+            print('Train set size: {}'.format(len(doc_features_train)))
+
+            optimal_hyperparams = model_selector.select_optimal_hyperparams(prep_docs_train, doc_features_train,
+                                                              dataset_train.documents, dataset_train.segmentations)
+
             print('Running model..')
             # TODO is it better to use fit and _predict separately ??
-            pred_segmentations = self.model.fit_predict(preprocessed_docs, documents_features, self.dataset)
+            pred_segmentations = self.model.fit_predict(prep_docs_test, doc_features_test,
+                                                        dataset_test, optimal_hyperparams)
 
             # TODO postprocess model results
 
@@ -58,9 +83,11 @@ class LearningPipeline:
             print('Evaluating...')
             results_1 = np.array([0, 0, 0], dtype=np.float64)
             results_2 = np.array([0, 0, 0], dtype=np.float64)
+            test_set_size = len(dataset_test)
+            assert test_set_size == len(pred_segmentations)
 
-            for i in range(dataset_size):
-                truth = self.dataset.segmentations[i]
+            for i in range(test_set_size):
+                truth = dataset_test.segmentations[i]
                 pred = pred_segmentations[i]
 
                 scorer_1 = self.scorer_1(get_confusion_matrix(truth, pred))
@@ -70,18 +97,16 @@ class LearningPipeline:
                     scorer_2 = self.scorer_2(get_confusion_matrix(truth, pred))
                     results_2 += np.array([scorer_2.recall(), scorer_2.precision(), scorer_2.f1_score()])
 
-            results_1 /= dataset_size
+            results_1 /= test_set_size
             print(self.scorer_1, ':', results_1)
 
             if self.scorer_2 is not None:
-                results_2 /= dataset_size
+                results_2 /= test_set_size
                 print(self.scorer_2, ':', results_2)
 
         # TODO write all necessary params to log file
 
-
-
-if True:
+if __name__ == "__main__":
     dataset_dirs = [
         "../../../data/pan16-author-diarization-training-dataset-problem-a-2016-02-16",
         "../../../data/pan16-author-diarization-training-dataset-problem-b-2016-02-16",
@@ -104,6 +129,7 @@ if True:
         params['model'] = AgglomerativeDiarizer()  # AgglomerativeDiarizer()  #KMeansDiarizer()
         params['scorer_class_1'] = MicroScorer
         params['scorer_class_2'] = MacroScorer
+        params['cacher'] = Cacher(dir='.cache-task-a')
 
     elif task == 'b':
         print("Loading dataset for task ", task, "...")
@@ -115,6 +141,8 @@ if True:
         params['model'] = AgglomerativeDiarizer() #AgglomerativeDiarizer()  #KMeansDiarizer()
         params['scorer_class_1'] = BCubedScorer
         params['scorer_class_2'] = None
+        params['cacher'] = Cacher(dir='.cache-task-b')
+
 
     elif task == 'c':
         print("Loading dataset for task ", task, "...")
@@ -126,6 +154,7 @@ if True:
         params['model'] = DBSCANDiarizer()  # AgglomerativeDiarizer()  #KMeansDiarizer()
         params['scorer_class_1'] = BCubedScorer
         params['scorer_class_2'] = None
+        params['cacher'] = Cacher(dir='.cache-task-c')
 
     pipeline = LearningPipeline(params)
     pipeline.do_chain()

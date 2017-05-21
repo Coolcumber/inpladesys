@@ -25,7 +25,7 @@ class BasicFeatureExtractor(AbstractBasicFeatureExtractor):
                 feature_extractor.fit(document, preprocessed_document, tokens)
                 self.single_feature_extractors.append(feature_extractor)
 
-    def transform(self, document, preprocessed_document, context_size=None) -> np.ndarray:
+    def transform(self, document, preprocessed_document, context_size=None, use_sparse=False) -> np.ndarray:
         if context_size is None:
             context_size = self.context_size
         swi = TokenBasedSlidingWindowIterator(
@@ -39,6 +39,9 @@ class BasicFeatureExtractor(AbstractBasicFeatureExtractor):
                     feature_extractor.transform(sliding_window))
             # print(feature_vector)
             feature_vector = sparse.hstack(
-                feature_vector, dtype=np.float32).toarray()  # TODO leave data sparse
+                feature_vector, dtype=np.float32).toarray()  # TODO leave data sparse ?
             feature_vectors.append(feature_vector)
-        return np.array(feature_vectors).reshape((len(feature_vectors), feature_vector.shape[1]))
+        array = np.array(feature_vectors).reshape((len(feature_vectors), feature_vector.shape[1]))
+        if use_sparse:
+            return sparse.csr_matrix(array, shape=array.shape)
+        return array
