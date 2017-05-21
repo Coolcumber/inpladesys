@@ -15,7 +15,7 @@ class KMeansDiarizer(AbstractDiarizer):
 
     def fit_predict(self, preprocessed_documents: List[List[tuple]],
                     documents_features: List[np.ndarray],
-                    dataset: Dataset) -> List[Segmentation]:
+                    dataset: Dataset, hyperparams=None) -> List[Segmentation]:
 
         assert len(documents_features) == len(preprocessed_documents)
 
