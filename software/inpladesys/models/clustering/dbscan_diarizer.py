@@ -58,11 +58,19 @@ class DBSCANDiarizer(AbstractDiarizer):
 
     def get_model_selector(self) -> AbstractModelSelector:
         hyperparams = {
-            'eps': np.arange(100, 1100, 100),
-            'min_samples': [i for i in range(1, 100, 10)],
-            'metric': ['euclidean', 'manhattan', 'cosine']
+            'eps': [0.1, 0.12, 0.14, 0.16, 0.18],
+            'min_samples': [62, 63, 64],
+            'metric': ['cosine']
         }
         return DBSCANModelSelector(hyperparams=hyperparams, scaler=StandardScaler)
+
+    def get_optimal_hyperparams(self):
+        return {'eps': 0.23,
+                'min_samples': 64,
+                'metric': 'cosine'}
+
+
+
 
 
 

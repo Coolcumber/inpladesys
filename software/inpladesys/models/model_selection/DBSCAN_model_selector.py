@@ -3,6 +3,7 @@ from inpladesys.models.misc.misc import generate_segmentation, find_cluster_for_
 from sklearn.cluster import DBSCAN
 from inpladesys.evaluation import *
 from scipy.sparse import issparse
+from sklearn import metrics
 import time
 
 
@@ -10,6 +11,7 @@ class DBSCANModelSelector(AbstractModelSelector):
 
     def select_optimal_hyperparams(self, preprocessed_documents, documents_features, documents,
                                    true_segmentations, author_labels=None, author_counts=None):
+
         x_scaled = []
         for doc_features in documents_features:
             x_scaled.append(self.scaler(with_mean=not issparse(doc_features)).fit_transform(doc_features))
@@ -33,15 +35,22 @@ class DBSCANModelSelector(AbstractModelSelector):
                         labels = model.fit_predict(x)
 
                         find_cluster_for_noisy_samples(labels)
-
                         predicted_label_lists.append(labels)
 
                     current_comb += 1
 
-                    predicted_segmentations = generate_segmentation(preprocessed_documents, documents_features,
-                                                         predicted_label_lists, documents)
-
+                    predicted_segmentations = generate_segmentation(preprocessed_documents, documents_features, predicted_label_lists, documents)
                     score = self.get_bcubed_f1(true_segmentations, predicted_segmentations)
+
+                    #score = self.get_silhouette_coeff(x_scaled, predicted_label_lists, metric)
+
+                    #score = self.get_calinski_harabaz_score(x_scaled, predicted_label_lists)
+
+                    #score = (self.get_calinski_harabaz_score(x_scaled, predicted_label_lists) *
+                     #       self.get_silhouette_coeff(x_scaled, predicted_label_lists, metric)) / \
+                      #      self.get_esstimated_n_difference(predicted_label_lists, author_counts)
+
+                    #score = self.get_esstimated_n_difference(predicted_label_lists, author_counts)
 
                     results.append({'eps': eps, 'min_samples': min_samples,
                                     'metric': metric, 'score': score})
@@ -61,6 +70,36 @@ class DBSCANModelSelector(AbstractModelSelector):
             result += BCubedScorer(get_confusion_matrix(truth, pred)).f1_score()
 
         return result / len(true_segmentations)
+
+    def get_silhouette_coeff(self, x_scaled, predicted_labels_lists, metric):
+        score = 0
+        for i in range(len(x_scaled)):
+            if len(set(predicted_labels_lists[i])) == 1:
+                return -2
+            score += metrics.silhouette_score(x_scaled[i], predicted_labels_lists[i], metric)
+        return score / len(x_scaled)
+
+    def get_calinski_harabaz_score(self, x_scaled, predicted_labels_lists):
+        score = 0
+        for i in range(len(x_scaled)):
+            if len(set(predicted_labels_lists[i])) == 1:
+                return -2
+            score += metrics.calinski_harabaz_score(x_scaled[i], predicted_labels_lists[i])
+        return score / len(x_scaled)
+
+    def get_esstimated_n_difference(self, predicted_labels_lists, author_counts):
+        diff = 0.1
+        for i in range(len(predicted_labels_lists)):
+            labels = predicted_labels_lists[i]
+            estimated_n_clusters = len(set(labels)) - (1 if -1 in labels else 0)
+            diff += abs(estimated_n_clusters - author_counts[i])
+        return diff
+
+
+
+
+
+
 
 
 

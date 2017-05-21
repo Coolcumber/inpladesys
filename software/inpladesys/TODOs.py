@@ -3,7 +3,7 @@
 # + TODO implement interfacce for models
 # TODO baseline results which use rand should be evaluated on 50 runs
 # TODO fix warnings in training
-# TODO add new features (new "iteration"):
+# + TODO add new features (new "iteration"):
 #   + type-token ratio (vocabulary richness)
 #   - word n-grams ?
 #   + char n-grams of POS tags

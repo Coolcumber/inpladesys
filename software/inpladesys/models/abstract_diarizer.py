@@ -23,6 +23,8 @@ class AbstractDiarizer(ABC):
         """
         raise NotImplementedError
 
-    @abstractmethod
     def get_model_selector(self) -> AbstractModelSelector:
+        return None
+
+    def get_optimal_hyperparams(self):
         return None
