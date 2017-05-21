@@ -6,7 +6,7 @@ from inpladesys.util.cacher import Cacher
 from sklearn import preprocessing
 
 
-class PipelineAuthorDiarizer(AbstractAuthorDiarizer):
+class PipelineAuthorDiarizer():
     def __init__(self, parameters: dict, cacher=None, random_state=-1):
         self.preprocessor = TokenizerPreprocessor()
         self.bfe = parameters['basic_feature_extractor']
@@ -47,7 +47,7 @@ class PipelineAuthorDiarizer(AbstractAuthorDiarizer):
         x, y = bydoc_features[:], bydoc_labels[:]
         self.feature_transformer.fit(x, y)
 
-        if True:
+        if False:
             import matplotlib.pyplot as plt
             x1 = x[0:1]
             y1 = y[0:1]
