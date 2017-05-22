@@ -52,3 +52,14 @@ class AbstractModelSelector(ABC):
             estimated_n_clusters = len(set(labels)) - (1 if -1 in labels else 0)
             diff += abs(estimated_n_clusters - author_counts[i])
         return diff
+
+    def get_macro_f1(self, true_segmentations, predicted_segmentations):
+        assert len(true_segmentations) == len(predicted_segmentations)
+        result = 0
+
+        for i in range(len(true_segmentations)):
+            truth = true_segmentations[i]
+            pred = predicted_segmentations[i]
+            result += MacroScorer(get_confusion_matrix(truth, pred)).f1_score()
+
+        return result / len(true_segmentations)

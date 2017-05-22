@@ -58,7 +58,7 @@ class DBSCANDiarizer(AbstractDiarizer):
 
     def get_model_selector(self) -> AbstractModelSelector:
         hyperparams = {
-            'eps': [0.1, 0.12, 0.14, 0.16, 0.18],
+            'eps': [0.1, 0.12, 0.14, 0.16, 0.18, 0.23],
             'min_samples': [62, 63, 64],
             'metric': ['cosine']
         }

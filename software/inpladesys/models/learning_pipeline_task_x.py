@@ -10,8 +10,9 @@ from inpladesys.models.clustering.hac_diarizer import AgglomerativeDiarizer
 from inpladesys.models.clustering.dbscan_diarizer import DBSCANDiarizer
 from inpladesys.models.clustering.mean_shift_diarizer import MeanShiftDiarizer
 from inpladesys.models.clustering.affinity_prop_diarizer import AffinityPropDiarizer
+from inpladesys.models.outlier_detection.isolation_forest_diarizer import IsolationForestDiarizer
 from inpladesys.models.misc.misc import custom_train_test_split
-from  inpladesys.util.cacher import Cacher
+from inpladesys.util.cacher import Cacher
 
 
 class LearningPipeline:
@@ -131,16 +132,16 @@ if __name__ == "__main__":
     if task == 'a':
         print("Loading dataset for task ", task, "...")
         params['dataset'] = Pan16DatasetLoader(dataset_dirs[0]).load_dataset()
-        params['context_size'] = 16
+        params['context_size'] = 16  # 16 for AggD
         params['document_preprocessor'] = TokenizerPreprocessor()
         params['basic_feature_extractor'] = BasicFeatureExtractor(features_file_name)
         params['feature_transformer'] = None
-        params['model'] = AgglomerativeDiarizer()  # AgglomerativeDiarizer()  #KMeansDiarizer()
-        params['scorer_class_1'] = MicroScorer
+        params['model'] = AgglomerativeDiarizer() #IsolationForestDiarizer()  # AgglomerativeDiarizer()  #KMeansDiarizer()
+        params['scorer_class_1'] = BCubedScorer
         params['scorer_class_2'] = MacroScorer
         params['cacher'] = Cacher(dir='.cache-task-a')
-        params['select-model'] = False
-        params['train_size'] = 0.1
+        params['select-model'] = True
+        params['train_size'] = 0.5
         params['random_state'] = 9
 
     elif task == 'b':
