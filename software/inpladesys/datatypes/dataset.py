@@ -23,12 +23,12 @@ class Dataset():
     def size(self) -> int:
         return len(self)
 
-    def shuffle(self, order_determining_number: float = -1):
+    def shuffle(self, random_state=None):
         """ Shuffles the data. """
         document_segmentation_pairs = list(
             zip(self.documents, self.segmentations))
-        if order_determining_number >= 0:
-            self.rand.seed(order_determining_number)
+        if random_state is not None:
+            self.rand.seed(random_state)
         self.rand.shuffle(document_segmentation_pairs)
         self.documents[:], self.segmentations[:] = zip(
             *document_segmentation_pairs)

@@ -80,7 +80,7 @@ class SimpleFixedAuthorDiarizer(AbstractAuthorDiarizer):
             start = length + offset
             segments.append(Segment(offset=offset, length=length, author=author))
 
-        return Segmentation(self.author_count, segments, maxRepairableError=60, document_length=len(document)) # TODO:
+        return Segmentation(self.author_count, segments, max_repairable_error=60, document_length=len(document)) # TODO:
 
     def choose_author_count(self, document):
         len_d = len(document)
