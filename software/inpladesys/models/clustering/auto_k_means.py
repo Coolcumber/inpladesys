@@ -1,6 +1,6 @@
 from sklearn.cluster import KMeans
 import numpy as np
-#import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
 
 class AutoKMeans():
     def __init__(self, min_clusters=1, max_clusters=8, tol_sel=1e-3, tol=1e-4, 
@@ -12,7 +12,6 @@ class AutoKMeans():
         self.max_iter_sel, self.max_iter = max_iter_sel, max_iter
         self.verbose = verbose
         self.k_ = 1
-
     
     def fit_predict(self, X):
         ks = np.arange(self.min_clusters, self.max_clusters+1)
@@ -22,7 +21,9 @@ class AutoKMeans():
             km = KMeans(n_clusters=ks[i]).fit(X)
             js[i] = km.inertia_
             labs += [km.labels_]
-        #plt.plot(ks, js)
+        jsks = js*ks
+        #print(jsks)
+        #plt.plot(ks, jsks)
         self.k_ = np.argmin(js*ks)
         if self.verbose: print("The best k is " + str(self.k_) + ".")
         return labs[self.k_]

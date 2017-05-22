@@ -8,6 +8,7 @@ from sklearn import preprocessing
 from sklearn.cluster import KMeans
 from sklearn.feature_extraction.text import CountVectorizer
 from inpladesys.datatypes import Document, Segment, Segmentation, Dataset
+from inpladesys.models.misc import fix_segmentation_labels_for_plagiarism_detection
 from .abstract_author_diarizer import AbstractAuthorDiarizer
 
 
@@ -80,11 +81,14 @@ class SimpleFixedAuthorDiarizer(AbstractAuthorDiarizer):
             start = length + offset
             segments.append(Segment(offset=offset, length=length, author=author))
 
-        return Segmentation(self.author_count, segments, maxRepairableError=60, document_length=len(document)) # TODO:
+        segm = Segmentation(self.author_count, segments, max_repairable_error=60,
+                            document_length=len(document))  # TODO:
+        if self.author_count == 2:
+            fix_segmentation_labels_for_plagiarism_detection(segm)
+        return segm
 
     def choose_author_count(self, document):
         len_d = len(document)
-        self.author_count = int(np.rint(0.0003*len_d))
+        self.author_count = int(np.rint(0.0003 * len_d))
         if self.author_count == 0:
             self.author_count += 1
-

@@ -16,7 +16,8 @@ class GroupRepelFeatureTransformer(AbstractFeatureTransformer):
                  learning_rate=1e-3,
                  iteration_count=10000,
                  regularization=1,
-                 verbose=False):
+                 verbose=False,
+                 random_state=None):
         self.iteration_count = iteration_count
         self.reinitialize_on_fit = reinitialize_on_fit
         self.initialized = False
@@ -27,6 +28,8 @@ class GroupRepelFeatureTransformer(AbstractFeatureTransformer):
         def initialize(input_dimension):
             self.graph = tf.Graph()
             with self.graph.as_default():
+                if random_state is not None:
+                    tf.set_random_seed(random_state)
                 self.sess = tf.Session()
                 self._build_graph(input_dimension, output_dimension,
                                   nonlinear_layer_count, nonlinearity,
@@ -48,15 +51,25 @@ class GroupRepelFeatureTransformer(AbstractFeatureTransformer):
                 self.sess.run(tf.global_variables_initializer())
                 self.initialized = True
             ds = Dataset(X[:], G[:])
+            ravg_cost = 0.0;
+            a = 10
             for i in range(self.iteration_count):
                 ds.shuffle()
+                costs = []
                 for x, labels in ds:
                     fetches = [self.train_step_nd, self.loss_nd, self.y]
                     feed_dict = {self.x: x, self.labels: labels}
                     _, cost, y = self.sess.run(fetches, feed_dict)
-                    if self.verbose and i % 100 == 9:
+                    costs.append(cost)
+                    if self.verbose:
                         print(cost)
-                    print(cost)
+                cavg_cost = np.average(costs)
+                if i == 0:
+                    ravg_cost = cavg_cost
+                else:
+                    ravg_cost = (a - 1) / a * ravg_cost + 1 / a * cavg_cost
+                print("\r{}/{}, ~error: {:.3f} ({:.3f})".format(i + 1, self.iteration_count, ravg_cost, cavg_cost), end='')
+            print('')
 
     def transform(self, X: List[np.ndarray]) -> List[np.ndarray]:
         self._build_graph_if_not_built(X[0].shape[1])
