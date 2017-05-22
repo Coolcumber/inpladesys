@@ -2,7 +2,7 @@ from inpladesys.models.abstract_diarizer import AbstractDiarizer
 from inpladesys.models.misc.misc import generate_segmentation
 from inpladesys.datatypes import Dataset, Segmentation
 from sklearn.preprocessing import StandardScaler
-from sklearn.cluster import MeanShift
+from sklearn.cluster import MeanShift, estimate_bandwidth
 from typing import List
 import numpy as np
 import time
@@ -15,22 +15,22 @@ class MeanShiftDiarizer(AbstractDiarizer):
 
         assert len(documents_features) == len(preprocessed_documents)
 
-        x_scaled = []
-        for doc_features in documents_features:
-            x_scaled.append(StandardScaler().fit_transform(doc_features))
+        # scaling didn't help ??
 
         predicted_label_lists = []
 
-        for i in range(len(x_scaled)):
+        for i in range(len(documents_features)):
             start_time = time.time()
 
-            x = x_scaled[i]
+            x = documents_features[i]  #x_scaled[i]
             true_n_clusters = dataset.segmentations[i].author_count
 
             assert x.shape[0] == len(preprocessed_documents[i])
 
-            diarizer = MeanShift(bandwidth=100,
-                                 bin_seeding=True)
+            bandwith = estimate_bandwidth(x, quantile=0.3)
+            print('bandwith:', bandwith)
+
+            diarizer = MeanShift()
             labels = diarizer.fit_predict(x)
             predicted_label_lists.append(labels)
 

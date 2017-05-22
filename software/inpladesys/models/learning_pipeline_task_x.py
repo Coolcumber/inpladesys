@@ -9,6 +9,7 @@ from inpladesys.models.clustering.k_means_diarizer import KMeansDiarizer
 from inpladesys.models.clustering.hac_diarizer import AgglomerativeDiarizer
 from inpladesys.models.clustering.dbscan_diarizer import DBSCANDiarizer
 from inpladesys.models.clustering.mean_shift_diarizer import MeanShiftDiarizer
+from inpladesys.models.clustering.affinity_prop_diarizer import AffinityPropDiarizer
 from inpladesys.models.misc.misc import custom_train_test_split
 from  inpladesys.util.cacher import Cacher
 
@@ -125,7 +126,7 @@ if __name__ == "__main__":
     params = dict()
 
     # Change the task here
-    task = 'c'
+    task = 'a'
 
     if task == 'a':
         print("Loading dataset for task ", task, "...")
@@ -164,13 +165,13 @@ if __name__ == "__main__":
         params['document_preprocessor'] = TokenizerPreprocessor()
         params['basic_feature_extractor'] = BasicFeatureExtractor(features_file_name)
         params['feature_transformer'] = None
-        params['model'] = MeanShiftDiarizer() #DBSCANDiarizer()  # AgglomerativeDiarizer()  #KMeansDiarizer()
+        params['model'] = DBSCANDiarizer()  #AffinityPropDiarizer() #MeanShiftDiarizer() #DBSCANDiarizer()  # AgglomerativeDiarizer()  #KMeansDiarizer()
         params['scorer_class_1'] = BCubedScorer
         params['scorer_class_2'] = None
         params['cacher'] = Cacher(dir='.cache-task-c')
         params['select-model'] = False
-        params['train_size'] = 0.9
-        params['random_state'] = 7
+        params['train_size'] = 0.1  # 0.1 for DBSCAN
+        params['random_state'] = 7  # 7 for DBSCAN
 
     pipeline = LearningPipeline(params)
     pipeline.do_chain()

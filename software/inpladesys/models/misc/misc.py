@@ -63,9 +63,10 @@ def find_cluster_for_noisy_samples(predicted_labels, context_size=10):
     len_ = len(predicted_labels)
     counter = Counter(predicted_labels)
     noisy = counter[-1]
+    unclustered_label = 0
     if -1 in counter.keys():
         if len(counter.most_common()) == 1:
-            predicted_labels[:] = 100
+            predicted_labels[:] = unclustered_label
         else:
             for i in range(len_):
                 if predicted_labels[i] == -1:
@@ -76,7 +77,7 @@ def find_cluster_for_noisy_samples(predicted_labels, context_size=10):
                     counter = Counter(predicted_labels[left:right])
                     if -1 in counter.keys():
                         if len(counter.most_common()) == 1:
-                            predicted_labels[left:right] = 100
+                            predicted_labels[left:right] = unclustered_label
                         else:
                             found, curr = 0, 0
                             while found == 0:
