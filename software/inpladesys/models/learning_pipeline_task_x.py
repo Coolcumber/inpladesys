@@ -1,13 +1,15 @@
 import time
 import numpy as np
 from inpladesys.datasets import Pan16DatasetLoader
-from inpladesys.models.preprocessors.basic_preprocessors import TokenizerPreprocessor
+from inpladesys.models.preprocessors.basic_preprocessors import TokenizerPreprocessor, BasicTokenizerPreprocessor
 from inpladesys.models.basic_feature_extraction.basic_feature_extractor import BasicFeatureExtractor
 from inpladesys.evaluation import *
 from inpladesys.evaluation import get_confusion_matrix
 from inpladesys.models.clustering.k_means_diarizer import KMeansDiarizer
 from inpladesys.models.clustering.hac_diarizer import AgglomerativeDiarizer
 from inpladesys.models.clustering.dbscan_diarizer import DBSCANDiarizer
+from inpladesys.models.clustering.mean_shift_diarizer import MeanShiftDiarizer
+from inpladesys.models.clustering.affinity_prop_diarizer import AffinityPropDiarizer
 from inpladesys.models.misc.misc import custom_train_test_split
 from  inpladesys.util.cacher import Cacher
 
@@ -24,6 +26,9 @@ class LearningPipeline:
         self.scorer_1 = parameters['scorer_class_1']
         self.scorer_2 = parameters['scorer_class_2']
         self.cacher = parameters['cacher']
+        self.select_model = params['select-model']
+        self.train_size = params['train_size']
+        self.random_state = params['random_state']
 
         self.dataset_size = self.dataset.size
 
@@ -58,22 +63,26 @@ class LearningPipeline:
 
         if True:
 
-            print('Selecting model...')
-            model_selector = self.model.get_model_selector()
-
             prep_docs_train, prep_docs_test, \
                 doc_features_train, doc_features_test, \
                 author_counts_train, author_counts_test, \
                 dataset_train, dataset_test = custom_train_test_split(preprocessed_docs, documents_features, self.dataset,
-                                                                      train_size=0.1, random_state=7)
+                                                                      train_size=self.train_size, random_state=self.random_state)
 
             print('Train set size: {}'.format(len(doc_features_train)))
 
-            optimal_hyperparams = model_selector.select_optimal_hyperparams(prep_docs_train, doc_features_train,
-                                                              dataset_train.documents, dataset_train.segmentations)
+            if self.select_model:
+                print('Selecting model...')
+                model_selector = self.model.get_model_selector()
+                optimal_hyperparams = model_selector.select_optimal_hyperparams(prep_docs_train,
+                                                                                doc_features_train,
+                                                                                dataset_train.documents,
+                                                                                dataset_train.segmentations,
+                                                                                author_counts=author_counts_train)
+            else:
+                optimal_hyperparams = self.model.get_optimal_hyperparams()
 
             print('Running model..')
-            # TODO is it better to use fit and _predict separately ??
             pred_segmentations = self.model.fit_predict(prep_docs_test, doc_features_test,
                                                         dataset_test, optimal_hyperparams)
 
@@ -117,7 +126,7 @@ if __name__ == "__main__":
     params = dict()
 
     # Change the task here
-    task = 'c'
+    task = 'a'
 
     if task == 'a':
         print("Loading dataset for task ", task, "...")
@@ -130,6 +139,9 @@ if __name__ == "__main__":
         params['scorer_class_1'] = MicroScorer
         params['scorer_class_2'] = MacroScorer
         params['cacher'] = Cacher(dir='.cache-task-a')
+        params['select-model'] = False
+        params['train_size'] = 0.1
+        params['random_state'] = 9
 
     elif task == 'b':
         print("Loading dataset for task ", task, "...")
@@ -142,7 +154,9 @@ if __name__ == "__main__":
         params['scorer_class_1'] = BCubedScorer
         params['scorer_class_2'] = None
         params['cacher'] = Cacher(dir='.cache-task-b')
-
+        params['select-model'] = False
+        params['train_size'] = 0.1
+        params['random_state'] = 8
 
     elif task == 'c':
         print("Loading dataset for task ", task, "...")
@@ -151,10 +165,13 @@ if __name__ == "__main__":
         params['document_preprocessor'] = TokenizerPreprocessor()
         params['basic_feature_extractor'] = BasicFeatureExtractor(features_file_name)
         params['feature_transformer'] = None
-        params['model'] = DBSCANDiarizer()  # AgglomerativeDiarizer()  #KMeansDiarizer()
+        params['model'] = DBSCANDiarizer()  #AffinityPropDiarizer() #MeanShiftDiarizer() #DBSCANDiarizer()  # AgglomerativeDiarizer()  #KMeansDiarizer()
         params['scorer_class_1'] = BCubedScorer
         params['scorer_class_2'] = None
         params['cacher'] = Cacher(dir='.cache-task-c')
+        params['select-model'] = False
+        params['train_size'] = 0.1  # 0.1 for DBSCAN
+        params['random_state'] = 7  # 7 for DBSCAN
 
     pipeline = LearningPipeline(params)
     pipeline.do_chain()

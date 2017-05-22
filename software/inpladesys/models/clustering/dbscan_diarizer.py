@@ -43,13 +43,12 @@ class DBSCANDiarizer(AbstractDiarizer):
                               metric=hyperparams['metric'],
                               algorithm='brute')  # The algorithm to be used by the NearestNeighbors module to compute pointwise distances and find nearest neighbors.
 
-
             labels = diarizer.fit_predict(x_scaled)
             estimated_n_clusters = len(set(labels)) - (1 if -1 in labels else 0)
             noisy = find_cluster_for_noisy_samples(labels)
             predicted_label_lists.append(labels)
 
-            print('Document', i+1, '/', len(documents_features), 'in', time.time()-start_time, 's',)
+            print('Document', i+1, '/', len(documents_features), x_scaled.shape, 'in', time.time()-start_time, 's',)
             print('Real author count = {}, estimated = {}, noisy = '.format(true_n_clusters,
                                                                             estimated_n_clusters), noisy)
             print()
@@ -59,11 +58,19 @@ class DBSCANDiarizer(AbstractDiarizer):
 
     def get_model_selector(self) -> AbstractModelSelector:
         hyperparams = {
-            'eps': np.arange(4, 6),
-            'min_samples': [i for i in range(1, 2)],
-            'metric': ['euclidean', 'manhattan'] # cosine ?
+            'eps': [0.1, 0.12, 0.14, 0.16, 0.18],
+            'min_samples': [62, 63, 64],
+            'metric': ['cosine']
         }
         return DBSCANModelSelector(hyperparams=hyperparams, scaler=StandardScaler)
+
+    def get_optimal_hyperparams(self):
+        return {'eps': 0.23,
+                'min_samples': 64,
+                'metric': 'cosine'}
+
+
+
 
 
 

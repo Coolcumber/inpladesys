@@ -1,0 +1,179 @@
+DBSCAN
+OVO je dosad zapravo najbolje
+{'min_samples': 71, 'metric': 'manhattan', 'eps': 100, 'score': 0.61036829947185323}
+
+Document 1 / 49 in 1.1050055027008057 s
+Real author count = 2, estimated = 1, noisy =  1204
+
+Document 2 / 49 in 5.845463514328003 s
+Real author count = 5, estimated = 1, noisy =  2970
+
+Document 3 / 49 in 1.5492563247680664 s
+Real author count = 3, estimated = 1, noisy =  1432
+
+Document 4 / 49 in 6.163998603820801 s
+Real author count = 6, estimated = 14, noisy =  1125
+
+Document 5 / 49 in 17.48508358001709 s
+Real author count = 8, estimated = 2, noisy =  5004
+
+Document 6 / 49 in 3.827549934387207 s
+Real author count = 5, estimated = 2, noisy =  2110
+
+Document 7 / 49 in 0.41439318656921387 s
+Real author count = 2, estimated = 0, noisy =  790
+
+Document 8 / 49 in 12.975217580795288 s
+Real author count = 7, estimated = 2, noisy =  4291
+
+Document 9 / 49 in 16.65697431564331 s
+Real author count = 6, estimated = 4, noisy =  4709
+
+Document 10 / 49 in 3.3566243648529053 s
+Real author count = 7, estimated = 0, noisy =  2335
+
+Document 11 / 49 in 0.29892611503601074 s
+Real author count = 6, estimated = 1, noisy =  591
+
+Document 12 / 49 in 5.636167526245117 s
+Real author count = 5, estimated = 3, noisy =  2779
+
+Document 13 / 49 in 2.5227181911468506 s
+Real author count = 3, estimated = 3, noisy =  1624
+
+Document 14 / 49 in 0.833613395690918 s
+Real author count = 2, estimated = 1, noisy =  996
+
+Document 15 / 49 in 1.2855198383331299 s
+Real author count = 2, estimated = 2, noisy =  1213
+
+Document 16 / 49 in 21.323543071746826 s
+Real author count = 10, estimated = 2, noisy =  5508
+
+Document 17 / 49 in 7.83437967300415 s
+Real author count = 4, estimated = 8, noisy =  2674
+
+Document 18 / 49 in 0.8879601955413818 s
+Real author count = 2, estimated = 1, noisy =  1058
+
+Document 19 / 49 in 3.955186605453491 s
+Real author count = 5, estimated = 2, noisy =  2272
+
+Document 20 / 49 in 4.610118389129639 s
+Real author count = 8, estimated = 0, noisy =  2657
+
+Document 21 / 49 in 22.353349208831787 s
+Real author count = 6, estimated = 2, noisy =  5689
+
+Document 22 / 49 in 22.576741933822632 s
+Real author count = 3, estimated = 13, noisy =  4405
+
+Document 23 / 49 in 6.7238335609436035 s
+Real author count = 8, estimated = 2, noisy =  2983
+
+Document 24 / 49 in 1.5719270706176758 s
+Real author count = 7, estimated = 2, noisy =  1323
+
+Document 25 / 49 in 22.766472816467285 s
+Real author count = 7, estimated = 9, noisy =  4555
+
+Document 26 / 49 in 25.01983952522278 s
+Real author count = 4, estimated = 17, noisy =  3845
+
+Document 27 / 49 in 0.9547920227050781 s
+Real author count = 2, estimated = 0, noisy =  1230
+
+Document 28 / 49 in 0.35784244537353516 s
+Real author count = 4, estimated = 0, noisy =  748
+
+Document 29 / 49 in 0.41521120071411133 s
+Real author count = 2, estimated = 1, noisy =  710
+
+Document 30 / 49 in 2.3754122257232666 s
+Real author count = 7, estimated = 2, noisy =  1761
+
+Document 31 / 49 in 9.326242923736572 s
+Real author count = 6, estimated = 2, noisy =  3668
+
+Document 32 / 49 in 4.634216785430908 s
+Real author count = 3, estimated = 4, noisy =  2264
+
+Document 33 / 49 in 19.84485697746277 s
+Real author count = 6, estimated = 6, noisy =  4941
+
+Document 34 / 49 in 11.587925434112549 s
+Real author count = 10, estimated = 8, noisy =  3147
+
+Document 35 / 49 in 28.49545645713806 s
+Real author count = 4, estimated = 3, noisy =  6319
+
+Document 36 / 49 in 7.117750644683838 s
+Real author count = 3, estimated = 3, noisy =  3071
+
+Document 37 / 49 in 1.7617545127868652 s
+Real author count = 8, estimated = 1, noisy =  1464
+
+Document 38 / 49 in 23.148195266723633 s
+Real author count = 5, estimated = 6, noisy =  5443
+
+Document 39 / 49 in 7.792056322097778 s
+Real author count = 7, estimated = 6, noisy =  2823
+
+Document 40 / 49 in 0.894202709197998 s
+Real author count = 4, estimated = 1, noisy =  1024
+
+Document 41 / 49 in 9.5752112865448 s
+Real author count = 2, estimated = 1, noisy =  3720
+
+Document 42 / 49 in 2.4357550144195557 s
+Real author count = 3, estimated = 2, noisy =  1700
+
+Document 43 / 49 in 16.439223289489746 s
+Real author count = 8, estimated = 5, noisy =  4549
+
+Document 44 / 49 in 4.534451007843018 s
+Real author count = 5, estimated = 4, noisy =  2246
+
+Document 45 / 49 in 21.63207244873047 s
+Real author count = 9, estimated = 5, noisy =  5275
+
+Document 46 / 49 in 14.475183725357056 s
+Real author count = 4, estimated = 4, noisy =  4326
+
+Document 47 / 49 in 9.599313974380493 s
+Real author count = 8, estimated = 10, noisy =  2830
+
+Document 48 / 49 in 4.919541835784912 s
+Real author count = 5, estimated = 4, noisy =  2400
+
+Document 49 / 49 in 15.847281217575073 s
+Real author count = 9, estimated = 2, noisy =  4770
+
+Evaluating...
+<class 'inpladesys.evaluation.BCubedScorer'> : [ 0.75532186  0.52430209  0.56932421]
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+Manje dobro
+The best hyperparams found: {'metric': 'manhattan', 'score': 0.61015958345315247, 'eps': 100, 'min_samples': 70}
+Evaluating...
+<class 'inpladesys.evaluation.BCubedScorer'> : [ 0.73863599  0.53561684  0.56952092]
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+The best hyperparams found: {'min_samples': 60, 'eps': 110, 'metric': 'manhattan', 'score': 195.73647625065223}, alg=brute, nema euclideana, calinski
+bcubed f1 0.48 -> manje je noisiya, klasteri pregusti
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+{'eps': 110, 'min_samples': 60, 'score': 195.73647625065223, 'metric': 'manhattan'}, alg=auto, nema cosinea, calinski
+<class 'inpladesys.evaluation.BCubedScorer'> : [ 0.3948632   0.7842625   0.48279775], manje noisiya, kao i iznad
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+{'score': 0.22191979319755437, 'metric': 'manhattan', 'eps': 110, 'min_samples': 60}, alg=auto, nema cosinea, silhouette 
+<class 'inpladesys.evaluation.BCubedScorer'> : [ 0.3948632   0.7842625   0.48279775], manje noisiya, kao i iznad
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+'metric': 'manhattan', 'eps': 110, 'score': 0.22191979319755437, 'min_samples': 60}, alg=brute, nema euclideana, calinski
+Evaluating...
+<class 'inpladesys.evaluation.BCubedScorer'> : [ 0.3948632   0.7842625   0.48279775], kao i gore
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+{'min_samples': 60, 'metric': 'cosine', 'score': 0.14042845666408538, 'eps': 0.25}, cosine, brute
+<class 'inpladesys.evaluation.BCubedScorer'> : [ 0.77497511  0.49132002  0.53527968] brzo!!
+
+
+ 
+

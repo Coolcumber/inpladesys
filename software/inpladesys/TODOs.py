@@ -1,9 +1,10 @@
 # + TODO allow SimpleFixedAuthorDiarizer to adjust number of authors in BASELINE tests
 # + TODO implement scorers as parameters for learning pipeline ?
 # + TODO implement interfacce for models
+# TODO fix labeling of non-clustered examples
 # TODO baseline results which use rand should be evaluated on 50 runs
 # TODO fix warnings in training
-# TODO add new features (new "iteration"):
+# + TODO add new features (new "iteration"):
 #   + type-token ratio (vocabulary richness)
 #   - word n-grams ?
 #   + char n-grams of POS tags
