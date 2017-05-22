@@ -1,4 +1,77 @@
 Baselines:
+	Task a:
+		[Micro P R F1]
+
+		DummyStochasticAuthorDiarizer
+		[ 0.13126514  0.93663277  0.22621187]
+
+		Kuznetsov et al.(on the test set)
+		[0.29	      0.19 	  0.22      ]
+
+		DummySingleAuthorDiarizer
+		[ 0.12574559  1.          0.21984791] 
+
+		SimpleFixedAuthorDiarizer
+		[ 0.13137775  0.24317361  0.14349329]
+----------------------------------------------------------
+
+		[Macro P R F1]
+
+		DummyStochasticAuthorDiarizer
+		[ 0.15096911  0.93772662  0.24687746]
+		
+		DummySingleAuthorDiarizer
+		[ 0.12574559  1.          0.21984791]
+
+		Kuznetsov et al. (on the test set)
+		[0.28	      0.15 	  0.17      ]
+
+		SimpleFixedAuthorDiarizer
+		[ 0.12540848  0.24015426  0.13053364]
+
+
+	Task b: [BCubed P R F1]
+
+		Kuznetsov et al. (on the test set)		
+		[0.64 	      0.46  	  0.52      ]
+
+		DummySingleAuthorDiarizer
+		[ 0.32794174  1.          0.47108445]
+
+		SimpleFixedAuthorDiarizer
+		[ 0.43363112  0.50103788  0.45282585]
+
+		DummyStochasticAuthorDiarizer
+		[ 0.34522114  0.59050762  0.41243877]
+
+	
+	Task c:
+		DummySingleAuthorDiarizer
+		[ 0.37209235  1.          0.51758797]
+
+		Kuznetsov et al. (on the test set)
+		[ 0.42 	      0.64	  0.48]
+
+		SimpleFixedAuthorDiarizer
+		[ 0.4517235   0.53974621  0.45378557] 
+
+		DummyStochasticAuthorDiarizer
+		[ 0.39378227  0.58755447  0.44677328]
+
+
+
+
+
+
+
+
+
+
+
+
+
+OLD RESULTS:
+Baselines:
 	Task a: [Micro P R F1] [Macro P R F1]
 		DummySingleAuthorDiarizer
 		[ 0.87425441  0.87425441  0.87425441] [ 0.4371272   0.5         0.46606892]
