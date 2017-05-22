@@ -8,7 +8,7 @@ import time
 
 
 def generate_segmentation(preprocessed_documents: List[List[tuple]], documents_features: List[np.ndarray],
-             document_label_lists, documents) -> List[Segmentation]:
+                          document_label_lists, documents) -> List[Segmentation]:
     assert len(documents_features) == len(preprocessed_documents)
     segmentations = []
     for i in range(len(documents_features)):
@@ -29,9 +29,25 @@ def generate_segmentation(preprocessed_documents: List[List[tuple]], documents_f
     return segmentations
 
 
+def fix_segmentation_labels_for_plagiarism_detection(segmentation, plagiarism_majority=False):
+    # the majority label should be 0 (original author)
+    assert segmentation.author_count == 2
+    author_segments = segmentation.by_author[0]
+    plagiarism_segments = segmentation.by_author[1]
+    author_len = sum(s.length for s in author_segments)
+    plagiarism_len = sum(s.length for s in plagiarism_segments)
+    swap = author_len < plagiarism_len
+    if plagiarism_majority:
+        swap = not swap
+    if swap:
+        for s in segmentation:
+            s.author = 1 - s.author
+        segmentation.by_author[0] = plagiarism_segments
+        segmentation.by_author[1] = author_segments
+
+
 def custom_train_test_split(preprocessed_documents: List[List[tuple]], documents_features: List[np.ndarray],
                             dataset: Dataset, train_size, random_state):
-
     # indices of every document
     indices_of_docs = [i for i in range(len(preprocessed_documents))]
 
@@ -53,9 +69,9 @@ def custom_train_test_split(preprocessed_documents: List[List[tuple]], documents
                            [dataset.segmentations[i] for i in i_test])
 
     return prep_docs_train, prep_docs_test, \
-        doc_features_train, doc_features_test, \
-        author_counts_train, author_counts_test, \
-        dataset_train, dataset_test
+           doc_features_train, doc_features_test, \
+           author_counts_train, author_counts_test, \
+           dataset_train, dataset_test
 
 
 def find_cluster_for_noisy_samples(predicted_labels, context_size=10):
@@ -70,9 +86,9 @@ def find_cluster_for_noisy_samples(predicted_labels, context_size=10):
         else:
             for i in range(len_):
                 if predicted_labels[i] == -1:
-                    left_diff = i-context_size
+                    left_diff = i - context_size
                     left = left_diff if left_diff >= 0 else 0
-                    right_diff = i+context_size
+                    right_diff = i + context_size
                     right = right_diff if right_diff < len_ else len_
                     counter = Counter(predicted_labels[left:right])
                     if -1 in counter.keys():
@@ -85,5 +101,5 @@ def find_cluster_for_noisy_samples(predicted_labels, context_size=10):
                                     predicted_labels[i] = counter.most_common()[curr][0]
                                     found = 1
                                 curr += 1
-    #print('Noisy labels reclustered in {}'.format(time.time()-start))
+    # print('Noisy labels reclustered in {}'.format(time.time()-start))
     return noisy

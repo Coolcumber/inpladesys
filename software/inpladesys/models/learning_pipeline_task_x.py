@@ -4,7 +4,6 @@ from inpladesys.datasets import Pan16DatasetLoader
 from inpladesys.models.preprocessors.basic_preprocessors import TokenizerPreprocessor, BasicTokenizerPreprocessor
 from inpladesys.models.basic_feature_extraction.basic_feature_extractor import BasicFeatureExtractor
 from inpladesys.evaluation import *
-from inpladesys.evaluation import get_confusion_matrix
 from inpladesys.models.clustering.k_means_diarizer import KMeansDiarizer
 from inpladesys.models.clustering.hac_diarizer import AgglomerativeDiarizer
 from inpladesys.models.clustering.dbscan_diarizer import DBSCANDiarizer
@@ -99,11 +98,11 @@ class LearningPipeline:
                 truth = dataset_test.segmentations[i]
                 pred = pred_segmentations[i]
 
-                scorer_1 = self.scorer_1(get_confusion_matrix(truth, pred))
+                scorer_1 = self.scorer_1(truth, pred)
                 results_1 += np.array([scorer_1.recall(), scorer_1.precision(), scorer_1.f1_score()])
 
                 if self.scorer_2 is not None:
-                    scorer_2 = self.scorer_2(get_confusion_matrix(truth, pred))
+                    scorer_2 = self.scorer_2(truth, pred)
                     results_2 += np.array([scorer_2.recall(), scorer_2.precision(), scorer_2.f1_score()])
 
             results_1 /= test_set_size

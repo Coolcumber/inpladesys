@@ -1,5 +1,7 @@
 from inpladesys.datatypes import Document, Segment, Segmentation, Dataset
 from typing import List, Tuple
+
+from inpladesys.models.misc import fix_segmentation_labels_for_plagiarism_detection
 from .abstract_author_diarizer import AbstractAuthorDiarizer
 import numpy as np
 import random
@@ -48,4 +50,7 @@ class DummyStochasticAuthorDiarizer(AbstractAuthorDiarizer):
                 offset = i
         segments.append(
             Segment(offset=offset, length=len(document) - offset, author=author))
-        return Segmentation(self.n, segments)
+        segm = Segmentation(self.n, segments)
+        if(segm.author_count==2):
+            fix_segmentation_labels_for_plagiarism_detection(segm, plagiarism_majority=True)
+        return segm

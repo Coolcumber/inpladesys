@@ -1,7 +1,7 @@
 {
   "features": [
     {
-      "used":1,
+      "used":0,
       "id":1,
       "class_name":"BagOfWordsExtractor",
       "params": {

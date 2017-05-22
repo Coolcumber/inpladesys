@@ -1,12 +1,23 @@
 import numpy as np
 import abc
-from inpladesys.datatypes import Segmentation
+from inpladesys.datatypes import Segmentation, Segment
 from abc import ABC
 
 Epsilon = 2e-16
 
 
-def get_confusion_matrix(seg_true: Segmentation, seg_pred: Segmentation):
+def get_confusion_matrix(seg_true: Segmentation, seg_pred: Segmentation, for_macro_precision=False):
+    if for_macro_precision:
+        n = 1
+        seg_pred = seg_pred[:]
+        for i, s in enumerate(seg_pred):
+            seg_pred[i] = Segment(offset=s.offset, length=s.length, author=s.author)
+            s = seg_pred[i]
+            if s.author == 1:
+                s.author = n
+                n += 1
+        seg_pred = Segmentation(author_count=n, segments=seg_pred)
+
     def nextsp():  # < >
         nonlocal sp, sp_end
         try:
@@ -17,7 +28,7 @@ def get_confusion_matrix(seg_true: Segmentation, seg_pred: Segmentation):
         return 0
 
     sp_iter, sp, sp_end = iter(seg_pred), None, 0
-    cm = np.zeros(shape=(seg_true.author_count, seg_pred.author_count),
+    cm = np.zeros(shape=(max(2, seg_true.author_count), max(2, seg_pred.author_count)),
                   dtype=int)
     nextsp()
     for st in seg_true:
@@ -50,6 +61,9 @@ class BinaryConfusionMatrix(np.ndarray):  # TODO
         obj[0, 1] = np.sum(conf_mat[i, :]) - obj[0, 0]  # FN
         obj[1, 0] = np.sum(conf_mat[:, i]) - obj[0, 0]  # FP
         obj[1, 1] = np.sum(conf_mat) - obj[0, 0] - obj[0, 1] - obj[1, 0]  # TN
+        #   hP hN <- predicted
+        # P[TP FN]
+        # N[FP FN]
         return obj
 
     def tp(self): return self[0, 0]
@@ -84,9 +98,6 @@ class BinaryScorer:
 
 
 class AbstractScorer(ABC):
-    def __init__(self, confusion_matrix):
-        self.cm = confusion_matrix
-
     @abc.abstractmethod
     def precision(self):
         raise NotImplementedError()
@@ -105,11 +116,13 @@ class AbstractScorer(ABC):
         return 2 * (1 + a) * p * r / (a * p + r + Epsilon)
 
 
-class MicroScorer(AbstractScorer):
-    def __init__(self, square_confusion_matrix):
-        super().__init__(square_confusion_matrix)
-        self.bcms = [BinaryConfusionMatrix(self.cm, i)
-                     for i in range(self.cm.shape[0])]
+class _MicroScorer(AbstractScorer):
+    def __init__(self, square_confusion_matrix, binary='auto'):
+        self.cm = square_confusion_matrix
+        if binary == 'auto':
+            binary = square_confusion_matrix.shape == (2, 2)
+        bcm_range = range(1, 2) if binary else range(self.cm.shape[0])
+        self.bcms = [BinaryConfusionMatrix(self.cm, i) for i in bcm_range]
         self.bcm_sum = BinaryConfusionMatrix(np.sum(self.bcms, axis=0), 0)
 
     def recall(self):
@@ -119,11 +132,18 @@ class MicroScorer(AbstractScorer):
         return BinaryScorer.precision(self.bcm_sum)
 
 
-class MacroScorer(AbstractScorer):
-    def __init__(self, square_confusion_matrix):
-        super().__init__(square_confusion_matrix)
-        self.bcms = [BinaryConfusionMatrix(self.cm, i)
-                     for i in range(self.cm.shape[0])]
+class MicroScorer(_MicroScorer):
+    def __init__(self, seg_true: Segmentation, seg_pred: Segmentation):
+        super().__init__(get_confusion_matrix(seg_true, seg_pred))
+
+
+class OldMacroScorer(AbstractScorer):
+    def __init__(self, square_confusion_matrix, binary='auto'):
+        self.cm = square_confusion_matrix
+        if binary == 'auto':
+            binary = square_confusion_matrix.shape == (2, 2)
+        bcm_count = self.cm.shape[0] - (1 if binary else 0)
+        self.bcms = [BinaryConfusionMatrix(self.cm, i) for i in range(bcm_count)]
 
     def recall(self):
         return sum(BinaryScorer.recall(bcm) for bcm in self.bcms) / len(
@@ -142,9 +162,32 @@ class MacroScorer(AbstractScorer):
             self.bcms)
 
 
-class BCubedScorer(AbstractScorer):
+class MacroScorer():
+    def __init__(self, seg_true: Segmentation, seg_pred: Segmentation):
+        self.prec_cm = get_confusion_matrix(seg_true, seg_pred, for_macro_precision=True)
+        self.rec_cm = get_confusion_matrix(seg_pred, seg_true, for_macro_precision=True)
+
+    def _prec_or_rec(self, cm):
+        # return np.sum(cm[1, 1:]) / (np.sum(cm[:, 1:]) + Epsilon)
+        return np.average(cm[1, 1:] / (np.sum(cm[:, 1:], axis=0) + Epsilon))
+
+    def precision(self):
+        return self._prec_or_rec(self.prec_cm)
+
+    def recall(self):
+        return self._prec_or_rec(self.rec_cm)
+
+    def f1_score(self):
+        # TODO: definition not clear:
+        # http://www.uni-weimar.de/medien/webis/publications/papers/stein_2010p.pdf#page=2
+        p = self.precision()
+        r = self.recall()
+        return 2 * p * r / (p + r + Epsilon)
+
+
+class _BCubedScorer(AbstractScorer):
     def __init__(self, confusion_matrix):
-        super().__init__(confusion_matrix)
+        self.cm = confusion_matrix
         self.cm_sum = np.sum(self.cm)
         self.squared_cm = self.cm ** 2
 
@@ -159,7 +202,28 @@ class BCubedScorer(AbstractScorer):
         return np.sum(numerators / (denominators + Epsilon)) / self.cm_sum
 
 
+class BCubedScorer(_BCubedScorer):
+    def __init__(self, seg_true: Segmentation, seg_pred: Segmentation):
+        super().__init__(get_confusion_matrix(seg_true, seg_pred))
+
+
 if __name__ == "__main__":
+    true = Segmentation(segments=[Segment(00, 10, 0),
+                                  Segment(10, 10, 0),
+                                  Segment(20, 10, 1),
+                                  Segment(30, 10, 1),
+                                  Segment(40, 10, 1)], author_count=2)
+    pred = Segmentation(segments=[Segment(00, 10, 0),
+                                  Segment(10, 10, 1),
+                                  Segment(20, 5, 0),
+                                  Segment(25, 15, 1),
+                                  Segment(40, 10, 0)], author_count=2)
+    nms = MicroScorer(true, pred)
+    print(nms.precision())
+    print(nms.recall())
+
+    exit()
+
     a = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
     print(MacroScorer(a).f1_score())
     print()

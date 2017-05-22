@@ -17,16 +17,8 @@ class TokenizerPreprocessor(AbstractPreprocessor):
             try:
                 next_start = raw_text.index(token, prev_end, prev_end+100) + len(token)
             except:
-                a = raw_text[prev_end:prev_end + 100]
                 next_start = prev_end + len(token)
-                print(token)
-                print(next_start)
-                print(raw_text[prev_end:next_start])
-                print(raw_text[next_start - 100:next_start])
-                print(raw_text[next_start:next_start + 100])
-                print(tokens[i - 10:i])
-                print(tokens[i:i + 10])
-                pass
+                print(tokens[i])
             token_spans.append((tokens[i], prev_end, next_start, pos_tags[i][1]))  # token, start, end, pos
             prev_end = next_start
             # offset += len(token)
