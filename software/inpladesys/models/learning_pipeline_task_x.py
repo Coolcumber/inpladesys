@@ -4,9 +4,11 @@ from inpladesys.datasets import Pan16DatasetLoader
 from inpladesys.models.preprocessors.basic_preprocessors import TokenizerPreprocessor, BasicTokenizerPreprocessor
 from inpladesys.models.basic_feature_extraction.basic_feature_extractor import BasicFeatureExtractor
 from inpladesys.evaluation import *
+from inpladesys.models.misc import fix_segmentation_labels_for_plagiarism_detection
 from inpladesys.models.clustering.k_means_diarizer import KMeansDiarizer
 from inpladesys.models.clustering.hac_diarizer import AgglomerativeDiarizer
 from inpladesys.models.clustering.dbscan_diarizer import DBSCANDiarizer
+from inpladesys.models.clustering.gmm_diarizer import GaussianMixtureDiarizer
 from inpladesys.models.clustering.mean_shift_diarizer import MeanShiftDiarizer
 from inpladesys.models.clustering.affinity_prop_diarizer import AffinityPropDiarizer
 from inpladesys.models.outlier_detection.isolation_forest_diarizer import IsolationForestDiarizer
@@ -29,6 +31,7 @@ class LearningPipeline:
         self.select_model = params['select-model']
         self.train_size = params['train_size']
         self.random_state = params['random_state']
+        self.task = params['task']
 
         self.dataset_size = self.dataset.size
 
@@ -99,10 +102,13 @@ class LearningPipeline:
                 truth = dataset_test.segmentations[i]
                 pred = pred_segmentations[i]
 
+                if self.task == 'a':
+                    fix_segmentation_labels_for_plagiarism_detection(pred)
+
                 scorer_1 = self.scorer_1(truth, pred)
                 results_1 += np.array([scorer_1.precision(), scorer_1.recall(), scorer_1.f1_score()])
 
-                if self.scorer_2 is not None:
+                if self.scorer_2 is not None:  # Task a
                     scorer_2 = self.scorer_2(truth, pred)
                     results_2 += np.array([scorer_2.precision(), scorer_2.recall(), scorer_2.f1_score()])
 
@@ -130,21 +136,23 @@ if __name__ == "__main__":
 
     if task == 'a':
         print("Loading dataset for task ", task, "...")
+        params['task'] = task
         params['dataset'] = Pan16DatasetLoader(dataset_dirs[0]).load_dataset()
         params['context_size'] = 16  # 16 for AggD
         params['document_preprocessor'] = TokenizerPreprocessor()
         params['basic_feature_extractor'] = BasicFeatureExtractor(features_file_name)
         params['feature_transformer'] = None
-        params['model'] = AgglomerativeDiarizer()  #IsolationForestDiarizer()  # AgglomerativeDiarizer()  #KMeansDiarizer()
+        params['model'] = GaussianMixtureDiarizer() # GaussianMixtureDiarizer() #IsolationForestDiarizer()  # AgglomerativeDiarizer()  #KMeansDiarizer()
         params['scorer_class_1'] = MicroScorer
         params['scorer_class_2'] = MacroScorer
         params['cacher'] = Cacher(dir='.cache-task-a')
         params['select-model'] = False
-        params['train_size'] = 0.5  # 0.5 for Agg
+        params['train_size'] = 0.9  # 0.5 for Agg
         params['random_state'] = 9
 
     elif task == 'b':
         print("Loading dataset for task ", task, "...")
+        params['task'] = task
         params['dataset'] = Pan16DatasetLoader(dataset_dirs[1]).load_dataset()
         params['context_size'] = 140  # 140 for kmeans
         params['document_preprocessor'] = TokenizerPreprocessor()
@@ -160,6 +168,7 @@ if __name__ == "__main__":
 
     elif task == 'c':
         print("Loading dataset for task ", task, "...")
+        params['task'] = task
         params['dataset'] = Pan16DatasetLoader(dataset_dirs[2]).load_dataset()
         params['context_size'] = 140
         params['document_preprocessor'] = TokenizerPreprocessor()

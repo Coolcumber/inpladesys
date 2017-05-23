@@ -25,7 +25,7 @@ class AbstractModelSelector(ABC):
         for i in range(len(true_segmentations)):
             truth = true_segmentations[i]
             pred = predicted_segmentations[i]
-            result += BCubedScorer(get_confusion_matrix(truth, pred)).f1_score()
+            result += BCubedScorer(truth, pred).f1_score()
 
         return result / len(true_segmentations)
 
@@ -60,6 +60,6 @@ class AbstractModelSelector(ABC):
         for i in range(len(true_segmentations)):
             truth = true_segmentations[i]
             pred = predicted_segmentations[i]
-            result += MacroScorer(get_confusion_matrix(truth, pred)).f1_score()
+            result += MacroScorer(truth, pred).f1_score()
 
         return result / len(true_segmentations)
