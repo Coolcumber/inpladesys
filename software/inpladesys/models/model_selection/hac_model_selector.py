@@ -8,7 +8,7 @@ class AgglomerativeModelSelector(AbstractModelSelector):
 
     def select_optimal_hyperparams(self, preprocessed_documents, documents_features,
                                    documents, true_segmentations, author_labels=None,
-                                   author_counts=None):
+                                   author_counts=None, task=None):
         x_scaled = []
         for doc_features in documents_features:
             x_scaled.append(self.scaler().fit_transform(doc_features))
@@ -38,7 +38,7 @@ class AgglomerativeModelSelector(AbstractModelSelector):
                     current_comb += 1
 
                     predicted_segmentations = generate_segmentation(preprocessed_documents, documents_features,
-                                                                    predicted_label_lists, documents)
+                                                                    predicted_label_lists, documents, task=task)
 
                     score = self.get_macro_f1(true_segmentations, predicted_segmentations)
 

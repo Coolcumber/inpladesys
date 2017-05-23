@@ -11,7 +11,7 @@ import time
 class MeanShiftDiarizer(AbstractDiarizer):
 
     def fit_predict(self, preprocessed_documents: List[List[tuple]], documents_features: List[np.ndarray],
-                    dataset: Dataset, hyperparams=None) -> List[Segmentation]:
+                    dataset: Dataset, hyperparams=None, task=None) -> List[Segmentation]:
 
         assert len(documents_features) == len(preprocessed_documents)
 
@@ -41,5 +41,5 @@ class MeanShiftDiarizer(AbstractDiarizer):
             print()
 
         return generate_segmentation(preprocessed_documents, documents_features,
-                                     predicted_label_lists, dataset.documents)
+                                     predicted_label_lists, dataset.documents, task=task)
 

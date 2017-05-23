@@ -81,13 +81,14 @@ class LearningPipeline:
                                                                                 doc_features_train,
                                                                                 dataset_train.documents,
                                                                                 dataset_train.segmentations,
-                                                                                author_counts=author_counts_train)
+                                                                                author_counts=author_counts_train,
+                                                                                task=self.task)
             else:
                 optimal_hyperparams = self.model.get_optimal_hyperparams()
 
             print('Running model..')
             pred_segmentations = self.model.fit_predict(prep_docs_test, doc_features_test,
-                                                        dataset_test, optimal_hyperparams)
+                                                        dataset_test, optimal_hyperparams, task=self.task)
 
             # TODO postprocess model results
 
@@ -101,9 +102,6 @@ class LearningPipeline:
             for i in range(test_set_size):
                 truth = dataset_test.segmentations[i]
                 pred = pred_segmentations[i]
-
-                if self.task == 'a':
-                    fix_segmentation_labels_for_plagiarism_detection(pred)
 
                 scorer_1 = self.scorer_1(truth, pred)
                 results_1 += np.array([scorer_1.precision(), scorer_1.recall(), scorer_1.f1_score()])

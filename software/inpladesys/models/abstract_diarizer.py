@@ -11,7 +11,7 @@ class AbstractDiarizer(ABC):
     @abstractmethod
     def fit_predict(self, preprocessed_documents: List[List[tuple]],
                     documents_features: List[np.ndarray],
-                    dataset: Dataset, hyperparams=None) -> List[Segmentation]:
+                    dataset: Dataset, hyperparams=None, task=None) -> List[Segmentation]:
         """
         sklearn compatible fit_predict method. Override for model implementation.
         :param preprocessed_documents: List of lists of tuples. Each list of tuples represents

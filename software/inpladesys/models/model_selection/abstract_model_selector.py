@@ -14,7 +14,7 @@ class AbstractModelSelector(ABC):
 
     @abstractmethod
     def select_optimal_hyperparams(self, preprocessed_documents, documents_features, documents,
-                                   true_segmentations, author_labels=None, author_counts=None):
+                                   true_segmentations, author_labels=None, author_counts=None, task=None):
         return None
 
 

@@ -8,7 +8,7 @@ import time
 
 
 def generate_segmentation(preprocessed_documents: List[List[tuple]], documents_features: List[np.ndarray],
-                          document_label_lists, documents) -> List[Segmentation]:
+                          document_label_lists, documents, task=None) -> List[Segmentation]:
     assert len(documents_features) == len(preprocessed_documents)
     segmentations = []
     for i in range(len(documents_features)):
@@ -26,6 +26,10 @@ def generate_segmentation(preprocessed_documents: List[List[tuple]], documents_f
                                           segments=segments,
                                           max_repairable_error=60,
                                           document_length=len(documents[i])))
+    if task == 'a':
+        for segmentation in segmentations:
+            fix_segmentation_labels_for_plagiarism_detection(segmentation)
+
     return segmentations
 
 
