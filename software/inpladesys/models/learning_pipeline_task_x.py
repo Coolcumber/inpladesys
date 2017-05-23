@@ -100,11 +100,11 @@ class LearningPipeline:
                 pred = pred_segmentations[i]
 
                 scorer_1 = self.scorer_1(truth, pred)
-                results_1 += np.array([scorer_1.recall(), scorer_1.precision(), scorer_1.f1_score()])
+                results_1 += np.array([scorer_1.precision(), scorer_1.recall(), scorer_1.f1_score()])
 
                 if self.scorer_2 is not None:
                     scorer_2 = self.scorer_2(truth, pred)
-                    results_2 += np.array([scorer_2.recall(), scorer_2.precision(), scorer_2.f1_score()])
+                    results_2 += np.array([scorer_2.precision(), scorer_2.recall(), scorer_2.f1_score()])
 
             results_1 /= test_set_size
             print(self.scorer_1, ':', results_1)
@@ -135,12 +135,12 @@ if __name__ == "__main__":
         params['document_preprocessor'] = TokenizerPreprocessor()
         params['basic_feature_extractor'] = BasicFeatureExtractor(features_file_name)
         params['feature_transformer'] = None
-        params['model'] = AgglomerativeDiarizer() #IsolationForestDiarizer()  # AgglomerativeDiarizer()  #KMeansDiarizer()
-        params['scorer_class_1'] = BCubedScorer
+        params['model'] = AgglomerativeDiarizer()  #IsolationForestDiarizer()  # AgglomerativeDiarizer()  #KMeansDiarizer()
+        params['scorer_class_1'] = MicroScorer
         params['scorer_class_2'] = MacroScorer
         params['cacher'] = Cacher(dir='.cache-task-a')
-        params['select-model'] = True
-        params['train_size'] = 0.5
+        params['select-model'] = False
+        params['train_size'] = 0.5  # 0.5 for Agg
         params['random_state'] = 9
 
     elif task == 'b':

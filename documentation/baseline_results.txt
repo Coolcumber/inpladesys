@@ -50,7 +50,7 @@ Baselines:
 		[ 0.37209235  1.          0.51758797]
 
 		Kuznetsov et al. (on the test set)
-		[ 0.42 	      0.64	  0.48]
+		[ 0.64 	      0.42	  0.48]
 
 		SimpleFixedAuthorDiarizer
 		[ 0.4517235   0.53974621  0.45378557] 
