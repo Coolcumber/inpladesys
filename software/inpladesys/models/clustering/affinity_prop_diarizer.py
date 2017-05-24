@@ -54,7 +54,7 @@ class AffinityPropDiarizer(AbstractDiarizer):
         }
         return AffinityPropModelSelector(hyperparams=hyperparams, scaler=StandardScaler)
 
-    def get_optimal_hyperparams(self):
+    def get_optimal_hyperparams(self, task=None):
         return {'damping': 0.97, 'preference': 28800}
 
 

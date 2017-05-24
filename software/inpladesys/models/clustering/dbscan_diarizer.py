@@ -64,7 +64,7 @@ class DBSCANDiarizer(AbstractDiarizer):
         }
         return DBSCANModelSelector(hyperparams=hyperparams, scaler=StandardScaler)
 
-    def get_optimal_hyperparams(self):
+    def get_optimal_hyperparams(self, task=None):
         return {'eps': 0.23,
                 'min_samples': 64,
                 'metric': 'cosine'}

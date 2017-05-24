@@ -65,60 +65,58 @@ class LearningPipeline:
     def do_chain(self):
         documents_features, preprocessed_docs = self.extract_features()
 
-        if True:
+        prep_docs_train, prep_docs_test, \
+            doc_features_train, doc_features_test, \
+            author_counts_train, author_counts_test, \
+            dataset_train, dataset_test = custom_train_test_split(preprocessed_docs, documents_features, self.dataset,
+                                                                  train_size=self.train_size, random_state=self.random_state)
 
-            prep_docs_train, prep_docs_test, \
-                doc_features_train, doc_features_test, \
-                author_counts_train, author_counts_test, \
-                dataset_train, dataset_test = custom_train_test_split(preprocessed_docs, documents_features, self.dataset,
-                                                                      train_size=self.train_size, random_state=self.random_state)
+        print('Train set size: {}'.format(len(doc_features_train)))
 
-            print('Train set size: {}'.format(len(doc_features_train)))
+        if self.select_model:
+            print('Selecting model...')
+            model_selector = self.model.get_model_selector()
+            optimal_hyperparams = model_selector.select_optimal_hyperparams(prep_docs_train,
+                                                                            doc_features_train,
+                                                                            dataset_train.documents,
+                                                                            dataset_train.segmentations,
+                                                                            author_counts=author_counts_train,
+                                                                            task=self.task)
+        else:
+            optimal_hyperparams = self.model.get_optimal_hyperparams(task=self.task)
 
-            if self.select_model:
-                print('Selecting model...')
-                model_selector = self.model.get_model_selector()
-                optimal_hyperparams = model_selector.select_optimal_hyperparams(prep_docs_train,
-                                                                                doc_features_train,
-                                                                                dataset_train.documents,
-                                                                                dataset_train.segmentations,
-                                                                                author_counts=author_counts_train,
-                                                                                task=self.task)
-            else:
-                optimal_hyperparams = self.model.get_optimal_hyperparams()
+        print('Running model..')
+        pred_segmentations = self.model.fit_predict(prep_docs_test, doc_features_test,
+                                                    dataset_test, optimal_hyperparams, task=self.task)
 
-            print('Running model..')
-            pred_segmentations = self.model.fit_predict(prep_docs_test, doc_features_test,
-                                                        dataset_test, optimal_hyperparams, task=self.task)
+        # TODO postprocess model results
 
-            # TODO postprocess model results
+        # Evaluation
+        print('Evaluating...')
+        results_1 = np.array([0, 0, 0], dtype=np.float64)
+        results_2 = np.array([0, 0, 0], dtype=np.float64)
+        test_set_size = len(dataset_test)
+        assert test_set_size == len(pred_segmentations)
 
-            # Evaluation
-            print('Evaluating...')
-            results_1 = np.array([0, 0, 0], dtype=np.float64)
-            results_2 = np.array([0, 0, 0], dtype=np.float64)
-            test_set_size = len(dataset_test)
-            assert test_set_size == len(pred_segmentations)
+        for i in range(test_set_size):
+            truth = dataset_test.segmentations[i]
+            pred = pred_segmentations[i]
 
-            for i in range(test_set_size):
-                truth = dataset_test.segmentations[i]
-                pred = pred_segmentations[i]
+            scorer_1 = self.scorer_1(truth, pred)
+            results_1 += np.array([scorer_1.precision(), scorer_1.recall(), scorer_1.f1_score()])
 
-                scorer_1 = self.scorer_1(truth, pred)
-                results_1 += np.array([scorer_1.precision(), scorer_1.recall(), scorer_1.f1_score()])
+            if self.scorer_2 is not None:  # Task a
+                scorer_2 = self.scorer_2(truth, pred)
+                results_2 += np.array([scorer_2.precision(), scorer_2.recall(), scorer_2.f1_score()])
 
-                if self.scorer_2 is not None:  # Task a
-                    scorer_2 = self.scorer_2(truth, pred)
-                    results_2 += np.array([scorer_2.precision(), scorer_2.recall(), scorer_2.f1_score()])
+        results_1 /= test_set_size
+        print(self.scorer_1, ':', results_1)
 
-            results_1 /= test_set_size
-            print(self.scorer_1, ':', results_1)
+        if self.scorer_2 is not None:
+            results_2 /= test_set_size
+            print(self.scorer_2, ':', results_2)
 
-            if self.scorer_2 is not None:
-                results_2 /= test_set_size
-                print(self.scorer_2, ':', results_2)
-
-        # TODO write all necessary params to log file
+    # TODO write all necessary params to log file
 
 if __name__ == "__main__":
     dataset_dirs = [
@@ -131,7 +129,7 @@ if __name__ == "__main__":
     params = dict()
 
     # Change the task here
-    task = 'c'
+    task = 'b'
 
     if task == 'a':
         print("Loading dataset for task ", task, "...")
@@ -161,8 +159,8 @@ if __name__ == "__main__":
         params['scorer_class_1'] = BCubedScorer
         params['scorer_class_2'] = None
         params['cacher'] = Cacher(dir='.cache-task-b')
-        params['select-model'] = False
-        params['train_size'] = 0  # 0 za agg iz a
+        params['select-model'] = True
+        params['train_size'] = 0.5  # 0 za agg iz a
         params['random_state'] = 8
 
     elif task == 'c':

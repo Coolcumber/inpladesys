@@ -48,15 +48,21 @@ class AgglomerativeDiarizer(AbstractDiarizer):
         return generate_segmentation(preprocessed_documents, documents_features,
                                      document_label_lists, dataset.documents, task=task)
 
-    def get_optimal_hyperparams(self):
-        return {
-            'affinity': 'cosine',
-            'linkage': 'average',
-        }
+    def get_optimal_hyperparams(self, task=None):
+        if task == 'a':
+            return {
+                'affinity': 'cosine',
+                'linkage': 'average',
+            }
+        if task == 'b':
+            return {
+                'affinity': 'euclidean',
+                'linkage': 'average'
+            }
 
     def get_model_selector(self) -> AbstractModelSelector:
         hyperparams = {
-            'affinity': ['euclidean', 'manhattan', 'cosine'],  #['euclidean', 'manhattan', 'cosine'], ['euclidean']
+            'affinity': ['euclidean', 'manhattan', 'cosine'],  # ['euclidean', 'manhattan', 'cosine'], ['euclidean']
             'linkage': ['complete', 'average']  # ['complete', 'average'] ['ward']
         }
         return AgglomerativeModelSelector(hyperparams, scaler=StandardScaler)

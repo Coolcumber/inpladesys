@@ -26,5 +26,5 @@ class AbstractDiarizer(ABC):
     def get_model_selector(self) -> AbstractModelSelector:
         return None
 
-    def get_optimal_hyperparams(self):
+    def get_optimal_hyperparams(self, task=None):
         return None

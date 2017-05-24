@@ -5,7 +5,7 @@ from inpladesys.datatypes.dataset import Dataset
 from collections import Counter
 from sklearn.model_selection import train_test_split
 import time
-
+import scipy.stats as st
 
 def generate_segmentation(preprocessed_documents: List[List[tuple]], documents_features: List[np.ndarray],
                           document_label_lists, documents, task=None) -> List[Segmentation]:
@@ -107,3 +107,30 @@ def find_cluster_for_noisy_samples(predicted_labels, context_size=10):
                                 curr += 1
     # print('Noisy labels reclustered in {}'.format(time.time()-start))
     return noisy
+
+
+#  https://stackoverflow.com/questions/15033511/compute-a-confidence-interval-from-sample-data/34474255#34474255
+def perform_confidence_interval_test(samples: List, c_interval=0.95, p_normal_threshold=0.05):
+    n = len(samples)
+    if n >= 30:
+        sem = st.sem(samples)
+        mean = np.mean(samples)
+        interval = st.t.interval(c_interval, n-1, loc=mean, scale=sem)
+        print('Mean:', mean)
+        print('Standard error:', sem)
+        print('{}% confidence interval: {}'.format(c_interval*100, interval))
+    else:
+        #  https://docs.scipy.org/doc/scipy-0.19.0/reference/generated/scipy.stats.normaltest.html
+        #  https://stackoverflow.com/questions/12838993/scipy-normaltest-how-is-it-used
+        z, p_val = st.normaltest(samples, nan_policy='raise')
+        if p_val < p_normal_threshold:
+            print('A given sample is not from normal distribution: '
+                  'p_val = {} < threshold = {}'.format(p_val, p_normal_threshold))
+            print('The confidence intervals cannot be calculated.')
+        else:
+            sem = st.sem(samples)
+            mean = np.mean(samples)
+            interval = st.t.interval(c_interval, n - 1, loc=mean, scale=sem)
+            print('Mean:', mean)
+            print('Standard error:', sem)
+            print('{}% confidence interval: {}'.format(c_interval * 100, interval))
