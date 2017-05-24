@@ -63,10 +63,10 @@ if __name__ == "__main__":
     
     ## Usage
     b = "nim-lang"
-    cach["foo"] = b # saves b to file ".cache-test/foo.p"
+    cach["foo"] = b # save b to file ".cache-test/foo.p"
     cach["bar"] = [i ** 2 for i in range(5)]   # saves the list to file ".cache-test/bar.p"    
     if "foo" in cach:  # if exists ".cache-test/foo.p"
-        a = cach["foo"]  # loads ".cache-test/foo.p" into a    
+        a = cach["foo"]  # load ".cache-test/foo.p" into a    
     assert(a == b)
     
     ## Alternative usage
