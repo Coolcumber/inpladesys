@@ -39,8 +39,10 @@ class AgglomerativeModelSelector(AbstractModelSelector):
 
                     predicted_segmentations = generate_segmentation(preprocessed_documents, documents_features,
                                                                     predicted_label_lists, documents, task=task)
-
-                    score = self.get_macro_f1(true_segmentations, predicted_segmentations)
+                    if task == 'a':
+                        score = self.get_macro_f1(true_segmentations, predicted_segmentations)
+                    else:
+                        score = self.get_bcubed_f1(true_segmentations, predicted_segmentations)
 
                     results.append({'affinity': affinity, 'linkage': linkage, 'score': score})
 

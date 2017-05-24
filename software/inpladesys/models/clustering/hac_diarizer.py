@@ -57,7 +57,7 @@ class AgglomerativeDiarizer(AbstractDiarizer):
     def get_model_selector(self) -> AbstractModelSelector:
         hyperparams = {
             'affinity': ['euclidean', 'manhattan', 'cosine'],  #['euclidean', 'manhattan', 'cosine'], ['euclidean']
-            'linkage': ['complete', 'average']  #['complete', 'average'] ['ward']
+            'linkage': ['complete', 'average']  # ['complete', 'average'] ['ward']
         }
         return AgglomerativeModelSelector(hyperparams, scaler=StandardScaler)
 

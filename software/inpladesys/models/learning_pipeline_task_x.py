@@ -14,6 +14,7 @@ from inpladesys.models.clustering.affinity_prop_diarizer import AffinityPropDiar
 from inpladesys.models.outlier_detection.isolation_forest_diarizer import IsolationForestDiarizer
 from inpladesys.models.misc.misc import custom_train_test_split
 from inpladesys.util.cacher import Cacher
+from sklearn import preprocessing as prep
 
 
 class LearningPipeline:
@@ -130,7 +131,7 @@ if __name__ == "__main__":
     params = dict()
 
     # Change the task here
-    task = 'a'
+    task = 'c'
 
     if task == 'a':
         print("Loading dataset for task ", task, "...")
@@ -140,12 +141,12 @@ if __name__ == "__main__":
         params['document_preprocessor'] = TokenizerPreprocessor()
         params['basic_feature_extractor'] = BasicFeatureExtractor(features_file_name)
         params['feature_transformer'] = None
-        params['model'] = GaussianMixtureDiarizer() # GaussianMixtureDiarizer() #IsolationForestDiarizer()  # AgglomerativeDiarizer()  #KMeansDiarizer()
+        params['model'] = AgglomerativeDiarizer() # GaussianMixtureDiarizer() #IsolationForestDiarizer()  # AgglomerativeDiarizer()  #KMeansDiarizer()
         params['scorer_class_1'] = MicroScorer
         params['scorer_class_2'] = MacroScorer
         params['cacher'] = Cacher(dir='.cache-task-a')
         params['select-model'] = False
-        params['train_size'] = 0.9  # 0.5 for Agg
+        params['train_size'] = 0.5  # 0.5 for Agg
         params['random_state'] = 9
 
     elif task == 'b':
@@ -161,7 +162,7 @@ if __name__ == "__main__":
         params['scorer_class_2'] = None
         params['cacher'] = Cacher(dir='.cache-task-b')
         params['select-model'] = False
-        params['train_size'] = 0.1
+        params['train_size'] = 0  # 0 za agg iz a
         params['random_state'] = 8
 
     elif task == 'c':

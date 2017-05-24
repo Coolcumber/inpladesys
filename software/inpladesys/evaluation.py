@@ -222,10 +222,10 @@ if __name__ == "__main__":
     print(nms.precision())
     print(nms.recall())
 
-    exit()
+    #exit()
 
     a = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
-    print(MacroScorer(a).f1_score())
+    #print(MacroScorer(a).f1_score())
     print()
 
     cm = np.array([[4, 1, 0],
@@ -234,11 +234,19 @@ if __name__ == "__main__":
                    [0, 0, 1],
                    [0, 0, 1]])
 
-    bc = BCubedScorer(cm)
+    cm = np.array([[4, 1, 0, 0],
+                   [0, 0, 2, 4],
+                   [0, 0, 0, 1],
+                   [0, 0, 0, 1],
+                   [0, 0, 0, 1]])
+
+    bc = _BCubedScorer(cm)
     print(bc.precision())
     print(bc.recall())
     print(bc.f1_score())
     print()
+
+    exit()
 
     s = np.array([[1, 3], [2, 4]])
 
