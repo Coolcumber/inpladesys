@@ -59,16 +59,36 @@ class Cacher:
 
 
 if __name__ == "__main__":
-    c = Cacher(".cache-test")
-    c["a"] = [i for i in range(5)]
-    c["b"] = [i ** 2 for i in range(5)]
-    print(c["a"])
-
-
-    @c()
+    cach = Cacher(".cache-test")
+    
+    ## Usage
+    b = "nim-lang"
+    cach["foo"] = b # saves b to file ".cache-test/foo.p"
+    cach["bar"] = [i ** 2 for i in range(5)]   # saves the list to file ".cache-test/bar.p"    
+    if "foo" in cach:  # if exists ".cache-test/foo.p"
+        a = cach["foo"]  # loads ".cache-test/foo.p" into a    
+    assert(a == b)
+    
+    ## Alternative usage
+    # cahches the result of foo after the first call
+    # the function is evaluated only once unless ".cache-test/memoized-test.p" is removed
+    @cach("momoized-test")
     def test():
         import time
         return time.ctime(), "foo"
+    print(test())  # test() evaluated
+    print(test())  # value loaded from file
+    print(test())  # value loaded from file
+    cacher.clear()  # removes all cached files in ".cache-test"
+    print(test())  # evaluated again    
+    for j in range(10):
+        for i in range(100):
+            @cach("{}-of-100".format(i))  # memoizes files ".cache-test.p/*-of-100.p" where * in {0..99}
+            def one_of_100()
+                return (i, str(i))
+            one_of_100()
+    
+    
 
 
     print(test())
