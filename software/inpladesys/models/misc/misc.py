@@ -118,7 +118,7 @@ def perform_confidence_interval_test(samples: List, c_interval=0.95, p_normal_th
         interval = st.t.interval(c_interval, n-1, loc=mean, scale=sem)
         print('Mean:', mean)
         print('Standard error:', sem)
-        print('{}% confidence interval: {}'.format(c_interval*100, interval))
+        print('{}% confidence interval: {}\n'.format(c_interval*100, interval))
     else:
         #  https://docs.scipy.org/doc/scipy-0.19.0/reference/generated/scipy.stats.normaltest.html
         #  https://stackoverflow.com/questions/12838993/scipy-normaltest-how-is-it-used
@@ -133,4 +133,4 @@ def perform_confidence_interval_test(samples: List, c_interval=0.95, p_normal_th
             interval = st.t.interval(c_interval, n - 1, loc=mean, scale=sem)
             print('Mean:', mean)
             print('Standard error:', sem)
-            print('{}% confidence interval: {}'.format(c_interval * 100, interval))
+            print('{}% confidence interval: {}\n'.format(c_interval * 100, interval))

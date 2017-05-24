@@ -12,7 +12,7 @@ from inpladesys.models.clustering.gmm_diarizer import GaussianMixtureDiarizer
 from inpladesys.models.clustering.mean_shift_diarizer import MeanShiftDiarizer
 from inpladesys.models.clustering.affinity_prop_diarizer import AffinityPropDiarizer
 from inpladesys.models.outlier_detection.isolation_forest_diarizer import IsolationForestDiarizer
-from inpladesys.models.misc.misc import custom_train_test_split
+from inpladesys.models.misc.misc import custom_train_test_split, perform_confidence_interval_test
 from inpladesys.util.cacher import Cacher
 from sklearn import preprocessing as prep
 
@@ -93,6 +93,9 @@ class LearningPipeline:
 
         # Evaluation
         print('Evaluating...')
+        test_samples_1 = []
+        test_samples_2 = []
+
         results_1 = np.array([0, 0, 0], dtype=np.float64)
         results_2 = np.array([0, 0, 0], dtype=np.float64)
         test_set_size = len(dataset_test)
@@ -104,17 +107,22 @@ class LearningPipeline:
 
             scorer_1 = self.scorer_1(truth, pred)
             results_1 += np.array([scorer_1.precision(), scorer_1.recall(), scorer_1.f1_score()])
+            test_samples_1.append(scorer_1.f1_score())
 
             if self.scorer_2 is not None:  # Task a
                 scorer_2 = self.scorer_2(truth, pred)
                 results_2 += np.array([scorer_2.precision(), scorer_2.recall(), scorer_2.f1_score()])
+                test_samples_2.append(scorer_2.f1_score())
 
         results_1 /= test_set_size
         print(self.scorer_1, ':', results_1)
+        perform_confidence_interval_test(test_samples_1, c_interval=0.95, p_normal_threshold=0.05)
 
         if self.scorer_2 is not None:
             results_2 /= test_set_size
             print(self.scorer_2, ':', results_2)
+            perform_confidence_interval_test(test_samples_2, c_interval=0.95, p_normal_threshold=0.05)
+
 
     # TODO write all necessary params to log file
 
@@ -129,7 +137,7 @@ if __name__ == "__main__":
     params = dict()
 
     # Change the task here
-    task = 'b'
+    task = 'c'
 
     if task == 'a':
         print("Loading dataset for task ", task, "...")
@@ -159,7 +167,7 @@ if __name__ == "__main__":
         params['scorer_class_1'] = BCubedScorer
         params['scorer_class_2'] = None
         params['cacher'] = Cacher(dir='.cache-task-b')
-        params['select-model'] = True
+        params['select-model'] = False
         params['train_size'] = 0.5  # 0 za agg iz a
         params['random_state'] = 8
 

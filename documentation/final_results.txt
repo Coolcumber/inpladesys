@@ -1,0 +1,32 @@
+Task a without transformation:
+
+<class 'inpladesys.evaluation.MicroScorer'> : [ 0.18306201  0.43350674  0.24513857]
+Mean: 0.245138572679
+Standard error: 0.0457288428736
+95.0% confidence interval: (0.1523040862115792, 0.33797305914632669)
+
+<class 'inpladesys.evaluation.MacroScorer'> : [ 0.17895376  0.43406265  0.23754304]
+Mean: 0.2375430353
+Standard error: 0.0445104646384
+95.0% confidence interval: (0.14718198814722785, 0.32790408245224201)
+-----------------------------------------------------------------------------------------
+
+Task b without transformation:
+
+<class 'inpladesys.evaluation.BCubedScorer'> : [ 0.60844135  0.6535794   0.62086813]
+Mean: 0.620868126644
+Standard error: 0.0246373827027
+95.0% confidence interval: (0.57031639296880854, 0.67141986032006595)
+-----------------------------------------------------------------------------------------
+
+Task c without transformation:
+<class 'inpladesys.evaluation.BCubedScorer'> : [ 0.70797597  0.50356007  0.54434012]
+Mean: 0.544340119526
+Standard error: 0.0162034001583
+95.0% confidence interval: (0.5117610000239432, 0.57691923902881692)
+
+
+
+
+
+
