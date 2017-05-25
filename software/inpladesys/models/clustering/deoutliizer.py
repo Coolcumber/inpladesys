@@ -10,10 +10,11 @@ class Deoutliizer():
     def fit_predict(self, X):
         X = X[:]
         m = X.shape[0]
-        n = m * (1 - self.outlier_proportion)
-        keep = np.ones(n)
+        n = int(m * (1 - self.outlier_proportion))
+        keep = np.ones(m, dtype=np.int32)
         while m > n:
-            center = np.average(X, axis=0)
+            center = np.average(X, axis=0, weights=keep)
             distances = np.sum((X - center) ** 2, axis=1)
             keep[np.argmax(distances)] = 0
             m -= 1
+        return keep

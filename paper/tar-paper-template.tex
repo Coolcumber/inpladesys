@@ -12,7 +12,7 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 
-\title{Template for writing TAR project papers}
+\title{TAR System Description Paper Template}
 
 \name{Author1, Author2, Author3} 
 
@@ -24,7 +24,7 @@ Unska 3, 10000 Zagreb, Croatia\\
           
          
 \abstract{ 
-This document provides the instructions on formatting the TAR project paper in \LaTeX{}. This is where you write the abstract (i.e., summary) of the work you carried out. The abstract is a paragraph of text ranging between 70 and 150 words.
+This document provides the instructions on formatting the TAR system description paper in \LaTeX{}. This is where you write the abstract (i.e., summary) of the work you carried out within the project. The abstract is a paragraph of text ranging between 70 and 150 words.
 }
 
 \begin{document}
@@ -33,13 +33,17 @@ This document provides the instructions on formatting the TAR project paper in \
 
 \section{Introduction}
 
-This section is the introduction to your paper. Introduction should not be too elaborate, that is what other sections are for (the Introduction should definitely not spill over to the second page). 
+This section is the introduction to your paper. Introduction should not be too elaborate, as that is what other sections are for (the Introduction should definitely not spill over to the second page). 
 
 This is the second paragraph of the introduction. In \LaTeX , paragraphs are separated by inserting an empty line in between them.  Avoid very large paragraphs (larger than half of the page height), but also avoid tiny paragraphs (e.g., one-sentence paragraphs).
 
+\section{Related work}
+It would be good for the last paragraph here to be a \emph{delta} paragraph emphasizing the difference between outr model and other models.
+
+
 \section{Second section}
 
-In scientific papers, this section usually (but not necessarily) briefly describes the related research. 
+In scientific papers, this section usually (but not necessarily) briefly describes the related research and what makes the presented approach different from it.
 
 \subsection{First subsection}
 \label{sec:first}
@@ -48,7 +52,7 @@ This is a subsection of the second section.
 
 \subsection{Second subsection}
 
-This is the second subsection of the second section. Referencing the (sub)sections in text is performed as follows: ``in Section \ref{sec:first} we have shown \dots''.
+This is the second subsection of the second section. Referencing the (sub)sections in text is performed as follows: ``in Section~\ref{sec:first} we have shown \dots''.
 
 \subsubsection{Sub-subsection example} 
 
@@ -56,7 +60,7 @@ This is a sub-subsection. If possible, it is better to avoid sub-subsections.
 
 \section{Extent of the paper}
 
-The paper should have a minimum of 3 and a maximum of 5 pages, plus an additional page for references.
+The paper should have a minimum of 3 and a maximum of 4 pages, plus an additional page for references.
 
 \section{Figures and tables}
 
@@ -78,7 +82,7 @@ There are two types of tables: narrow tables that fit into one column and a wide
 
 \subsubsection{Narrow tables}
 
-Table~\ref{tab:narrow-table} is an example of a narrow table. Do not use vertical lines in tables -- vertical tables have no effect and they make tables visually less attractive.
+Table~\ref{tab:narrow-table} is an example of a narrow table. Do not use vertical lines in tables -- vertical tables have no effect and they make tables visually less attractive. We recommend using \textit{booktabs} package for nicer tables.
 
 \begin{table}
 \caption{This is the caption of the table. Table captions should be placed \textit{above} the table.}
@@ -124,7 +128,7 @@ Math expressions and formulas that appear within the sentence should be written 
 \[
 b^{(i)}_k = \begin{cases}
 1 & \text{if 
-    $k = \text{argmin}_j \| \mathbf{x}^{(i)} - \mathbf{\mu}_j \|$}\\
+    $k = \text{argmin}_j \| \mathbf{x}^{(i)} - \mathbf{\mu}_j \|,$}\\
 0 & \text{otherwise}
 \end{cases}
 \]

@@ -1,11 +1,11 @@
 {
   "features": [
     {
-      "used":0,
+      "used":120,
       "id":1,
       "class_name":"BagOfWordsExtractor",
       "params": {
-        "max_features":100,
+        "max_features":0,
         "lowercase":"True",
         "min_ngram_range":1,
         "max_ngram_range":1,
@@ -18,14 +18,14 @@
       "id":2,
       "class_name":"CharNGramsExtractor",
       "params": {
-        "max_features":200,
+        "max_features":120,
         "min_ngram_range":3,
         "max_ngram_range":3
       },
       "module_name":"inpladesys.models.basic_feature_extraction.features.simple.char_ngrams"
     },
     {
-      "used":0,
+      "used":1,
       "id":3,
       "class_name":"AvgTokenLengthExtractor",
       "params": {},

@@ -26,8 +26,7 @@ vector_arrays = [
 label_arrays = [np.array([0, 0, 0, 1, 1, 2, 2, 3, 3, 3, 4, 4, 4]),
                 np.array([0, 1, 1, 1])]
 
-grft = GroupRepelFeatureTransformer(
-    3, 2, nonlinear_layer_count=1, iteration_count=50, reinitialize_on_fit=False)
+grft = GroupRepelFeatureTransformer(2, reinitialize_on_fit=False, nonlinear_layer_count=0, iteration_count=50)
 
 import matplotlib.pyplot as plt
 

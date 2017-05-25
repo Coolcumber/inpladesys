@@ -10,7 +10,8 @@ import numpy as np
 class PipelineAuthorDiarizer():
     def __init__(self, parameters: dict, cacher=None):
         self.preprocessor = TokenizerPreprocessor()
-        self.bfe = parameters['basic_feature_extractor']
+        self.bfextr = parameters['basic_feature_extractor']
+        self.bf_extender = parameters['basic_feature_extender']
         self.feature_transformer = parameters['feature_transformer']
         self.clusterer = parameters['clusterer']
         self.cacher = Cacher.dummy() if cacher is None else cacher
@@ -26,13 +27,13 @@ class PipelineAuthorDiarizer():
         def fit_bfe(documents):
             corpus = "\n\n".join(doc for doc in documents)
             corpus_tokens = self.preprocessor.fit_transform(corpus)
-            self.bfe.fit(corpus, corpus_tokens)
-            return self.bfe
+            self.bfextr.fit(corpus, corpus_tokens)
+            return self.bfextr
 
         documents, segmentations = dataset.documents, dataset.segmentations
 
         print("(1/4) Training basic feature extractor...")
-        self.bfe = fit_bfe(documents)  # TODO: load bfe in predict if not loaded
+        self.bfextr = fit_bfe(documents)  # TODO: load bfe in predict if not loaded
 
         print("(2/4) Preprocessing training data: extracting tokens and basic features...")
         bydoc_tokens, bydoc_features = self._preprocess_documents(documents)
@@ -58,11 +59,17 @@ class PipelineAuthorDiarizer():
                 plt.scatter(h[:, 0], h[:, 1], c=y1[0])
                 plt.pause(0.05)
 
-    def predict(self, documents):
+    def predict(self, documents, author_counts=None):
         assert (len(documents) > 0)
         bydoc_tokens, bydoc_features = self._preprocess_documents(documents)
         bydoc_transformed_features = self.feature_transformer.transform(bydoc_features)
-        bydoc_labels_h = [self.clusterer.fit_predict(tf) for tf in bydoc_transformed_features]
+        bydoc_labels_h = []
+        if author_counts is None:
+            bydoc_labels_h = [self.clusterer.fit_predict(tf) for tf in bydoc_transformed_features]
+        else:
+            for i, tf in enumerate(bydoc_transformed_features):
+                bydoc_labels_h.append(self.clusterer.fit_predict(tf, cluster_count=author_counts[i]))
+
         segms = generate_segmentation(bydoc_tokens, bydoc_features, bydoc_labels_h, documents)
         if all(segm.author_count <= 2 for segm in segms):
             for segm in segms:
@@ -90,6 +97,6 @@ class PipelineAuthorDiarizer():
 
     def _preprocess_document(self, document):
         tokens = self.preprocessor.fit_transform(document)
-        features = self.bfe.transform(document, tokens)
-        features = [np.concatenate((f, f ** 2), axis=0) for f in features]
-        return tokens, preprocessing.scale(features)
+        features = self.bfextr.transform(document, tokens)
+        features = [np.concatenate((f, f ** 2), axis=0) for f in features]  # move scaling to corpus level
+        return tokens, preprocessing.scale(features)  # scaling beneficial
