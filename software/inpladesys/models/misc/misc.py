@@ -109,28 +109,19 @@ def find_cluster_for_noisy_samples(predicted_labels, context_size=10):
     return noisy
 
 
-#  https://stackoverflow.com/questions/15033511/compute-a-confidence-interval-from-sample-data/34474255#34474255
 def perform_confidence_interval_test(samples: List, c_interval=0.95, p_normal_threshold=0.05):
     n = len(samples)
-    if n >= 30:
+    #  https://docs.scipy.org/doc/scipy-0.19.0/reference/generated/scipy.stats.normaltest.html
+    #  https://stackoverflow.com/questions/12838993/scipy-normaltest-how-is-it-used
+    z, p_val = st.normaltest(samples, nan_policy='raise')
+    if p_val < p_normal_threshold:
+        print('A given sample is not from normal distribution: '
+              'p_val = {} < threshold = {}'.format(p_val, p_normal_threshold))
+        print('The confidence intervals cannot be calculated.')
+    else:
         sem = st.sem(samples)
         mean = np.mean(samples)
-        interval = st.t.interval(c_interval, n-1, loc=mean, scale=sem)
+        interval = st.t.interval(c_interval, n-1, loc=mean, scale=sem)  #  https://stackoverflow.com/questions/15033511/compute-a-confidence-interval-from-sample-data/34474255#34474255
         print('Mean:', mean)
         print('Standard error:', sem)
-        print('{}% confidence interval: {}\n'.format(c_interval*100, interval))
-    else:
-        #  https://docs.scipy.org/doc/scipy-0.19.0/reference/generated/scipy.stats.normaltest.html
-        #  https://stackoverflow.com/questions/12838993/scipy-normaltest-how-is-it-used
-        z, p_val = st.normaltest(samples, nan_policy='raise')
-        if p_val < p_normal_threshold:
-            print('A given sample is not from normal distribution: '
-                  'p_val = {} < threshold = {}'.format(p_val, p_normal_threshold))
-            print('The confidence intervals cannot be calculated.')
-        else:
-            sem = st.sem(samples)
-            mean = np.mean(samples)
-            interval = st.t.interval(c_interval, n - 1, loc=mean, scale=sem)
-            print('Mean:', mean)
-            print('Standard error:', sem)
-            print('{}% confidence interval: {}\n'.format(c_interval * 100, interval))
+        print('{}% confidence interval: {}\n'.format(c_interval * 100, interval))

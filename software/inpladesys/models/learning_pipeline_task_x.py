@@ -137,7 +137,7 @@ if __name__ == "__main__":
     params = dict()
 
     # Change the task here
-    task = 'c'
+    task = 'b'
 
     if task == 'a':
         print("Loading dataset for task ", task, "...")

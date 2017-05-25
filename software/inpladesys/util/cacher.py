@@ -84,7 +84,7 @@ if __name__ == "__main__":
     for j in range(10):
         for i in range(100):
             @cach("{}-of-100".format(i))  # memoizes files ".cache-test.p/*-of-100.p" where * in {0..99}
-            def one_of_100()
+            def one_of_100():
                 return (i, str(i))
             one_of_100()
     
