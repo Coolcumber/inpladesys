@@ -1,11 +1,11 @@
 {
   "features": [
     {
-      "used":120,
+      "used":1,
       "id":1,
       "class_name":"BagOfWordsExtractor",
       "params": {
-        "max_features":0,
+        "max_features":120,
         "lowercase":"True",
         "min_ngram_range":1,
         "max_ngram_range":1,

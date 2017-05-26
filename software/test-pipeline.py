@@ -9,6 +9,7 @@ from inpladesys.util.cacher import Cacher
 from sklearn.cluster import KMeans
 from inpladesys.evaluation import get_confusion_matrix, BCubedScorer, MicroScorer, MacroScorer
 import numpy as np
+from inpladesys.models.misc import perform_confidence_interval_test
 
 dataset_dirs = [
     "../data/pan16-author-diarization-training-dataset-problem-a-2016-02-16",
@@ -25,18 +26,19 @@ def evaluate(params: dict, dataset_index: int, cache_dir=None):
         features_file_name=features_file_name,
         context_size=params['context_size'])
     from inpladesys.models.feature_transformation import SimpleGroupRepelFeatureTransformer
-    pl_params['feature_transformer'] = SimpleGroupRepelFeatureTransformer(
+    """pl_params['feature_transformer'] = SimpleGroupRepelFeatureTransformer(
         reinitialize_on_fit=False,
         iteration_count=params['gr-iteration_count'],
-        learning_rate=8e-4,
+        learning_rate=5e-4,
         random_state=random_state)
-    """pl_params['feature_transformer'] = GroupRepelFeatureTransformer(
+    """
+    pl_params['feature_transformer'] = GroupRepelFeatureTransformer(
         output_dimension=params['gr_output_dimension'],
         reinitialize_on_fit=False,
         nonlinear_layer_count=params['gr-nonlinear_layer_count'],
         iteration_count=params['gr-iteration_count'],
-        learning_rate=8e-4,
-        random_state=random_state)"""
+        learning_rate=5e-4,
+        random_state=random_state)
     pl_params['clusterer'] = AutoKMeans(min_clusters=2, max_clusters=2)
     #pl_params['clusterer'] = Deoutliizer(0.3)
     if params['basic_feature_extender'] == 'f**2':
@@ -74,7 +76,9 @@ def evaluate(params: dict, dataset_index: int, cache_dir=None):
 
     scorer_factories = [MicroScorer, MacroScorer, BCubedScorer] if dataset_index == 0 else [BCubedScorer]
     for sf in scorer_factories:
-        scores = np.stack([get_scores(sf, y, h) for y, h in zip(ys, hs)], axis=0)
+        score_list = [get_scores(sf, y, h) for y, h in zip(ys, hs)]
+        #print(perform_confidence_interval_test(score_list))
+        scores = np.stack(score_list, axis=0)
         avg_scores = np.average(scores, axis=0)
         score_variances = np.var(scores, axis=0)
         print(sf)
@@ -85,11 +89,11 @@ params = dict()
 params['context_size'] = 120
 params['gr_output_dimension'] = 40
 params['gr-nonlinear_layer_count'] = 0
-params['gr-iteration_count'] = 80
+params['gr-iteration_count'] = 40
 params['basic_feature_extender'] = 'f2'
 
 # cache_dir example "ce100-bow100-sw--ctx120--f21"
-evaluate(params, 2, cache_dir="ce120-bow0-sw--ctx{}--f2-s".format(
+evaluate(params, 2, cache_dir="ce120-bow120-sw--ctx{}--f2-s".format(
     params['context_size'],
     1 if params['basic_feature_extender'] == 'f2' else 0))
 

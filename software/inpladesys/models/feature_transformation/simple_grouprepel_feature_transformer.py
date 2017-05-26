@@ -76,8 +76,8 @@ class SimpleGroupRepelFeatureTransformer(AbstractFeatureTransformer):
 
         def transform(x):
             w = tf.Variable(tf.truncated_normal([x_dim], 0, 0.1))
-            # b = tf.Variable(tf.truncated_normal([x_dim], 0, 0.1))
-            return x * w
+            b = tf.Variable(tf.truncated_normal([x_dim], 0, 0.1))
+            return x * w+b
 
         def fori(istart, istop, body, body_var, shape_invar=None):
             if type(istart) == int:

@@ -1,3 +1,5 @@
+from numpy.ctypeslib import prep_array
+
 from inpladesys.datatypes import Document, Segment, Segmentation, Dataset
 from .abstract_author_diarizer import AbstractAuthorDiarizer
 from inpladesys.models.misc import generate_segmentation, fix_segmentation_labels_for_plagiarism_detection
@@ -42,6 +44,8 @@ class PipelineAuthorDiarizer():
         bydoc_labels = get_bydoc_labels(bydoc_tokens, segmentations)
 
         print("(4/4) Training feature transformer...")
+        bydoc_features = [preprocessing.scale(f) for f in bydoc_features]
+        #bydoc_features=preprocessing.scale(np.array(bydoc_features))
         x, y = bydoc_features[:], bydoc_labels[:]
         if True:
             self.feature_transformer.fit(x, y)
@@ -88,9 +92,10 @@ class PipelineAuthorDiarizer():
             def prepr():
                 return self._preprocess_document(doc)
 
-            tokens, tokens_features = prepr()
+            tokens, token_features = prepr()
+            token_features = np.array(token_features)
             bydoc_tokens.append(tokens)
-            bydoc_token_features.append(tokens_features)
+            bydoc_token_features.append(token_features)
             print("\r{}/{}".format(i + 1, len(documents)), end='')
         print('')
         return bydoc_tokens, bydoc_token_features
@@ -99,4 +104,4 @@ class PipelineAuthorDiarizer():
         tokens = self.preprocessor.fit_transform(document)
         features = self.bfextr.transform(document, tokens)
         features = [np.concatenate((f, f ** 2), axis=0) for f in features]  # move scaling to corpus level
-        return tokens, preprocessing.scale(features)  # scaling beneficial
+        return tokens, features #preprocessing.scale(features)  # scaling beneficial
