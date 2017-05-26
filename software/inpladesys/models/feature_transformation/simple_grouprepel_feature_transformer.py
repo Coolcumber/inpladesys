@@ -6,16 +6,13 @@ from typing import List
 from inpladesys.datatypes import Dataset
 
 
-class GroupRepelFeatureTransformer(AbstractFeatureTransformer):
+class SimpleGroupRepelFeatureTransformer(AbstractFeatureTransformer):
     def __init__(self,
-                 output_dimension,
                  reinitialize_on_fit,
                  input_dimension=None,
-                 nonlinear_layer_count=0,
                  nonlinearity=tf.nn.tanh,
                  learning_rate=1e-3,
                  iteration_count=10000,
-                 regularization=1,
                  verbose=False,
                  random_state=None):
         self.iteration_count = iteration_count
@@ -31,9 +28,7 @@ class GroupRepelFeatureTransformer(AbstractFeatureTransformer):
                 if random_state is not None:
                     tf.set_random_seed(random_state)
                 self.sess = tf.Session()
-                self._build_graph(input_dimension, output_dimension,
-                                  nonlinear_layer_count, nonlinearity,
-                                  learning_rate, regularization)
+                self._build_graph(input_dimension, nonlinearity, learning_rate)
             self._build_graph_if_not_built = lambda x: None
 
         self._build_graph_if_not_built = lambda input_dim: initialize(input_dim)
@@ -76,37 +71,13 @@ class GroupRepelFeatureTransformer(AbstractFeatureTransformer):
         self._build_graph_if_not_built(X[0].shape[1])
         return [self.sess.run([self.y], {self.x: x})[0] for x in X]
 
-    def _build_graph(self, x_dim, y_dim, nonlinear_layer_count, nonlinearity, learning_rate, regularization):
-        def distance(a, b):
-            return (a - b) ** 2
-
-        #def cdistance(a, b):
-        #    return a*b
-
-        def fc(in_size: int, out_size: int):
-            w = tf.Variable(tf.truncated_normal([in_size, out_size], 0, 0.1))
-            r_params.append(w)
-            return w
-
-        def bias(size: int):
-            return tf.Variable(tf.truncated_normal([size], 0, 0.1))
-
+    def _build_graph(self, x_dim, nonlinearity, learning_rate):
         r_params = []
 
         def transform(x):
-            nlc = nonlinear_layer_count
-            h = 1
-            if nlc == 0:
-                x = tf.matmul(x, fc(x_dim, y_dim))
-            else:
-                w = [fc(x_dim, h * x_dim)]
-                w += [fc(h * x_dim, h * x_dim) for i in range(nlc - 1)]
-                b = [bias(h * x_dim)]
-                b += [bias(h * x_dim) for i in range(nlc - 1)]
-                for wi, bi in zip(w, b):
-                    x = nonlinearity(tf.matmul(x, wi) + bi)
-                x = tf.matmul(x, fc(h * x_dim, y_dim))
-            return x
+            w = tf.Variable(tf.truncated_normal([x_dim], 0, 0.1))
+            b = tf.Variable(tf.truncated_normal([x_dim], 0, 0.1))
+            return x * w+b
 
         def fori(istart, istop, body, body_var, shape_invar=None):
             if type(istart) == int:
@@ -128,23 +99,23 @@ class GroupRepelFeatureTransformer(AbstractFeatureTransformer):
 
         def get_centroids(y, labels, centroid_count):
             def centroid(i):
-                return tf.reshape(tf.reduce_mean(extract_group(y, labels, i), axis=0), [1, y_dim])
+                return tf.reshape(tf.reduce_mean(extract_group(y, labels, i), axis=0), [1, x_dim])
 
             return fori(1, centroid_count,
                         lambda i, c: tf.concat([c, centroid(i)], axis=0),
-                        centroid(0), tf.TensorShape([None, y_dim]))
+                        centroid(0), tf.TensorShape([None, x_dim]))
 
         def get_group_loss(y, labels, centroids, centroid_count):
             def loss(i):
                 group = extract_group(y, labels, i)
-                return tf.reduce_mean(distance(group, centroids[i]))
+                return tf.reduce_mean((group - centroids[i]) ** 2)
 
             return fori(0, centroid_count, lambda i, e: e + loss(i), tf.constant(.0))
 
         def get_centroid_loss(centroids, centroid_count):
             def get_part(i):
-                dists = distance(centroids[i + 1:, :], centroids[i, :])
-                return tf.reduce_sum(1 / tf.reduce_sum(dists, axis=1))
+                diffs = centroids[i + 1:, :] - centroids[i, :]
+                return tf.reduce_sum(1 / tf.reduce_sum(diffs ** 2, axis=1))
 
             n = tf.cast(centroid_count, tf.float32)
             return fori(0, centroid_count - 1, lambda i, e: e + get_part(i), tf.constant(.0)) / n
