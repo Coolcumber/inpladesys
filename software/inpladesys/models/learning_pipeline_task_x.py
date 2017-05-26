@@ -137,7 +137,7 @@ if __name__ == "__main__":
     params = dict()
 
     # Change the task here
-    task = 'b'
+    task = 'a'
 
     if task == 'a':
         print("Loading dataset for task ", task, "...")
@@ -168,7 +168,7 @@ if __name__ == "__main__":
         params['scorer_class_2'] = None
         params['cacher'] = Cacher(dir='.cache-task-b')
         params['select-model'] = False
-        params['train_size'] = 0.5  # 0 za agg iz a
+        params['train_size'] = 0.5  # 0 za agg iz a, 0.5 za hip
         params['random_state'] = 8
 
     elif task == 'c':
