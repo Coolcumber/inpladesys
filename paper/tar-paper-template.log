@@ -1,7 +1,7 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.5.26)  28 MAY 2017 01:21
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.5.26)  27 MAY 2017 15:46
 entering extended mode
-**./paper.tex
-(paper.tex
+**./tar-paper-template.tex
+(tar-paper-template.tex
 LaTeX2e <2017/01/01> patch level 1
 Babel <3.9r> and hyphenation patterns for 75 language(s) loaded.
 ("E:\MiKTeX 2.9\tex\latex\base\article.cls"
@@ -458,54 +458,39 @@ Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 \symAMSb=\mathgroup5
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
-))
-("E:\MiKTeX 2.9\tex\latex\makecell\makecell.sty"
-Package: makecell 2009/08/03 V0.1e Managing of Tab Column Heads and Cells
+)) (tar-paper-template.aux)
+\openout1 = `tar-paper-template.aux'.
 
-("E:\MiKTeX 2.9\tex\latex\tools\array.sty"
-Package: array 2016/10/06 v2.4d Tabular extension package (FMi)
-\col@sep=\dimen127
-\extrarowheight=\dimen128
-\NC@list=\toks22
-\extratabsurround=\skip47
-\backup@length=\skip48
-)
-\rotheadsize=\dimen129
-\c@nlinenum=\count104
-\TeXr@lab=\toks23
-) (paper.aux)
-\openout1 = `paper.aux'.
-
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
-LaTeX Font Info:    Try loading font information for OT1+ptm on input line 31.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Try loading font information for OT1+ptm on input line 30.
 
 ("E:\MiKTeX 2.9\tex\latex\psnfss\ot1ptm.fd"
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
 ("E:\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count105
-\scratchdimen=\dimen130
+\scratchcounter=\count104
+\scratchdimen=\dimen127
 \scratchbox=\box28
-\nofMPsegments=\count106
-\nofMParguments=\count107
-\everyMPshowfont=\toks24
-\MPscratchCnt=\count108
-\MPscratchDim=\dimen131
-\MPnumerator=\count109
-\makeMPintoPDFobject=\count110
-\everyMPtoPDFconversion=\toks25
+\nofMPsegments=\count105
+\nofMParguments=\count106
+\everyMPshowfont=\toks22
+\MPscratchCnt=\count107
+\MPscratchDim=\dimen128
+\MPnumerator=\count108
+\makeMPintoPDFobject=\count109
+\everyMPtoPDFconversion=\toks23
 ) ("E:\MiKTeX 2.9\tex\generic\oberdiek\pdftexcmds.sty"
 Package: pdftexcmds 2016/05/21 v0.22 Utility functions of pdfTeX for LuaTeX (HO
 )
@@ -552,92 +537,75 @@ G,.JBIG2,.JB2,.eps]
 (grfext)             \AppendGraphicsExtensions on input line 456.
 )
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <14.4> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 33.
-LaTeX Font Info:    Try loading font information for U+msa on input line 33.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 32.
+LaTeX Font Info:    Try loading font information for U+msa on input line 32.
 
 ("E:\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 33.
+LaTeX Font Info:    Try loading font information for U+msb on input line 32.
 
 ("E:\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 33.
-LaTeX Font Info:    Try loading font information for OT1+pcr on input line 33.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 32.
+LaTeX Font Info:    Try loading font information for OT1+pcr on input line 32.
 
 ("E:\MiKTeX 2.9\tex\latex\psnfss\ot1pcr.fd"
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 )
-LaTeX Font Info:    Try loading font information for OMS+pcr on input line 33.
+LaTeX Font Info:    Try loading font information for OMS+pcr on input line 32.
 
 ("E:\MiKTeX 2.9\tex\latex\psnfss\omspcr.fd"
 File: omspcr.fd 
 )
 LaTeX Font Info:    Font shape `OMS/pcr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 33.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 32.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 33.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 32.
 
-Overfull \hbox (120.66867pt too wide) in paragraph at lines 40--40
-[][]\OT1/pcr/m/n/9 http://pan.webis.de/clef16/pan16-web/author-identification.h
-tml| 
+<drawing.pdf, id=1, 352.03395pt x 167.60172pt>
+File: drawing.pdf Graphic file (type pdf)
+ <use drawing.pdf>
+Package pdftex.def Info: drawing.pdf used on input line 73.
+(pdftex.def)             Requested size: 235.73097pt x 112.2286pt.
+ [1{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}
+
+
+
+ <./drawing.pdf>]
+Underfull \hbox (badness 2573) in paragraph at lines 171--172
+[]\OT1/ptm/m/n/10 All of this is au-to-mat-i-cally pro-duced when us-ing
  []
 
 
-Overfull \vbox (0.78384pt too high) has occurred while \output is active []
-
-LaTeX Font Info:    Try loading font information for OMS+ptm on input line 87.
-
-("E:\MiKTeX 2.9\tex\latex\psnfss\omsptm.fd"
-File: omsptm.fd 
-)
-LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 87.
-
-Underfull \hbox (badness 10000) in paragraph at lines 93--94
-[]\OT1/ptm/m/n/10 differences: fixed fea-tures + trans-for-ma-tion vs
+Underfull \hbox (badness 3168) in paragraph at lines 171--172
+\OT1/ptm/m/n/10 Bib-TeX. In-sert all the Bib-TeX en-tries into the file
  []
 
-[1{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}
-
-
-
-] (paper.bbl
-Underfull \hbox (badness 1490) in paragraph at lines 13--17
-\OT1/ptm/m/n/10 re-sen-ta-tions for au-thor-ship anal-y-sis.  \OT1/ptm/m/it/10 
-arXiv preprint
- []
-
-
-Underfull \hbox (badness 2828) in paragraph at lines 26--33
-[]\OT1/ptm/m/n/10 Moshe Kop-pel, Navot Akiva, Idan Der-showitz, and
- []
-
-
-Underfull \hbox (badness 1137) in paragraph at lines 48--54
-\OT1/ptm/m/n/10 Sta-matatos, Michael Tschug-gnall, and Benno Stein.
- []
-
-) [2] (paper.aux) ) 
+(tar-paper-template.bbl) [2] (tar-paper-template.aux) ) 
 Here is how much of TeX's memory you used:
- 3094 strings out of 493333
- 37149 string characters out of 3145228
- 108774 words of memory out of 3000000
- 6545 multiletter control sequences out of 15000+200000
- 23387 words of font info for 56 fonts, out of 3000000 for 9000
+ 2909 strings out of 493333
+ 35316 string characters out of 3145228
+ 104986 words of memory out of 3000000
+ 6361 multiletter control sequences out of 15000+200000
+ 27179 words of font info for 67 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 39i,15n,26p,811b,348s stack positions out of 5000i,500n,10000p,200000b,50000s
-{E:/MiKTeX 2.9/fonts/enc/dvips/base/8r.enc}<E:/MiKTeX 2.9/fo
-nts/type1/public/amsfonts/cm/cmmi10.pfb><E:/MiKTeX 2.9/fonts/type1/public/amsfo
-nts/cm/cmr7.pfb><E:/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><E:/Mi
-KTeX 2.9/fonts/type1/urw/courier/ucrr8a.pfb><E:/MiKTeX 2.9/fonts/type1/urw/time
-s/utmb8a.pfb><E:/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><E:/MiKTeX 2.9/fon
-ts/type1/urw/times/utmri8a.pfb>
-Output written on paper.pdf (2 pages, 94764 bytes).
+ 39i,13n,26p,531b,291s stack positions out of 5000i,500n,10000p,200000b,50000s
+{E:/MiKTeX 2.9/fonts/enc
+/dvips/base/8r.enc}<E:/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><E:
+/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><E:/MiKTeX 2.9/fonts/type
+1/public/amsfonts/cm/cmmi10.pfb><E:/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/c
+mmi7.pfb><E:/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><E:/MiKTeX 2.9
+/fonts/type1/public/amsfonts/cm/cmr7.pfb><E:/MiKTeX 2.9/fonts/type1/public/amsf
+onts/cm/cmsy10.pfb><E:/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><E:
+/MiKTeX 2.9/fonts/type1/urw/courier/ucrr8a.pfb><E:/MiKTeX 2.9/fonts/type1/urw/t
+imes/utmb8a.pfb><E:/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><E:/MiKTeX 2.9/
+fonts/type1/urw/times/utmri8a.pfb>
+Output written on tar-paper-template.pdf (2 pages, 146213 bytes).
 PDF statistics:
- 38 PDF objects out of 1000 (max. 8388607)
+ 68 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 6 words of extra memory for PDF output out of 10000 (max. 10000000)
 

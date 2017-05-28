@@ -64,6 +64,14 @@ class LearningPipeline:
 
     def do_chain(self):
         documents_features, preprocessed_docs = self.extract_features()
+        avg = 0
+        aut = []
+        for i in range(len(preprocessed_docs)):
+            avg += documents_features[i].shape[0]
+            aut.append(self.dataset.segmentations[i].author_count)
+        avg /= len(preprocessed_docs)
+        print('avg len:', avg)
+        print(min(aut), max(aut))
 
         prep_docs_train, prep_docs_test, \
             doc_features_train, doc_features_test, \
@@ -137,7 +145,7 @@ if __name__ == "__main__":
     params = dict()
 
     # Change the task here
-    task = 'a'
+    task = 'c'
 
     if task == 'a':
         print("Loading dataset for task ", task, "...")
