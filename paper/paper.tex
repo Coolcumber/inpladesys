@@ -11,10 +11,11 @@
 \usepackage{booktabs}
 \usepackage{amsmath}
 \usepackage{amssymb}
+\usepackage{makecell}
 
 \title{TAR System Description Paper Template}
 
-\name{Author1, Author2, Author3} 
+\name{Ivan Grubišić, Milan Pavlović, Author3} 
 
 \address{
 University of Zagreb, Faculty of Electrical Engineering and Computing\\
@@ -24,7 +25,7 @@ Unska 3, 10000 Zagreb, Croatia\\
           
          
 \abstract{ 
-This document provides the instructions on formatting the TAR system description paper in \LaTeX{}. This is where you write the abstract (i.e., summary) of the work you carried out within the project. The abstract is a paragraph of text ranging between 70 and 150 words.
+This document provides the instructions on formatting the TAR system description paper in \LaTeX{}. This is where you write the abstract (i.e., summary) of the work you carried out within the project. The abstract is a paragraph of text ranging between 70 and 150 words. This document provides the instructions on formatting the TAR system description paper in \LaTeX{}. This is where you write the abstract (i.e., summary) of the work you carried out within the project. The abstract is a paragraph of text ranging between 70 and 150 words.
 }
 
 \begin{document}
@@ -32,8 +33,40 @@ This document provides the instructions on formatting the TAR system description
 \maketitleabstract
 
 \section{Introduction}
+The simplest variant of authorship attribution problem consists of determinig a true author for a given document of unknown authorship, where decision is based on a set of other documents whose authors are known \citep{stein-2011,ding-2016}. Such descirbed problem can be tackeled with supervised machine learning techniques as a single-label multiclass text classification problem, where one class represents one author \citep{stamatatos-2009a}. 
 
-Author diarization is the problem of segmenting text within a document into classes each corresponding to an author, i.e. assignment of each part of a text to an author. The analyzed document can be a result of collaborative work or plagiarism by a single author. The problem is in more detail described here. The problem can be divided into 3 subproblems:
+Authorship attribution problem is also known as authorship identification and it is a part of authorship analysis \citep{stamatatos-2009a,ding-2016}. Authorship analysis is a field of stylometry which studies information about the authorship of a document, based on features derived from that document \citep{layton-2013}.
+
+In this paper we will focus on the author diarization task proposed on PAN 2016 competition\footnote{\texttt{http://pan.webis.de/clef16/pan16-web/author-identification.html}}. The aim of this task is to decompose a document into its authorial parts, i.e. to split a text into segments and assign an author to every segment \citep{koppel-2011,aldebei-2015}. This is one of the unsupervised variants of authorship attribution problem since text samples of known authorship are not available \citep{rosso-2016}. As we will describe, in two out of three subtasks of this task only a correct number of authors for a given document is known.
+
+\citet{rosso-2016} divided PAN 2016 author diarization task into three subtasks. First subtask is traditionally called intrinsic plagiarism detection. The goal of this task is to find plagiariarized parts of a document in which 70\% of text is written by main author and the rest by one or more other authors. The term \textit{intrinsic} means that a decision whether plagiarized parts exist or not has to be made only by analysing a given document, without any comparisons with external sources. In the rest of the paper we refer to this subtask as a task \textit{a}.
+
+\begin{table}
+	\caption{Basic characteristics of train datasets}
+	\label{table-1}
+	\begin{center}
+		\begin{tabular}{cccc}
+			\toprule
+			Task & \thead{Number of \\ documents} & \thead{Average \\ length (in tokens)} & \thead{(min, max)\\authors} \\
+			\midrule
+			Task \textit{a} & 71 & 1679 & (2, 2)\\
+			Task \textit{b} & 55 & 3767 & (2, 10)\\
+			Task \textit{c} & 54 & 3298 & (2, 10)\\
+		\end{tabular}
+	\end{center}
+\end{table}
+
+Other two subtasks are more related to the general task of author diarization. In the second subtask we need to segment a given document and group identified segments by author. In the rest of the paper we refer to the second subtask as a task \textit{b}. Third subtask differs from the second one in the fact that exact number of authors is unkown. In the rest of the paper we refer to the third subtask as a task \textit{c}.
+
+For all tasks a different training datasets are publicly available [footnote]. \citet{rosso-2016} explain that they are collections of various documents which are part of Webis-TRC-12 dataset \citep{potthast-2013}. Every document in that dataset is constructed from texts of various search results (i.e. authors) for one of the 150 topics in total. By varying different parameters such as the number and proportion of the authors, places in a document where an author switch occurs (between words, sentences or paragraphs), three training and test datasets were generated \citep{rosso-2016}. Test datasets are currently not publicly available and we could not use them for evaluation of our approach. Some basic characterisics of training datasets are shown in table \ref{table-1}.
+
+
+
+
+- writing style, stylistic segmentation, multi-authored work, plagiarism
+- a, b, c
+
+
 % reference
 % authorship analysis, 
 % intrinsic plagiarism detection, author diarization
@@ -106,7 +139,7 @@ Conclusion is the last enumerated section of the paper. It should not exceed hal
 If suitable, you can include the \textit{Acknowledgements} section before inserting the literature references  in order to thank those who helped you in any way to deliver the paper, but are not co-authors of the paper.
 
 \bibliographystyle{tar2016}
-\bibliography{tar2016} 
+\bibliography{tar2017}
 
 \end{document}
 

@@ -1,52 +1,68 @@
 \begin{thebibliography}{}
 
-\bibitem[\protect\citename{Butcher}1981]{butcher-81}
-Judith Butcher.
-\newblock 1981.
-\newblock {\em Copy-editing}.
-\newblock Cambridge University Press, 2nd edition.
+\bibitem[\protect\citename{Aldebei \bgroup et al.\egroup }2015]{aldebei-2015}
+Khaled Aldebei, Xiangjian He, and Jie Yang.
+\newblock 2015.
+\newblock Unsupervised {Decomposition} of a {Multi}-{Author} {Document} {Based}
+  on {Naive}-{Bayesian} {Model}.
+\newblock {\em Proceedings of the 53rd Annual Meeting of the Association for
+  Computational Linguistics and the 7th International Joint Conference on
+  Natural Language Processing (Short Papers)}, pages 501--505.
 
-\bibitem[\protect\citename{Chave}1964]{chave-64}
-K.~E. Chave.
-\newblock 1964.
-\newblock Skeletal {D}urability and {P}reservation.
-\newblock In J.~Imbrie and N.~Newel, editors, {\em Approaches to paleoecology},
-  pages 377--87, New York. Wiley.
+\bibitem[\protect\citename{Ding \bgroup et al.\egroup }2016]{ding-2016}
+Steven~HH Ding, Benjamin Fung, Farkhund Iqbal, and William~K Cheung.
+\newblock 2016.
+\newblock Learning stylometric representations for authorship analysis.
+\newblock {\em arXiv preprint arXiv:1606.01219}.
 
-\bibitem[\protect\citename{Chomsky}1973]{chomsky-73}
-N.~Chomsky.
-\newblock 1973.
-\newblock Conditions on {T}ransformations.
-\newblock In S.~R. Anderson and P.~Kiparsky, editors, {\em A festschrift for
-  {Morris Halle}}, New York. Holt, Rinehart \& Winston.
+\bibitem[\protect\citename{Koppel \bgroup et al.\egroup }2009]{koppel-2009}
+Moshe Koppel, Jonathan Schler, and Shlomo Argamon.
+\newblock 2009.
+\newblock Computational methods in authorship attribution.
+\newblock {\em Journal of the American Society for information Science and
+  Technology}, 60(1):9--26.
 
-\bibitem[\protect\citename{Croft}1978]{croft-78}
-W.~B. Croft.
-\newblock 1978.
-\newblock {\em Organizing and searching large files of document descriptions}.
-\newblock {Ph.D.} thesis, Cambridge University.
+\bibitem[\protect\citename{Koppel \bgroup et al.\egroup }2011]{koppel-2011}
+Moshe Koppel, Navot Akiva, Idan Dershowitz, and Nachum Dershowitz.
+\newblock 2011.
+\newblock Unsupervised decomposition of a document into authorial components.
+\newblock In {\em Proceedings of the 49th {Annual} {Meeting} of the
+  {Association} for {Computational} {Linguistics}: {Human} {Language}
+  {Technologies}-{Volume} 1}, pages 1356--1364. Association for Computational
+  Linguistics.
 
-\bibitem[\protect\citename{Feigl}1958]{feigl-58}
-F.~Feigl, 1958.
-\newblock {\em Spot Tests in Organic Analysis}, chapter~6.
-\newblock Publisher publisher, 5th edition.
+\bibitem[\protect\citename{Layton \bgroup et al.\egroup }2013]{layton-2013}
+Robert Layton, Paul Watters, and Richard Dazeley.
+\newblock 2013.
+\newblock Automated unsupervised authorship analysis using evidence
+  accumulation clustering.
+\newblock {\em Natural Language Engineering}, 19(01):95--120.
 
-\bibitem[\protect\citename{Howells}1951]{howells-51}
-W.~W. Howells.
-\newblock 1951.
-\newblock Factors of human physique.
-\newblock {\em American Journal of Physical Anthropology}, 9:159--192.
+\bibitem[\protect\citename{Potthast \bgroup et al.\egroup }2013]{potthast-2013}
+Martin Potthast, Matthias Hagen, Michael V{\"o}lske, and Benno Stein.
+\newblock 2013.
+\newblock Crowdsourcing interaction logs to understand text reuse from the web.
+\newblock In {\em ACL (1)}, pages 1212--1221.
 
-\bibitem[\protect\citename{Johnson and Howells}1974]{johnson-howells}
-G.~B. Johnson and W.~W. Howells.
-\newblock 1974.
-\newblock Title title title title title title title title title title.
-\newblock {\em Journal journal journal}.
+\bibitem[\protect\citename{Rosso \bgroup et al.\egroup }2016]{rosso-2016}
+Paolo Rosso, Francisco Rangel, Martin Potthast, Efstathios Stamatatos, Michael
+  Tschuggnall, and Benno Stein.
+\newblock 2016.
+\newblock Overview of pan’16.
+\newblock In {\em International Conference of the Cross-Language Evaluation
+  Forum for European Languages}, pages 332--350. Springer.
 
-\bibitem[\protect\citename{Johnson \bgroup et al.\egroup }1976]{johnson-etc}
-G.~B. Johnson, W.~W. Howells, and A.~N. Other.
-\newblock 1976.
-\newblock Title title title title title title title title title title.
-\newblock {\em Journal journal journal}.
+\bibitem[\protect\citename{Stamatatos}2009]{stamatatos-2009a}
+Efstathios Stamatatos.
+\newblock 2009.
+\newblock A survey of modern authorship attribution methods.
+\newblock {\em Journal of the American Society for information Science and
+  Technology}, 60(3):538--556.
+
+\bibitem[\protect\citename{Stein \bgroup et al.\egroup }2011]{stein-2011}
+Benno Stein, Nedim Lipka, and Peter Prettenhofer.
+\newblock 2011.
+\newblock Intrinsic plagiarism analysis.
+\newblock {\em Language Resources and Evaluation}, 45(1):63--82.
 
 \end{thebibliography}
