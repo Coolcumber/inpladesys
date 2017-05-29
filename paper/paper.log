@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2016.3.11)  30 MAY 2017 00:19
+=======
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.5.26)  30 MAY 2017 00:18
+>>>>>>> 5170b89309f6e33a76a463f3774224b87f8cbb40
 entering extended mode
 **./paper.tex
 (paper.tex
@@ -471,6 +475,7 @@ File: omspcr.fd
 LaTeX Font Info:    Font shape `OMS/pcr/m/n' in size <10> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 35.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
+<<<<<<< HEAD
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 35.
 
 Underfull \hbox (badness 10000) in paragraph at lines 42--42
@@ -497,22 +502,52 @@ Underfull \hbox (badness 10000) in paragraph at lines 116--117
 
 (paper.bbl
 Underfull \hbox (badness 1490) in paragraph at lines 13--17
+=======
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 33.
+ [1{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}
+
+
+
+]
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 98.
+ ("E:\MiKTeX 2.9\tex\latex\psnfss\omsptm.fd"
+File: omsptm.fd 
+)
+LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 98.
+
+Underfull \hbox (badness 10000) in paragraph at lines 104--105
+[]\OT1/ptm/m/n/10 differences: fixed fea-tures + trans-for-ma-tion vs
+ []
+
+[2] (paper.bbl
+Underfull \hbox (badness 1490) in paragraph at lines 26--30
+>>>>>>> 5170b89309f6e33a76a463f3774224b87f8cbb40
 \OT1/ptm/m/n/10 re-sen-ta-tions for au-thor-ship anal-y-sis.  \OT1/ptm/m/it/10 
 arXiv preprint
  []
 
 
+<<<<<<< HEAD
 Underfull \hbox (badness 2828) in paragraph at lines 19--26
+=======
+Underfull \hbox (badness 2828) in paragraph at lines 39--46
+>>>>>>> 5170b89309f6e33a76a463f3774224b87f8cbb40
 []\OT1/ptm/m/n/10 Moshe Kop-pel, Navot Akiva, Idan Der-showitz, and
  []
 
 
+<<<<<<< HEAD
 Underfull \hbox (badness 1137) in paragraph at lines 41--47
+=======
+Underfull \hbox (badness 1137) in paragraph at lines 83--89
+>>>>>>> 5170b89309f6e33a76a463f3774224b87f8cbb40
 \OT1/ptm/m/n/10 Sta-matatos, Michael Tschug-gnall, and Benno Stein.
  []
 
-) [2] (paper.aux) ) 
+) [3] (paper.aux) ) 
 Here is how much of TeX's memory you used:
+<<<<<<< HEAD
  2718 strings out of 493634
  33879 string characters out of 3135647
  99238 words of memory out of 3000000
@@ -538,6 +573,25 @@ KTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><C:/Users/Ivan/AppData/Local/Programs
 Output written on paper.pdf (2 pages, 140195 bytes).
 PDF statistics:
  58 PDF objects out of 1000 (max. 8388607)
+=======
+ 3102 strings out of 493333
+ 37259 string characters out of 3145228
+ 109000 words of memory out of 3000000
+ 6553 multiletter control sequences out of 15000+200000
+ 23387 words of font info for 56 fonts, out of 3000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 39i,15n,26p,971b,348s stack positions out of 5000i,500n,10000p,200000b,50000s
+{E:/MiKTeX 2.9/fonts/enc/dvips/base/8r.enc}<E:/MiKTeX 2.9/fo
+nts/type1/public/amsfonts/cm/cmmi10.pfb><E:/MiKTeX 2.9/fonts/type1/public/amsfo
+nts/cm/cmr10.pfb><E:/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb><E:/MiK
+TeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><E:/MiKTeX 2.9/fonts/type1/ur
+w/courier/ucrr8a.pfb><E:/MiKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><E:/MiKTeX
+ 2.9/fonts/type1/urw/times/utmr8a.pfb><E:/MiKTeX 2.9/fonts/type1/urw/times/utmr
+i8a.pfb>
+Output written on paper.pdf (3 pages, 110757 bytes).
+PDF statistics:
+ 45 PDF objects out of 1000 (max. 8388607)
+>>>>>>> 5170b89309f6e33a76a463f3774224b87f8cbb40
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

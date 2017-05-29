@@ -15,14 +15,14 @@
 \usepackage{makecell}
 \usepackage[hyphens]{url}
 
-\title{TAR System Description Paper Template}
+\title{Token-level author diarization using clustering of stylistic contexts}
 
 \name{Ivan Grubišić, Milan Pavlović, Author3} 
 
 \address{
 University of Zagreb, Faculty of Electrical Engineering and Computing\\
 Unska 3, 10000 Zagreb, Croatia\\ 
-\texttt{autor1@xxx.hr}, \texttt{\{autor2,autor3\}@zz.com}\\
+\texttt{\{ivan.grubisic, milan.pavlovic, \}@fer.hr}\\
 }
           
          
@@ -35,13 +35,17 @@ This document provides the instructions on formatting the TAR system description
 \maketitleabstract
 
 \section{Introduction}
-The simplest variant of authorship attribution problem consists of determinig a true author for a given document of unknown authorship, where decision is based on a set of other documents whose authors are known \citep{stein-2011,ding-2016}. Such descirbed problem can be tackeled with supervised machine learning techniques as a single-label multiclass text classification problem, where one class represents one author \citep{stamatatos-2009a}. 
+In this paper we will focus on the author diarization task proposed on PAN 2016 competition\footnote{\texttt{https://tinyurl.com/y9m4zntm}}. The aim of this task is to decompose a document into its authorial parts, i.e. to split a text into segments and assign an author to every segment \citep{koppel-2011,aldebei-2015}. This is one of the unsupervised variants of a well known authorship attribution problem since text samples of known authorship are not available \citep{rosso-2016}. As we will describe, in two out of three subtasks of this task only a correct number of authors for a given document is known.
 
-Authorship attribution problem is also known as authorship identification and it is a part of authorship analysis \citep{stamatatos-2009a,ding-2016}. Authorship analysis is a field of stylometry which studies information about the authorship of a document, based on features derived from that document \citep{layton-2013}.
+The simplest variant of authorship attribution problem is about finding the most likely author for a given document, from a set of candidate authors whose authentic writing examples are available \citep{stamatatos-2009a,stein-2011,ding-2016}. Such descirbed problem can be tackeled with supervised machine learning techniques as a single-label multiclass text classification problem, where one class represents one author \citep{stamatatos-2009a}. 
 
+<<<<<<< HEAD
 In this paper we will focus on the author diarization task proposed on PAN 2016 competition\footnote{\url{http://pan.webis.de/clef16/pan16-web/author-identification.html}}. The aim of this task is to decompose a document into its authorial parts, i.e. to split a text into segments and assign an author to every segment \citep{koppel-2011,aldebei-2015}. This is one of the unsupervised variants of authorship attribution problem since text samples of known authorship are not available \citep{rosso-2016}. As we will describe, in two out of three subtasks of this task only a correct number of authors for a given document is known.
+=======
+Authorship attribution problem is also known as authorship identification and it is a part of authorship analysis \citep{stamatatos-2009a,ding-2016}. Authorship analysis is a field of stylometry and studies information about the authorship of a document, based on features derived from that document \citep{layton-2013}. Moreover, stylometry analyzes literary style with statistical methods \citep{stein-2011}.
+>>>>>>> 5170b89309f6e33a76a463f3774224b87f8cbb40
 
-\citet{rosso-2016} divided PAN 2016 author diarization task into three subtasks. First subtask is traditionally called intrinsic plagiarism detection. The goal of this task is to find plagiariarized parts of a document in which 70\% of text is written by main author and the rest by one or more other authors. The term \textit{intrinsic} means that a decision whether plagiarized parts exist or not has to be made only by analysing a given document, without any comparisons with external sources. In the rest of the paper we refer to this subtask as a task \textit{a}.
+\citet{rosso-2016} divided PAN 2016 author diarization task into three subtasks. First subtask is traditionally called intrinsic plagiarism detection (IPD). The goal of this task is to find plagiariarized parts of a document in which 70\% of text is written by main author and the rest by one or more other authors. The term \textit{intrinsic} means that a decision whether plagiarized parts exist or not has to be made only by analysing a given document, without any comparisons with external sources. In the rest of the paper we refer to this subtask as a task \textit{a}.
 
 \begin{table}
 	\caption{Basic characteristics of train datasets}
@@ -54,30 +58,41 @@ In this paper we will focus on the author diarization task proposed on PAN 2016 
 			Task \textit{a} & 71 & 1679 & (2, 2)\\
 			Task \textit{b} & 55 & 3767 & (2, 10)\\
 			Task \textit{c} & 54 & 3298 & (2, 10)\\
+			\bottomrule
 		\end{tabular}
 	\end{center}
 \end{table}
 
 Other two subtasks are more related to the general task of author diarization. In the second subtask we need to segment a given document and group identified segments by author. In the rest of the paper we refer to the second subtask as a task \textit{b}. Third subtask differs from the second one in the fact that exact number of authors is unkown. In the rest of the paper we refer to the third subtask as a task \textit{c}.
 
-For all tasks a different training datasets are publicly available [footnote]. \citet{rosso-2016} explain that they are collections of various documents which are part of Webis-TRC-12 dataset \citep{potthast-2013}. Every document in that dataset is constructed from texts of various search results (i.e. authors) for one of the 150 topics in total. By varying different parameters such as the number and proportion of the authors, places in a document where an author switch occurs (between words, sentences or paragraphs), three training and test datasets were generated \citep{rosso-2016}. Test datasets are currently not publicly available and we could not use them for evaluation of our approach. Some basic characterisics of training datasets are shown in table \ref{table-1}.
+For all three subtasks a different training datasets are publicly available\footnotemark[1]. \citet{rosso-2016} explain that they are collections of various documents which are part of Webis-TRC-12 dataset \citep{potthast-2013}. Every document in that dataset is constructed from texts of various search results (i.e. authors) for one of the 150 topics in total. By varying different parameters such as the number and proportion of the authors, places in a document where an author switch occurs (between words, sentences or paragraphs), three training and test datasets were generated \citep{rosso-2016}. Test datasets are currently not publicly available and we could not use them for evaluation of our approach. Some basic characterisics of training datasets are shown in Table \ref{table-1}.
 
-
-
-
-- writing style, stylistic segmentation, multi-authored work, plagiarism
-- a, b, c
-
-
-% reference
-% authorship analysis, 
-% intrinsic plagiarism detection, author diarization
-% PAN 2016 author diarization task
-% dataset
+% reference+
+% authorship analysis+, 
+% intrinsic plagiarism detection, author diarization+
+% PAN 2016 author diarization task+
+% dataset+
 
 \section{Related work}
+The basic assumption in authorship analysis is that texts of different authors are mutualy separable because each author has more or less unique writing style \citep{stamatatos-2009a,ding-2016}. More precisely, \citet{koppel-2009} explain that methods used in authorship analysis must be able to distinguish writing styles, but also tolerate shallow differences inside the same style because an author's stylistic habbits can conciously or unconciously vary over time. Therefore, most of related work tries to find the better features and methods which writing style will be quantified and measured with.
 
-% Kuznetsov, Sittar, Brooke
+\citet{zu-2006} manually created a labeled corpus of plagiarized documents and used it for intrinsic plagiarism detection task. They used average sentence length, part of speech tags, average stopword number and the averaged word frequency class as input features for their linear discriminant analysis and suport vector machine (SVM) models. They approached that task in a supervised fashion. 
+
+\citet{stamatatos-2009b} created a feature vector of normalized occurence of character tri-grams in the whole document. That vector represented a document's profile. Using a sliding window of fixed length he created same profiles for every window and compared them with the profile of the whole document. Result of comparison was an output from a style change function whose peaks were indicators of place in a document where style change occurs. All values above the predefined passage criterion were considered a result of plagiarism. That approach was unsupervised.
+
+\citet{rahman-2015} classified sections of documents from PAN 2011 dataset with the help of SVM. Those sections were again obtanined by sliding a window of fixed length over the document. He also proposed new kind of information theoretical features - entropy, relative entropy, correlation coefficient and n-gram frequency class calculated from character tri-gram frequency profiles of each window and the whole document. He also used function word bi-gram and tri-gram frequency profiles with 1, 2, 3 and 4 skips. The value of style change function introduced by \citet{stamatatos-2009b} was also incorporated in feature vectors.
+
+\citet{stein-2011} defined IPD as the one class classification problem where the text of main author belongs to a one target class and the rest are outliers. To find them, they estimated probability distributions of various stylistic features for the target class and outliers. Then a naive Bayes' algorithm was applied to feature vectors whose values lie outside the predefined uncertainity intervals. An additional outlier post-processing methods were also tested. The most successful was the unmasking technique described by \citet{koppel-2009}. The main sense of unmasking is to iteratively remove the best features that distinguish two classes and observe the speed with which cross-validation accuracy of again trained classifier drops. If the drop is slow and smooth, the outliers are indeed outliers because after \textit{n} iterations of removing discriminative features they are still separable from the main auhor's work.
+
+ \citet{koppel-2011} used two staged approach in clustering of pre-segmented mixed biblical text written by two authors. First they used normalized cuts algorithm with cosine similarity to obtain initial clusters of segments which were represented only by normalized counts of synonymes from Hebrew synsets. Samples from initial clusers were separated in core and non-core samples via an iterative procedure, and core ones were labeled. SVM classifier was used to classify non-core samples, but now a bag-of-words feature vectors were used. The whole approach resulted with very good clusters. They also tried this method on an unsegmented case. Text was first splitted in a way that minimizes doubly-represented synonyms in segments and the same procedure was repeated. The clustering performance was lower than in pre-segmented case.
+
+\citet{brooke-2013} concluded that a very good initial segmentation of text, at least in poems written by T. S. Elliot, is needed for a good performance of their modified k-means algorithm in clustering of voices. Except often character, lexical and syntactic features, they used features such as average frequency in a large  external corpus \citep{brants-2006}. One of the most promising feature they considered is the centroid of 20 dimensional distributional vectors obtained by applying latent semantic analysis on a large web corpus \cite{landauer-1997}.
+
+The works by \citet{kuznetsov-2016} and \citet{sittar-2016} were submitted on the PAN 2016 competition for three aforementioned tasks. For the task \textit{a}, \citet{kuznetsov-2016} trained a Gradient Boosting Regression Trees (GBRT) model on PAN 2011 dataset as a style change function used for threshold based outlier detection. Every sentence was vectorized using word frequencies, n-gram frequencies, punctuaiton symbols and the universal POS tags count, sentence length and mean length of sentence words. The final input to the model was concatenation of center sentence vector and ones from context of size $\pm2$. In task \textit{b} they used a Hidden Markov Model with Gaussian Emissions for document segmentation over the same sentence scores from task \textit{a}. To estimate the unknown number of authors \textit{n} in task \textit{c}, they chose \textit{n} from 2 to 20 which maximizes their cluster discrepancy measure $Q(n)$.
+
+\citet{sittar-2016} used k-means algorthm to cluster \textit{ClustDist} scores of each sentence, where the number of groups was equal to the known number of authors in tasks \textit{a} and \textit{b}. In task \textit{c}, a number of groups was generated randomly. Although they defined a \textit{ClustDist} score for a single sentence as an average distance between current and every other sentence vector, which is again a similar concept like a style change function, in provided example they used only a sum of unknown distance measures. Fifteen features in total were used for sentence vectorization, including average word and sentence lengths, count and ratios of characters, digits upperpase letters, spaces and tabs. 
+
+The most of described approaches combine supervised and usupervised methods and operate on the level of longer text segments or sentences. We were inspired by \citet{brooke-2013} who said that a more radical approach would not separate those tasks in segmentation and clustering steps, but rather build an authorial segments that would also form good clusters. Since the style change in our tasks can occur even between two tokens in a same sentence, we wanted our model should be able to work on the token level. Instead of clustering tokens directly, we decided to cluster their vectorized stylistic contexts because they obviously contain more valuable sylistic information than tokens alone.
 
 \section{Author Diarization?}
 % describe the problem
@@ -120,24 +135,6 @@ differences: fixed features + transformation vs document-dependent features
 1
 baselines
 
-\begin{table}
-	\caption{This is the caption of the table. Table captions should be placed \textit{above} the table.}
-	\label{tab:narrow-table}
-	\begin{center}
-		\begin{tabular}{cccc}
-			\toprule
-			Model & $R$ & $P$ & $F_1$\\
-			\midrule
-			Dummy & 0 & 1 & 2 \\
-			One & 0 & 1 & 2 \\
-			One & 0 & 1 & 2 \\
-			\midrule
-			One & 0 & 1 & 2 \\
-			\bottomrule
-		\end{tabular}
-	\end{center}
-\end{table}
-
 Mention cofidences.
 
 \subsection{Intrinsic plagiarism detection}
@@ -163,7 +160,27 @@ Conclusion is the last enumerated section of the paper. It should not exceed hal
 
 \section*{Acknowledgements}
 
+
+
 If suitable, you can include the \textit{Acknowledgements} section before inserting the literature references  in order to thank those who helped you in any way to deliver the paper, but are not co-authors of the paper.
+
+\begin{table}
+	\caption{This is the caption of the table. Table captions should be placed \textit{above} the table.}
+	\label{tab:narrow-table}
+	\begin{center}
+		\begin{tabular}{cccc}
+			\toprule
+			Model & $R$ & $P$ & $F_1$\\
+			\midrule
+			Dummy & 0 & 1 & 2 \\
+			One & 0 & 1 & 2 \\
+			One & 0 & 1 & 2 \\
+			\midrule
+			One & 0 & 1 & 2 \\
+			\bottomrule
+		\end{tabular}
+	\end{center}
+\end{table}
 
 \bibliographystyle{tar2016}
 \bibliography{tar2017}
