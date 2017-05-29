@@ -76,14 +76,11 @@ class SimpleGroupRepelFeatureTransformer(AbstractFeatureTransformer):
 
         def transform(x):
             w = tf.Variable(tf.truncated_normal([x_dim], 0, 0.1))
-            b = tf.Variable(tf.truncated_normal([x_dim], 0, 0.1))
-            return x * w+b
+            b = tf.Variable(tf.truncated_normal([x_dim], 0, 0))
+            r_params = [w]
+            return x * w + b
 
         def fori(istart, istop, body, body_var, shape_invar=None):
-            if type(istart) == int:
-                istart = tf.constant(istart)
-            if type(istop) == int:
-                imax = tf.constant(istop)
             if shape_invar is not None:
                 shape_invar = [tf.TensorShape([]), shape_invar]
             return tf.while_loop(
@@ -133,12 +130,9 @@ class SimpleGroupRepelFeatureTransformer(AbstractFeatureTransformer):
 
         group_loss = get_group_loss(y, labels, centroids, centroid_count)
         centroid_loss = get_centroid_loss(centroids, centroid_count)
-        # r_loss = sum(tf.reduce_mean(p ** 2) for p in r_params)
+        #r_loss = sum(tf.reduce_mean(p ** 2) for p in r_params)
 
-        a = 0.5
-        group_loss = a * group_loss + 1e-6
-        centroid_loss = (1 - a) * centroid_loss + 1e-6
-        loss = centroid_loss + group_loss  # + r_loss  # +
+        loss = centroid_loss + group_loss #+ 0.1 * r_loss  # +
         # 0.2 * tf.reduce_mean(tf.reduce_sum(centroids**2, axis=1)) + r_loss
         # loss = 1/(1/group_loss + 1/centroid_loss)
 

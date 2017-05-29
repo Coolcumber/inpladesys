@@ -82,3 +82,4 @@ target/
 
 # Pickle cache
 *.p
+paper/paper.synctex.gz

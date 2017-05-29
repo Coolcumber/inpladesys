@@ -44,24 +44,27 @@ class PipelineAuthorDiarizer():
         bydoc_labels = get_bydoc_labels(bydoc_tokens, segmentations)
 
         print("(4/4) Training feature transformer...")
-        bydoc_features = [preprocessing.scale(f) for f in bydoc_features]
-        #bydoc_features=preprocessing.scale(np.array(bydoc_features))
-        x, y = bydoc_features[:], bydoc_labels[:]
+        #bydoc_features = [preprocessing.scale(f) for f in bydoc_features]
+        X, Y = bydoc_features[:], bydoc_labels[:]
         if True:
-            self.feature_transformer.fit(x, y)
+            self.feature_transformer.fit(X, Y)
         else:
             import matplotlib.pyplot as plt
             self.feature_transformer.iteration_count //= 100
             self.feature_transformer.iteration_count += 1
-            x1 = x[0:1]
-            y1 = y[0:1]
+            x1 = X[0:1]
+            y1 = Y[0:1]
             for i in range(100):
-                self.feature_transformer.fit(x, y)
+                self.feature_transformer.fit(X, Y)
                 h = self.feature_transformer.transform(x1)[0]
                 plt.clf()
                 hx = h[:, 1]
                 plt.scatter(h[:, 0], h[:, 1], c=y1[0])
                 plt.pause(0.05)
+
+        #print("(5/4) Training clusterer...")
+        #if getattr(self.clusterer, "train", None) is not None:
+        #    self.clusterer.train(self.feature_transformer.transform(X), [s.author_count for s in segmentations])
 
     def predict(self, documents, author_counts=None):
         assert (len(documents) > 0)
@@ -104,4 +107,4 @@ class PipelineAuthorDiarizer():
         tokens = self.preprocessor.fit_transform(document)
         features = self.bfextr.transform(document, tokens)
         features = [np.concatenate((f, f ** 2), axis=0) for f in features]  # move scaling to corpus level
-        return tokens, features #preprocessing.scale(features)  # scaling beneficial
+        return tokens, features  # scaling beneficial
