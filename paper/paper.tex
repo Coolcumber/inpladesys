@@ -11,7 +11,9 @@
 \usepackage{booktabs}
 \usepackage{amsmath}
 \usepackage{amssymb}
+
 \usepackage{makecell}
+\usepackage[hyphens]{url}
 
 \title{TAR System Description Paper Template}
 
@@ -37,7 +39,7 @@ The simplest variant of authorship attribution problem consists of determinig a 
 
 Authorship attribution problem is also known as authorship identification and it is a part of authorship analysis \citep{stamatatos-2009a,ding-2016}. Authorship analysis is a field of stylometry which studies information about the authorship of a document, based on features derived from that document \citep{layton-2013}.
 
-In this paper we will focus on the author diarization task proposed on PAN 2016 competition\footnote{\texttt{http://pan.webis.de/clef16/pan16-web/author-identification.html}}. The aim of this task is to decompose a document into its authorial parts, i.e. to split a text into segments and assign an author to every segment \citep{koppel-2011,aldebei-2015}. This is one of the unsupervised variants of authorship attribution problem since text samples of known authorship are not available \citep{rosso-2016}. As we will describe, in two out of three subtasks of this task only a correct number of authors for a given document is known.
+In this paper we will focus on the author diarization task proposed on PAN 2016 competition\footnote{\url{http://pan.webis.de/clef16/pan16-web/author-identification.html}}. The aim of this task is to decompose a document into its authorial parts, i.e. to split a text into segments and assign an author to every segment \citep{koppel-2011,aldebei-2015}. This is one of the unsupervised variants of authorship attribution problem since text samples of known authorship are not available \citep{rosso-2016}. As we will describe, in two out of three subtasks of this task only a correct number of authors for a given document is known.
 
 \citet{rosso-2016} divided PAN 2016 author diarization task into three subtasks. First subtask is traditionally called intrinsic plagiarism detection. The goal of this task is to find plagiariarized parts of a document in which 70\% of text is written by main author and the rest by one or more other authors. The term \textit{intrinsic} means that a decision whether plagiarized parts exist or not has to be made only by analysing a given document, without any comparisons with external sources. In the rest of the paper we refer to this subtask as a task \textit{a}.
 
@@ -77,11 +79,32 @@ For all tasks a different training datasets are publicly available [footnote]. \
 
 % Kuznetsov, Sittar, Brooke
 
-\section{The proposed approaches}
-clustering, sliding window
-pipeline: preprocessing (tokenization) -> basic features -> transformed features (including scaling) -> clustering
+\section{Author Diarization?}
+% describe the problem
+% define formally: document, segmentation, segment, author assignement (label)
+% define evaluation metrics
 
-clustering metric
+Let $D$ be the domain of documents. We define a document $d\in D$ as a finite sequence of tokens $t_i$, i.e. $d = (t_1, \dots, t_n)$ and $n$ can differ among documents. 
+
+For each document, there is a corresponding mapping to a sequence of labels $(a_1, \dots, a_n)$, that are representing groupings of tokens by authors. The labels $a_i$ are indices of authors of the document, and they range from $1$ to $m$, where $m$ is the number of authors of the document. Each token $t\in d$ is assigned a document-level label associating it to an author. Equivalently, the codomain of the mapping can also be defined as a set of segments $S$. A segment $s$ is a set of tokens where each is assigned the same label and the following applies:
+\begin{equation}
+	t_{i_1}\in s\ \wedge t_{i_2}\in s \wedge  i_1<i_3<i_2 \Rightarrow t_{i_3} \in s.
+\end{equation}
+Also, for a set of segments to be valid, the segments must cover all terms in the document and not overlap:
+\begin{equation}
+	\bigcup_{s\in S}s = T_d  \wedge \bigcap_{s\in S}s = \{\},
+\end{equation}
+where $T_d$ is the set of all terms in document $d$.
+
+Let $\mathcal{D}$ be a 
+
+%\section{The proposed approach}
+% clustering, sliding window
+% pipeline: preprocessing (tokenization) -> basic features -> transformed features (including scaling) -> clustering
+% define the pipeline formally P = (f_p: d\times->t, f_b: t->\phi, f_t: \phi->\phi', c: \phi'->labels, f_s: labels\times d->s)
+% describe GroupRepel loss, describe AutoKMeans, 
+% clustering metric
+
 
 \begin{itemize}
 \item a
@@ -92,7 +115,7 @@ features
 
 differences: fixed features + transformation vs document-dependent features
 
-\section{Experimantal results}
+\section{Experimental results}
 
 1
 baselines
@@ -133,6 +156,10 @@ setup
 \section{Conclusion}
 
 Conclusion is the last enumerated section of the paper. It should not exceed half of a column and is typically split into 2--3 paragraphs. No new information should be presented in the conclusion; this section only summarizes and concludes the paper.
+
+\section{Further work}
+% more systematic parameter choice, model development
+% mention possible applicability to author clustering and extrinsic plagiarism detections
 
 \section*{Acknowledgements}
 
