@@ -39,7 +39,7 @@ In this paper we will focus on the author diarization task proposed on PAN 2016 
 
 The simplest variant of authorship attribution problem is about finding the most likely author for a given document, from a set of candidate authors whose authentic writing examples are available \citep{stamatatos-2009a,stein-2011,ding-2016}. Such descirbed problem can be tackeled with supervised machine learning techniques as a single-label multiclass text classification problem, where one class represents one author \citep{stamatatos-2009a}. 
 
-Authorship attribution problem is also known as authorship identification and it is a part of authorship analysis \citep{stamatatos-2009a,ding-2016}. Authorship analysis is a field of stylometry and studies information about the authorship of a document, based on features derived from that document \citep{layton-2013}. Moreover, stylometry analyzes literary style with statistical methods \citep{stein-2011}.	
+Authorship attribution problem is also known as authorship identification and it is a part of authorship analysis \citep{stamatatos-2009a,ding-2016}. Authorship analysis is a field of stylometry and studies information about the authorship of a document, based on features derived from that document \citep{layton-2013}. Moreover, stylometry analyzes literary style with statistical methods  \citep{stein-2011}.	
 
 \citet{rosso-2016} divided PAN 2016 author diarization task into three subtasks. First subtask is traditionally called intrinsic plagiarism detection (IPD). The goal of this task is to find plagiariarized parts of a document in which 70\% of text is written by main author and the rest by one or more other authors. The term \textit{intrinsic} means that a decision whether plagiarized parts exist has to be made only by analysing a given document, without any comparisons with external sources. In the rest of the paper we refer to this subtask as a task \textit{a}.
 
@@ -160,7 +160,7 @@ basic features
 
 \paragraph{Feature transformation.} Differences between the 2 model variants. Training.
 
-identity
+id
 
 scaling
 
@@ -168,7 +168,7 @@ concatenation with squared features
 
 transformation trained via SGD
 
-Let $(\mathbf{b}_i)_{i=1}^n = f_\mathrm{b}(D)$ be the sequence of basic feature vectors with elements from $\mathbb{R}^{n_b}$. Let $(a_i)_{i=1}^n$ be the sequence of true author labels with elements from $\{1..c\}$. We want to maximize the \emph{clusterability} of the feature vectors obtained by the feature transformation $T$. Let $(\mathbf{t}_i)_{i=1}^n =  f_\mathrm{t}((\mathbf{b}_i)_{i=1}^n) = (T(\mathbf{b}_i))_{i=1}^n$ be the sequence of transformed feature vectors with elements from $\mathbb{R}^{n_t}$.
+Let $(\mathbf{b}_i)_{i=1}^n = f_\mathrm{b}(D)$ be the sequence of basic feature vectors with elements from $\mathbb{R}^{n_b}$. Let $(a_i)_{i=1}^n$ be the sequence of true author labels with elements from $\{1..c\}$. We want to maximize the \emph{clusterability} of the feature vectors obtained by the feature transformation $T$. Let $(\mathbf{t}_i)_{i=1}^n = (T(\mathbf{b}_i))_{i=1}^n = f_\mathrm{t}((\mathbf{b}_i)_{i=1}^n)$ be the sequence of transformed feature vectors with elements from $\mathbb{R}^{n_t}$.
 
 
 \paragraph{Clustering.}
