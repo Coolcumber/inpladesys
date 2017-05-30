@@ -9,6 +9,13 @@ Khaled Aldebei, Xiangjian He, and Jie Yang.
   Computational Linguistics and the 7th International Joint Conference on
   Natural Language Processing (Short Papers)}, pages 501--505.
 
+\bibitem[\protect\citename{Amig\'{o} \bgroup et al.\egroup }2009]{amigo-2009}
+Enrique Amig\'{o}, Julio Gonzalo, Javier Artiles, and Felisa Verdejo.
+\newblock 2009.
+\newblock A comparison of extrinsic clustering evaluation metrics based on
+  formal constraints.
+\newblock {\em Inf. Retr.}, 12(4):461--486.
+
 \bibitem[\protect\citename{Brants and Franz}2006]{brants-2006}
 Thorsten Brants and Alex Franz.
 \newblock 2006.
@@ -86,13 +93,6 @@ Rashedur Rahman.
   {Intrinsic} {Plagiarism} {Detection}.
 \newblock In {\em 16th {Annual} {Meeting} of the {Special} {Interest} {Group}
   on {Discourse} and {Dialogue}}, page 144.
-
-\bibitem[\protect\citename{Rosales-M{\'e}ndez and
-  Ram{\'i}rez-Cruz}2013]{rosales-mendez-2013}
-Henry Rosales-M{\'e}ndez and Yunior Ram{\'i}rez-Cruz, 2013.
-\newblock {\em CICE-BCubed: A New Evaluation Measure for Overlapping Clustering
-  Algorithms}, pages 157--164.
-\newblock Springer Berlin Heidelberg.
 
 \bibitem[\protect\citename{Rosso \bgroup et al.\egroup }2016]{rosso-2016}
 Paolo Rosso, Francisco Rangel, Martin Potthast, Efstathios Stamatatos, Michael
