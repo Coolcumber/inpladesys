@@ -28,6 +28,13 @@ Steven~HH Ding, Benjamin Fung, Farkhund Iqbal, and William~K Cheung.
 \newblock Learning stylometric representations for authorship analysis.
 \newblock {\em arXiv preprint arXiv:1606.01219}.
 
+\bibitem[\protect\citename{Koppel \bgroup et al.\egroup }2009]{koppel-2009}
+Moshe Koppel, Jonathan Schler, and Shlomo Argamon.
+\newblock 2009.
+\newblock Computational methods in authorship attribution.
+\newblock {\em Journal of the American Society for information Science and
+  Technology}, 60(1):9--26.
+
 \bibitem[\protect\citename{Koppel \bgroup et al.\egroup }2011]{koppel-2011}
 Moshe Koppel, Navot Akiva, Idan Dershowitz, and Nachum Dershowitz.
 \newblock 2011.
