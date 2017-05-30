@@ -38,14 +38,10 @@ This document provides the instructions on formatting the TAR system description
 In this paper we will focus on the author diarization task proposed on PAN 2016 competition\footnote{\texttt{https://tinyurl.com/y9m4zntm}}. The aim of this task is to decompose a document into its authorial parts, i.e. to split a text into segments and assign an author to every segment \citep{koppel-2011,aldebei-2015}. This is one of the unsupervised variants of a well known authorship attribution problem since text samples of known authorship are not available \citep{rosso-2016}. As we will describe, in two out of three subtasks of this task only a correct number of authors for a given document is known.
 
 The simplest variant of authorship attribution problem is about finding the most likely author for a given document, from a set of candidate authors whose authentic writing examples are available \citep{stamatatos-2009a,stein-2011,ding-2016}. Such descirbed problem can be tackeled with supervised machine learning techniques as a single-label multiclass text classification problem, where one class represents one author \citep{stamatatos-2009a}. 
-% TODO
-<<<<<<< HEAD
-In this paper we will focus on the author diarization task proposed on PAN 2016 competition\footnote{\url{http://pan.webis.de/clef16/pan16-web/author-identification.html}}. The aim of this task is to decompose a document into its authorial parts, i.e. to split a text into segments and assign an author to every segment \citep{koppel-2011,aldebei-2015}. This is one of the unsupervised variants of authorship attribution problem since text samples of known authorship are not available \citep{rosso-2016}. As we will describe, in two out of three subtasks of this task only a correct number of authors for a given document is known.
-=======
+
 Authorship attribution problem is also known as authorship identification and it is a part of authorship analysis \citep{stamatatos-2009a,ding-2016}. Authorship analysis is a field of stylometry and studies information about the authorship of a document, based on features derived from that document \citep{layton-2013}. Moreover, stylometry analyzes literary style with statistical methods \citep{stein-2011}.
->>>>>>> 5170b89309f6e33a76a463f3774224b87f8cbb40
-% TODO
-\citet{rosso-2016} divided PAN 2016 author diarization task into three subtasks. First subtask is traditionally called intrinsic plagiarism detection (IPD). The goal of this task is to find plagiariarized parts of a document in which 70\% of text is written by main author and the rest by one or more other authors. The term \textit{intrinsic} means that a decision whether plagiarized parts exist or not has to be made only by analysing a given document, without any comparisons with external sources. In the rest of the paper we refer to this subtask as a task \textit{a}.
+
+\citet{rosso-2016} divided PAN 2016 author diarization task into three subtasks. First subtask is traditionally called intrinsic plagiarism detection (IPD). The goal of this task is to find plagiariarized parts of a document in which 70\% of text is written by main author and the rest by one or more other authors. The term \textit{intrinsic} means that a decision whether plagiarized parts exist has to be made only by analysing a given document, without any comparisons with external sources. In the rest of the paper we refer to this subtask as a task \textit{a}.
 
 \begin{table}
 	\caption{Basic characteristics of train datasets}

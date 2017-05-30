@@ -65,6 +65,14 @@ Robert Layton, Paul Watters, and Richard Dazeley.
   accumulation clustering.
 \newblock {\em Natural Language Engineering}, 19(01):95--120.
 
+\bibitem[\protect\citename{Potthast \bgroup et al.\egroup }2010]{stein-2010}
+Martin Potthast, Benno Stein, Alberto Barr\'{o}n-Cede\~{n}o, and Paolo Rosso.
+\newblock 2010.
+\newblock An evaluation framework for plagiarism detection.
+\newblock In {\em Proceedings of the 23rd International Conference on
+  Computational Linguistics: Posters}, pages 997--1005. Association for
+  Computational Linguistics.
+
 \bibitem[\protect\citename{Potthast \bgroup et al.\egroup }2013]{potthast-2013}
 Martin Potthast, Matthias Hagen, Michael V{\"o}lske, and Benno Stein.
 \newblock 2013.
@@ -78,6 +86,13 @@ Rashedur Rahman.
   {Intrinsic} {Plagiarism} {Detection}.
 \newblock In {\em 16th {Annual} {Meeting} of the {Special} {Interest} {Group}
   on {Discourse} and {Dialogue}}, page 144.
+
+\bibitem[\protect\citename{Rosales-M{\'e}ndez and
+  Ram{\'i}rez-Cruz}2013]{rosales-mendez-2013}
+Henry Rosales-M{\'e}ndez and Yunior Ram{\'i}rez-Cruz, 2013.
+\newblock {\em CICE-BCubed: A New Evaluation Measure for Overlapping Clustering
+  Algorithms}, pages 157--164.
+\newblock Springer Berlin Heidelberg.
 
 \bibitem[\protect\citename{Rosso \bgroup et al.\egroup }2016]{rosso-2016}
 Paolo Rosso, Francisco Rangel, Martin Potthast, Efstathios Stamatatos, Michael
