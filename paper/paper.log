@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.5.26)  30 MAY 2017 16:54
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.5.26)  30 MAY 2017 22:07
 entering extended mode
 **./paper.tex
 (paper.tex
@@ -583,63 +583,76 @@ LaTeX Font Info:    Font shape `OMS/pcr/m/n' in size <10> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 35.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 35.
- [1{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}
+
+Overfull \vbox (0.78384pt too high) has occurred while \output is active []
+
+
+[1{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}
 
 
 
 ] [2]
-Underfull \vbox (badness 2261) has occurred while \output is active []
+Underfull \vbox (badness 1424) has occurred while \output is active []
 
-LaTeX Font Info:    Try loading font information for OMS+ptm on input line 143.
+ [3]
+Underfull \hbox (badness 1231) in paragraph at lines 159--160
+ \OT1/ptm/b/n/10 Ba-sic fea-ture ex-trac-tion. \OT1/ptm/m/n/10 Dif-fer-ences be
+-tween the 2
+ []
 
 
-("E:\MiKTeX 2.9\tex\latex\psnfss\omsptm.fd"
-File: omsptm.fd 
-)
-LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 143.
+Underfull \hbox (badness 3009) in paragraph at lines 163--164
+ \OT1/ptm/b/n/10 Fea-ture trans-for-ma-tion. \OT1/ptm/m/n/10 Dif-fer-ences be-t
+ween the 2
+ []
 
-Underfull \hbox (badness 10000) in paragraph at lines 149--150
+
+Underfull \hbox (badness 10000) in paragraph at lines 187--188
 []\OT1/ptm/m/n/10 differences: fixed fea-tures + trans-for-ma-tion vs
  []
 
-(paper.bbl [3]
-Underfull \hbox (badness 1490) in paragraph at lines 26--30
+(paper.bbl
+Underfull \hbox (badness 1490) in paragraph at lines 33--37
 \OT1/ptm/m/n/10 re-sen-ta-tions for au-thor-ship anal-y-sis.  \OT1/ptm/m/it/10 
 arXiv preprint
  []
 
 
-Underfull \hbox (badness 2828) in paragraph at lines 39--46
+Underfull \hbox (badness 2828) in paragraph at lines 46--53
 []\OT1/ptm/m/n/10 Moshe Kop-pel, Navot Akiva, Idan Der-showitz, and
  []
 
-
+[4]
 Underfull \hbox (badness 1137) in paragraph at lines 98--104
 \OT1/ptm/m/n/10 Sta-matatos, Michael Tschug-gnall, and Benno Stein.
  []
 
-) [4] (paper.aux) ) 
+) [5
+
+] (paper.aux) ) 
 Here is how much of TeX's memory you used:
- 3180 strings out of 493333
- 38153 string characters out of 3145228
- 113168 words of memory out of 3000000
- 6627 multiletter control sequences out of 15000+200000
- 23387 words of font info for 56 fonts, out of 3000000 for 9000
+ 3169 strings out of 493333
+ 37958 string characters out of 3145228
+ 116148 words of memory out of 3000000
+ 6616 multiletter control sequences out of 15000+200000
+ 24314 words of font info for 59 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  39i,15n,26p,971b,348s stack positions out of 5000i,500n,10000p,200000b,50000s
-{E:/MiKTeX 2.9/fonts/enc/dvips/base/8r.enc}<E:/MiKTeX 2.9/fo
-nts/type1/public/amsfonts/cm/cmex10.pfb><E:/MiKTeX 2.9/fonts/type1/public/amsfo
-nts/cm/cmmi10.pfb><E:/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb><E:/M
-iKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><E:/MiKTeX 2.9/fonts/type1/p
-ublic/amsfonts/cm/cmr5.pfb><E:/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr7.p
-fb><E:/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><E:/MiKTeX 2.9/font
-s/type1/public/amsfonts/cm/cmsy7.pfb><E:/MiKTeX 2.9/fonts/type1/urw/courier/ucr
-r8a.pfb><E:/MiKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><E:/MiKTeX 2.9/fonts/ty
-pe1/urw/times/utmr8a.pfb><E:/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
-Output written on paper.pdf (4 pages, 160148 bytes).
+{E:/MiKTeX 2.9/fonts/enc/dvips/base/8r.enc}<E:/MiKTeX 2.9/fonts/
+type1/public/amsfonts/cm/cmbx10.pfb><E:/MiKTeX 2.9/fonts/type1/public/amsfonts/
+cm/cmex10.pfb><E:/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><E:/MiKT
+eX 2.9/fonts/type1/public/amsfonts/cm/cmmi5.pfb><E:/MiKTeX 2.9/fonts/type1/publ
+ic/amsfonts/cm/cmmi7.pfb><E:/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pf
+b><E:/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr5.pfb><E:/MiKTeX 2.9/fonts/t
+ype1/public/amsfonts/cm/cmr7.pfb><E:/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/
+cmsy10.pfb><E:/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb><E:/MiKTeX 2
+.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb><E:/MiKTeX 2.9/fonts/type1/ur
+w/courier/ucrr8a.pfb><E:/MiKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><E:/MiKTeX
+ 2.9/fonts/type1/urw/times/utmr8a.pfb><E:/MiKTeX 2.9/fonts/type1/urw/times/utmr
+i8a.pfb>
+Output written on paper.pdf (5 pages, 189154 bytes).
 PDF statistics:
- 64 PDF objects out of 1000 (max. 8388607)
+ 79 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
