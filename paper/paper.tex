@@ -48,14 +48,14 @@ Authorship attribution problem is also known as authorship identification and it
 \citet{rosso-2016} divided PAN 2016 author diarization task into three subtasks. First subtask is traditionally called intrinsic plagiarism detection (IPD). The goal of this task is to find plagiariarized parts of a document in which 70\% of text is written by main author and the rest by one or more other authors. The term \textit{intrinsic} means that a decision whether plagiarized parts exist or not has to be made only by analysing a given document, without any comparisons with external sources. In the rest of the paper we refer to this subtask as a task \textit{a}.
 
 \begin{table}
-	\caption{Basic characteristics of train datasets}
+	\caption{Basic characteristics of train datasets. * represents that there is a true author and plagiarism segments which don't have to originate from a single author.}
 	\label{table-1}
 	\begin{center}
 		\begin{tabular}{cccc}
 			\toprule
 			Task & \thead{Number of \\ documents} & \thead{Average \\ length (in tokens)} & \thead{(min, max)\\authors} \\
 			\midrule
-			Task \textit{a} & 71 & 1679 & (2, 2)\\
+			Task \textit{a} & 71 & 1679 & (2, 2)*\\
 			Task \textit{b} & 55 & 3767 & (2, 10)\\
 			Task \textit{c} & 54 & 3298 & (2, 10)\\
 			\bottomrule
@@ -113,7 +113,7 @@ Let $\mathcal{D} \subset \Delta\times\Sigma$ be a dataset consisting of a finite
 
 \subsection{Evaluation measures}
 
-For evaluation of intrinsic plagiarism detection, \citet{stein-2010} define multiple measures for different aspects of a system's perfromance. The main measures are binary macro-averaged nad micro-averaged precision ($P$), recall (R) and $F_1$-score. For evaluating author diarization, we use \emph{BCubed} precision, recall and $F_1$ measures described by \citet{amigo-2009}, which are specialized for evaluation of clustering results.
+For evaluation of intrinsic plagiarism detection, \citet{stein-2010} define multiple measures for different aspects of a system's perfromance. The main measures are binary macro-averaged nad micro-averaged precision ($P$), recall (R) and $F_1$-score. For evaluating author diarization, we use \emph{BCubed} precision, recall and $F_1$ measures described by \citet{amigo-2009}, which are specialized for evaluation of clustering results. The same measures were used for evaluation on the PAN 2016 competition \citep{rosso-2016}.
 
 Let $l$ be a function that associates lengths in characters to segments. Specially, $l(\{\}) = 0$. For notational convenience, we also use $l$ to denote the sum of lengths of all segments in a set of segments: $l(S) = \sum_{s\in S} l(s),$ where $S$ is as set of segments. Given a document $D$, let $S_\mathrm{p} \subseteq \sigma(D)$ be a set of all true plagiarism segments of the document and $\hat{S}_\mathrm{p} \subseteq \hat{\sigma}(D)$ the segments predicted as plagiarism by the  model. With ${S_\mathrm{tp} = \bigcup_{(s,\hat{s})\in S_\mathrm{p}\times\hat{S}_\mathrm{p}} l(s\cap\hat{s})}$, the micro-averaged evaluation measures for intrinsic plagiarism detection are defined as follows:
 \begin{align}
@@ -132,14 +132,14 @@ R_\mathrm{M} &= \frac{1}{|S_\mathrm{p}|}
 F_\mathrm{M} &= \frac{2}{P_\mathrm{M}^{-1}+R_\mathrm{M}^{-1}}.
 \end{align}
 
-For evaluation of author diarization where document segments have to be clustered into $c$ clusters, where $c$ is the number of authors that may or may not be initially known, we use the following \emph{BCubed} measures:
+In author diarization document segments have to be clustered into $c$ clusters, where $c$ is the number of authors that may or may not be known to the system. We divide the segments from the true segmentation $S$ and the predicted segmentation $\hat{S}$ each into sets of segments $S_i$, $i=1..c$ and $\hat{S}_j, j=1..\hat{c}$, where $c$ is the total number of authors, and $\hat{c}$the predicted number of authors. We use the following \emph{BCubed} measures for evaluation:
 \begin{align}
-P_\mathrm{B^3} &= *  \\
-R_\mathrm{B^3} &= * \\
-F_\mathrm{B^3} &= *.
+P_\mathrm{B^3} &= \sum_{i=1}^c \frac{1}{l(S_i)}\sum_{j=1}^{\hat{c}}
+	\sum_{(s,\hat{s})\in S_i\times \hat{S}_j} l(s\cap \hat{s})^2 \\
+R_\mathrm{B^3} &= \sum_{j=1}^{\hat{c}} \frac{1}{l(\hat{S}_j)}\sum_{i=1}^{c}
+	\sum_{(s,\hat{s})\in S_i\times \hat{S}_j} l(s\cap \hat{s})^2 \\
+F_\mathrm{B^3} &= \frac{2}{P_\mathrm{B^3}^{-1}+R_\mathrm{B^3}^{-1}}.
 \end{align}
-
-
 
 
 \section{The proposed approach}
@@ -162,6 +162,11 @@ To sum up, given a trained system, the following steps are done in predisting th
 \paragraph{Clustering.}
 
 \paragraph{Segmentation generation.}
+
+% To be put somewhere
+\begin{equation}
+	content...
+\end{equation}
 
 \begin{itemize}
 \item a
