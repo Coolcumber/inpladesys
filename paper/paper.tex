@@ -90,7 +90,7 @@ The works by \citet{kuznetsov-2016} and \citet{sittar-2016} were submitted on th
 
 The most of described approaches combine supervised and usupervised methods and operate on the level of longer text segments or sentences. We were inspired by \citet{brooke-2013} who said that a more radical approach would not separate those tasks in segmentation and clustering steps, but rather build an authorial segments that would also form good clusters. Since the style change in our tasks can occur even between two tokens in a same sentence, we wanted our model should be able to work on the token level. Instead of clustering tokens directly, we decided to cluster their vectorized stylistic contexts because they obviously contain more valuable sylistic information than tokens alone.
 
-\section{Author diarization and intrinsic plagiarism detetion}
+\section{Author diarization and intrinsic plagiarism detetion} \label{sec:author-diraization}
 % describe the problem
 % define formally: document, segmentation, segment, author assignement (label)
 % define evaluation metrics
@@ -145,11 +145,11 @@ F_\mathrm{B^3} &= \frac{2}{P_\mathrm{B^3}^{-1}+R_\mathrm{B^3}^{-1}}.
 % describe GroupRepel loss, describe AutoKMeans, 
 % clustering metric
 
-Our approach can generally be described as a pipeline $P = (f_\mathrm{b}:\Delta\rightarrow \Phi_{n_b}, f_\mathrm{t}:\Phi_{n_b}\rightarrow \Phi_{n_t}, f_\mathrm{c}:\Phi_{n_t}\rightarrow C)$. Here $\Delta$ is the tokenized document domain as defined in section ((((((($\circ$))))))). $\Phi_{n_b}$ and $\Phi_{n_t}$ are sets of variable-length sequences of feature vectors with dimension $n_b$ and $n_t$ respectively. $n_b$ and $n_d$ can either be fixed or depend on the document being processed. $C$ is the set of all sequences of length $n$ (the number of tokens in the document) with elements being indices of authors/clusters.
+Our approach can generally be described as a pipeline $P = (f_\mathrm{b}:\Delta\rightarrow \Phi_{n_b}, f_\mathrm{t}:\Phi_{n_b}\rightarrow \Phi_{n_t}, f_\mathrm{c}:\Phi_{n_t}\rightarrow C)$. Here $\Delta$ is the tokenized document domain as defined in section \ref{sec:author-diraization}. $\Phi_{n_b}$ and $\Phi_{n_t}$ are sets of variable-length sequences of feature vectors with dimension $n_b$ and $n_t$ respectively. $n_b$ and $n_t$ can either be fixed or depend on the document being processed. $C$ is the set of all sequences of length $n$ (the number of tokens in the document) with elements being indices of authors/clusters.
 
 The basic feature extractor denoted with $f_\mathrm{b}$ is used to extract stylistic features from the contexts of all tokens. If $D$ is a document with $n$ tokens, the basic feature extractor outputs a sequence of $n$ feature vectors, each vector representing the context of one token. $n_\mathrm{b}$ denotes the dimension of those vectors. The next step in the pipeline is the feature transformation $f_\mathrm{t}$ that maps the basic features to a space that they can be better clustered in. The dimension of the new feature space $n_\mathrm{t}$ generally doesn't equal $n_\mathrm{b}$. The final step in the pipeline is clustering denoted with $f_\mathrm{c}$. The clustering algorithm clusters tokens, each cluster representing an author. Depending on the task, The clustering algorithm can either be given a known number of authors, or try to predict it.
 
-The following steps are done in predicting the segmentation: (1) raw text is tokenized giving a sequence of tokens $D\in\Delta$, (2) features are extracted for all tokens and their contexts, giving a sequence of feature vectors $\phi_\mathrm{t} = (\mathbf{t}_i)_{i=1}^n = (f_\mathrm{t}\circ f_\mathrm{b})(D)$, (3) the tokens are clustered based on $\phi_\mathrm{t}$, giving a sequence of author labels $(a_i)_{i=1}^{n}$, where $n=|T_D|$, and (4) a segmentation $\hat{S}$ is generated based on the document $D$ and the sequence of predicted author labels.
+The following steps are done in predicting the segmentation: (1) raw text is tokenized giving a sequence of tokens $D\in\Delta$, (2) for all tokens, features are extracted from their contexts, giving a sequence of feature vectors $\phi_\mathrm{t} = (\mathbf{t}_i)_{i=1}^n = (f_\mathrm{t}\circ f_\mathrm{b})(D)$, (3) the tokens are clustered based on $\phi_\mathrm{t}$, giving a sequence of author labels $(a_i)_{i=1}^{n}$, where $n=|T_D|$, and (4) a segmentation $\hat{S}$ is generated based on the document $D$ and the sequence of predicted author labels.
 
 % details for each component
 \paragraph{Tokenization.} Tokenization.
@@ -168,7 +168,15 @@ concatenation with squared features
 
 transformation trained via SGD
 
-Let $(\mathbf{b}_i)_{i=1}^n = f_\mathrm{b}(D)$ be the sequence of basic feature vectors with elements from $\mathbb{R}^{n_b}$. Let $(a_i)_{i=1}^n$ be the sequence of true author labels with elements from $\{1..c\}$. We want to maximize the \emph{clusterability} of the feature vectors obtained by the feature transformation $T$. Let $(\mathbf{t}_i)_{i=1}^n = (T(\mathbf{b}_i))_{i=1}^n = f_\mathrm{t}((\mathbf{b}_i)_{i=1}^n)$ be the sequence of transformed feature vectors with elements from $\mathbb{R}^{n_t}$.
+Let $(\mathbf{b}_i)_{i=1}^n = f_\mathrm{b}(D)$ be the sequence of basic feature vectors with elements from $\mathbb{R}^{n_b}$. Let $(a_i)_{i=1}^n$ be the sequence of true author labels with elements from $\{1..c\}$. We want to maximize the \emph{clusterability} of the feature vectors obtained by the feature transformation $T$, i.e. we want to maximize segregation and compactness of clusters consisting of transformed feature vectors labeled with their true author labels. Let $(\mathbf{t}_i)_{i=1}^n = (T(\mathbf{b}_i))_{i=1}^n = f_\mathrm{t}((\mathbf{b}_i)_{i=1}^n)$ be the sequence of transformed feature vectors with elements from $\mathbb{R}^{n_t}$. We define the following loss in order to optimize the transformation $T$ for clusterability:
+\begin{equation}
+	L = L_\mathrm{c} + L_\mathrm{s},
+\end{equation}
+where $L_\mathrm{c}$ is the \emph{compactness loss} which is proportional to the average variance of groups and $L_\mathrm{s}$ the \emph{segregation loss}.
+\begin{align}
+	L_\mathrm{c} &= \\
+	L_\mathrm{s} &= 
+\end{align} 
 
 
 \paragraph{Clustering.}
