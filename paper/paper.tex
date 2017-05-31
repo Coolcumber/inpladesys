@@ -12,6 +12,7 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 
+\usepackage{enumitem}
 \usepackage{makecell}
 \usepackage[hyphens]{url}
 
@@ -88,9 +89,9 @@ The works by \citet{kuznetsov-2016} and \citet{sittar-2016} were submitted on th
 
 \citet{sittar-2016} used k-means algorthm to cluster \textit{ClustDist} scores of each sentence, where the number of groups was equal to the known number of authors in tasks \textit{a} and \textit{b}. In task \textit{c}, a number of groups was generated randomly. Although they defined a \textit{ClustDist} score for a single sentence as an average distance between current and every other sentence vector, which is again a similar concept like a style change function, in provided example they used only a sum of unknown distance measures. Fifteen features in total were used for sentence vectorization, including average word and sentence lengths, count and ratios of characters, digits upperpase letters, spaces and tabs. 
 
-The most of described approaches combine supervised and usupervised methods and operate on the level of longer text segments or sentences. We were inspired by \citet{brooke-2013} who said that a more radical approach would not separate those tasks in segmentation and clustering steps, but rather build an authorial segments that would also form good clusters. Since the style change in our tasks can occur even between two tokens in a same sentence, we wanted our model should be able to work on the token level. Instead of clustering tokens directly, we decided to cluster their vectorized stylistic contexts because they obviously contain more valuable sylistic information than tokens alone.
+The most of described approaches combine supervised and usupervised methods and operate on the level of longer text segments or sentences. Since the style change in our tasks can occur even between two tokens in a same sentence, we wanted our model should be able to work on the token level. We were also inspired by \citet{brooke-2013} who said that a more radical approach would not separate described tasks in segmentation and clustering steps, but rather build an authorial segments that would also form good clusters. Instead of clustering tokens directly, we decided to cluster their vectorized stylistic contexts because they obviously contain more valuable sylistic information than tokens alone. 
 
-\section{Author diarization and intrinsic plagiarism detetion}
+\section{Author diarization and intrinsic plagiarism detection}
 % describe the problem
 % define formally: document, segmentation, segment, author assignement (label)
 % define evaluation metrics
@@ -109,7 +110,7 @@ Let $\mathcal{D} \subset \Delta\times\Sigma$ be a dataset consisting of a finite
 
 \subsection{Evaluation measures}
 
-For evaluation of intrinsic plagiarism detection, \citet{stein-2010} define multiple measures for different aspects of a system's perfromance. The main measures are binary macro-averaged nad micro-averaged precision ($P$), recall (R) and $F_1$-score. For evaluating author diarization, we use \emph{BCubed} precision, recall and $F_1$ measures described by \citet{amigo-2009}, which are specialized for evaluation of clustering results. The same measures were used for evaluation on the PAN 2016 competition \citep{rosso-2016}.
+For evaluation of intrinsic plagiarism detection, \citet{stein-2010} define multiple measures for different aspects of a system's perfromance. The main measures are binary macro-averaged nad micro-averaged precision ($P$), recall ($R$) and $F_1$-score. For evaluating author diarization, we use \emph{BCubed} precision, recall and $F_1$ measures described by \citet{amigo-2009}, which are specialized for evaluation of clustering results. The same measures were used for evaluation on the PAN 2016 competition \citep{rosso-2016}.
 
 Let $l$ be a function that associates lengths in characters to segments. Specially, $l(\{\}) = 0$. For notational convenience, we also use $l$ to denote the sum of lengths of all segments in a set of segments: $l(S) = \sum_{s\in S} l(s),$ where $S$ is as set of segments. Given a document $D$, let $S_\mathrm{p} \subseteq \sigma(D)$ be a set of all true plagiarism segments of the document and $\hat{S}_\mathrm{p} \subseteq \hat{\sigma}(D)$ the segments predicted as plagiarism by the  model. With ${S_\mathrm{tp} = \bigcup_{(s,\hat{s})\in S_\mathrm{p}\times\hat{S}_\mathrm{p}} l(s\cap\hat{s})}$, the micro-averaged evaluation measures for intrinsic plagiarism detection are defined as follows:
 \begin{align}
@@ -145,16 +146,28 @@ F_\mathrm{B^3} &= \frac{2}{P_\mathrm{B^3}^{-1}+R_\mathrm{B^3}^{-1}}.
 % describe GroupRepel loss, describe AutoKMeans, 
 % clustering metric
 
-Our approach can generally be described as a pipeline $P = (f_\mathrm{b}:\Delta\rightarrow \Phi_{n_b}, f_\mathrm{t}:\Phi_{n_b}\rightarrow \Phi_{n_t}, f_\mathrm{c}:\Phi_{n_t}\rightarrow C)$. Here $\Delta$ is the tokenized document domain as defined in section ((((((($\circ$))))))). $\Phi_{n_b}$ and $\Phi_{n_t}$ are sets of variable-length sequences of feature vectors with dimension $n_b$ and $n_t$ respectively. $n_b$ and $n_d$ can either be fixed or depend on the document being processed. $C$ is the set of all sequences of length $n$ (the number of tokens in the document) with elements being indices of authors/clusters.
+Our approach can generally be described as a pipeline $P = (f_\mathrm{b}:\Delta\rightarrow \Phi_{n_b}, f_\mathrm{t}:\Phi_{n_b}\rightarrow \Phi_{n_t}, f_\mathrm{c}:\Phi_{n_t}\rightarrow C)$. Here $\Delta$ is the tokenized document domain as defined in section ((((((($\circ$))))))). $\Phi_{n_b}$ and $\Phi_{n_t}$ are sets of variable-length sequences of feature vectors with dimension $n_b$ and $n_t$ respectively. $n_b$ and $n_t$ can either be fixed or depend on the document being processed. $C$ is the set of all sequences of length $n$ (the number of tokens in the document) with elements being indices of authors/clusters.
 
-The basic feature extractor denoted with $f_\mathrm{b}$ is used to extract stylistic features from the contexts of all tokens. If $D$ is a document with $n$ tokens, the basic feature extractor outputs a sequence of $n$ feature vectors, each vector representing the context of one token. $n_\mathrm{b}$ denotes the dimension of those vectors. The next step in the pipeline is the feature transformation $f_\mathrm{t}$ that maps the basic features to a space that they can be better clustered in. The dimension of the new feature space $n_\mathrm{t}$ generally doesn't equal $n_\mathrm{b}$. The final step in the pipeline is clustering denoted with $f_\mathrm{c}$. The clustering algorithm clusters tokens, each cluster representing an author. Depending on the task, The clustering algorithm can either be given a known number of authors, or try to predict it.
+The basic feature extractor denoted with $f_\mathrm{b}$ is used to extract stylistic features from the contexts of all tokens. If $D$ is a document with $n$ tokens, the basic feature extractor outputs a sequence of $n$ feature vectors, each vector representing the context of one token. $n_\mathrm{b}$ denotes the dimension of those vectors. The next step in the pipeline is the feature transformation $f_\mathrm{t}$ that maps the basic features to a space that they can be better clustered in. The dimension of the new feature space $n_\mathrm{t}$ generally doesn't equal $n_\mathrm{b}$. The final step in the pipeline is clustering denoted with $f_\mathrm{c}$. The clustering algorithm implicitly clusters tokens because it actually clusters their stylistic contexts, each cluster representing an author. Depending on the task, the clustering algorithm can either be given a known number of authors, or try to predict it.
 
 The following steps are done in predicting the segmentation: (1) raw text is tokenized giving a sequence of tokens $D\in\Delta$, (2) features are extracted for all tokens and their contexts, giving a sequence of feature vectors $\phi_\mathrm{t} = (\mathbf{t}_i)_{i=1}^n = (f_\mathrm{t}\circ f_\mathrm{b})(D)$, (3) the tokens are clustered based on $\phi_\mathrm{t}$, giving a sequence of author labels $(a_i)_{i=1}^{n}$, where $n=|T_D|$, and (4) a segmentation $\hat{S}$ is generated based on the document $D$ and the sequence of predicted author labels.
 
 % details for each component
-\paragraph{Tokenization.} Tokenization.
+\paragraph{Tokenization.} As a preprocessing step, we tokenized each document $D$ with \texttt{nltk}\footnote{\texttt{http://www.nltk.org}} toolkit, to obtain a set of tokens $T_D$. We also performed Part of Speech tagging with the same tool, to speed up a basic feature extraction which we describe below. We didn't use other preprocessing techniques such as lemmatization, stemming and stop word removal because they would take away a lot of stylometric data from text \cite{stamatatos-2009a}. The final output from tokenization step was a finite sequence $\{(t_i, o_i, l(t_i), POS_i)\}_{i=1}^n$ where $o_i$ is the offset of token $t_i$, $l(t_i)$ its length in characters and $POS_i$ its POS tag.
 
-\paragraph{Basic feature extraction.} Differences between the 2 model variants.
+\paragraph{Basic feature extraction.} 
+We defined the stylistic context of a token $t_i$ as a set of tokens [SYMBOL] where [SYMBOL] is a context size. From each context we extracted the most used stylometric features which we found in previous work of ():
+\begin{itemize}
+	\item \textit{Character tri-grams}. Frequencies of \textit{n}-grams on character level have been very useful in quantifying the writing style \citep{stamatatos-2009b}. They are able to capture lexical and contextual information, use of punctuation and errors which can be an author's  "fingerprints". This feature is also tolerant to noise. Based on work by \cite{stamatatos-2009a} and \citet{rahman-2015}, we choose $n=3$. Maximal dimension of this feature vector was set to 200.
+	\item \textit{Stop words}. According to \cite{stamatatos-2009a}, sometimes also called \textit{function words}, these are the most common used topic-independent words in text, such as articles, prepositions, pronouns and others. Authors use them mainly unconciously and are found to be one of the most discriminative in authorship attribution since they represent pure stylistic choices of authors' \cite{burrows-1987,argamon-2005}.
+	\item \textit{Special characters}.
+	\item \textit{POS tag counts}.
+	\item \textit{Average token length}.
+	\item \textit{Bag of Words}.
+	\item \textit{Type-token ratio}.
+\end{itemize}
+
+Differences between the 2 model variants....
 
 basic features
 
@@ -188,7 +201,7 @@ differences: fixed features + transformation vs document-dependent features
 
 1
 baselines
-
+repo link
 Mention cofidences.
 
 \subsection{Intrinsic plagiarism detection}
