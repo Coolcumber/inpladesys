@@ -16,7 +16,7 @@ dataset_dirs = [
 ]
 
 
-def evaluate(params: dict, dataset_index: int, cache_dir=None):
+def evaluate(params: dict, dataset_index: int, cache_dir=None, linear=True):
     features_file_name = 'inpladesys/models/basic_feature_extraction/features_files/cng-sw-bow.json'
     random_state = 0xBeeFeed
     pl_params = dict()
@@ -24,7 +24,7 @@ def evaluate(params: dict, dataset_index: int, cache_dir=None):
         features_file_name=features_file_name,
         context_size=params['context_size'])
     from inpladesys.models.feature_transformation import SimpleGroupRepelFeatureTransformer
-    if False:
+    if not linear:
         pl_params['feature_transformer'] = SimpleGroupRepelFeatureTransformer(
             reinitialize_on_fit=False,
             iteration_count=params['gr-iteration_count'],
@@ -94,9 +94,12 @@ params['gr-iteration_count'] = 40  # 60  #20simple
 params['basic_feature_extender'] = 'f2'
 
 # cache_dir example "ce100-bow100-sw--ctx120--f21"
-evaluate(params, 2, cache_dir="cng120-bow120-sw--ctx{}--f2-s".format(
-    params['context_size'],
-    1 if params['basic_feature_extender'] == 'f2' else 0))
+evaluate(params,
+         2,
+         cache_dir="cng120-bow120-sw--ctx{}--f2-s".format(
+            params['context_size'],
+            1 if params['basic_feature_extender'] == 'f2' else 0),
+         linear=True)
 
 # Task c:
 # 1) output_dimension=16, 2 groups, 100 iter, no f**2 , linear: 0.53

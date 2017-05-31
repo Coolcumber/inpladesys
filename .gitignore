@@ -97,3 +97,4 @@ target/
 *.cb2
 *.blg
 *.gz
+*.bbl
