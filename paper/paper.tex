@@ -176,19 +176,7 @@ We implemented two variants of our final model. First is with only a basic featu
 
 \paragraph{Feature transformation.} We develop two variants of our model which are mainly differentiated by the application of a trainable feature transformation requiring fixed basic feature space as opposed to variable feature space with features that can be more document-specific.
 
-<<<<<<< HEAD
 Let $(\vect{b}_i)_{i=1}^n = f_\mathrm{b}(D)$ be a sequence of basic feature vectors and $(\vect{b}_i')_{i=1}^n$ the corresponding sequence of potentially preprocessed basic feature vectors with elements from $\mathbb{R}^{n_{b}'}$. Let $(a_i)_{i=1}^n$ be the sequence of true author labels with elements from $\{1..c\}$. We want to maximize the \emph{clusterability} of the feature vectors obtained by the feature transformation $T:\mathbb{R}^{n_b'}\rightarrow\mathbb{R}^{n_t}$ with trainable parameters $\vect{\theta}_T$, i.e. we want to maximize segregation and compactness of groups of transformed feature vectors grouped by their target author label. Let $(\vect{t}_i)_{i=1}^n = (T(\boldsymbol{b}_i'))_{i=1}^n = f_\mathrm{t}((\vect{b}_i)_{i=1}^n)$ be the sequence of transformed feature vectors with elements from $\mathbb{R}^{n_t}$. We define the following loss in order to optimize the transformation $T$:
-=======
-id
-
-scaling!!!!!!
-
-concatenation with squared features
-
-transformation trained via SGD
-
-Let $(\vect{b}_i)_{i=1}^n = f_\mathrm{b}(D)$ be the sequence of basic feature vectors with elements from $\mathbb{R}^{n_b}$. Let $(a_i)_{i=1}^n$ be the sequence of true author labels with elements from $\{1..c\}$. We want to maximize the \emph{clusterability} of the feature vectors obtained by the feature transformation $T:\mathbb{R}^{n_b}\rightarrow\mathbb{R}^{n_t}$ with trainable parameters $\vect{\theta}_T$, i.e. we want to maximize segregation and compactness of groups of transformed feature vectors grouped by their target author label. Let $(\vect{t}_i)_{i=1}^n = (T(\boldsymbol{b}_i))_{i=1}^n = f_\mathrm{t}((\vect{b}_i)_{i=1}^n)$ be the sequence of transformed feature vectors with elements from $\mathbb{R}^{n_t}$. We define the following loss in order to optimize the transformation $T$ for clusterability:
->>>>>>> 987b5169523e3a6ce3dc08e1d9309232a916ca90
 \begin{equation}
 	L = \alpha L_\mathrm{c} + (1-\alpha)L_\mathrm{s}
 \end{equation}
@@ -219,48 +207,39 @@ Before applying the transformations, basic feature vectors are preprocessed by c
 \begin{equation}
 	\vect{b_i'} = (\vect{b_i}^\transpose, (\vect{b_i}\odot\vect{b_i})^\transpose)^\transpose, \quad i\in \{1..n\}.
 \end{equation}
-The transformation is implemented using TensorFlow\footnote{TensorFlow link}. It is trained on-line (one document per optimization step) using RMSProp\footnote{RMSProp} with default parameters and learning rate. 
+The transformation is implemented using TensorFlow\footnote{\url{https://www.tensorflow.org}}. It is trained on-line (one document per optimization step) using RMSProp \citep{tielman-2012} with default parameters and learning rate $5\times 10^{-4}$. 
 
 
 \paragraph{Clustering.}
 
-The final step in our approach was clustering of obtained feature vectors which represented stylistic contexts of tokens. The number of clusters was equal to the number of authors in tasks $a$ and $b$, but in task $c$ it was unknown. We tested various clustering algorithms available in \texttt{scikit-learn}\footnote{\url{http://scikit-learn.org/stable/}} Python toolkit by \citet{scikit-learn} in all tasks. In the first variant of our approach for tasks $a$ and $b$ we propose hierarchical agglomerative clustering, and for task $c$ DBSCAN algorithm which estimates the number of clusters automatically. In the second variant we used k-means for clustering in tasks $a$ and $b$, and our modification of k-means, which we called AutoKmeans in task $c$. The reason of choosing that algorithms is described in chapter ????? 5 ????.
+The final step in our approach was clustering of obtained feature vectors which represented stylistic contexts of tokens. The number of clusters was equal to the number of authors in tasks \emph{a} and \emph{b}, but in task \emph{c} it was unknown. We tested various clustering algorithms available in \texttt{scikit-learn}\footnote{\url{http://scikit-learn.org}} Python toolkit by \citet{scikit-learn} in all tasks. In the first variant of our approach for tasks  \emph{a} and \emph{b} we propose hierarchical agglomerative clustering, and for task \emph{c} DBSCAN algorithm which estimates the number of clusters automatically. In the second variant we used k-means for clustering in all tasks, and tried our modification of k-means, which we called Auto-k-means in task \emph{c}. The reason for choosing those algorithms is described in section \ref{sec:experimental-results}.
 
-k-means HAC DBSCAN auto-k-means
-
-<<<<<<< HEAD
-\paragraph{Segmentation generation.} something short
+% TODO k-means HAC DBSCAN auto-k-means
 
 
-\section{Experimental results}
-
-For experiments, we use the three PAN 2016 training datasets. The test datasets used in the competition have not been made publicly available. Therefore, our evaluation results might be only moderately comparable to the results of other systems.
-
-We have created two blind baselines and a baseline that tries to really predict the authorial parts based on some simple features. The first blind baseline predicts the whole document to have been written by a single author or, in the case of intrinsic plagiarism detection, labels the whole document as plagiarism. The second blind baseline learns the average lengths of 
-
-\subsection{Experimantal setup}
-
-\subsection{Intrinsic plagiarism detection results}
-
-\subsection{Author diarization results}
-=======
-\section{Experimental results}
->>>>>>> 987b5169523e3a6ce3dc08e1d9309232a916ca90
-
-1
-
-baselines
-
-repo link
-
+\section{Experimental results} \label{sec:experimental-results}
 
 Mention cofidences.
 
 feature init test
 
-We performed initial testing of usefulness of all features except accidentally wrong implemented type-token ratio which was added afterwards. For testing purposes we used k-means algorithm with default settings available in \texttt{scikit-learn} and all documents from task $b$ dataset. As we added feature by feature, BCubed precision was higher so we decided to extract all features in all tasks. We don't know the exact impact of wrongly implemented type- token ratio. Instead of the context's vocabulary size, we divided the size of document's vocabulary with the context size so this feature had the same value in all vectors.
+repo link
 
-Five baseline models were defined for evaluation purposes. First baseline, \textit{DummySingleAuthorDiarizer} always assigned all tokens to only one cluster, assuming that text is written by a single author. As we will later describe, this baseline model behaved very competitive. The second baseline was \textit{DummyStohasticAuthorDiarizer} which generated a random number between 
+For experiments, we used the three PAN 2016 training datasets. The test datasets used in the competition have not been made publicly available. Therefore, our evaluation results might be only moderately comparable to the results of other systems.
+
+We have created two blind baselines and a baseline that tries to really predict the authorial parts based on some simple features. The first blind baseline predicts the whole document to have been written by a single author or, in the case of intrinsic plagiarism detection, labels the whole document as plagiarism. The second blind baseline learns the average lengths of 
+
+We performed initial testing of usefulness of all features except accidentally wrongly implemented type-token ratio which was added afterwards. For testing purposes we used the implementation of the k-means algorithm from \texttt{scikit-learn} with the default settings and all documents from the datased for task \emph{b}. As we were adding feature by feature, BCubed precision was becoming higher so we decided to  all features in all tasks. We don't know the exact impact of the wrongly implemented type-token ratio feature. Instead of the context's vocabulary size, we divided the size of document's vocabulary with the context size so this feature had the same value in all vectors.
+
+Five baseline models were defined for evaluation purposes. The first baseline, \textit{DummySingleAuthorDiarizer} always assigns all tokens to only one cluster, assuming that the text is written by a single author. As we will later describe, this baseline model behaved very competitive. The second baseline was \textit{DummyStohasticAuthorDiarizer} which generated a random number between 
+
+\subsection{Experimental setup}
+
+\subsection{Intrinsic plagiarism detection results}
+
+\subsection{Author diarization results}
+
+
 
 \subsection{Intrinsic plagiarism detection}
 
