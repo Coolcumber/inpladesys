@@ -161,24 +161,34 @@ The following steps are done in predicting the segmentation: (1) raw text is tok
 \paragraph{Tokenization.} As a preprocessing step, we tokenized each document $D$ using NLTK\footnote{\url{http://www.nltk.org}} to obtain a set of tokens $T_D$. We also performed part-of-speech tagging with the same tool, to speed up basic feature extraction which we describe below. We didn't use other preprocessing techniques such as lemmatization, stemming and stop word removal because they would take away a lot of stylometric data from text \cite{stamatatos-2009a}. The final output from the tokenization step was a finite sequence $\{(t_i, o_i, l(t_i), \mathit{POS}_i)\}_{i=1}^n$ where $o_i$ is the offset of token $t_i$, $l(t_i)$ its length in characters and $\mathit{POS}_i$ its POS tag.
 
 \paragraph{Basic feature extraction.} 
-We defined the stylistic context of a token $t_i$ as a set of tokens $\{t_k\}_{k=i-c}^{i-1} \cup \{t_k\}_{k=i+1}^{i+c}$ where $c$ is a context size. From each context we extracted the most used stylometric features which we found in previous work.
+We defined the stylistic context of a token $t_i$ as a set of tokens $\{t_k\}_{k=i-cs}^{i-1} \cup \{t_k\}_{k=i+1}^{i+cs}$ where $cs$ is a context size. From each context we extracted the most used stylometric features which we found in previous work.
 \begin{itemize}
 	\item \textit{Character tri-grams}. Frequencies of \textit{n}-grams on character level have been very useful in quantifying the writing style \citep{stamatatos-2009b}. They are able to capture lexical and contextual information, use of punctuation and errors which can be an author's  "fingerprint". This feature is also tolerant to noise. Based on work by \citet{stamatatos-2009a} and \citet{rahman-2015}, we choose $n=3$. Maximal dimension of this feature vector was set to 200.
-	\item \textit{Stop words}. According to \citet{stamatatos-2009a}, sometimes also called \textit{function words}, these are the most common used topic-independent words in text, such as articles, prepositions, pronouns and others. They are used unconciously and found to be one of the most discriminative features in authorship attribution since they represent pure stylistic choices of authors' {burrows-1987,argamon-2005}. We used frequencies of 156 english stop words available in \texttt{nltk}.
-	\item \textit{Special characters}. We used counts of all character sequences which satisfied a regular expression defined as [REGEX]. Although character n-grams can catch the use of those character sequences, we wanted to have a distinct feature for that purpose. \citet{koppel-2009} mentioned that authors can have different punctuation habbits.
+	\item \textit{Stop words}. According to \citet{stamatatos-2009a}, sometimes also called \textit{function words}, these are the most common used topic-independent words in text, such as articles, prepositions, pronouns and others. They are used unconciously and found to be one of the most discriminative features in authorship attribution since they represent pure stylistic choices of authors' \citep{burrows-1987,argamon-2005}. We used frequencies of 156 english stop words available in \texttt{NLTK}.
+	\item \textit{Special characters}. We used counts of all character sequences which satisfied a regular expression defined as \verb/[^\\w]{1,4}/. Although character $n$-grams can catch the use of those character sequences, we wanted to have a distinct feature for that purpose since \citet{koppel-2009} mentioned that authors can have different punctuation habbits.
 	\item \textit{POS tag counts}. This is syntactic feature which \citet{koppel-2009} and \citet{stamatatos-2009a} also identified as a discriminative one in authorship analysis and it was used by \citet{kuznetsov-2016}. We used all 12 tags from the universal tagset.
 	\item \textit{Average token length}. Used by \citet{kuznetsov-2016}, \citet{sittar-2016},  \citet{brooke-2012} and \citet{stein-2011}. \citet{koppel-2009} characterized this feature as a complexity measure.
-	\item \textit{Bag of Words}. Bag of words text representation more captures content, rather than style \citep{stamatatos-2009a}. We included this feature because it boosted performance of our initial testing, even without words been previously stemmed or lemmatized (stop words were excluded). Vocabulary had a maximum of 100 words.
+	\item \textit{Bag of Words}. Bag of words text representation more captures content, rather than style \citep{stamatatos-2009a}. We included this feature because it boosted performance of our initial testing, even without words been previously stemmed or lemmatized (stop words were excluded). Counts of maximum of 100 unigrams were used.
 	\item \textit{Type-token ratio}. We wanted to use that feature to measure the vocabulary richness in a token's context, but after we finished with performance evaluations we realized that there was a bug in implementation and that feature did not contribute to overal results. The feature should be calculated as the ratio of vocabulary size and total number of tokens of the text \citep{stamatatos-2009a}.
 \end{itemize}
 
-Differences between the 2 model variants....
-
-basic features
+We implemented two variants of our final model. First is with only a basic feature extractor $f_\mathrm{b}$, whether in second the feature transformation $f_\mathrm{t}$ was used. For the first variant, where only a basic feature extractor $f_\mathrm{b}$ was used, we extracted features for each document separately. In the variant with both basic extractor $f_\mathrm{b}$ and transformation $f_\mathrm{t}$, all documents were concatenated to a single one from which basic and transformed feature vectors were obtained. In both approaches basic features were extracted from a sliding window which moved from token to token and included a context of each token. In the rest of the paper we refer to the first variant as model A, and to the second as model B.
 
 \paragraph{Feature transformation.} We develop two variants of our model which are mainly differentiated by the application of a trainable feature transformation requiring fixed basic feature space as opposed to variable feature space with features that can be more document-specific.
 
+<<<<<<< HEAD
 Let $(\vect{b}_i)_{i=1}^n = f_\mathrm{b}(D)$ be a sequence of basic feature vectors and $(\vect{b}_i')_{i=1}^n$ the corresponding sequence of potentially preprocessed basic feature vectors with elements from $\mathbb{R}^{n_{b}'}$. Let $(a_i)_{i=1}^n$ be the sequence of true author labels with elements from $\{1..c\}$. We want to maximize the \emph{clusterability} of the feature vectors obtained by the feature transformation $T:\mathbb{R}^{n_b'}\rightarrow\mathbb{R}^{n_t}$ with trainable parameters $\vect{\theta}_T$, i.e. we want to maximize segregation and compactness of groups of transformed feature vectors grouped by their target author label. Let $(\vect{t}_i)_{i=1}^n = (T(\boldsymbol{b}_i'))_{i=1}^n = f_\mathrm{t}((\vect{b}_i)_{i=1}^n)$ be the sequence of transformed feature vectors with elements from $\mathbb{R}^{n_t}$. We define the following loss in order to optimize the transformation $T$:
+=======
+id
+
+scaling!!!!!!
+
+concatenation with squared features
+
+transformation trained via SGD
+
+Let $(\vect{b}_i)_{i=1}^n = f_\mathrm{b}(D)$ be the sequence of basic feature vectors with elements from $\mathbb{R}^{n_b}$. Let $(a_i)_{i=1}^n$ be the sequence of true author labels with elements from $\{1..c\}$. We want to maximize the \emph{clusterability} of the feature vectors obtained by the feature transformation $T:\mathbb{R}^{n_b}\rightarrow\mathbb{R}^{n_t}$ with trainable parameters $\vect{\theta}_T$, i.e. we want to maximize segregation and compactness of groups of transformed feature vectors grouped by their target author label. Let $(\vect{t}_i)_{i=1}^n = (T(\boldsymbol{b}_i))_{i=1}^n = f_\mathrm{t}((\vect{b}_i)_{i=1}^n)$ be the sequence of transformed feature vectors with elements from $\mathbb{R}^{n_t}$. We define the following loss in order to optimize the transformation $T$ for clusterability:
+>>>>>>> 987b5169523e3a6ce3dc08e1d9309232a916ca90
 \begin{equation}
 	L = \alpha L_\mathrm{c} + (1-\alpha)L_\mathrm{s}
 \end{equation}
@@ -214,10 +224,11 @@ The transformation is implemented using TensorFlow\footnote{TensorFlow link}. It
 
 \paragraph{Clustering.}
 
-clustering algorithms
+The final step in our approach was clustering of obtained feature vectors which represented stylistic contexts of tokens. The number of clusters was equal to the number of authors in tasks $a$ and $b$, but in task $c$ it was unknown. We tested various clustering algorithms available in \texttt{scikit-learn}\footnote{\url{http://scikit-learn.org/stable/}} Python toolkit by \citet{scikit-learn} in all tasks. In the first variant of our approach for tasks $a$ and $b$ we propose hierarchical agglomerative clustering, and for task $c$ DBSCAN algorithm which estimates the number of clusters automatically. In the second variant we used k-means for clustering in tasks $a$ and $b$, and our modification of k-means, which we called AutoKmeans in task $c$. The reason of choosing that algorithms is described in chapter ????? 5 ????.
 
 k-means HAC DBSCAN auto-k-means
 
+<<<<<<< HEAD
 \paragraph{Segmentation generation.} something short
 
 
@@ -232,11 +243,24 @@ We have created two blind baselines and a baseline that tries to really predict 
 \subsection{Intrinsic plagiarism detection results}
 
 \subsection{Author diarization results}
+=======
+\section{Experimental results}
+>>>>>>> 987b5169523e3a6ce3dc08e1d9309232a916ca90
 
 1
+
 baselines
+
 repo link
+
+
 Mention cofidences.
+
+feature init test
+
+We performed initial testing of usefulness of all features except accidentally wrong implemented type-token ratio which was added afterwards. For testing purposes we used k-means algorithm with default settings available in \texttt{scikit-learn} and all documents from task $b$ dataset. As we added feature by feature, BCubed precision was higher so we decided to extract all features in all tasks. We don't know the exact impact of wrongly implemented type- token ratio. Instead of the context's vocabulary size, we divided the size of document's vocabulary with the context size so this feature had the same value in all vectors.
+
+Five baseline models were defined for evaluation purposes. First baseline, \textit{DummySingleAuthorDiarizer} always assigned all tokens to only one cluster, assuming that text is written by a single author. As we will later describe, this baseline model behaved very competitive. The second baseline was \textit{DummyStohasticAuthorDiarizer} which generated a random number between 
 
 \subsection{Intrinsic plagiarism detection}
 
@@ -251,6 +275,13 @@ setup
 \subsection{Author diarization with unknown numbers of authors}
 
 setup
+
+\paragraph{Segmentation generation.} something short
+
+
+features
+
+differences: fixed features + transformation vs document-dependent features
 
 \section{Conclusion}
 
