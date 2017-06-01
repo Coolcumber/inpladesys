@@ -37,18 +37,25 @@ Unska 3, 10000 Zagreb, Croatia\\
 This document provides the instructions on formatting the TAR system description paper in \LaTeX{}. This is where you write the abstract (i.e., summary) of the work you carried out within the project. The abstract is a paragraph of text ranging between 70 and 150 words. This document provides the instructions on formatting the TAR system description paper in \LaTeX{}. This is where you write the abstract (i.e., summary) of the work you carried out within the project. The abstract is a paragraph of text ranging between 70 and 150 words.
 }
 
+% TODO: replace model A with Model A, for B as well
+% TODO: replace $n$-gram and \emph{n}-gram with n-gram, as it is common in literature
+% TODO: suggestion: remove \texttt-s 
+% TODO: convert Related work to present
+% TODO: change \texit-s ti \emph-s
+% TODO: explain BFE training in The proposed approach
+
 \begin{document}
 
 \maketitleabstract
 
 \section{Introduction}
-In this paper we will focus on the author diarization task proposed on PAN 2016 competition\footnote{\url{http://pan.webis.de/clef16/pan16-web/author-identification.html}}. The aim of this task is to decompose a document into its authorial parts, i.e. to split a text into segments and assign an author to every segment \citep{koppel-2011,aldebei-2015}. This is one of the unsupervised variants of a well known authorship attribution problem since text samples of known authorship are not available \citep{rosso-2016}. As we will describe, in two out of three subtasks of this task only a correct number of authors for a given document is known.
+In this paper we will focus on the author diarization task proposed on the PAN 2016 competition\footnote{\url{http://pan.webis.de/clef16/pan16-web/author-identification.html}}. The aim of this task is to decompose a document into its authorial parts, i.e. to split a text into segments and assign an author to every segment \citep{koppel-2011,aldebei-2015}. This is one of the unsupervised variants of a well known authorship attribution problem since text samples of known authorship are not available \citep{rosso-2016}. As we will describe, in two out of three subtasks of this task only a correct number of authors for a given document is known.
 
 The simplest variant of the authorship attribution problem is about finding the most likely author for a given document from a set of candidate authors whose authentic writing examples are available \citep{stamatatos-2009a,stein-2011,ding-2016}. This problem can be tackled with supervised machine learning techniques as a {{{single-label}}} multiclass text classification problem, where one class represents one author \citep{stamatatos-2009a}. 
 
 The authorship attribution problem is also known as authorship identification and it is a part of authorship analysis \citep{stamatatos-2009a,ding-2016}. Authorship analysis is a field of stylometry and studies information about the authorship of a document, based on features derived from that document \citep{layton-2013}. Moreover, stylometry analyses literary style with statistical methods  \citep{stein-2011}.	
 
-\citet{rosso-2016} divided the PAN 2016 author diarization task into three subtasks. The first subtask is traditionally called intrinsic plagiarism detection (IPD). The goal of this task is to find plagiarized parts of a document in which at least $70\%$ of text is written by main author and the rest by one or more other authors. The term \textit{intrinsic} means that a decision whether plagiarized parts exist has to be made only by analysing a given document, without any comparisons with external sources. In the rest of the paper we refer to this subtask as task \emph{a}.
+\citet{rosso-2016} divided the PAN 2016 author diarization task into three subtasks. The first subtask is traditionally called intrinsic plagiarism detection (IPD). The goal of this task is to find plagiarized parts of a document in which at least $70\%$ of text is written by main author and the rest by one or more other authors. The term \emph{intrinsic} means that a decision whether a part of the document is plagiarized has to be made only by analysing the given document, without any comparisons with external sources. In the rest of the paper we refer to this subtask as task \emph{a}.
 
 \begin{table}
 	\caption{Basic characteristics of training datasets. * represents that there is a true author and plagiarism segments which don't have to originate from a single author.}
@@ -85,19 +92,19 @@ The basic assumption in authorship analysis is that texts of different authors a
 
 \citet{rahman-2015} classified sections of documents from PAN 2011 dataset with the help of SVM. Those sections were again obtained by sliding a window of fixed length over the document. He also proposed a new kind of information theoretical features - entropy, relative entropy, correlation coefficient and $n$-gram frequency class calculated from character tri-gram frequency profiles of each window and the whole document. {{{He also used function word bi-gram and tri-gram frequency profiles with $1$, $2$, $3$ and $4$ skips.}}} The value of the style change function introduced by \citet{stamatatos-2009b} was also incorporated into the feature vectors.
 
-\citet{stein-2011} defined IPD as a one class classification problem where the parts of text written by the main author is associated to the target class and the other parts of text are outliers. To find them, they estimated probability distributions of various stylistic features for the target class and outliers. Then a naive Bayes' algorithm was applied to feature vectors whose values lied outside the predefined uncertainity intervals. Additional outlier post-processing methods were also tested. The most successful was the unmasking technique described by \citet{koppel-2009}. The main sense of unmasking is to iteratively remove the best features that distinguish two classes and observe the speed with which cross-validation accuracy of the again trained classifier drops. If the drop is slow and smooth, the outliers are indeed outliers because after $n$ iterations of removing discriminative features they are still separable from the main auhor's work.
+\citet{stein-2011} defined IPD as a one class classification problem where the parts of text written by the main author is associated to the target class and the other parts of text are outliers. To find them, they estimated probability distributions of various stylistic features for the target class and outliers. Then a naive Bayes' algorithm was applied to feature vectors whose values lied outside the predefined uncertainty intervals. Additional outlier post-processing methods were also tested. The most successful was the unmasking technique described by \citet{koppel-2009}. The main sense of unmasking is to iteratively remove the best features that distinguish two classes and observe the speed with which cross-validation accuracy of the again trained classifier drops. If the drop is slow and smooth, the outliers are indeed outliers because after $n$ iterations of removing discriminative features they are still separable from the main author's work.
 
-\citet{koppel-2011} used two staged approach in clustering of pre-segmented mixed biblical text written by two authors. First they used normalized cuts algorithm with cosine similarity to obtain initial clusters of segments which were represented only by normalized counts of synonyms from Hebrew synsets. Samples from initial clusers were separated into core and non-core samples via an iterative procedure, and the core ones were labeled. A SVM classifier was used to classify non-core samples, but now represented with bag-of-words feature vectors. The whole approach resulted with very good clusters. They also tried this method on an unsegmented case. The text was first split in a way that minimizes doubly-represented synonyms in segments and the same procedure was repeated. The clustering performance was lower than in pre-segmented case.
+\citet{koppel-2011} used two staged approach in clustering of pre-segmented mixed biblical text written by two authors. First they used normalized cuts algorithm with cosine similarity to obtain initial clusters of segments which were represented only by normalized counts of synonyms from Hebrew synsets. Samples from initial clusters were separated into core and non-core samples via an iterative procedure, and the core ones were labelled A SVM classifier was used to classify non-core samples, but now represented with bag-of-words feature vectors. The whole approach resulted with very good clusters. They also tried this method on an unsegmented case. The text was first split in a way that minimizes doubly-represented synonyms in segments and the same procedure was repeated. The clustering performance was lower than in pre-segmented case.
 
 \citet{brooke-2013} concluded that a very good initial segmentation of text, at least in poems written by T. S. Elliot, is needed for a good performance of their modified k-means algorithm in clustering of voices. Except common character, lexical and syntactic features, they used features such as average frequency in a large  external corpus \citep{brants-2006}. One of the most promising feature they considered is the centroid of $20$ dimensional distributional vectors obtained by applying latent semantic analysis on a large web corpus \cite{landauer-1997}.
 
-The works by \citet{kuznetsov-2016} and \citet{sittar-2016} were submitted on the PAN 2016 competition for three aforementioned tasks. For the task \emph{a}, \citet{kuznetsov-2016} trained a Gradient Boosting Regression Trees (GBRT) model on PAN 2011 dataset as a style change function used for threshold based outlier detection. Every sentence was vectorized using word frequencies, $n$-gram frequencies, punctuaiton symbols and the universal POS tags count, sentence length and mean length of sentence words. The final input to the model was concatenation of center sentence vector and ones from context of size $\pm2$. In task \emph{b} they used a Hidden Markov Model with Gaussian Emissions for document segmentation over the same sentence scores from task \emph{a}. To estimate the unknown number of authors $n$ in task \emph{c}, they chose $n\in\{2..20\}$ which maximizes their cluster discrepancy measure $Q(n)$.
+The works by \citet{kuznetsov-2016} and \citet{sittar-2016} were submitted on the PAN 2016 competition for three aforementioned tasks. For the task \emph{a}, \citet{kuznetsov-2016} trained a Gradient Boosting Regression Trees (GBRT) model on PAN 2011 dataset as a style change function used for threshold based outlier detection. Every sentence was vectorized using word frequencies, $n$-gram frequencies, punctuation symbols and the universal POS tags count, sentence length and mean length of sentence words. The final input to the model was concatenation of the center sentence vector and ones from the context of size $\pm2$. In task \emph{b} they used a Hidden Markov Model with Gaussian Emissions for document segmentation over the same sentence scores from task \emph{a}. To estimate the unknown number of authors $n$ in task \emph{c}, they chose $n\in\{2..20\}$ which maximizes their cluster discrepancy measure $Q(n)$.
 
 \citet{sittar-2016} used k-means algorithm to cluster \textit{ClustDist} scores of each sentence, where the number of groups was equal to the known number of authors in tasks \emph{a} and \emph{b}. In task \emph{c}, a number of groups was generated randomly. Although they defined a \emph{ClustDist} score for a single sentence as an average distance between current and every other sentence vector, which is again a similar concept like a style change function, in the provided example they used only a sum of unknown distance measures. $15$ features in total were used for sentence vectorization, including average word and sentence lengths, count and ratios of characters, digits uppercase letters, spaces and tabs. 
 
 The most of the described approaches combine supervised and unsupervised methods and operate on the level of longer text segments or sentences. Since the style change in our tasks can occur even between two tokens in the same sentence, we wanted our model to be able to work on the token level. We were also inspired by \citet{brooke-2013} who said that a more radical approach would not separate the described tasks in segmentation and clustering steps, but rather build authorial segments that would also form good clusters. Instead of clustering tokens directly, we decided to cluster their vectorized stylistic contexts because they obviously contain more valuable stylistic information than tokens alone.
 
-\section{Author diarization and intrinsic plagiarism detetion} \label{sec:author-diraization}
+\section{Author diarization and intrinsic plagiarism detection} \label{sec:author-diraization}
 % describe the problem
 % define formally: document, segmentation, segment, author assignement (label)
 % define evaluation metrics
@@ -116,7 +123,7 @@ Let $\mathcal{D} \subset \Delta\times\Sigma$ be a dataset consisting of a finite
 
 \subsection{Evaluation measures}
 
-For evaluation of intrinsic plagiarism detection, \citet{stein-2010} define multiple measures for different aspects of a system's perfromance. The main measures are binary macro-averaged nad micro-averaged precision ($P$), recall ($R$) and $F_1$-score. For evaluating author diarization, we use \emph{BCubed} precision, recall and $F_1$ measures described by \citet{amigo-2009}, which are specialized for evaluation of clustering results. The same measures were used for evaluation on the PAN 2016 competition \citep{rosso-2016}.
+For evaluation of intrinsic plagiarism detection, \citet{stein-2010} define multiple measures for different aspects of a system's performance The main measures are binary macro-averaged and micro-averaged precision ($P$), recall ($R$) and $F_1$-score. For evaluating author diarization, we use \emph{BCubed} precision, recall and $F_1$ measures described by \citet{amigo-2009}, which are specialized for evaluation of clustering results. The same measures were used for evaluation on the PAN 2016 competition \citep{rosso-2016}.
 
 Let $l$ be a function that associates lengths in characters to segments. Specially, $l(\{\}) = 0$. For notational convenience, we also use $l$ to denote the sum of lengths of all segments in a set of segments: $l(S) = \sum_{s\in S} l(s),$ where $S$ is as set of segments. Given a document $D$, let $S_\mathrm{p} \subseteq \sigma(D)$ be a set of all true plagiarism segments of the document and $\hat{S}_\mathrm{p} \subseteq \hat{\sigma}(D)$ the segments predicted as plagiarism by the  model. With ${S_\mathrm{tp} = \bigcup_{(s,\hat{s})\in S_\mathrm{p}\times\hat{S}_\mathrm{p}} l(s\cap\hat{s})}$, the micro-averaged evaluation measures for intrinsic plagiarism detection are defined as follows:
 \begin{align}
@@ -145,7 +152,7 @@ F_\mathrm{\mathrm{B}^3} &= \frac{2}{P_\mathrm{\mathrm{B}^3}^{-1}+R_\mathrm{\math
 \end{align}
 
 
-\section{The proposed approach}
+\section{The proposed approach} \label{sec:the-proposed-approach}
 
 Our approach can generally be described as a pipeline $P = (f_\mathrm{b}:\Delta\rightarrow \Phi_{n_b}, f_\mathrm{t}:\Phi_{n_b}\rightarrow \Phi_{n_t}, f_\mathrm{c}:\Phi_{n_t}\rightarrow C)$. Here $\Delta$ is the tokenized document domain as defined in section \ref{sec:author-diraization}. $\Phi_{n_b}$ and $\Phi_{n_t}$ are sets of variable-length sequences of feature vectors with dimension $n_b$ and $n_t$ respectively. $n_b$ and $n_t$ can either be fixed or depend on the document being processed. $C$ is the set of all sequences of length $n$ (the number of tokens in the document) with elements being indices of authors/clusters.
 
@@ -153,28 +160,25 @@ The basic feature extractor denoted with $f_\mathrm{b}$ is used to extract styli
 
 The following steps are done in predicting the segmentation: (1) raw text is tokenized giving a sequence of tokens $D\in\Delta$, (2) for all tokens, features are extracted from their contexts, giving a sequence of feature vectors $\phi_\mathrm{t} = (\vect{t}_i)_{i=1}^n = (f_\mathrm{t}\circ f_\mathrm{b})(D)$, (3) the tokens are clustered based on $\phi_\mathrm{t}$, giving a sequence of author labels $(a_i)_{i=1}^{n}$, where $n=|T_D|$, and (4) a segmentation $\hat{S}$ is generated based on the document $D$ and the sequence of predicted author labels.
 
+We develop two variants of our model which we will refer to as \emph{Model A} and \emph{Model B}. They are mainly differentiated by the the training of the basic feature extractor and feature transformation and in the feature transformation. Model B utilizes a trainable feature transformation that requires a fixed basic feature space. Therefore, the basic feature extractor must be trained on the trained on the whole training dataset. Conversely, Model A's basic feature transformation can be trained specifically allowing for use of less more important features, but it can't use a feature transformation trainable on multiple documents. In both approaches basic features are extracted from a sliding window which moves from token to token and includes the context of each token.
+
 % details for each component
-\paragraph{Tokenization.} As a preprocessing step, we tokenized each document $D$ using \texttt{NLTK}\footnote{\url{http://www.nltk.org}} by \citet{bird-2009} to obtain a set of tokens $T_D$. We also performed part-of-speech tagging with the same tool, to speed up basic feature extraction which we describe below. We didn't use other preprocessing techniques such as lemmatization, stemming and stop word removal because they would take away a lot of stylometric data from text \cite{stamatatos-2009a}. The final output from the tokenization step was a finite sequence $\{(t_i, o_i, l(t_i), \mathit{POS}_i)\}_{i=1}^n$ where $o_i$ is the offset of token $t_i$, $l(t_i)$ its length in characters and $\mathit{POS}_i$ its POS tag.
+\paragraph{Tokenization.} As a preprocessing step, we tokenize each document using \texttt{NLTK}\footnote{\url{http://www.nltk.org}} by \citet{bird-2009} to obtain a sequence of tokens $D$. We also perform part-of-speech tagging with the same tool, to speed up basic feature extraction which we describe below. We didn't use other preprocessing techniques such as lemmatization, stemming and stop word removal because they would take away a lot of stylometric data from text \cite{stamatatos-2009a}. The final output from the tokenization step was a finite sequence $\{(t_i, o_i, l(t_i), \mathit{POS}_i)\}_{i=1}^n$ where $o_i$ is the offset of token $t_i$, $l(t_i)$ its length in characters and $\mathit{POS}_i$ its POS tag.
 
 \paragraph{Basic feature extraction.} 
 We defined the stylistic context of a token $t_i$ as a set of tokens $\{t_k\}_{k=i-cs}^{i-1} \cup \{t_k\}_{k=i+1}^{i+cs}$ where $cs$ is a context size. From each context we extracted the most used stylometric features which we found in previous work.
 \begin{itemize}
-	\item \textit{Character tri-grams}. Frequencies of \textit{n}-grams on character level have been very useful in quantifying the writing style \citep{stamatatos-2009b}. They are able to capture lexical and contextual information, use of punctuation and errors which can be an author's  "fingerprint". This feature is also tolerant to noise. Based on work by \citet{stamatatos-2009a} and \citet{rahman-2015}, we choose $n=3$. Maximal dimension of this feature vector was set to 200.
-	\item \textit{Stop words}. According to \citet{stamatatos-2009a}, sometimes also called \textit{function words}, these are the most common used topic-independent words in text, such as articles, prepositions, pronouns and others. They are used unconciously and found to be one of the most discriminative features in authorship attribution since they represent pure stylistic choices of authors' \citep{burrows-1987,argamon-2005}. We used frequencies of 156 english stop words available in \texttt{NLTK}.
+	\item \textit{Character tri-grams}. Frequencies of $n$-grams on character level have been very useful in quantifying the writing style \citep{stamatatos-2009b}. They are able to capture lexical and contextual information, use of punctuation and errors which can be an author's "fingerprint". This feature is also tolerant to noise. Based on work by \citet{stamatatos-2009a} and \citet{rahman-2015}, we choose $n=3$. Maximal dimension of this feature vector was set to $200$.
+	\item \textit{Stop words}. According to \citet{stamatatos-2009a}, sometimes also called \textit{function words}, these are the most common used topic-independent words in text, such as articles, prepositions, pronouns and others. They are used unconsciously and found to be one of the most discriminative features in authorship attribution since they represent pure stylistic choices of authors' \citep{burrows-1987,argamon-2005}. We used frequencies of $156$ English stop words available in \texttt{NLTK}.
 	\item \textit{Special characters}. We used counts of all character sequences which satisfied a regular expression defined as \verb/[^\\w]{1,4}/. Although character $n$-grams can catch the use of those character sequences, we wanted to have a distinct feature for that purpose since \citet{koppel-2009} mentioned that authors can have different punctuation habbits.
-	\item \textit{POS tag counts}. This is syntactic feature which \citet{koppel-2009} and \citet{stamatatos-2009a} also identified as a discriminative one in authorship analysis and it was used by \citet{kuznetsov-2016}. We used all 12 tags from the universal tagset.
+	\item \textit{POS tag counts}. This is syntactic feature which \citet{koppel-2009} and \citet{stamatatos-2009a} also identified as a discriminative one in authorship analysis and it was used by \citet{kuznetsov-2016}. We used all $12$ tags from the universal tagset.
 	\item \textit{Average token length}. Used by \citet{kuznetsov-2016}, \citet{sittar-2016},  \citet{brooke-2012} and \citet{stein-2011}. \citet{koppel-2009} characterized this feature as a complexity measure.
 	\item \textit{Bag of Words}. Bag of words text representation more captures content, rather than style \citep{stamatatos-2009a}. We included this feature because it boosted performance of our initial testing, even without words been previously stemmed or lemmatized (stop words were excluded). Counts of maximum of 100 unigrams were used.
 	\item \textit{Type-token ratio}. We wanted to use that feature to measure the vocabulary richness in a token's context, but after we finished with performance evaluations we realized that there was a bug in implementation and its impact on final results was unknown to us. The feature should be calculated as the ratio of vocabulary size and total number of tokens of the text \citep{stamatatos-2009a}.
 \end{itemize}
 
 \paragraph{Feature transformation.}
-
- We develop two variants of our model which are mainly differentiated by the application of a trainable feature transformation requiring fixed basic feature space as opposed to variable feature space with features that can be more document-specific. 
- 
- First variant uses only a basic feature extractor $f_\mathrm{b}$, whether in second the feature transformation $f_\mathrm{t}$ is used. In the first variant we extract features for each document separately and scale features to zero mean and unit variance. In the variant with both basic extractor $f_\mathrm{b}$ and transformation $f_\mathrm{t}$, all documents are concatenated to a single one from which basic and transformed feature vectors are obtained, but without standardization. In both approaches basic features are extracted from a sliding window which moves from token to token and includes a context of each token. In the rest of the paper we refer to the first variant as model A, and to the second as model B.
-
-In model B, let $(\vect{b}_i)_{i=1}^n = f_\mathrm{b}(D)$ be a sequence of basic feature vectors and $(\vect{b}_i')_{i=1}^n$ the corresponding sequence of potentially preprocessed basic feature vectors with elements from $\mathbb{R}^{n_{b}'}$. Let $(a_i)_{i=1}^n$ be the sequence of true author labels with elements from $\{1..c\}$. We want to maximize the \emph{clusterability} of the feature vectors obtained by the feature transformation $T:\mathbb{R}^{n_b'}\rightarrow\mathbb{R}^{n_t}$ with trainable parameters $\vect{\theta}_T$, i.e. we want to maximize segregation and compactness of groups of transformed feature vectors grouped by their target author label. Let $(\vect{t}_i)_{i=1}^n = (T(\boldsymbol{b}_i'))_{i=1}^n = f_\mathrm{t}((\vect{b}_i)_{i=1}^n)$ be the sequence of transformed feature vectors with elements from $\mathbb{R}^{n_t}$. We define the following loss in order to optimize the transformation $T$:
+As its feature transformation $f_\mathrm{t}$, Model A uses feature scaling to zero mean and unit variance for each document separately. Model B uses a trainable transformation which requires a fixed basic feature space. Let $(\vect{b}_i)_{i=1}^n = f_\mathrm{b}(D)$ be a sequence of basic feature vectors and $(\vect{b}_i')_{i=1}^n$ the corresponding sequence of potentially preprocessed basic feature vectors with elements from $\mathbb{R}^{n_{b}'}$. Let $(a_i)_{i=1}^n$ be the sequence of true author labels with elements from $\{1..c\}$. We want to maximize the \emph{clusterability} of the feature vectors obtained by the feature transformation $T:\mathbb{R}^{n_b'}\rightarrow\mathbb{R}^{n_t}$ with trainable parameters $\vect{\theta}_T$, i.e. we want to maximize segregation and compactness of groups of transformed feature vectors grouped by their target author label. Let $(\vect{t}_i)_{i=1}^n = (T(\boldsymbol{b}_i'))_{i=1}^n = f_\mathrm{t}((\vect{b}_i)_{i=1}^n)$ be the sequence of transformed feature vectors with elements from $\mathbb{R}^{n_t}$. We define the following loss in order to optimize the transformation $T$:
 \begin{equation}
 	L = \alpha L_\mathrm{c} + (1-\alpha)L_\mathrm{s}
 \end{equation}
@@ -209,7 +213,6 @@ The transformation is implemented using TensorFlow\footnote{\url{https://www.ten
 
 
 \paragraph{Clustering.}
-
 The final step in our approach was clustering of obtained feature vectors which represented stylistic contexts of tokens. The number of clusters was equal to the number of authors in tasks \emph{a} and \emph{b}, but in task \emph{c} it was unknown. We tested various clustering algorithms available in \texttt{scikit-learn}\footnote{\url{http://scikit-learn.org}} Python toolkit by \citet{scikit-learn} in all tasks. In the first variant of our approach for tasks  \emph{a} and \emph{b} we propose hierarchical agglomerative clustering, and for task \emph{c} DBSCAN algorithm which estimates the number of clusters automatically. In the second variant we used k-means for clustering in all tasks, and tried our modification of k-means, which we called Auto-k-means in task \emph{c}. The reason for choosing those algorithms is described in section \ref{sec:experimental-results}
 
 % TODO k-means HAC DBSCAN auto-k-means
@@ -225,9 +228,9 @@ repo link
 
 For experiments, we used the three PAN 2016 training datasets. The test datasets used in the competition have not been made publicly available. Therefore, our evaluation results might be only moderately comparable to the results of other systems.
 
-Three baseline models were defined for evaluation purposes. The first baseline, \emph{single-author dummy baseline}, always assigns the whole document a single author label, or, in the case of intrinsic plagiarism detection, it labels the whole document as plagiarism. The second baseline, \emph{stochastic dummy baseline}, learns the average total lengths of authorial parts over all documents giving the most common author label $0$ and the least common author the largest label. For prediction, by modelling a Markov chain, it generates segmentations with similar label frequencies and predefined expected lengths. As we will later describe, these baseline models seem to behaved quite competitively.
+In addition to the $2$ models from the teams that took part in solving the author diarization problem on the PAN 2016 competition, we defined $3$ baselines for evaluation purposes. The first baseline, \emph{single-author dummy baseline}, always assigns the whole document a single author label, or, in the case of intrinsic plagiarism detection, it labels the whole document as plagiarism. The second baseline, \emph{stochastic dummy baseline}, learns the average total lengths of authorial parts over all documents ranked by the length of their parts. For prediction, by modelling a Markov chain, it generates segmentations with similar label frequencies and predefined expected lengths. As we will later describe, these baseline models seem to behaved quite competitively.
 
-We performed initial testing of usefulness of all features except for the accidentally wrongly implemented type-token ratio which was added afterwards. For testing purposes we used the implementation of the k-means algorithm from \texttt{scikit-learn} with the default settings and all documents from the dataset for task \emph{b}. As we were adding feature by feature, BCubed precision was becoming higher so we decided to  all features in all tasks. We don't know the exact impact of the wrongly implemented type-token ratio feature. Instead of the context's vocabulary size, we divided the size of document's vocabulary with the context size so this feature had the same value in all vectors.
+We performed initial testing of usefulness of all features except for the accidentally wrongly implemented type-token ratio which was added afterwards. For testing purposes we used the implementation of the k-means algorithm from \texttt{scikit-learn} with the default settings and all documents from the dataset for task \emph{b}. As we were adding feature by feature, BCubed precision was becoming higher so we decided to use all features for model A in all tasks. We don't know the exact impact of the wrongly implemented type-token ratio feature. Instead of the context's vocabulary size, we divided the size of document's vocabulary with the context size so this feature had the same value in all vectors.
 
 
 \subsection{Experimental setup}
@@ -242,16 +245,16 @@ We performed initial testing of usefulness of all features except for the accide
 			\toprule
 			Method & $R_\mathrm{\mu}$ & $P_\mathrm{\mu}$ & $F_\mathrm{\mu}$ & $R_\mathrm{M}$ & $P_\mathrm{M}$ & $F_\mathrm{M}$\\
 			\midrule
-			single-author BL 		& 0.13 & 1.00 & 0.22 & 0.13 & 1.00 & 0.22 \\
-			stochastic BL 			& 0.13 & 0.94 & 0.23 & 0.15 & 0.94 & 0.25 \\
-			simple BL 				& 0.13 & 0.24 & 0.14 & 0.13 & 0.24 & 0.13 \\
+			Single-author dummy BL 	& 0.13 & 1.00 & 0.22 & 0.13 & 1.00 & 0.22 \\
+			Stochastic dummy BL 	& 0.13 & 0.94 & 0.23 & 0.15 & 0.94 & 0.25 \\
+			Simple dummy BL 		& 0.13 & 0.24 & 0.14 & 0.13 & 0.24 & 0.13 \\
 			\midrule
 			\citet{kuznetsov-2016} 	& 0.19 & 0.29 & 0.22 & 0.15 & 0.28 & 0.17 \\
 			\citet{sittar-2016} 	& 0.07 & 0.14 & 0.08 & 0.10 & 0.14 & 0.10 \\
 			\midrule			
-			model A 				&  &  &  &  &  & \\			
-			model B (weighting) 	& 0.24 & 0.36 & 0.23 & 0.24 & 0.34 & 0.23 \\
-			model B (linear) 		& 0.21 & 0.35 & 0.23 & 0.21 & 0.34 & 0.22 \\
+			Model A 				&  &  &  &  &  & \\			
+			Model B (linear) 		& 0.21 & 0.35 & 0.23 & 0.21 & 0.34 & 0.22 \\
+			Model B (weighting) 	& 0.24 & 0.36 & 0.23 & 0.24 & 0.34 & 0.23 \\
 			\bottomrule
 		\end{tabular}
 	\end{center}
@@ -263,20 +266,22 @@ We performed initial testing of usefulness of all features except for the accide
 	\caption{Results on the author diarization task with known number of authors.}
 	\label{tab:narrow-table}
 	\begin{center}
-		\begin{tabular}{l|ccc}
+		\begin{tabular}{l|ccc|ccc}
 			\toprule
-			Method & $R_{\mathrm{B}^3}$ & $P_{\mathrm{B}^3}$ & $F_\mathrm{\mathrm{B}^3}$ \\
+			\multirow{2}{*}{Method} & \multicolumn{3}{c|}{Task \emph{b}} & \multicolumn{3}{c}{Task \emph{c}} \\
+			\cmidrule{2-7}
+			& $R_{\mathrm{B}^3}$ & $P_{\mathrm{B}^3}$ & $F_\mathrm{\mathrm{B}^3}$ & $R_{\mathrm{B}^3}$ & $P_{\mathrm{B}^3}$ & $F_\mathrm{\mathrm{B}^3}$ \\
 			\midrule
-			single-author baseline & 0 & 1 & 2 \\
-			stochastic baseline & 0 & 1 & 2 \\
-			simple baseline & 0 & 1 & 2 \\
+			Single-author dummy BL 		& 0.33 & 1.00 & 0.47 & 0.37 & 1.00 & 0.52 \\
+			Stochastic dummy BL 		& 0.35 & 0.59 & 0.41 & 0.39 & 0.59 & 0.45 \\
+			Simple dummy BL 			& 0.43 & 0.50 & 0.45 & 0.45 & 0.54 & 0.45 \\
 			\midrule
-			\citet{kuznetsov-2016} \\
-			\citet{sittar-2016} \\
+			\citet{kuznetsov-2016}		& 0.46 & 0.64 & 0.52 & 0.42 & 0.64 & 0.48 \\
+			\citet{sittar-2016} 		& 0.47 & 0.28 & 0.32 & 0.47 & 0.31 & 0.35 \\
 			\midrule			
-			model A & 0 & 1 & 2 \\			
-			model B (weighting) & 0 & 1 & 2 \\			
-			model B (linear) & 0 & 1 & 2 \\
+			Model A 					&  &  &  &  &  & \\			
+			Model B (linear) 			& 0.48 & 0.45 & 0.46 & 0.56 & 0.82 & 0.64 \\
+			Model B (weighting)			& 0.51 & 0.49 & 0.50 & 0.57 & 0.77 & 0.64 \\
 			\bottomrule
 		\end{tabular}
 	\end{center}
