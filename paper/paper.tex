@@ -236,6 +236,12 @@ We performed initial testing of usefulness of all features except accidentally w
 Five baseline models were defined for evaluation purposes. The first baseline, \textit{DummySingleAuthorDiarizer} always assigns all tokens to only one cluster, assuming that the text is written by a single author. As we will later describe, this baseline model behaved very competitive. The second baseline was \textit{DummyStohasticAuthorDiarizer} which generated a random number between 
 
 \subsection{Experimental setup}
+In every task we used the same tokenization procedure as described in section \ref{sec:the-proposed-approach}. Model A covered all three tasks and had a several hyperparameters in each: context size, clustering algorithm and its hyperparameters.
+
+Context size was determined manually for tasks \emph{a} and \emph{b}, in a similar way as feature selection. We used a whole dataset and default implementation of k-means from \texttt{scikit-learn} and tested different values. The best result for task \emph{a} was $cs_a=16$ and for task \emph{b} $cs_b=140$. For task \emph{c}, we left $cs_c=140$ as for task \emph{b}. This hyperparameter probably depends on document's length to a certain extent. If we compare that sizes with the average document lengths in tokens across datasets, we can see that there is a correspondence ($1679, 3767, 3298$ vs. $16, 140, 140$). Although we tested different context size values again on a train set after optimal clustering algorithm selection and obtained no difference in results on a test set, they are probably biased to a certain extent.
+
+For clustering algorithm selection we used manual search over several algorithms. We split the whole dataset into a training and a test set. For each algorithm we were examining, a grid search of its hyperparameters was performed on the train set. We selected an algorithm and hyperparameters that achieved the best performance on a train set (since this is an unsupervised approach), and reported a final performance on the test set.
+
 
 \subsection{Intrinsic plagiarism detection results}
 
