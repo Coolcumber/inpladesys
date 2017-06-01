@@ -94,16 +94,16 @@ params = dict()
 params['context_size'] = 120
 params['gr_output_dimension'] = 40
 params['gr-nonlinear_layer_count'] = 0
-params['gr-iteration_count'] = 40  # 40 linear, 20simple
+params['gr-iteration_count'] = 20  # 40 linear, 20simple
 params['basic_feature_extender'] = 'f2'
 
 # cache_dir example "ce100-bow100-sw--ctx120--f21"
 evaluate(params,
-         1,
+         0,
          cache_dir="cng120-bow120-sw--ctx{}--f2-s".format(
             params['context_size'],
             1 if params['basic_feature_extender'] == 'f2' else 0),
-         linear=True, test=False)
+         linear=False, test=True)
 
 # Task c:
 # 1) output_dimension=16, 2 groups, 100 iter, no f**2 , linear: 0.53
@@ -139,7 +139,35 @@ evaluate(params,
 
 
 # TEST a
+""" Linear
+p_val = 0.016663885265493093 < threshold = 0.05
+<class 'inpladesys.evaluation.MicroScorer'>
+[ 0.14527152  0.24281232  0.16747193] +- [ 0.21112588  0.35148086  0.23396387]
 
+p_val = 0.0015490432235609115 < threshold = 0.05
+<class 'inpladesys.evaluation.MacroScorer'>
+[ 0.14157719  0.23100395  0.1554029 ] +- [ 0.21103196  0.33617561  0.2228556 ]
+
+Standard error: 0.0162901797368
+95.0% confidence interval: (0.72104178862354851, 0.78879635525106395)
+<class 'inpladesys.evaluation.BCubedScorer'>
+[ 0.80035133  0.72762716  0.75491907] +- [ 0.07229311  0.1225945   0.07465098]
+"""
+""" Weights
+p_val = 0.017572886789561672 < threshold = 0.05
+<class 'inpladesys.evaluation.MicroScorer'>
+[ 0.1887609   0.31292746  0.21287538] +- [ 0.2447085   0.36239388  0.23431014]
+
+p_val = 0.04968384152747822 < threshold = 0.05
+<class 'inpladesys.evaluation.MacroScorer'>
+[ 0.18741912  0.28540267  0.20263513] +- [ 0.24470063  0.34040655  0.22525467]
+
+Mean: 0.743040770277
+Standard error: 0.0173619164866
+95.0% confidence interval: (0.70693468838061457, 0.7791468521737176)
+<class 'inpladesys.evaluation.BCubedScorer'>
+[ 0.80453731  0.6974933   0.74304077] +- [ 0.06018195  0.11452849  0.0795623 ]
+"""
 
 # TEST b
 """ Linear
