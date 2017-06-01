@@ -249,14 +249,14 @@ For clustering algorithm selection we used manual search over several algorithms
 	\begin{center}
 		\begin{tabular}{l|ccc|ccc}
 			\toprule
-			Method & $R_\mathrm{\mu}$ & $P_\mathrm{\mu}$ & $F_\mathrm{\mu}$ & $R_\mathrm{M}$ & $P_\mathrm{M}$ & $F_\mathrm{M}$\\
+			Method & $P_\mathrm{\mu}$ & $R_\mathrm{\mu}$ & $F_\mathrm{\mu}$ & $P_\mathrm{M}$ & $R_\mathrm{M}$ & $F_\mathrm{M}$\\
 			\midrule
 			Single-author dummy BL 	& 0.13 & 1.00 & 0.22 & 0.13 & 1.00 & 0.22 \\
 			Stochastic dummy BL 	& 0.13 & 0.94 & 0.23 & 0.15 & 0.94 & 0.25 \\
-			Simple dummy BL 		& 0.13 & 0.24 & 0.14 & 0.13 & 0.24 & 0.13 \\
+			Simple BL 				& 0.13 & 0.24 & 0.14 & 0.13 & 0.24 & 0.13 \\
 			\midrule
-			\citet{kuznetsov-2016} 	& 0.19 & 0.29 & 0.22 & 0.15 & 0.28 & 0.17 \\
-			\citet{sittar-2016} 	& 0.07 & 0.14 & 0.08 & 0.10 & 0.14 & 0.10 \\
+			\citet{kuznetsov-2016} 	& 0.29 & 0.19 & 0.22 & 0.28 & 0.15 & 0.17 \\
+			\citet{sittar-2016} 	& 0.14 & 0.07 & 0.08 & 0.14 & 0.10 & 0.10 \\
 			\midrule			
 			Model A 				&  &  &  &  &  & \\			
 			Model B (linear) 		& 0.21 & 0.35 & 0.23 & 0.21 & 0.34 & 0.22 \\
@@ -269,21 +269,21 @@ For clustering algorithm selection we used manual search over several algorithms
 \subsection{Author diarization results}
 
 \begin{table*}
-	\caption{Results on the author diarization task with known number of authors.}
+	\caption{Results on the author diarization task.}
 	\label{tab:narrow-table}
 	\begin{center}
 		\begin{tabular}{l|ccc|ccc}
 			\toprule
 			\multirow{2}{*}{Method} & \multicolumn{3}{c|}{Task \emph{b}} & \multicolumn{3}{c}{Task \emph{c}} \\
 			\cmidrule{2-7}
-			& $R_{\mathrm{B}^3}$ & $P_{\mathrm{B}^3}$ & $F_\mathrm{\mathrm{B}^3}$ & $R_{\mathrm{B}^3}$ & $P_{\mathrm{B}^3}$ & $F_\mathrm{\mathrm{B}^3}$ \\
+			& $P_{\mathrm{B}^3}$ & $R_{\mathrm{B}^3}$ & $F_\mathrm{\mathrm{B}^3}$ & $P_{\mathrm{B}^3}$ & $R_{\mathrm{B}^3}$ & $F_\mathrm{\mathrm{B}^3}$ \\
 			\midrule
 			Single-author dummy BL 		& 0.33 & 1.00 & 0.47 & 0.37 & 1.00 & 0.52 \\
 			Stochastic dummy BL 		& 0.35 & 0.59 & 0.41 & 0.39 & 0.59 & 0.45 \\
-			Simple dummy BL 			& 0.43 & 0.50 & 0.45 & 0.45 & 0.54 & 0.45 \\
+			Simple BL 					& 0.43 & 0.50 & 0.45 & 0.45 & 0.54 & 0.45 \\
 			\midrule
-			\citet{kuznetsov-2016}		& 0.46 & 0.64 & 0.52 & 0.42 & 0.64 & 0.48 \\
-			\citet{sittar-2016} 		& 0.47 & 0.28 & 0.32 & 0.47 & 0.31 & 0.35 \\
+			\citet{kuznetsov-2016}		& 0.64 & 0.46 & 0.52 & 0.64 & 0.42 & 0.48 \\
+			\citet{sittar-2016} 		& 0.28 & 0.47 & 0.32 & 0.31 & 0.47 & 0.35 \\
 			\midrule			
 			Model A 					&  &  &  &  &  & \\			
 			Model B (linear) 			& 0.48 & 0.45 & 0.46 & 0.56 & 0.82 & 0.64 \\
