@@ -39,10 +39,11 @@ This document provides the instructions on formatting the TAR system description
 
 % TODO: replace model A with Model A, for B as well
 % TODO: replace $n$-gram and \emph{n}-gram with n-gram, as it is common in literature
+% TODO: hange bi-grams to bigrams and tri-grams to trigrams
 % TODO: suggestion: remove \texttt-s 
-% TODO: convert Related work to present
 % TODO: change \texit-s ti \emph-s
 % TODO: explain BFE training in The proposed approach
+% TODO: convert Related work to present
 
 \begin{document}
 
@@ -154,7 +155,7 @@ F_\mathrm{\mathrm{B}^3} &= \frac{2}{P_\mathrm{\mathrm{B}^3}^{-1}+R_\mathrm{\math
 
 \section{The proposed approach} \label{sec:the-proposed-approach}
 
-Our approach can generally be described as a pipeline $P = (f_\mathrm{b}:\Delta\rightarrow \Phi_{n_b}, f_\mathrm{t}:\Phi_{n_b}\rightarrow \Phi_{n_t}, f_\mathrm{c}:\Phi_{n_t}\rightarrow C)$. Here $\Delta$ is the tokenized document domain as defined in section \ref{sec:author-diraization}. $\Phi_{n_b}$ and $\Phi_{n_t}$ are sets of variable-length sequences of feature vectors with dimension $n_b$ and $n_t$ respectively. $n_b$ and $n_t$ can either be fixed or depend on the document being processed. $C$ is the set of all sequences of length $n$ (the number of tokens in the document) with elements being indices of authors/clusters.
+Our approach can generally be described as a pipeline $P = (f_\mathrm{b}:\Delta\rightarrow \Phi_{n_\mathrm{b}}, f_\mathrm{t}:\Phi_{n_\mathrm{b}}\rightarrow \Phi_{n_\mathrm{t}}, f_\mathrm{c}:\Phi_{n_\mathrm{t}}\rightarrow C)$. Here $\Delta$ is the tokenized document domain as defined in section \ref{sec:author-diraization}. $\Phi_{n_\mathrm{b}}$ and $\Phi_{n_\mathrm{t}}$ are sets of variable-length sequences of feature vectors with dimension $n_\mathrm{b}$ and $n_\mathrm{t}$ respectively. $n_\mathrm{b}$ and $n_\mathrm{t}$ can either be fixed or depend on the document being processed. $C$ is the set of all sequences of length $n$ (the number of tokens in the document) with elements being indices of authors/clusters.
 
 The basic feature extractor denoted with $f_\mathrm{b}$ is used to extract stylistic features from the contexts of all tokens. If $D$ is a document with $n$ tokens, the basic feature extractor outputs a sequence of $n$ feature vectors, each vector representing the context of one token. $n_\mathrm{b}$ denotes the dimension of those vectors. The next step in the pipeline is the feature transformation $f_\mathrm{t}$ that maps the basic features to a space that they can be better clustered in. The dimension of the new feature space $n_\mathrm{t}$ generally doesn't equal $n_\mathrm{b}$. The final step in the pipeline is clustering denoted with $f_\mathrm{c}$. The clustering algorithm implicitly clusters tokens because it actually clusters their stylistic contexts, each cluster representing an author. Depending on the task, the clustering algorithm can either be given a known number of authors, or try to predict it.
 
@@ -166,7 +167,7 @@ We develop two variants of our model which we will refer to as \emph{Model A} an
 \paragraph{Tokenization.} As a preprocessing step, we tokenize each document using \texttt{NLTK}\footnote{\url{http://www.nltk.org}} by \citet{bird-2009} to obtain a sequence of tokens $D$. We also perform part-of-speech tagging with the same tool, to speed up basic feature extraction which we describe below. We didn't use other preprocessing techniques such as lemmatization, stemming and stop word removal because they would take away a lot of stylometric data from text \cite{stamatatos-2009a}. The final output from the tokenization step was a finite sequence $\{(t_i, o_i, l(t_i), \mathit{POS}_i)\}_{i=1}^n$ where $o_i$ is the offset of token $t_i$, $l(t_i)$ its length in characters and $\mathit{POS}_i$ its POS tag.
 
 \paragraph{Basic feature extraction.} 
-We defined the stylistic context of a token $t_i$ as a set of tokens $\{t_k\}_{k=i-cs}^{i-1} \cup \{t_k\}_{k=i+1}^{i+cs}$ where $cs$ is a context size. From each context we extracted the most used stylometric features which we found in previous work.
+We defined the stylistic context of a token $t_i$ as a set of tokens $\{t_k\}_{k=i-cs}^{i-1} \cup \{t_k\}_{k=i+1}^{i+cs}$ where $cs$ is a context size. From each context we extracted the most used stylometric features which we found in previous work. The features that we have considered in our models are:
 \begin{itemize}
 	\item \textit{Character tri-grams}. Frequencies of $n$-grams on character level have been very useful in quantifying the writing style \citep{stamatatos-2009b}. They are able to capture lexical and contextual information, use of punctuation and errors which can be an author's "fingerprint". This feature is also tolerant to noise. Based on work by \citet{stamatatos-2009a} and \citet{rahman-2015}, we choose $n=3$. Maximal dimension of this feature vector was set to $200$.
 	\item \textit{Stop words}. According to \citet{stamatatos-2009a}, sometimes also called \textit{function words}, these are the most common used topic-independent words in text, such as articles, prepositions, pronouns and others. They are used unconsciously and found to be one of the most discriminative features in authorship attribution since they represent pure stylistic choices of authors' \citep{burrows-1987,argamon-2005}. We used frequencies of $156$ English stop words available in \texttt{NLTK}.
@@ -178,7 +179,7 @@ We defined the stylistic context of a token $t_i$ as a set of tokens $\{t_k\}_{k
 \end{itemize}
 
 \paragraph{Feature transformation.}
-As its feature transformation $f_\mathrm{t}$, Model A uses feature scaling to zero mean and unit variance for each document separately. Model B uses a trainable transformation which requires a fixed basic feature space. Let $(\vect{b}_i)_{i=1}^n = f_\mathrm{b}(D)$ be a sequence of basic feature vectors and $(\vect{b}_i')_{i=1}^n$ the corresponding sequence of potentially preprocessed basic feature vectors with elements from $\mathbb{R}^{n_{b}'}$. Let $(a_i)_{i=1}^n$ be the sequence of true author labels with elements from $\{1..c\}$. We want to maximize the \emph{clusterability} of the feature vectors obtained by the feature transformation $T:\mathbb{R}^{n_b'}\rightarrow\mathbb{R}^{n_t}$ with trainable parameters $\vect{\theta}_T$, i.e. we want to maximize segregation and compactness of groups of transformed feature vectors grouped by their target author label. Let $(\vect{t}_i)_{i=1}^n = (T(\boldsymbol{b}_i'))_{i=1}^n = f_\mathrm{t}((\vect{b}_i)_{i=1}^n)$ be the sequence of transformed feature vectors with elements from $\mathbb{R}^{n_t}$. We define the following loss in order to optimize the transformation $T$:
+As its feature transformation $f_\mathrm{t}$, Model A uses feature scaling to zero mean and unit variance for each document separately. Model B uses a trainable transformation which requires a fixed basic feature space. Let $(\vect{b}_i)_{i=1}^n = f_\mathrm{b}(D)$ be a sequence of basic feature vectors and $(\vect{b}_i')_{i=1}^n$ the corresponding sequence of potentially preprocessed basic feature vectors with elements from $\mathbb{R}^{n_{b}'}$. Let $(a_i)_{i=1}^n$ be the sequence of true author labels with elements from $\{1..c\}$. We want to maximize the \emph{clusterability} of the feature vectors obtained by the feature transformation $T:\mathbb{R}^{n_\mathrm{b}'}\rightarrow\mathbb{R}^{n_\mathrm{t}}$ with trainable parameters $\vect{\theta}_T$, i.e. we want to maximize segregation and compactness of groups of transformed feature vectors grouped by their target author label. Let $(\vect{t}_i)_{i=1}^n = (T(\boldsymbol{b}_i'))_{i=1}^n = f_\mathrm{t}((\vect{b}_i)_{i=1}^n)$ be the sequence of transformed feature vectors with elements from $\mathbb{R}^{n_\mathrm{t}}$. We define the following loss in order to optimize the transformation $T$:
 \begin{equation}
 	L = \alpha L_\mathrm{c} + (1-\alpha)L_\mathrm{s}
 \end{equation}
@@ -200,11 +201,12 @@ We define the components of the loss:
 		\sum_{i=1}^{n} \| T(\vect{b}_i')-\vect{\mu}_{a}\|^2 [a_i=a], \\
 	L_\mathrm{s} &= \frac{2}{c}\sum_{a=0}^{c}\sum_{b=a+1}^{c} \|\vect{\mu}_a-\vect{\mu}_b\|^{-2}.
 \end{align}
-The \emph{compactness loss} $L_\mathrm{c}$ is a weighted sum of within-group variances. The \emph{segregation loss}  $L_\mathrm{s}$ is proportional to the sum of magnitudes (not magnitude of the sum) of forces between $c$ equally charged particles each located at one of the centroids. By minimizing the average loss (the error) across all documents in the training dataset with respect to the parameters of the transformation $\vect{\theta}_T$ we hope to benefit the clustering algorithm. Instead of squared $L^2$ distance, some other distance measure may be used. Also, the way of combining the two losses was somewhat arbitrarily chosen as well as the segregation loss. For the transformation $T$ we have tried a nonlinear transformations represented as neural networks with one or more hidden layers. We didn't explore it much because it was slower and didn't give as good results as a linear transformation or an elementwise product with a weight vector:
+The \emph{compactness loss} $L_\mathrm{c}$ is a weighted sum of within-group variances. The \emph{segregation loss}  $L_\mathrm{s}$ is proportional to the sum of magnitudes (not magnitude of the sum) of forces between $c$ equally charged particles each located at one of the centroids. By minimizing the average loss (the error) across all documents in the training dataset with respect to the parameters of the transformation $\vect{\theta}_T$ we hope to benefit the clustering algorithm. Instead of squared $L^2$ distance, some other distance measure may be used. Also, the way of combining the two losses was somewhat arbitrarily chosen as well as the segregation loss. For the transformation $T$ we have tried a nonlinear transformations represented as neural networks with one or more hidden layers. We didn't explore nonlinear transformations much because they were slower and didn't give as good results as a linear transformation or an elementwise linear transformation:
 \begin{align}
-	T_1(\vect{x}) &= \matr{W}\vect{x}, \quad \vect{\theta}_{T_1} = \matr{W}, \\
-	T_2(\vect{x}) &= \vect{w}\odot\vect{x}, \quad \vect{\theta}_{T_2} = \vect{w}.
+	T_\mathrm{1}(\vect{x}) &= \matr{W}\vect{x}, \\
+	T_\mathrm{2}(\vect{x}) &= \vect{w}\odot\vect{x}.
 \end{align}
+Here $\matr{W}\in \mathbb{R}^{n_\mathrm{b}'\times n_\mathrm{t}}$ and $\vect{w}\in \mathbb{R}^{n_\mathrm{b}'}$.
 Before applying the transformations, basic feature vectors are preprocessed by concatanating each with the vector of its squared elements:
 \begin{equation}
 	\vect{b_i'} = (\vect{b_i}^\transpose, (\vect{b_i}\odot\vect{b_i})^\transpose)^\transpose, \quad i\in \{1..n\}.
@@ -234,6 +236,8 @@ We performed initial testing of usefulness of all features except for the accide
 
 
 \subsection{Experimental setup}
+
+\paragraph{Model B.} For Model B, we have decided to use choose a smaller set of basic features: character tri-gram counts (for $120$ tri-grams), stop word counts, average token length and bag-of-words (for $120$ words). The length of the sliding window is set to $120$ characters. Model B uses k-means clustering. We have chosen two trainable feature transformations: linear and elementwise linear. For the both transformations $5\times 10^{-4}$ was chosen for the learning rate. All the hyperparameters are selected manually by  experimenting on the development dataset (approximately $70\%$ of the available dataset). $70\%$ of the development set was used for training basic feature extractors and the transformation. Considering the results on the   validation part of the development set, not very large numbers of iterations seem to be more beneficial. A number of $40$ iterations was chosen for the linear transformation, and $20$ for the elementwise linear transformation. For the output dimension of the linear transformation we have chosen $n_\mathrm{t}=40$, though not much different results seem to be archivable using smaller numbers like $20$, making training and clustering faster.
 
 \subsection{Intrinsic plagiarism detection results}
 
