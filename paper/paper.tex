@@ -13,8 +13,9 @@
 \usepackage{amssymb}
 
 % additional packages
-\usepackage{enumitem}
+\usepackage{multirow}
 \usepackage{makecell}
+\usepackage{enumitem}
 \usepackage[hyphens]{url}
 \usepackage{bm}
 \newcommand{\vect}[1]{\bm{#1}}
@@ -136,20 +137,15 @@ F_\mathrm{M} &= \frac{2}{P_\mathrm{M}^{-1}+R_\mathrm{M}^{-1}}.
 
 In author diarization document segments have to be clustered into $c$ clusters, where $c$ is the number of authors that may or may not be known to the system. We divide the segments from the true segmentation $S$ and the predicted segmentation $\hat{S}$ each into sets of segments $S_i$, $i=1..c$ and $\hat{S}_j, j=1..\hat{c}$, where $c$ is the true number of authors, and $\hat{c}$ the predicted number of authors. We use the following \emph{BCubed} measures for evaluation:
 \begin{align}
-P_\mathrm{B^3} &= \sum_{i=1}^c \frac{1}{l(S_i)}\sum_{j=1}^{\hat{c}}
+P_\mathrm{\mathrm{B}^3} &= \sum_{i=1}^c \frac{1}{l(S_i)}\sum_{j=1}^{\hat{c}}
 	\sum_{s\in S_i}	\sum_{\hat{s}\in\hat{S}_j} l(s\cap \hat{s})^2 \\
-R_\mathrm{B^3} &= \sum_{j=1}^{\hat{c}} \frac{1}{l(\hat{S}_j)}\sum_{i=1}^{c}
+R_\mathrm{\mathrm{B}^3} &= \sum_{j=1}^{\hat{c}} \frac{1}{l(\hat{S}_j)}\sum_{i=1}^{c}
 	\sum_{s\in S_i}	\sum_{\hat{s}\in\hat{S}_j} l(s\cap \hat{s})^2 \\
-F_\mathrm{B^3} &= \frac{2}{P_\mathrm{B^3}^{-1}+R_\mathrm{B^3}^{-1}}.
+F_\mathrm{\mathrm{B}^3} &= \frac{2}{P_\mathrm{\mathrm{B}^3}^{-1}+R_\mathrm{\mathrm{B}^3}^{-1}}.
 \end{align}
 
 
 \section{The proposed approach}
-% clustering, sliding window
-% pipeline: preprocessing (tokenization) -> basic features -> transformed features (including scaling) -> clustering
-% define the pipeline formally P = (f_p: d\times->t, f_b: t->\phi, f_t: \phi->\phi', c: \phi'->labels, f_s: labels\times d->s)
-% describe GroupRepel loss, describe AutoKMeans, 
-% clustering metric
 
 Our approach can generally be described as a pipeline $P = (f_\mathrm{b}:\Delta\rightarrow \Phi_{n_b}, f_\mathrm{t}:\Phi_{n_b}\rightarrow \Phi_{n_t}, f_\mathrm{c}:\Phi_{n_t}\rightarrow C)$. Here $\Delta$ is the tokenized document domain as defined in section \ref{sec:author-diraization}. $\Phi_{n_b}$ and $\Phi_{n_t}$ are sets of variable-length sequences of feature vectors with dimension $n_b$ and $n_t$ respectively. $n_b$ and $n_t$ can either be fixed or depend on the document being processed. $C$ is the set of all sequences of length $n$ (the number of tokens in the document) with elements being indices of authors/clusters.
 
@@ -229,18 +225,62 @@ repo link
 
 For experiments, we used the three PAN 2016 training datasets. The test datasets used in the competition have not been made publicly available. Therefore, our evaluation results might be only moderately comparable to the results of other systems.
 
-We have created two blind baselines and a baseline that tries to really predict the authorial parts based on some simple features. The first blind baseline predicts the whole document to have been written by a single author or, in the case of intrinsic plagiarism detection, labels the whole document as plagiarism. The second blind baseline learns the average lengths of 
+Three baseline models were defined for evaluation purposes. The first baseline, \emph{single-author dummy baseline}, always assigns the whole document a single author label, or, in the case of intrinsic plagiarism detection, it labels the whole document as plagiarism. The second baseline, \emph{stochastic dummy baseline}, learns the average total lengths of authorial parts over all documents giving the most common author label $0$ and the least common author the largest label. For prediction, by modelling a Markov chain, it generates segmentations with similar label frequencies and predefined expected lengths. As we will later describe, these baseline models seem to behaved quite competitively.
 
-We performed initial testing of usefulness of all features except accidentally wrongly implemented type-token ratio which was added afterwards. For testing purposes we used the implementation of the k-means algorithm from \texttt{scikit-learn} with the default settings and all documents from the datased for task \emph{b}. As we were adding feature by feature, BCubed precision was becoming higher so we decided to  all features in all tasks. We don't know the exact impact of the wrongly implemented type-token ratio feature. Instead of the context's vocabulary size, we divided the size of document's vocabulary with the context size so this feature had the same value in all vectors.
+We performed initial testing of usefulness of all features except for the accidentally wrongly implemented type-token ratio which was added afterwards. For testing purposes we used the implementation of the k-means algorithm from \texttt{scikit-learn} with the default settings and all documents from the dataset for task \emph{b}. As we were adding feature by feature, BCubed precision was becoming higher so we decided to  all features in all tasks. We don't know the exact impact of the wrongly implemented type-token ratio feature. Instead of the context's vocabulary size, we divided the size of document's vocabulary with the context size so this feature had the same value in all vectors.
 
-Five baseline models were defined for evaluation purposes. The first baseline, \textit{DummySingleAuthorDiarizer} always assigns all tokens to only one cluster, assuming that the text is written by a single author. As we will later describe, this baseline model behaved very competitive. The second baseline was \textit{DummyStohasticAuthorDiarizer} which generated a random number between 
 
 \subsection{Experimental setup}
 
 \subsection{Intrinsic plagiarism detection results}
 
+\begin{table*}
+	\caption{Results on the intrinsic plagiarism detection task.}
+	\label{tab:narrow-table}
+	\begin{center}
+		\begin{tabular}{l|ccc|ccc}
+			\toprule
+			Method & $R_\mathrm{\mu}$ & $P_\mathrm{\mu}$ & $F_\mathrm{\mu}$ & $R_\mathrm{M}$ & $P_\mathrm{M}$ & $F_\mathrm{M}$\\
+			\midrule
+			single-author BL 		& 0.55 & .55 & .55 & 0.55 & 0.55 & 0.44 \\
+			stochastic BL 			& 0.55 & .55 & .55 & 0.55 & 0.55 & 0.44 \\
+			simple BL 				& 0.55 & .55 & .55 & 0.55 & 0.55 & 0.44 \\
+			\midrule
+			\citet{kuznetsov-2016} 	& 0.19 & 0.29 & 0.22 & 0.15 & 0.28 & 0.17 \\
+			\citet{sittar-2016} 	& 0.07 & 0.14 & 0.08 & 0.10 & 0.14 & 0.10 \\
+			\midrule			
+			model A & 0 & 1 & 2 \\			
+			model B (weighting) & 0 & 1 & 2 \\			
+			model B (linear) & 0 & 1 & 2 \\
+			\bottomrule
+		\end{tabular}
+	\end{center}
+\end{table*}
+
 \subsection{Author diarization results}
 
+\begin{table*}
+	\caption{Results on the author diarization task with known number of authors.}
+	\label{tab:narrow-table}
+	\begin{center}
+		\begin{tabular}{l|ccc}
+			\toprule
+			Method & $R_{\mathrm{B}^3}$ & $P_{\mathrm{B}^3}$ & $F_\mathrm{\mathrm{B}^3}$ \\
+			\midrule
+			single-author baseline & 0 & 1 & 2 \\
+			stochastic baseline & 0 & 1 & 2 \\
+			simple baseline & 0 & 1 & 2 \\
+			\midrule
+			\citet{kuznetsov-2016} \\
+			\citet{sittar-2016} \\
+			\midrule			
+			model A & 0 & 1 & 2 \\			
+			model B (weighting) & 0 & 1 & 2 \\			
+			model B (linear) & 0 & 1 & 2 \\
+			\bottomrule
+		\end{tabular}
+	\end{center}
+\end{table*}
 
 
 \subsection{Intrinsic plagiarism detection}
@@ -274,25 +314,8 @@ Conclusion is the last enumerated section of the paper. It should not exceed hal
 
 \section*{Acknowledgements}
 
-If suitable, you can include the \textit{Acknowledgements} section before inserting the literature references  in order to thank those who helped you in any way to deliver the paper, but are not co-authors of the paper.
+If suitable, you can include the \emph{Acknowledgements} section before inserting the literature references  in order to thank those who helped you in any way to deliver the paper, but are not co-authors of the paper.
 
-\begin{table}
-	\caption{This is the caption of the table. Table captions should be placed \textit{above} the table.}
-	\label{tab:narrow-table}
-	\begin{center}
-		\begin{tabular}{c|ccc|ccc}
-			\toprule
-			Model & $R_\mathrm{\mu}$ & $P_\mathrm{\mu}$ & $F_\mathrm{\mu}$ & $R_\mathrm{M}$ & $P_\mathrm{M}$ & $F_\mathrm{M}$\\
-			\midrule
-			Dummy & 0 & 1 & 2 \\
-			One & 0 & 1 & 2 \\
-			One & 0 & 1 & 2 \\
-			\midrule
-			One & 0 & 1 & 2 \\
-			\bottomrule
-		\end{tabular}
-	\end{center}
-\end{table}
 
 \bibliographystyle{tar2016}
 \bibliography{tar2017}

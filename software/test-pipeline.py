@@ -99,11 +99,11 @@ params['basic_feature_extender'] = 'f2'
 
 # cache_dir example "ce100-bow100-sw--ctx120--f21"
 evaluate(params,
-         1,
+         0,
          cache_dir="cng120-bow120-sw--ctx{}--f2-s".format(
             params['context_size'],
             1 if params['basic_feature_extender'] == 'f2' else 0),
-         linear=True, test=False)
+         linear=False, test=True)
 
 # Task c:
 # 1) output_dimension=16, 2 groups, 100 iter, no f**2 , linear: 0.53
