@@ -19,6 +19,7 @@
 \usepackage{bm}
 \newcommand{\vect}[1]{\bm{#1}}
 \newcommand{\matr}[1]{\vect{#1}}
+\newcommand{\transpose}{\mathsf T}
 	
 \title{Token-level author diarization using clustering of stylistic contexts}
 
@@ -50,7 +51,7 @@ The authorship attribution problem is also known as authorship identification an
 
 \begin{table}
 	\caption{Basic characteristics of training datasets. * represents that there is a true author and plagiarism segments which don't have to originate from a single author.}
-	\label{table-1}
+	\label{tab:dataset-characteristics}
 	\begin{center}
 		\begin{tabular}{cccc}
 			\toprule
@@ -66,7 +67,7 @@ The authorship attribution problem is also known as authorship identification an
 
 Other two subtasks are more related to the general task of author diarization. In the second subtask we need to segment a given document and group identified segments by author. In the rest of the paper we refer to the second subtask as a task \emph{b}. The third subtask differs from the second one in the fact that exact number of authors is unknown. In the rest of the paper we refer to the third subtask as a task \emph{c}.
 
-For each of the three subtasks a training dataset is publicly available\footnotemark[1]. \citet{rosso-2016} explain that they are collections of various documents which are part of Webis-TRC-12 dataset \citep{potthast-2013}. Every document in that dataset is constructed from texts of various search results (i.e. authors) for one of the 150 topics in total. By varying different parameters such as the number and proportion of the authors, places in a document where an author switch occurs (between words, sentences or paragraphs), three training and test datasets were generated \citep{rosso-2016}. Test datasets are currently not publicly available and we could not use them for evaluation of our approach. Some basic characteristics of the training datasets are shown in Table \ref{table-1}.
+For each of the three subtasks a training dataset is publicly available\footnotemark[1]. \citet{rosso-2016} explain that they are collections of various documents which are part of Webis-TRC-12 dataset \citep{potthast-2013}. Every document in that dataset is constructed from texts of various search results (i.e. authors) for one of the 150 topics in total. By varying different parameters such as the number and proportion of the authors, places in a document where an author switch occurs (between words, sentences or paragraphs), three training and test datasets were generated \citep{rosso-2016}. Test datasets are currently not publicly available and we could not use them for evaluation of our approach. Some basic characteristics of the training datasets are shown in Table \ref{tab:dataset-characteristics}.
 
 % reference+
 % authorship analysis+, 
@@ -104,7 +105,7 @@ Let $\Delta$ be the domain of documents. We define a document $D\in \Delta$ as a
 
 For each document, there is a corresponding mapping to a sequence of labels $(a_i)_{i=1}^n$ that are representing groupings of tokens by authors. The labels $a_i$ are indices of authors of the document. Each token $t_i\in T_D$ is assigned a document-level label $a_i \in \{1..c\}$ associating it to one of $c$ authors. The exact value of the label is not important. It is only required that all tokens corresponding to the same author have the same label. Therefore, there are $m!$ equivalent such mappings given a document. In the case of intrinsic plagiarism detection, there are only $2$ labels: $0$ representing the main author, and $1$ representing plagiarized text.
 
-Equivalently, the codomain of the mapping can also be defined as a set of segmentations $\Sigma$. A segmentation $S\in \Sigma$ is a minimal set of segments, where each segment $s$ represents a set of consecutive tokens $\{t_i\}_{i=i_1}^{i_2}$ where each token is assigned the same label. For a segmentation to be valid, the segments must cover all terms in the document and not overlap:
+Equivalently, the codomain of the mapping can also be defined as a set of segmentations $\Sigma$. A segmentation $S\in \Sigma$ is a minimal set of segments, where each segment $s$ is a set of consecutive tokens $\{t_i\}_{i=i_1}^{i_2}$ where each token is associated with the same author label. For a segmentation to be valid, the segments must cover all terms in the document and not overlap:
 \begin{equation}
 	\bigcup_{s\in S}s = T_D  \wedge \bigcap_{s\in S}s = \{\}.
 \end{equation}
@@ -175,21 +176,13 @@ Differences between the 2 model variants....
 
 basic features
 
-\paragraph{Feature transformation.} Differences between the 2 model variants. Training.
+\paragraph{Feature transformation.} We develop two variants of our model which are mainly differentiated by the application of a trainable feature transformation requiring fixed basic feature space as opposed to variable feature space with features that can be more document-specific.
 
-id
-
-scaling
-
-concatenation with squared features
-
-transformation trained via SGD
-
-Let $(\vect{b}_i)_{i=1}^n = f_\mathrm{b}(D)$ be the sequence of basic feature vectors with elements from $\mathbb{R}^{n_b}$. Let $(a_i)_{i=1}^n$ be the sequence of true author labels with elements from $\{1..c\}$. We want to maximize the \emph{clusterability} of the feature vectors obtained by the feature transformation $T:\mathbb{R}^{n_b}\rightarrow\mathbb{R}^{n_t}$ with trainable parameters $\vect{\theta}_T$, i.e. we want to maximize segregation and compactness of groups of transformed feature vectors grouped by their target author label. Let $(\vect{t}_i)_{i=1}^n = (T(\boldsymbol{b}_i))_{i=1}^n = f_\mathrm{t}((\vect{b}_i)_{i=1}^n)$ be the sequence of transformed feature vectors with elements from $\mathbb{R}^{n_t}$. We define the following loss in order to optimize the transformation $T$ for clusterability:
+Let $(\vect{b}_i)_{i=1}^n = f_\mathrm{b}(D)$ be a sequence of basic feature vectors and $(\vect{b}_i')_{i=1}^n$ the corresponding sequence of potentially preprocessed basic feature vectors with elements from $\mathbb{R}^{n_{b}'}$. Let $(a_i)_{i=1}^n$ be the sequence of true author labels with elements from $\{1..c\}$. We want to maximize the \emph{clusterability} of the feature vectors obtained by the feature transformation $T:\mathbb{R}^{n_b'}\rightarrow\mathbb{R}^{n_t}$ with trainable parameters $\vect{\theta}_T$, i.e. we want to maximize segregation and compactness of groups of transformed feature vectors grouped by their target author label. Let $(\vect{t}_i)_{i=1}^n = (T(\boldsymbol{b}_i'))_{i=1}^n = f_\mathrm{t}((\vect{b}_i)_{i=1}^n)$ be the sequence of transformed feature vectors with elements from $\mathbb{R}^{n_t}$. We define the following loss in order to optimize the transformation $T$:
 \begin{equation}
-	L = L_\mathrm{c} + L_\mathrm{s}.
+	L = \alpha L_\mathrm{c} + (1-\alpha)L_\mathrm{s}
 \end{equation}
-Here $L_\mathrm{c}$ is the \emph{compactness loss} which is proportional to the average variance of groups and $L_\mathrm{s}$ the \emph{segregation loss} which penalizes centroids being too close to each other. Let $N_a$ represent the number of tokens associated with author $a$, i.e. $N_a = \sum_{i=1}^n[a_i=a]$, where, for $\varphi$ being a logical proposition $[\varphi]$ evaluates to either $1$ if $\varphi$ is true or $0$ otherwise.
+with $\alpha$ chosen to be $0.5$. Here $L_\mathrm{c}$ is the \emph{compactness loss} and $L_\mathrm{s}$ the \emph{segregation loss}. $L_\mathrm{c}$ is proportional to the average variance of groups, and $L_\mathrm{s}$ penalizes centroids being too close to each other. Let $N_a$ represent the number of tokens associated with author $a$, i.e. $N_a = \sum_{i=1}^n[a_i=a]$, where, for $\varphi$ being a logical proposition $[\varphi]$ evaluates to either $1$ if $\varphi$ is true or $0$ otherwise.
 %, the following notation\footnote{It is called \emph{the Iverson bracket}.} is introduced:
 %\begin{equation}
 %[\varphi] = \begin{cases}
@@ -197,17 +190,27 @@ Here $L_\mathrm{c}$ is the \emph{compactness loss} which is proportional to the 
 %	0, & \varphi\equiv\bot.
 %\end{cases}
 %\end{equation}
-Let $\vect{m}_a$ represent the current centroid of the transformed vectors:
+Let $\vect{\mu}_a$ represent the current centroid of the transformed feature vectors associated with the author label $a$:
 \begin{equation}
-\vect{m}_a = \frac{1}{N_a}\sum_{i=1}^n T(\vect{b}_i)
+\vect{\mu}_a = \frac{1}{N_a}\sum_{i=1}^n T(\vect{b}_i')[a_i=a]
 \end{equation}	
 We define the components of the loss: 
 \begin{align}
 	L_\mathrm{c} &= \sum_{a=0}^{c}\frac{1}{N_a} 
-		\sum_{i=1}^{n} \| T(\vect{b}_i)-\vect{m}_{a}\|^2 [a_i=a], \\
-	L_\mathrm{s} &= \frac{2}{c}\sum_{a=0}^{c}\sum_{b=a+1}^{c} \|\vect{m}_a-\vect{m}_b\|^{-2}.
+		\sum_{i=1}^{n} \| T(\vect{b}_i')-\vect{\mu}_{a}\|^2 [a_i=a], \\
+	L_\mathrm{s} &= \frac{2}{c}\sum_{a=0}^{c}\sum_{b=a+1}^{c} \|\vect{\mu}_a-\vect{\mu}_b\|^{-2}.
 \end{align}
-The \emph{compactness loss} $L_\mathrm{c}$ is a weighted sum of variances within sets of feature vectors grouped by author. The \emph{segregation loss}  $L_\mathrm{s}$ is proportional to the sum of magnitudes (not magnitude of the sum) of forces between $c$ equally charged particles each located at one of the centroids. By minimizing the average loss (the error) across all documents in the training dataset with respect to the parameters of the transformation $\vect{\theta}_T$ we hope to benefit the clustering algorithm. Instead of squared $L^2$ distance, some other distance measure may be used.
+The \emph{compactness loss} $L_\mathrm{c}$ is a weighted sum of within-group variances. The \emph{segregation loss}  $L_\mathrm{s}$ is proportional to the sum of magnitudes (not magnitude of the sum) of forces between $c$ equally charged particles each located at one of the centroids. By minimizing the average loss (the error) across all documents in the training dataset with respect to the parameters of the transformation $\vect{\theta}_T$ we hope to benefit the clustering algorithm. Instead of squared $L^2$ distance, some other distance measure may be used. Also, the way of combining the two losses was somewhat arbitrarily chosen as well as the segregation loss. For the transformation $T$ we have tried a nonlinear transformations represented as neural networks with one or more hidden layers. We didn't explore it much because it was slower and didn't give as good results as a linear transformation or an elementwise product with a weight vector:
+\begin{align}
+	T_1(\vect{x}) &= \matr{W}\vect{x}, \quad \vect{\theta}_{T_1} = \matr{W}, \\
+	T_2(\vect{x}) &= \vect{w}\odot\vect{x}, \quad \vect{\theta}_{T_2} = \vect{w}.
+\end{align}
+Before applying the transformations, basic feature vectors are preprocessed by concatanating each with the vector of its squared elements:
+\begin{equation}
+	\vect{b_i'} = (\vect{b_i}^\transpose, (\vect{b_i}\odot\vect{b_i})^\transpose)^\transpose, \quad i\in \{1..n\}.
+\end{equation}
+The transformation is implemented using TensorFlow\footnote{TensorFlow link}. It is trained on-line (one document per optimization step) using RMSProp\footnote{RMSProp} with default parameters and learning rate. 
+
 
 \paragraph{Clustering.}
 
@@ -218,11 +221,17 @@ k-means HAC DBSCAN auto-k-means
 \paragraph{Segmentation generation.} something short
 
 
-features
-
-differences: fixed features + transformation vs document-dependent features
-
 \section{Experimental results}
+
+For experiments, we use the three PAN 2016 training datasets. The test datasets used in the competition have not been made publicly available. Therefore, our evaluation results might be only moderately comparable to the results of other systems.
+
+We have created two blind baselines and a baseline that tries to really predict the authorial parts based on some simple features. The first blind baseline predicts the whole document to have been written by a single author or, in the case of intrinsic plagiarism detection, labels the whole document as plagiarism. The second blind baseline learns the average lengths of 
+
+\subsection{Experimantal setup}
+
+\subsection{Intrinsic plagiarism detection results}
+
+\subsection{Author diarization results}
 
 1
 baselines
@@ -252,8 +261,6 @@ Conclusion is the last enumerated section of the paper. It should not exceed hal
 % mention possible applicability to author clustering and extrinsic plagiarism detections
 
 \section*{Acknowledgements}
-
-
 
 If suitable, you can include the \textit{Acknowledgements} section before inserting the literature references  in order to thank those who helped you in any way to deliver the paper, but are not co-authors of the paper.
 

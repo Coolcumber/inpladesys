@@ -175,6 +175,7 @@ class GroupRepelFeatureTransformer(AbstractFeatureTransformer):
         # 0.2 * tf.reduce_mean(tf.reduce_sum(centroids**2, axis=1)) + r_loss
         # loss = 1/(1/group_loss + 1/centroid_loss)
 
+        #optimizer = tf.train.RMSPropOptimizer(learning_rate=learning_rate, decay=0.9)
         optimizer = tf.train.RMSPropOptimizer(learning_rate=learning_rate, decay=0.9)
         train_step = optimizer.minimize(loss)
 

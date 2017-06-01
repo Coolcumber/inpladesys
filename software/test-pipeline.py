@@ -16,7 +16,7 @@ dataset_dirs = [
 ]
 
 
-def evaluate(params: dict, dataset_index: int, cache_dir=None, linear=True):
+def evaluate(params: dict, dataset_index: int, cache_dir=None, linear=True, test=False):
     features_file_name = 'inpladesys/models/basic_feature_extraction/features_files/cng-sw-bow.json'
     random_state = 0xBeeFeed
     pl_params = dict()
@@ -36,7 +36,7 @@ def evaluate(params: dict, dataset_index: int, cache_dir=None, linear=True):
             reinitialize_on_fit=False,
             nonlinear_layer_count=params['gr-nonlinear_layer_count'],
             iteration_count=params['gr-iteration_count'],
-            learning_rate=1e-3,
+            learning_rate=5e-4,
             random_state=random_state)
     print(str(pl_params['feature_transformer']))
     pl_params['clusterer'] = AutoKMeans(min_clusters=2, max_clusters=2) if dataset_index != 1 else AutoKMeans(2, 2)
@@ -58,14 +58,18 @@ def evaluate(params: dict, dataset_index: int, cache_dir=None, linear=True):
     print("Loading dataset...")
     dataset = Pan16DatasetLoader(dataset_dirs[dataset_index]).load_dataset()
     dataset.shuffle(random_state=random_state)
-    train_validate_data, _ = dataset.split(0, int(0.7 * dataset.size))
+    train_validate_data, test_data = dataset.split(0, int(0.7 * dataset.size))
     train_data, validate_data = train_validate_data.split(0, int(0.7 * train_validate_data.size))
+
+    if test:
+        train_data = train_validate_data
+        validate_data = test_data
 
     print("Training...")
     pad.train(train_data)
 
     # validate_data = train_data
-    print("Evaluating on validation data...")
+    print("Evaluating on {} data...".format("TEST" if test else "VALIDATION"))
     hs = pad.predict(validate_data.documents,
                      author_counts=[s.author_count for d, s in validate_data] if dataset_index == 1 else None)
     ys = validate_data.segmentations
@@ -90,16 +94,16 @@ params = dict()
 params['context_size'] = 120
 params['gr_output_dimension'] = 40
 params['gr-nonlinear_layer_count'] = 0
-params['gr-iteration_count'] = 40  # 60  #20simple
+params['gr-iteration_count'] = 40  # 40 linear, 20simple
 params['basic_feature_extender'] = 'f2'
 
 # cache_dir example "ce100-bow100-sw--ctx120--f21"
 evaluate(params,
-         2,
+         1,
          cache_dir="cng120-bow120-sw--ctx{}--f2-s".format(
             params['context_size'],
             1 if params['basic_feature_extender'] == 'f2' else 0),
-         linear=True)
+         linear=True, test=False)
 
 # Task c:
 # 1) output_dimension=16, 2 groups, 100 iter, no f**2 , linear: 0.53
@@ -132,3 +136,35 @@ evaluate(params,
 # 1e-4 all feasible features
 # ce100-bow100-sw [ 0.56613638  0.71394097  0.60896839] +- [ 0.15861691  0.12229928  0.09630066]
 # ce300 bow300 [ 0.58075337  0.74768844  0.62966799] +- [ 0.16752679  0.11718516  0.09843741]
+
+
+# TEST a
+
+
+# TEST b
+""" Linear
+Standard error: 0.0302746749033
+95.0% confidence interval: (0.38866197755332688, 0.52193019793050044)
+<class 'inpladesys.evaluation.BCubedScorer'>
+[ 0.48056991  0.4498697   0.45529609] +- [ 0.12297657  0.12185289  0.10040974]
+"""
+""" Weights
+Standard error: 0.0295899125141
+95.0% confidence interval: (0.43170074984564644, 0.56195466650880177)
+<class 'inpladesys.evaluation.BCubedScorer'>
+[ 0.518956    0.49422617  0.49682771] +- [ 0.08636855  0.13951934  0.09813864]
+"""
+
+# TEST c (assume 2 clusters)
+""" Linear
+Standard error: 0.0439617652085
+95.0% confidence interval: (0.54720825480421598, 0.74072664047420889)
+<class 'inpladesys.evaluation.BCubedScorer'>
+[ 0.55661435  0.81782488  0.64396745] +- [ 0.17287733  0.13548413  0.14580468]
+"""
+""" Weighting
+Standard error: 0.0380707132254
+95.0% confidence interval: (0.55449213650356943, 0.72207828618914516)
+<class 'inpladesys.evaluation.BCubedScorer'>
+[ 0.57403307  0.77066908  0.63828521] +- [ 0.17469332  0.09523809  0.12626627]
+"""
