@@ -1,4 +1,5 @@
 from inpladesys.datasets import Pan16DatasetLoader
+from inpladesys.datatypes import Segmentation
 from inpladesys.models.basic_feature_extraction.basic_feature_extractor import BasicFeatureExtractor
 from inpladesys.models.feature_transformation import GroupRepelFeatureTransformer
 from inpladesys.models.pipeline_author_diarizer import PipelineAuthorDiarizer
@@ -39,7 +40,7 @@ def evaluate(params: dict, dataset_index: int, cache_dir=None, linear=True, test
             learning_rate=5e-4,
             random_state=random_state)
     print(str(pl_params['feature_transformer']))
-    pl_params['clusterer'] = AutoKMeans(min_clusters=2, max_clusters=2) if dataset_index != 1 else AutoKMeans(2, 2)
+    pl_params['clusterer'] = AutoKMeans(2, 2) if dataset_index != 2 else AutoKMeans(2, 10)
     # pl_params['clusterer'] = Deoutliizer(0.3)
     if params['basic_feature_extender'] == 'f**2':
         pl_params['basic_feature_extender'] = lambda f: np.concatenate((f, f ** 2), axis=0)
@@ -74,11 +75,24 @@ def evaluate(params: dict, dataset_index: int, cache_dir=None, linear=True, test
                      author_counts=[s.author_count for d, s in validate_data] if dataset_index == 1 else None)
     ys = validate_data.segmentations
 
+    class KScorer():
+        def __init__(self, y: Segmentation, h: Segmentation):
+            self.y, self.h = y, h
+
+        def precision(self):
+            return int(self.y.author_count != self.h.author_count)
+
+        def recall(self):
+            return abs(self.y.author_count - self.h.author_count)
+
+        def f1_score(self):
+            return (self.y.author_count - self.h.author_count) ** 2
+
     def get_scores(scorer_factory, y, h):
         scorer = scorer_factory(y, h)
         return np.array([scorer.precision(), scorer.recall(), scorer.f1_score()])
 
-    scorer_factories = [MicroScorer, MacroScorer, BCubedScorer] if dataset_index == 0 else [BCubedScorer]
+    scorer_factories = [MicroScorer, MacroScorer, BCubedScorer] if dataset_index == 0 else [BCubedScorer, KScorer]
     for sf in scorer_factories:
         score_list = [get_scores(sf, y, h) for y, h in zip(ys, hs)]
         f1_scores = [s[2] for s in score_list]
@@ -94,16 +108,17 @@ params = dict()
 params['context_size'] = 120
 params['gr_output_dimension'] = 40
 params['gr-nonlinear_layer_count'] = 0
-params['gr-iteration_count'] = 20  # 40 linear, 20simple
+params['gr-iteration_count'] = 40  # 40 linear, 20simple
 params['basic_feature_extender'] = 'f2'
 
 # cache_dir example "ce100-bow100-sw--ctx120--f21"
 evaluate(params,
-         0,
+         2,
          cache_dir="cng120-bow120-sw--ctx{}--f2-s".format(
-            params['context_size'],
-            1 if params['basic_feature_extender'] == 'f2' else 0),
-         linear=False, test=True)
+             params['context_size'],
+             1 if params['basic_feature_extender'] == 'f2' else 0),
+         linear=True,
+         test=True)
 
 # Task c:
 # 1) output_dimension=16, 2 groups, 100 iter, no f**2 , linear: 0.53

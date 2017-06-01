@@ -19,7 +19,7 @@ class AutoKMeans():
     def train(self, X, ks):
         old_max_iter = self.max_iter
         self.max_iter = 200
-        ps = np.linspace(0, 0.7, 1)
+        ps = np.linspace(0, 0.7, 8)
         errors = []
         l1errors = []
         hitses = []
@@ -40,6 +40,7 @@ class AutoKMeans():
             print(l1errors)
             print(hitses)
         self.p = ps[np.argmin(errors)]  # 0.3
+        print("AutoKMeans-p {}".format(self.p))
         self.max_iter = old_max_iter
 
     def fit_predict(self, X, cluster_count=None):

@@ -62,9 +62,9 @@ class PipelineAuthorDiarizer():
                 plt.scatter(h[:, 0], h[:, 1], c=y1[0])
                 plt.pause(0.05)
 
-        #print("(5/4) Training clusterer...")
-        #if getattr(self.clusterer, "train", None) is not None:
-        #    self.clusterer.train(self.feature_transformer.transform(X), [s.author_count for s in segmentations])
+        print("(5/4) Training clusterer...")
+        if getattr(self.clusterer, "train", None) is not None:
+            self.clusterer.train(self.feature_transformer.transform(X), [s.author_count for s in segmentations])
 
     def predict(self, documents, author_counts=None):
         assert (len(documents) > 0)
