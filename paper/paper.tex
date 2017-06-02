@@ -243,7 +243,7 @@ Context size was determined manually for tasks \emph{a} and \emph{b}, in a simil
 
 For clustering algorithm selection we used manual search over several algorithms. We split the whole dataset into a training and a test set. For each algorithm we were examining, a grid search of its hyperparameters was performed on the training set. We selected an algorithm and hyperparameters that achieved the best performance on a training set (since this is an unsupervised approach), and reported a final performance on the test set.
 
-In task \emph{a}, we used 50\% of dataset as a training set, and other half as a test set. Since this task is characterized as an outlier detection task, we tested an isolation forest algorithm, but achieved poor results. Other algorithms which we evaluated were Gaussian mixtures and hierarchical agglomerative clustering. Agglomerative clustering with cosine affinity and average linkage achieved the best performance on the training set and we report its result on the test set. We measured macro $F_\mathrm{M}$.
+In task \emph{a}, we used 50\% of dataset as a training set, and other half as a test set. Since this task is characterized as an outlier detection task, we tested an isolation forest algorithm, but achieved poor results. Other algorithms which we evaluated were Gaussian mixtures and hierarchical agglomerative clustering. Agglomerative clustering with cosine affinity and average linkage achieved the best performance on the training set and we report its result on the test set. We measured macro-averaged $F_1$-score.
 
 In task \emph{b} we also split dataset in two half. Grid search for the best hyperparameters was performed for agglomerative clustering. The best performance on the training set was obtained with euclidean affinity and average linkage.
 
@@ -265,9 +265,11 @@ We have evaluated our models using micro-averaged and macro-averaged precision, 
 
 The results of evaluation for the intrinsic plagiarism problem (task \emph{a}) are shown in table \ref{tab:results-task-a}. For author diarization with known (task \emph{b}) and unknown (task \emph{c}) numbers of authors, the results are shown in table \ref{tab:results-task-b-c}.
 
-\subsection{Intrinsic plagiarism detection results}
+{Intrinsic plagiarism detection results}
 
 don't forget to describe tolerance
+
+{Author diarization results}
 
 \begin{table*}
 	\caption{Results on the intrinsic plagiarism detection task.}
@@ -291,8 +293,6 @@ don't forget to describe tolerance
 		\end{tabular}
 	\end{center}
 \end{table*}
-
-\subsection{Author diarization results}
 
 \begin{table*}
 	\caption{Results on the author diarization task.}
