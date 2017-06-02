@@ -8,7 +8,7 @@ import random
 
 
 class DummyStochasticAuthorDiarizer(AbstractAuthorDiarizer):
-    def __init__(self, author_count=5, average_segment_length=500, random_state=-1):
+    def __init__(self, author_count=5, average_segment_length=200, random_state=-1):
         self.random_state = random_state
         self.n = author_count
         self.asl = average_segment_length
@@ -52,5 +52,5 @@ class DummyStochasticAuthorDiarizer(AbstractAuthorDiarizer):
             Segment(offset=offset, length=len(document) - offset, author=author))
         segm = Segmentation(self.n, segments)
         if(segm.author_count==2):
-            fix_segmentation_labels_for_plagiarism_detection(segm, plagiarism_majority=True)
+            fix_segmentation_labels_for_plagiarism_detection(segm, plagiarism_majority=False)
         return segm

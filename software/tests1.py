@@ -19,7 +19,7 @@ dataset_dirs = [
     "../data/pan16-author-diarization-training-dataset-problem-c-2016-02-16"
 ]
 print("Loading dataset...")
-dataset_index = 2
+dataset_index = 0
 dataset = Pan16DatasetLoader(dataset_dirs[dataset_index]).load_dataset()
 
 models = [
@@ -87,7 +87,7 @@ for model in models:
             pred = m.predict(d)
             if dataset_index == 0:  # task a
                 #micro = MicroScorer(truth, pred)  # use Micro AND Macro Scorer for task a!!
-                macro = MicroScorer(truth, pred)  # use Micro AND Macro Scorer for task a!!
+                macro = MacroScorer(truth, pred)  # use Micro AND Macro Scorer for task a!!
                 modelsToScores[model.name] += np.array([macro.precision(), macro.recall(), macro.f1_score()])
 
             else:  # tasks b and c
