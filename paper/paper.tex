@@ -253,13 +253,61 @@ For task \emph{c} we should have somehow determine the number of clusters. Due t
 
 The best results on task \emph{c} were obtained with DBSCAN, and for other ones they were very low. We noticed that the estimated number of clusters with the best hyerparameters (\texttt{eps=100, min\_samples=71, metric="manhattan"}) was in almost every case greater than a real one, and solid number of examples were not even clustered because they were not close enough to any core sample to be a part of a cluster. In all grid searches we used BCubed $F$ measure and only DBSCAN achieved acceptable performance. Our opinion is that this was a consequence of a larger number of smaller clusters which had a positive influence on BCubed precision and therefore on overall performance.
  
-Since the relatively good Bcubed $F$ measure is not of practical use in real life appliactions if the number of clusters is always wrongly estimated, we decided to repeat the grid search in task \emph{c} for DBSCAN, but now we set the Calinski-Harabaz index defined by \citet{calinski-1974} as evaluation measure since it does not require the real number of clusters for clustering evaluation. Finally, from all results on training set we chose (\texttt{eps=$0.23$, min\_samples=64, metric="cosine"}) for the final hyperparameters. This wasn't the best combination, but it produced relatively acceptable amount of noisy (non-clustered) elements per document and performed quite fast. If some samples weren't clustered, we assigned them the majority label from neighborhood (context) of size 10 (5 on each side), or the majority label from all samples if samples in the context weren't  clustered.  
+Since the best achieved Bcubed $F$ measure (0.61) is not of practical use in real life appliactions if the number of clusters is always wrongly estimated, we decided to repeat the grid search in task \emph{c} for DBSCAN, but now we set the Calinski-Harabaz index defined by \citet{calinski-1974} as evaluation measure since it does not require the real number of clusters for clustering evaluation. Finally, from all results on training set we chose (\texttt{eps=$0.23$, min\_samples=64, metric="cosine"}) for the final hyperparameters. This wasn't the best combination, but it produced relatively acceptable amount of noisy elements per document, and performed quite fast but again din't estimate the correct number of clusters in most cases. If some samples weren't clustered, we assigned them the majority label from neighborhood (context) of size 10 (5 on each side), or the majority label from all samples if samples in the context weren't clustered.  
 
 \paragraph{Model B.} For Model B, we have decided to use a smaller set of basic features: character tri-gram counts (for $120$ tri-grams), stop word counts, average token length and bag-of-words (for $120$ words). The length of the sliding window is set to $120$ characters. Model B uses k-means clustering. We have chosen two trainable feature transformations: linear and elementwise linear (weighting). For both of the transformations $5\times 10^{-4}$ was chosen for the learning rate. All the hyperparameters are selected manually by experimenting on the development dataset, which is approximately $70\%$ of the available dataset. $70\%$ of the development set was used for training basic feature extractors and the transformation. Considering the results on the validation part of the development set, not very large numbers of iterations seem to be more beneficial. A number of $40$ iterations was chosen for the linear transformation, and $20$ for the elementwise linear transformation. For the output dimension of the linear transformation we have chosen $n_\mathrm{t}=40$, though not much different results seem to be achievable using smaller numbers like $20$, making training and clustering faster. 
 
 For task \emph{c} we have implemented a simple wrapper for the k-means algorithm that tries to predict the correct number of authors. It computes the k-means error for each number $k$ in the specified range for the number of clusters. Based on ratios of relative improvements in the score between consecutive $k$-s, it chooses the $k$ giving the best ratio modulated with a modulation function dependent on $k$, simply $k^\alpha$ was chosen, where $\alpha$ is selected using linear search. Being limited in time, we didn't put much effort into optimizing the selection of the best number of clusters. Moreover, even if knowing the number of clusters in advance, it seems that even the transformed features are not satisfactory for correct clustering. We notice that using the correct numbers of authors compared to using a fixed $k=2$ results in relative decrease in BCubed precision, recall, and $F_1$-score by factors of $0.95$, $0.64$ and $0.79$ respectively.
 
 \subsection{Evaluation results}
+
+\begin{table*}
+	\caption{Results on the intrinsic plagiarism detection task. The standard errors both for $F_\mathrm{\mu}$ and $F_\mathrm{M}$ are for Model A within $\pm0.04$ and for Model B within $\pm0.06$ at the 95\% confidence. Results of models denoted with * were obtained on the PAN 2016 test set which was not available to us.}
+	\label{tab:results-task-a}
+	\begin{center}
+		\begin{tabular}{l|ccc|ccc}
+			\toprule
+			Method & $P_\mathrm{\mu}$ & $R_\mathrm{\mu}$ & $F_\mathrm{\mu}$ & $P_\mathrm{M}$ & $R_\mathrm{M}$ & $F_\mathrm{M}$\\
+			\midrule
+			Single-author dummy BL 	& 0.13 & \textbf{1.00} & 0.22 & 0.13 & \textbf{1.00} & 0.22 \\
+			Stochastic dummy BL 	& 0.13 & 0.94 & 0.23 & 0.15 & 0.94 & \textbf{0.25} \\
+			Simple BL 				& 0.13 & 0.24 & 0.14 & 0.13 & 0.24 & 0.13 \\
+			\midrule
+			\citet{kuznetsov-2016}* 	& \textbf{0.29} & 0.19 & 0.22 & \textbf{0.28} & 0.15 & 0.17 \\
+			\citet{sittar-2016}* 	& 0.14 & 0.07 & 0.08 & 0.14 & 0.10 & 0.10 \\
+			\midrule			
+			Model A 				& 0.18 & 0.43 & \textbf{0.25} & 0.18 & 0.43 & 0.24 \\			
+			Model B (linear) 		& 0.21 & 0.35 & 0.23 & 0.21 & 0.34 & 0.22 \\
+			Model B (weighting) 	& 0.24 & 0.36 & 0.23 & 0.24 & 0.34 & 0.23 \\
+			\bottomrule
+		\end{tabular}
+	\end{center}
+\end{table*}
+
+\begin{table*}
+	\caption{Results on the author diarization task for known (task \emph{b}) and unknown (task \emph{c}) numbers of authors. The standard errors for both tasks are for Model A within $\pm0.02$ and for Model B within $\pm0.05$ at the 95\% confidence. Results of models denoted with * were obtained on the PAN 2016 test set which was not available to us.}
+	\label{tab:results-task-b-c}
+	\begin{center}
+		\begin{tabular}{l|ccc|ccc}
+			\toprule
+			\multirow{2}{*}{Method} & \multicolumn{3}{c|}{Task \emph{b}} & \multicolumn{3}{c}{Task \emph{c}} \\
+			\cmidrule{2-7}
+			& $P_{\mathrm{B}^3}$ & $R_{\mathrm{B}^3}$ & $F_\mathrm{\mathrm{B}^3}$ & $P_{\mathrm{B}^3}$ & $R_{\mathrm{B}^3}$ & $F_\mathrm{\mathrm{B}^3}$ \\
+			\midrule
+			Single-author dummy BL 		& 0.33 & \textbf{1.00} & 0.47 & 0.37 & \textbf{1.00} & 0.52 \\
+			Stochastic dummy BL 		& 0.35 & 0.59 & 0.41 & 0.39 & 0.59 & 0.45 \\
+			Simple BL 					& 0.43 & 0.50 & 0.45 & 0.45 & 0.54 & 0.45 \\
+			\midrule
+			\citet{kuznetsov-2016}*		& \textbf{0.64} & 0.46 & 0.52 & 0.64 & 0.42 & 0.48 \\
+			\citet{sittar-2016}* 		& 0.28 & 0.47 & 0.32 & 0.31 & 0.47 & 0.35 \\
+			\midrule			
+			Model A 					& 0.61 & 0.65 & \textbf{0.62} & \textbf{0.71} & 0.50 & 0.54 \\			
+			Model B (linear) 			& 0.48 & 0.45 & 0.46 & 0.56 & 0.82 & \textbf{0.64} \\
+			Model B (weighting)			& 0.51 & 0.49 & 0.50 & 0.57 & 0.77 & \textbf{0.64} \\
+			\bottomrule
+		\end{tabular}
+	\end{center}
+\end{table*}
 
 We have evaluated our models using micro-averaged and macro-averaged precision, recall and $F_1$-score for intrinsic plagiarism detection and the analogous BCubed scores for author diarization, as defined in subsection \ref{subsec:evaluation-measures}. The results of our models are compared to the reuslts of our baselines, a well as the results of the two teams that took part in the PAN 2016 competition for this problem. The results of the two teams have been evaluated on test sets that is not publicly available. Only the training sets from the competition have been available to us.
 
@@ -271,53 +319,7 @@ don't forget to describe tolerance
 
 {Author diarization results}
 
-\begin{table*}
-	\caption{Results on the intrinsic plagiarism detection task. The standard errors both for $F_\mathrm{\mu}$ and $F_\mathrm{M}$ are for Model A within $\pm0.04$ and for Model B within $\pm0.06$.}
-	\label{tab:results-task-a}
-	\begin{center}
-		\begin{tabular}{l|ccc|ccc}
-			\toprule
-			Method & $P_\mathrm{\mu}$ & $R_\mathrm{\mu}$ & $F_\mathrm{\mu}$ & $P_\mathrm{M}$ & $R_\mathrm{M}$ & $F_\mathrm{M}$\\
-			\midrule
-			Single-author dummy BL 	& 0.13 & 1.00 & 0.22 & 0.13 & 1.00 & 0.22 \\
-			Stochastic dummy BL 	& 0.13 & 0.94 & 0.23 & 0.15 & 0.94 & 0.25 \\
-			Simple BL 				& 0.13 & 0.24 & 0.14 & 0.13 & 0.24 & 0.13 \\
-			\midrule
-			\citet{kuznetsov-2016} 	& 0.29 & 0.19 & 0.22 & 0.28 & 0.15 & 0.17 \\
-			\citet{sittar-2016} 	& 0.14 & 0.07 & 0.08 & 0.14 & 0.10 & 0.10 \\
-			\midrule			
-			Model A 				&  &  &  &  &  & \\			
-			Model B (linear) 		& 0.21 & 0.35 & 0.23 & 0.21 & 0.34 & 0.22 \\
-			Model B (weighting) 	& 0.24 & 0.36 & 0.23 & 0.24 & 0.34 & 0.23 \\
-			\bottomrule
-		\end{tabular}
-	\end{center}
-\end{table*}
 
-\begin{table*}
-	\caption{Results on the author diarization task for known (task \emph{b}) and unknown (task \emph{c}) numbers of authors. The standard errors for both tasks are for Model A within $\pm0.02$ and for Model B within $\pm0.05$. }
-	\label{tab:results-task-b-c}
-	\begin{center}
-		\begin{tabular}{l|ccc|ccc}
-			\toprule
-			\multirow{2}{*}{Method} & \multicolumn{3}{c|}{Task \emph{b}} & \multicolumn{3}{c}{Task \emph{c}} \\
-			\cmidrule{2-7}
-			& $P_{\mathrm{B}^3}$ & $R_{\mathrm{B}^3}$ & $F_\mathrm{\mathrm{B}^3}$ & $P_{\mathrm{B}^3}$ & $R_{\mathrm{B}^3}$ & $F_\mathrm{\mathrm{B}^3}$ \\
-			\midrule
-			Single-author dummy BL 		& 0.33 & 1.00 & 0.47 & 0.37 & 1.00 & 0.52 \\
-			Stochastic dummy BL 		& 0.35 & 0.59 & 0.41 & 0.39 & 0.59 & 0.45 \\
-			Simple BL 					& 0.43 & 0.50 & 0.45 & 0.45 & 0.54 & 0.45 \\
-			\midrule
-			\citet{kuznetsov-2016}		& 0.64 & 0.46 & 0.52 & 0.64 & 0.42 & 0.48 \\
-			\citet{sittar-2016} 		& 0.28 & 0.47 & 0.32 & 0.31 & 0.47 & 0.35 \\
-			\midrule			
-			Model A 					&  &  &  &  &  & \\			
-			Model B (linear) 			& 0.48 & 0.45 & 0.46 & 0.56 & 0.82 & 0.64 \\
-			Model B (weighting)			& 0.51 & 0.49 & 0.50 & 0.57 & 0.77 & 0.64 \\
-			\bottomrule
-		\end{tabular}
-	\end{center}
-\end{table*}
 
 \section{Conclusion}
 
@@ -338,7 +340,6 @@ Conclusion is the last enumerated section of the paper. It should not exceed hal
 \section*{Acknowledgements}
 
 If suitable, you can include the \emph{Acknowledgements} section before inserting the literature references  in order to thank those who helped you in any way to deliver the paper, but are not co-authors of the paper.
-
 
 \bibliographystyle{tar2016}
 \bibliography{tar2017}
