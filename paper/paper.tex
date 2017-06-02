@@ -261,19 +261,6 @@ For task \emph{c} we have implemented a simple wrapper for the k-means algorithm
 
 \subsection{Evaluation results}
 
-<<<<<<< HEAD
-We have evaluated our models using micro-averaged and macro-averaged precision, recall and $F_1$-score for intrinsic plagiarism detection and the analogous BCubed scores for author diarization, as defined in subsection \ref{subsec:evaluation-measures}. The results of our models are compared to the results of our baselines, a well as the results of the two teams that took part in the PAN 2016 competition for this problem. The results of the two teams have been evaluated on test sets that is not publicly available. Only the training sets from the competition have been available to us.
-
-The results of evaluation for the intrinsic plagiarism problem are shown in table \ref{tab:results-task-a}. For author diarization with known and unknown numbers of authors, the results are shown in table \ref{tab:results-task-b-c}. It should be noted that the evaluated Model B uses a fixed number of clusters $k=2$ for task \emph{c} and that the results are actually not very good. By trying a more honest approach with predicting the number of clusters the BCubed $F_1$-score drops below $0.5$.
-
-{Intrinsic plagiarism detection results}
-
-don't forget to describe tolerance
-
-{Author diarization results}
-
-=======
->>>>>>> 381d547c90efd1b91798113f8cf1cd64d760651c
 \begin{table*}
 	\caption{Results on the intrinsic plagiarism detection task. The standard errors both for $F_\mathrm{\mu}$ and $F_\mathrm{M}$ are for Model A within $\pm0.04$ and for Model B within $\pm0.06$ at the 95\% confidence. Results of models denoted with * were obtained on the PAN 2016 test set which was not available to us.}
 	\label{tab:results-task-a}
@@ -322,7 +309,7 @@ don't forget to describe tolerance
 	\end{center}
 \end{table*}
 
-We have evaluated our models using micro-averaged and macro-averaged precision, recall and $F_1$-score for intrinsic plagiarism detection and the analogous BCubed scores for author diarization, as defined in subsection \ref{subsec:evaluation-measures}. The results of our models are compared to the reuslts of our baselines, a well as the results of the two teams that took part in the PAN 2016 competition for this problem. The results of the two teams have been evaluated on test sets that is not publicly available. Only the training sets from the competition have been available to us.
+We have evaluated our models using micro-averaged and macro-averaged precision, recall and $F_1$-score for intrinsic plagiarism detection and the analogous BCubed scores for author diarization, as defined in subsection \ref{subsec:evaluation-measures}. The results of our models are compared to the results of our baselines, a well as the results of the two teams that took part in the PAN 2016 competition for this problem. The results of the two teams have been evaluated on test sets that is not publicly available. Only the training sets from the competition have been available to us.
 
 The results of evaluation for the intrinsic plagiarism problem are shown in table \ref{tab:results-task-a}. For author diarization with known and unknown numbers of authors, the results are shown in table \ref{tab:results-task-b-c}. It should be noted that the evaluated Model B uses a fixed number of clusters $k=2$ for task \emph{c} and that the results are actually not very good. By trying a more honest approach with predicting the number of clusters the BCubed $F_1$-score drops below $0.5$.
 
