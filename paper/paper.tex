@@ -86,7 +86,7 @@ For each of the three subtasks a training set is publicly available\footnotemark
 % dataset+
 
 \section{Related work}
-The basic assumption in authorship analysis is that texts of different authors are mutually separable because each author has a more or less unique writing style \citep{stamatatos-2009a,ding-2016}. More precisely, \citet{koppel-2009} explain that methods used in authorship analysis must be able to distinguish writing styles, but also tolerate shallow differences within the same style because an author's stylistic habits can consciously or unconsciously vary over time. Therefore, most of related work tries to find the better features and methods which writing style will be quantified and measured with.
+The basic assumption in authorship analysis is that texts of different authors are mutually separable because each author has a more or less unique writing style \citep{stamatatos-2009a,ding-2016}. More precisely, \citet{koppel-2009} explain that methods used in authorship analysis must be able to distinguish writing styles, but also tolerate shallow differences within the same style because an author's stylistic habits can consciously or unconsciously vary over time. Therefore, most of related work tries to find better features and methods which writing style will be quantified and measured with.
 
 \citet{zu-2006} manually created a labelled corpus of plagiarized documents and used it for intrinsic plagiarism detection task. They used average sentence length, part of speech tags, average stop word number and the averaged word frequency class as input features for their linear discriminant analysis and support vector machine (SVM) models. They approached that task in a supervised fashion. 
 
@@ -263,7 +263,7 @@ For task \emph{c} we have implemented a simple wrapper for the k-means algorithm
 
 We have evaluated our models using micro-averaged and macro-averaged precision, recall and $F_1$-score for intrinsic plagiarism detection and the analogous BCubed scores for author diarization, as defined in subsection \ref{subsec:evaluation-measures}. The results of our models are compared to the reuslts of our baselines, a well as the results of the two teams that took part in the PAN 2016 competition for this problem. The results of the two teams have been evaluated on test sets that is not publicly available. Only the training sets from the competition have been available to us.
 
-The results of evaluation for the intrinsic plagiarism problem are shown in table \ref{tab:results-task-a}. For author diarization with known and unknown numbers of authors, the results are shown in table \ref{tab:results-task-b-c}.
+The results of evaluation for the intrinsic plagiarism problem are shown in table \ref{tab:results-task-a}. For author diarization with known and unknown numbers of authors, the results are shown in table \ref{tab:results-task-b-c}. It should be noted that the evaluated Model B uses a fixed number of clusters $k=2$ for task \emph{c} and that the results are actually not very good. By trying a more honest approach with predicting the number of clusters the BCubed $F_1$-score drops below $0.5$.
 
 {Intrinsic plagiarism detection results}
 
@@ -272,7 +272,7 @@ don't forget to describe tolerance
 {Author diarization results}
 
 \begin{table*}
-	\caption{Results on the intrinsic plagiarism detection task.}
+	\caption{Results on the intrinsic plagiarism detection task. The standard errors both for $F_\mathrm{\mu}$ and $F_\mathrm{M}$ are for Model A within $\pm0.04$ and for Model B within $\pm0.06$.}
 	\label{tab:results-task-a}
 	\begin{center}
 		\begin{tabular}{l|ccc|ccc}
@@ -295,7 +295,7 @@ don't forget to describe tolerance
 \end{table*}
 
 \begin{table*}
-	\caption{Results on the author diarization task for known (task \emph{b}) and unknown (task \emph{c}) numbers of authors.}
+	\caption{Results on the author diarization task for known (task \emph{b}) and unknown (task \emph{c}) numbers of authors. The standard errors for both tasks are for Model A within $\pm0.02$ and for Model B within $\pm0.05$. }
 	\label{tab:results-task-b-c}
 	\begin{center}
 		\begin{tabular}{l|ccc|ccc}
