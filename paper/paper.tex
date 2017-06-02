@@ -261,7 +261,7 @@ For task \emph{c} we have implemented a simple wrapper for the k-means algorithm
 
 \subsection{Evaluation results}
 
-We have evaluated our models using micro-averaged and macro-averaged precision, recall and $F_1$-score for intrinsic plagiarism detection and the analogous BCubed scores for author diarization, as defined in subsection \ref{subsec:evaluation-measures}. The results of our models are compared to the reuslts of our baselines, a well as the results of the two teams that took part in the PAN 2016 competition for this problem. The results of the two teams have been evaluated on test sets that is not publicly available. Only the training sets from the competition have been available to us.
+We have evaluated our models using micro-averaged and macro-averaged precision, recall and $F_1$-score for intrinsic plagiarism detection and the analogous BCubed scores for author diarization, as defined in subsection \ref{subsec:evaluation-measures}. The results of our models are compared to the results of our baselines, a well as the results of the two teams that took part in the PAN 2016 competition for this problem. The results of the two teams have been evaluated on test sets that is not publicly available. Only the training sets from the competition have been available to us.
 
 The results of evaluation for the intrinsic plagiarism problem are shown in table \ref{tab:results-task-a}. For author diarization with known and unknown numbers of authors, the results are shown in table \ref{tab:results-task-b-c}. It should be noted that the evaluated Model B uses a fixed number of clusters $k=2$ for task \emph{c} and that the results are actually not very good. By trying a more honest approach with predicting the number of clusters the BCubed $F_1$-score drops below $0.5$.
 
@@ -323,7 +323,9 @@ don't forget to describe tolerance
 
 hard task, a lot of space for improvement
 
-Our results, as well as the the results of others, suggest that author diarization and intrinsic plagiarism detection are challenging problems. Our approach 
+Our results, as well as the the results of others, suggest that author diarization and intrinsic plagiarism detection are very challenging problems. Our approach tries to solve the problem by clustering contextual writing style features extracted with a sliding window around each token.
+
+We have presented some ideas that are not completely refined but, based on the data we have available, seem to give comparable, or even better results that the other two approaches that tired to tackle the same problem. 
 
  and that there is a lot of room for improvement for our approach
  
@@ -332,7 +334,8 @@ Our results, as well as the the results of others, suggest that author diarizati
 Conclusion is the last enumerated section of the paper. It should not exceed half of a column and is typically split into 2--3 paragraphs. No new information should be presented in the conclusion; this section only summarizes and concludes the paper.
 
 % 2-nd paragraph further work
-% more systematic parameter choice, model development
+% basic feature extraction speed sliding window overlap?
+% more systematic parameter choice, further model development
 % mention possible applicability to author clustering and extrinsic plagiarism detections
 
 \section*{Acknowledgements}
