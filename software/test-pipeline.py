@@ -40,7 +40,7 @@ def evaluate(params: dict, dataset_index: int, cache_dir=None, linear=True, test
             learning_rate=5e-4,
             random_state=random_state)
     print(str(pl_params['feature_transformer']))
-    pl_params['clusterer'] = AutoKMeans(2, 2) if dataset_index != 2 else AutoKMeans(2, 10)
+    pl_params['clusterer'] = AutoKMeans(2, 2) if dataset_index != 2 else AutoKMeans(2, 2)
     # pl_params['clusterer'] = Deoutliizer(0.3)
     if params['basic_feature_extender'] == 'f**2':
         pl_params['basic_feature_extender'] = lambda f: np.concatenate((f, f ** 2), axis=0)
@@ -204,6 +204,7 @@ Standard error: 0.0439617652085
 95.0% confidence interval: (0.54720825480421598, 0.74072664047420889)
 <class 'inpladesys.evaluation.BCubedScorer'>
 [ 0.55661435  0.81782488  0.64396745] +- [ 0.17287733  0.13548413  0.14580468]
+[ 0.52577781  0.52042712  0.50930703] +- [ 0.15178143  0.18369707  0.13211388] - known number of authors
 """
 """ Weighting
 Standard error: 0.0380707132254

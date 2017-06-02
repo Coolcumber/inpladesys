@@ -19,7 +19,7 @@ class AutoKMeans():
     def train(self, X, ks):
         old_max_iter = self.max_iter
         self.max_iter = 200
-        ps = np.linspace(-2, 0.5, 26)
+        ps = np.linspace(-1.5, 0.5, 21)
         errors = []
         l1errors = []
         hitses = []
