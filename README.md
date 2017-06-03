@@ -33,7 +33,6 @@ Beside the checkpoints defined by the course, we have defined a set of informal 
 #### 2017-6-18 Project reviews
 #### 2017-6-26 Final papers
 
-
 ### Model components
 #### Basic features
 * *bf1* - a small selection of simple lexical features **TODO**
