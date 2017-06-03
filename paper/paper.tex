@@ -218,7 +218,7 @@ The transformation is implemented using TensorFlow\footnote{\url{https://www.ten
 
 
 \paragraph{Clustering.}
-The final step in our approach was clustering of obtained feature vectors which represented stylistic contexts of tokens. The number of clusters was equal to the number of authors in tasks \emph{a} and \emph{b}, but in Task \emph{c} it was unknown. We tested various clustering algorithms available in \texttt{scikit-learn}\footnote{\url{http://scikit-learn.org}} Python toolkit by \citet{scikit-learn} in all tasks. In Model A for tasks  \emph{a} and \emph{b} we propose hierarchical agglomerative clustering, and for Task \emph{c} DBSCAN algorithm which estimates the number of clusters automatically. In Model B we used k-means for clustering in all tasks, and tried predicting the number of clusters based on the elbow rule. This is described in more detail in section \ref{sec:experimental-results}
+The final step in our approach is clustering of obtained feature vectors which represent stylistic contexts of tokens. The number of clusters is equal to the number of authors in tasks \emph{a} and \emph{b}, but in Task \emph{c} it is unknown. We tested various clustering algorithms available in \texttt{scikit-learn}\footnote{\url{http://scikit-learn.org}} Python toolkit by \citet{scikit-learn} in all tasks. In Model A for tasks  \emph{a} and \emph{b} we propose hierarchical agglomerative clustering, and for Task \emph{c} DBSCAN algorithm which estimates the number of clusters automatically. In Model B we use k-means for clustering in all tasks, and tried predicting the number of clusters based on the elbow rule. This is described in more detail in section \ref{sec:experimental-results}
 
 % TODO k-means HAC DBSCAN auto-k-means
 
