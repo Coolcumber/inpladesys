@@ -1,7 +1,7 @@
 {
   "features": [
     {
-      "used":1,
+      "used":0,
       "id":1,
       "class_name":"BagOfWordsExtractor",
       "params": {
@@ -25,14 +25,14 @@
       "module_name":"inpladesys.models.basic_feature_extraction.features.simple.char_ngrams"
     },
     {
-      "used":1,
+      "used":0,
       "id":3,
       "class_name":"AvgTokenLengthExtractor",
       "params": {},
       "module_name":"inpladesys.models.basic_feature_extraction.features.simple.avg_token_length"
     },
     {
-      "used":1,
+      "used":0,
       "id":4,
       "class_name":"StopWordsExtractor",
       "params": {},

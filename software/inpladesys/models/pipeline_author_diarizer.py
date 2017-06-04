@@ -19,7 +19,7 @@ class PipelineAuthorDiarizer():
         self.cacher = Cacher.dummy() if cacher is None else cacher
         self.bfe_trained = False
 
-    def train(self, dataset: Dataset):
+    def train(self, dataset: Dataset, animate=False):
         @self.cacher("preprocessed-training-labels")
         def get_bydoc_labels(bydoc_tokens, segmentations):
             o2a = lambda i, offset: segmentations[i].offsets_to_authors(offset)
@@ -46,7 +46,7 @@ class PipelineAuthorDiarizer():
         print("(4/4) Training feature transformer...")
         #bydoc_features = [preprocessing.scale(f) for f in bydoc_features]
         X, Y = bydoc_features[:], bydoc_labels[:]
-        if True:
+        if not animate:
             self.feature_transformer.fit(X, Y)
         else:
             import matplotlib.pyplot as plt
