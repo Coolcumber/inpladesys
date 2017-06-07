@@ -60,9 +60,11 @@ class PipelineAuthorDiarizer():
                 plt.clf()
                 hx = h[:, 1]
                 plt.scatter(h[:, 0], h[:, 1], c=y1[0])
+                plt.gca().set_aspect('equal', adjustable='box')
                 plt.pause(0.05)
 
-        #print("(5/4) Training clusterer...")
+
+                #print("(5/4) Training clusterer...")
         #if getattr(self.clusterer, "train", None) is not None:
         #    self.clusterer.train(self.feature_transformer.transform(X), [s.author_count for s in segmentations])
 
