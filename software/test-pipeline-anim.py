@@ -31,7 +31,7 @@ def evaluate(params: dict, dataset_index: int, cache_dir=None, linear=True, test
         nonlinear_layer_count=params['gr-nonlinear_layer_count'],
         a=0.001,
         iteration_count=params['gr-iteration_count'],
-        learning_rate=2e-3,  # 5e-4
+        learning_rate=1e-3,  # 5e-4
         random_state=random_state)
     print(str(pl_params['feature_transformer']))
     pl_params['clusterer'] = AutoKMeans(2, 2) if dataset_index != 2 else AutoKMeans(2, 2)
@@ -48,7 +48,7 @@ def evaluate(params: dict, dataset_index: int, cache_dir=None, linear=True, test
     if cache_dir is None:
         cache_dir += ''.join(
             "({}={})".format(k, params[k]) for k in keys)
-    pad = PipelineAuthorDiarizer(pl_params, cacher=Cacher(cache_dir))
+    pad = PipelineAuthorDiarizer(pl_params, cacher=Cacher(cache_dir+"-anim"))
 
     print("Loading dataset...")
     dataset = Pan16DatasetLoader(dataset_dirs[dataset_index]).load_dataset()
@@ -60,7 +60,7 @@ def evaluate(params: dict, dataset_index: int, cache_dir=None, linear=True, test
         train_data = train_validate_data
         validate_data = test_data
 
-    #train_data, _ = train_data.split(4, 5)
+    train_data, _ = train_data.split(5, 6)
 
     print("Training...")
     pad.train(train_data, animate=True)
@@ -106,7 +106,7 @@ params = dict()
 params['context_size'] = 120
 params['gr_output_dimension'] = 2
 params['gr-nonlinear_layer_count'] = 0
-params['gr-iteration_count'] = 200  # 40 linear, 20simple
+params['gr-iteration_count'] = 400  # 40 linear, 20simple
 params['basic_feature_extender'] = None
 
 # cache_dir example "ce100-bow100-sw--ctx120--f21"
