@@ -64,7 +64,7 @@ class PipelineAuthorDiarizer():
                 plt.pause(0.05)
 
 
-                #print("(5/4) Training clusterer...")
+        #print("(5/4) Training clusterer...")
         #if getattr(self.clusterer, "train", None) is not None:
         #    self.clusterer.train(self.feature_transformer.transform(X), [s.author_count for s in segmentations])
 

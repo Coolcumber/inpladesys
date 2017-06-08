@@ -106,7 +106,7 @@ params = dict()
 params['context_size'] = 120
 params['gr_output_dimension'] = 2
 params['gr-nonlinear_layer_count'] = 0
-params['gr-iteration_count'] = 400  # 40 linear, 20simple
+params['gr-iteration_count'] = 600  # 40 linear, 20simple
 params['basic_feature_extender'] = None
 
 # cache_dir example "ce100-bow100-sw--ctx120--f21"
