@@ -31,7 +31,7 @@ def evaluate(params: dict, dataset_index: int, cache_dir=None, linear=True, test
         nonlinear_layer_count=params['gr-nonlinear_layer_count'],
         a=0.001,
         iteration_count=params['gr-iteration_count'],
-        learning_rate=1e-3,  # 5e-4
+        learning_rate=8e-4,  # 5e-4
         random_state=random_state)
     print(str(pl_params['feature_transformer']))
     pl_params['clusterer'] = AutoKMeans(2, 2) if dataset_index != 2 else AutoKMeans(2, 2)
