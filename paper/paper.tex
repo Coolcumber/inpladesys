@@ -97,6 +97,7 @@ The works by \citet{kuznetsov-2016} and \citet{sittar-2016} were submitted on th
 
 The most of the described approaches operate on the level of longer text segments or sentences. Since the style change in our tasks can occur even between two tokens in the same sentence, we wanted our model to be able to work on the token level. We were also inspired by \citet{brooke-2013} who said that a more radical approach would not separate the described tasks in segmentation and clustering steps, but rather build authorial segments that would also form good clusters. Instead of clustering tokens directly, we decided to cluster their vectorized stylistic contexts because they obviously contain more valuable stylistic information than tokens alone.
 
+
 \section{Author diarization and intrinsic plagiarism detection} \label{sec:author-diraization}
 % describe the problem
 % define formally: document, segmentation, segment, author assignement (label)
@@ -106,13 +107,9 @@ Let $\Delta$ be the domain of documents. We define a document $D\in \Delta$ as a
 
 For each document, there is a corresponding mapping to a sequence of labels $(a_i)_{i=1}^n$ that are representing groupings of tokens by authors. The labels $a_i$ are indices of authors of the document. Each token $t_i\in T_D$ is assigned a document-level label $a_i \in \{1..c\}$ associating it to one of $c$ authors. The exact value of the label is not important. It is only required that all tokens corresponding to the same author have the same label. Therefore, there are $m!$ equivalent such mappings given a document. In the case of intrinsic plagiarism detection, there are only $2$ labels: $0$ representing the main author, and $1$ representing plagiarized text.
 
-Equivalently, the codomain of the mapping can also be defined as a set of segmentations $\Sigma$. A segmentation $S\in \Sigma$ is a minimal set of segments, where each segment $s$ is a set of consecutive tokens $\{t_i\}_{i=i_1}^{i_2}$ where each token is associated with the same author label. For a segmentation to be valid, the segments must cover all terms in the document and not overlap:
-\begin{equation}
-	\bigcup_{s\in S}s = T_D  \wedge \bigcap_{s\in S}s = \{\}.
-\end{equation}
-The correct mapping of a documents to the corresponding segmentations will be denoted with $\sigma: \Delta\rightarrow\Sigma$.
+Equivalently, the codomain of the mapping can also be defined as a set of segmentations $\Sigma$. A segmentation $S\in \Sigma$ is a minimal set of segments, where each segment $s$ is a set of consecutive tokens $\{t_i\}_{i=i_1}^{i_2}$ where each token is associated with the same author label. For a segmentation to be valid, the segments must cover all terms in the document and not overlap.
 
-Let $\mathcal{D} \subset \Delta\times\Sigma$ be a dataset consisting of a finite set of pairs of documents and corresponding segmentations, i.e., $\mathcal{D} = \{\left(D_i, \sigma(D_i)\right)\}_{i=1}^N$. The goal is to find the model $\hat{\sigma}$ that best approximates the correct mapping $\sigma$, i.e., makes good predictions given unseen documents.
+The correct mapping of a documents to the corresponding segmentations will be denoted with $\sigma: \Delta\rightarrow\Sigma$. Let $\mathcal{D} \subset \Delta\times\Sigma$ be a dataset consisting of a finite set of pairs of documents and corresponding segmentations, i.e., $\mathcal{D} = \{\left(D_i, \sigma(D_i)\right)\}_{i=1}^N$. The goal is to find the model $\hat{\sigma}$ that best approximates the correct mapping $\sigma$, i.e., makes good predictions given unseen documents.
 
 \subsection{Evaluation measures} \label{subsec:evaluation-measures}
 
